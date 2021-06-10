@@ -22,10 +22,14 @@
 		{% endblock %}
 	</head>
 	<body>
+		{% block navbar %}
+		{% endblock %}
 		{% block body %}
 		{% endblock %}
 		{% block footer %}
 		{% include '_footer.html.twig' %}
 		{% endblock %}
+
+		{% block body %}{% endblock %}
 	</body>
 </html>
