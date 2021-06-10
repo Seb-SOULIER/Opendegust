@@ -58,6 +58,7 @@ class OfferVariation
      */
     private ?Calendar $calendar;
 
+
     public function getId(): ?int
     {
         return $this->id;

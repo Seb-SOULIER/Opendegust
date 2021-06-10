@@ -17,10 +17,12 @@ class Contact
      */
     private int $id;
 
+
     /**
      * @ORM\Column(type="string", length=255)
      */
     private string $address;
+
 
     /**
      * @ORM\Column(type="string", length=50)

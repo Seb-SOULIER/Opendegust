@@ -19,11 +19,11 @@ class Category
      */
     private int $id;
 
+
     /**
      * @ORM\Column(type="string", length=45)
      */
     private string $name;
-
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -33,7 +33,8 @@ class Category
     /**
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="category")
      */
-    private ArrayCollection $products;
+    private Collection $products;
+
 
     public function __construct()
     {
@@ -72,7 +73,7 @@ class Category
     /**
      * @return Collection|Product[]
      */
-    public function getProducts(): ?Collection
+    public function getProducts()
     {
         return $this->products;
     }

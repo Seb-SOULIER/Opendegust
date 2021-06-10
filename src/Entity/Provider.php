@@ -19,6 +19,7 @@ class Provider extends User
      */
     private int $id;
 
+
     /**
      * @ORM\Column(type="string", length=45)
      */
@@ -29,15 +30,18 @@ class Provider extends User
      */
     private ?string $picture;
 
+
     /**
      * @ORM\Column(type="string", length=45)
      */
     private string $socialReason;
 
+
     /**
      * @ORM\Column(type="integer")
      */
     private int $siret;
+
 
     /**
      * @ORM\Column(type="integer")
@@ -67,7 +71,8 @@ class Provider extends User
     /**
      * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="provider", orphanRemoval=true)
      */
-    private ArrayCollection $offers;
+    private Collection $offers;
+
 
     /**
      * @ORM\OneToOne(targetEntity=Description::class, cascade={"persist", "remove"})
@@ -82,12 +87,13 @@ class Provider extends User
     /**
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="provider")
      */
-    private ArrayCollection $products;
+    private Collection $products;
 
     /**
      * @ORM\OneToMany(targetEntity=Files::class, mappedBy="provider", orphanRemoval=true)
      */
-    private ArrayCollection $files;
+    private Collection $files;
+
 
     public function __construct()
     {
@@ -172,6 +178,7 @@ class Provider extends User
 
         return $this;
     }
+
 
     public function getMonthlyFrequentation(): ?int
     {

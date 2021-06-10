@@ -27,6 +27,7 @@ class Product
      */
     private string $description;
 
+
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
      */
