@@ -19,10 +19,12 @@ class Offer
      */
     private int $id;
 
+
     /**
      * @ORM\Column(type="string", length=45)
      */
     private string $name;
+
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -55,6 +57,7 @@ class Offer
      * @ORM\JoinColumn(nullable=false)
      */
     private ?Contact $contact;
+
 
     /**
      * @ORM\OneToMany(targetEntity=OfferVariation::class, mappedBy="offer", orphanRemoval=true)
@@ -103,6 +106,7 @@ class Offer
     public function setDomainName(string $domainName): self
     {
         $this->domainName = $domainName;
+
 
         return $this;
     }

@@ -23,31 +23,37 @@ abstract class User implements UserInterface
      */
     private ?string $roles;
 
+
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
     private string $password;
 
+
     /**
      * @ORM\Column(type="datetime")
      */
     private ?\DateTimeInterface $registrationAt;
+
 
     /**
      * @ORM\Column(type="integer")
      */
     private int $civility;
 
+
     /**
      * @ORM\Column(type="string", length=45)
      */
     private string $lastname;
 
+
     /**
      * @ORM\Column(type="string", length=45)
      */
     private string $firstname;
+
 
     public function getEmail(): ?string
     {
@@ -82,6 +88,7 @@ abstract class User implements UserInterface
 
         return array_unique($roles);
     }
+
 
     public function setRoles(?string $roles): self
     {
