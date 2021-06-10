@@ -67,7 +67,7 @@ class Provider extends User
     /**
      * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="provider", orphanRemoval=true)
      */
-    private ArrayCollection $offers;
+    private Collection $offers;
 
     /**
      * @ORM\OneToOne(targetEntity=Description::class, cascade={"persist", "remove"})
@@ -82,12 +82,12 @@ class Provider extends User
     /**
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="provider")
      */
-    private ArrayCollection $products;
+    private Collection $products;
 
     /**
      * @ORM\OneToMany(targetEntity=Files::class, mappedBy="provider", orphanRemoval=true)
      */
-    private ArrayCollection $files;
+    private Collection $files;
 
     public function __construct()
     {
