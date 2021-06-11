@@ -47,7 +47,7 @@ class Customer extends User
     /**
      * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="customer")
      */
-    private ArrayCollection $bookings;
+    private Collection $bookings;
 
     public function __construct()
     {
