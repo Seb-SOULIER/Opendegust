@@ -21,6 +21,7 @@ class CustomerFixtures extends Fixture
 
         for ($i = 1; $i <= self::CUSTOMER_NUMBER; $i++) {
             $customer = new Customer();
+            $contact = new Contact();
             $categories = CategoryFixtures::CATEGORY;
 
             $customer->setEmail($this->faker->email);
@@ -36,7 +37,6 @@ class CustomerFixtures extends Fixture
             $customer->setGtc18($this->faker->boolean());
             $customer->setFavory(json_encode(array_rand($categories, rand(1, 10))));
 
-            $contact = new Contact();
             $contact->setAddress($this->faker->sentence(3));
             $contact->setZipcode($this->faker->postcode);
             $contact->setCity($this->faker->city);

@@ -99,4 +99,3 @@ class ProviderFixtures extends Fixture
         ];
     }
 }
-
