@@ -6,6 +6,7 @@ use App\Repository\OfferRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Array_;
 
 /**
  * @ORM\Entity(repositoryClass=OfferRepository::class)
@@ -21,7 +22,7 @@ class Offer
 
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=100)
      */
     private string $name;
 
@@ -62,7 +63,7 @@ class Offer
     /**
      * @ORM\OneToMany(targetEntity=OfferVariation::class, mappedBy="offer", orphanRemoval=true)
      */
-    private ArrayCollection $offerVariations;
+    private Collection $offerVariations;
 
     public function __construct()
     {
