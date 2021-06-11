@@ -37,9 +37,9 @@ class CustomerFixtures extends Fixture
             $customer->setGtc18($this->faker->boolean());
             $customer->setFavory(json_encode(array_rand($categories, rand(1, 10))));
 
+            $contact->setCity($this->faker->city);
             $contact->setAddress($this->faker->sentence(3));
             $contact->setZipcode($this->faker->postcode);
-            $contact->setCity($this->faker->city);
             $contact->setLongitude($this->faker->longitude);
             $contact->setLatitude($this->faker->latitude);
             $contact->setPhone($this->faker->phoneNumber);
