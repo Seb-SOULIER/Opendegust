@@ -2,3 +2,84 @@ body {
     background-color: $white;
     color: $fourth;
 }
+.home-picture-research {
+    width: 100%;
+    height: 500px;
+    ;
+}
+.part-one-home .text {
+    z-index: 1;
+    position: absolute;
+    text-align: center;
+    font-family: Georgia;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 20%;
+    color: white;
+    width: 70%;
+    text-shadow: black 2px 3px;
+}
+
+.intro-home-info {
+    display: flex;
+    width: 90%;
+    margin-top: 40px;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+}
+.premier-logo-note {
+    display: flex;
+}
+.logo-star {
+    width: 50px;
+    height: 20px;
+}
+.fas.fa-star {
+    font-size: xx-large;
+}
+
+.deuxieme-logo-frais {
+    display: flex;
+}
+.logo-validation {
+    width: 50px;
+    height: 20px;
+}
+.fas.fa-check-circle {
+    font-size: xx-large;
+}
+
+.troisieme-logo-experiences {
+    display: flex;
+}
+.logo-experiences {
+    width: 50px;
+    height: 20px;
+}
+.fas.fa-bolt {
+    font-size: xx-large;
+}
+
+.quatrieme-logo-partenaire {
+    display: flex;
+}
+.logo-partenaires {
+    width:40px;
+    height: 20px;
+}
+.fas.fa-wine-glass-alt {
+    font-size: xx-large;
+}
+
+.trait-home-one {
+    width: 100%;
+    border:5px solid rgb(187, 180, 180);
+    margin-bottom: 100px;
+}
+
+.card {
+    width: 35%;
+}

@@ -1,13 +1,98 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home
+{% endblock %}
 
 {% block body %}
-    <h1>Welcome on your project 3</h1>
-    <p class ="homeTitle">
-        Almost before we knew it, we had left the ground.
-    </p>
-    <i class="fas fa-address-book"></i>
-    <p class="homeText">Almost before we knew it, we had left the ground.</p>
+	<div class="part-one-home">
+		<img class="home-picture-research" src="https://img.freepik.com/photos-gratuite/famille-amis-ayant-pique-nique-barbecue_107420-15902.jpg?size=626&ext=jpg">
+		<div class="text">
+			<h1>Dégustations près de chez vous</h1>
+		</div>
+		<form class="search-home">
+			<input class="write" type="text" name="text" class="search" placeholder="Recherchez ici!">
+			<input class="recherche" type="submit" name="submit" class="submit" value="Search">
+		</form>
+	</div>
+	<div class="intro-home-info">
+		<div class="premier-logo-note col-md-2 col-lg-2">
+			<div class="logo-star">
+				<i class="fas fa-star"></i>
+			</div>
+			<div class="note-star">
+				<p>
+					4.8 de note moyenne
+				</p>
+			</div>
+		</div>
 
+		<div class="deuxieme-logo-frais col-md-2 col-lg-2">
+			<div class="logo-validation">
+				<i class="fas fa-check-circle"></i>
+			</div>
+			<div>
+				<p>
+					pas de frais de réservation
+				</p>
+			</div>
+		</div>
+
+		<div class="troisieme-logo-experiences col-md-2 col-lg-2">
+			<div class="logo-experiences">
+				<i class="fas fa-bolt"></i>
+			</div>
+			<div>
+				<p>
+					plus de 100 expériences enregistrées
+				</p>
+			</div>
+		</div>
+
+		<div class="quatrieme-logo-partenaire col-md-2 col-lg-2">
+			<div class="logo-partenaires">
+				<i class="fas fa-wine-glass-alt"></i>
+			</div>
+			<div>
+				<p>
+					partenaires officiel
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="trait-home-one"></div>
+
+	<h1>Visitez et Dégustez</h1>
+	<div class="container">
+		<div class="degustation-home">
+			<div class="sous-catégories-1">
+				<div class="Gastronomie">
+					<img class="Gastronomie-picture" src="https://i.pinimg.com/originals/3f/fe/43/3ffe4311d6f894175c4fae2a9aed2613.jpg">
+				</div>
+				<div class="Brasserie">
+					<img class="Brasserie-picture" src="">
+				</div>
+				<div class="vin-et-champagne">
+					<img class="vin-et-champagne-picture" src="">
+				</div>
+				<div class="Cidrerie">
+					<img class="Cidrerie-picture" src="">
+				</div>
+				<div class="Cognac-et-pineaux">
+					<img class="Cognac-et-pineaux-picture" src="">
+				</div>
+				<div class="Spiritueux">
+					<img class="Spiritueux-picture" src="">
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div class="card-deck">
+  <div class="card">
+    <img class="card-img-top" src="https://i.pinimg.com/originals/3f/fe/43/3ffe4311d6f894175c4fae2a9aed2613.jpg" alt="Card image cap">
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="https://i.pinimg.com/originals/3f/fe/43/3ffe4311d6f894175c4fae2a9aed2613.jpg" alt="Card image cap">
+  </div>
+</div>
 {% endblock %}
