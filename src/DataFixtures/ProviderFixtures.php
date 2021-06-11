@@ -15,6 +15,7 @@ class ProviderFixtures extends Fixture
     private const PROVIDER_NUMBER = 50;
     private const SOCIAL_REASONS = ['SARL', 'EURL', 'SAS', 'SASU', 'SA', 'EI'];
     private const OTHER_SITE = 3;
+    private const KNOW_US = ['Publicité', 'Internet', 'Bouche à oreille', 'Autre'];
 
     private array $opening = [
         'day' => ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
@@ -56,7 +57,7 @@ class ProviderFixtures extends Fixture
             $provider->setOpening(json_encode($this->opening));
             $provider->setMonthlyFrequentation($this->faker->randomDigit());
             $provider->setOtherSite(json_encode($this->otherSite));
-            $provider->setKnowUs($this->faker->boolean());
+            $provider->setKnowUs(json_encode(self::KNOW_US));
             $provider->setContact($contact);
             $provider->setDescription($description);
 
