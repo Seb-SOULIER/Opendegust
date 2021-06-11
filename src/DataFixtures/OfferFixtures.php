@@ -10,6 +10,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+use DateTime;
 
 class OfferFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -56,7 +57,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                         'adultes' => rand(1, 50),
                         'enfants' => rand(1, 30)]));
                     $offerVariation->setCapacity(rand(1, 50));
-                    $offerVariation->setDuration((new \DateTime)->setTime(rand(0, 10), rand(0, 59)));
+                    $offerVariation->setDuration((new DateTime())->setTime(rand(0, 10), rand(0, 59)));
                     $offerVariation->setPrice(rand(1, 50));
                     $offerVariation->setCurrentVat(rand(5, 25));
                     $offerVariation->setOffer($offer);
