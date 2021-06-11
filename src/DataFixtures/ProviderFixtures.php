@@ -91,4 +91,12 @@ class ProviderFixtures extends Fixture
         }
         $manager->flush();
     }
+
+    public function getDependencies()
+    {
+        return [
+            ProviderFixtures::class,
+        ];
+    }
 }
+

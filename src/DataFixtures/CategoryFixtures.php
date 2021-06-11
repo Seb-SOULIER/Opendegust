@@ -48,11 +48,12 @@ class CategoryFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        foreach (self::CATEGORY as $tableCategory) {
-                $category = new Category();
-                $category->setName($tableCategory['name']);
-                $category->setParentId($tableCategory['parentId']);
-                $manager->persist($category);
+        foreach (self::CATEGORY as $key => $tableCategory) {
+            $category = new Category();
+            $category->setName($tableCategory['name']);
+            $category->setParentId($tableCategory['parentId']);
+            $this->addReference('category_' . $key, $category);
+            $manager->persist($category);
         }
         $manager->flush();
     }

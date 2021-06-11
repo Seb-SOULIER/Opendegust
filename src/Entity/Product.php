@@ -29,7 +29,7 @@ class Product
 
 
     /**
-     * @ORM\Column(type="string", length=45, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $picture;
 
