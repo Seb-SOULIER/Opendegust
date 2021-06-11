@@ -2,3 +2,38 @@ body {
     background-color: $white;
     color: $fourth;
 }
+
+.last_div_what_new {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 80%;
+    background-color: $tertiary;
+    color: $secondary;
+}
+
+.text-color-card {
+    color: $secondary;
+}
+
+.button-card {
+    background-color : $secondary;
+    color: $white;
+    margin-bottom: 1rem;
+    border-radius: 2rem;
+
+
+}
+
+.title_what_new {
+    padding-top: 5%;
+    color: $white;
+}
+
+.card_img {
+   padding-top: 3%
+}
+
+.card-shadow {
+    box-shadow: 5px 5px 5px black;
+}
