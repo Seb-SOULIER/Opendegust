@@ -14,6 +14,21 @@ use Symfony\Component\Security\Core\User\UserInterface;
 abstract class User implements UserInterface
 {
     /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private int $id;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private string $email;
@@ -21,7 +36,7 @@ abstract class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private ?string $roles;
+    private array $roles;
 
 
     /**
@@ -82,7 +97,7 @@ abstract class User implements UserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles ? json_decode($this->roles) : null;
+        $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
@@ -90,7 +105,7 @@ abstract class User implements UserInterface
     }
 
 
-    public function setRoles(?string $roles): self
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 

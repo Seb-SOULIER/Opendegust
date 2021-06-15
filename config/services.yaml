@@ -6,6 +6,13 @@
 parameters:
 
 services:
+    auth.login_form_authenticator:
+        class: App\Security\LoginFormAuthenticator
+        public: true
+        arguments:
+            $userClasses:
+                - \App\Entity\Provider
+                - \App\Entity\Customer
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

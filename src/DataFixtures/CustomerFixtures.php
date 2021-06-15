@@ -7,6 +7,7 @@ use App\Entity\Customer;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class CustomerFixtures extends Fixture
 {
@@ -14,6 +15,13 @@ class CustomerFixtures extends Fixture
     private const KNOW_US = ['Publicité', 'Internet', 'Bouche à oreille', 'Autre'];
 
     protected $faker;
+
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
 
     public function load(ObjectManager $manager)
     {
@@ -25,8 +33,11 @@ class CustomerFixtures extends Fixture
             $categories = CategoryFixtures::CATEGORY;
 
             $customer->setEmail($this->faker->email);
-            $customer->setRoles('ROLE_CUSTOMER');
-            $customer->setPassword('tata');
+            $customer->setRoles(['ROLE_CUSTOMER']);
+            $customer->setPassword($this->passwordEncoder->encodePassword(
+                $customer,
+                'tata'
+            ));
             $customer->setRegistrationAt($this->faker->dateTime);
             $customer->setCivility($this->faker->numberBetween(1, 3));
             $customer->setFirstname($this->faker->firstName);

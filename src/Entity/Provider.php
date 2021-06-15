@@ -12,13 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Provider extends User
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private int $id;
-
 
     /**
      * @ORM\Column(type="string", length=45)
@@ -100,11 +93,6 @@ class Provider extends User
         $this->offers = new ArrayCollection();
         $this->products = new ArrayCollection();
         $this->files = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getCompany(): ?string

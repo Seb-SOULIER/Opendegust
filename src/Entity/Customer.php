@@ -13,13 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Customer extends User
 {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private int $id;
-
-    /**
      * @ORM\Column(type="date", nullable=true)
      */
     private ?\DateTimeInterface $birthdate;
@@ -52,11 +45,6 @@ class Customer extends User
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getBirthdate(): ?\DateTimeInterface
