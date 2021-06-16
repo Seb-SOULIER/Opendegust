@@ -23,7 +23,7 @@ class Customer extends User
     private ?string $knowUs;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private bool $gtc18;
 
