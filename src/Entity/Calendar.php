@@ -23,7 +23,7 @@ class Calendar
     private ?\DateTimeInterface $startAt;
 
     /**
-     * @ORM\OneToOne(targetEntity=OfferVariation::class, inversedBy="calendar", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=OfferVariation::class, inversedBy="calendars")
      * @ORM\JoinColumn(nullable=false)
      */
     private ?OfferVariation $offerVariation;
@@ -50,7 +50,7 @@ class Calendar
         return $this->offerVariation;
     }
 
-    public function setOfferVariation(OfferVariation $offerVariation): self
+    public function setOfferVariation(?OfferVariation $offerVariation): self
     {
         $this->offerVariation = $offerVariation;
 
