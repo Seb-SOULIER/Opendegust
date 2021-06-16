@@ -35,10 +35,16 @@ class Category
      */
     private Collection $products;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Offer::class, inversedBy="categories")
+     */
+    private Collection $offerId;
+
 
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->offerId = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -96,6 +102,30 @@ class Category
                 $product->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Offer[]
+     */
+    public function getOfferId(): Collection
+    {
+        return $this->offerId;
+    }
+
+    public function addOfferId(Offer $offerId): self
+    {
+        if (!$this->offerId->contains($offerId)) {
+            $this->offerId[] = $offerId;
+        }
+
+        return $this;
+    }
+
+    public function removeOfferId(Offer $offerId): self
+    {
+        $this->offerId->removeElement($offerId);
 
         return $this;
     }

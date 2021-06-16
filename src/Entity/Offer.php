@@ -65,9 +65,15 @@ class Offer
      */
     private Collection $offerVariations;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="offer_id")
+     */
+    private collection $categories;
+
     public function __construct()
     {
         $this->offerVariations = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -185,6 +191,33 @@ class Offer
             if ($offerVariation->getOffer() === $this) {
                 $offerVariation->setOffer(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addOfferId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            $category->removeOfferId($this);
         }
 
         return $this;
