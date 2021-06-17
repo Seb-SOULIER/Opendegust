@@ -157,7 +157,7 @@ class Provider extends User
 
     public function getOpening(): ?array
     {
-        return $this->opening ? json_decode($this->opening) : null;
+        return $this->opening ? json_decode($this->opening, true) : null;
     }
 
     public function setOpening(?string $opening): self

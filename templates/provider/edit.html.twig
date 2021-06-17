@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Provider{% endblock %}
+
+{% block body %}
+<div class="d-flex align-items-center flex-column">
+    <h1 class="my-3">Informations du compte</h1>
+    <div class="col-11 col-sm-9 col-md-6 col-lg-4 col-xl-3">
+        {{ form_start(form) }}
+            <div class="form-control py-3">
+                {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.password, {'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.civility, {'attr': {'class': 'form-select'}}) }}
+                {{ form_row(form.lastname, {'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.firstname, {'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.company, {'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.picture, {'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.socialReason, {'attr': {'class': 'form-select'}}) }}
+                {{ form_row(form.siret, {'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.vatNumber, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <button class="btn btn-primary mt-3 col-12">{{ button_label|default('Save') }}</button>
+        {{ form_end(form) }}
+        <a href="{{ path('home') }}">Retour à l'accueil</a>
+
+        {{ include('provider/_delete_form.html.twig') }}
+    </div>>
+</div>>
+{% endblock %}

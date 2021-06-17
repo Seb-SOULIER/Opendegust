@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Provider{% endblock %}
+
+{% block body %}
+    <h1>Provider</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ provider.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ provider.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ provider.roles ? provider.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ provider.password }}</td>
+            </tr>
+            <tr>
+                <th>RegistrationAt</th>
+                <td>{{ provider.registrationAt ? provider.registrationAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Civility</th>
+                <td>{{ provider.civility }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ provider.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ provider.firstname }}</td>
+            </tr>
+            <tr>
+                <th>IsVerified</th>
+                <td>{{ provider.isVerified ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Company</th>
+                <td>{{ provider.company }}</td>
+            </tr>
+            <tr>
+                <th>Picture</th>
+                <td>{{ provider.picture }}</td>
+            </tr>
+            <tr>
+                <th>SocialReason</th>
+                <td>{{ provider.socialReason }}</td>
+            </tr>
+            <tr>
+                <th>Siret</th>
+                <td>{{ provider.siret }}</td>
+            </tr>
+            <tr>
+                <th>VatNumber</th>
+                <td>{{ provider.vatNumber }}</td>
+            </tr>
+            <tr>
+                <th>Opening</th>
+                <td>{{ provider.opening ? provider.opening|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>MonthlyFrequentation</th>
+                <td>{{ provider.monthlyFrequentation }}</td>
+            </tr>
+            <tr>
+                <th>OtherSite</th>
+                <td>{{ provider.otherSite ? provider.otherSite|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>KnowUs</th>
+                <td>{{ provider.knowUs ? provider.knowUs|json_encode : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('provider_index') }}">back to list</a>
+
+    <a href="{{ path('provider_edit', {'id': provider.id}) }}">edit</a>
+
+    {{ include('provider/_delete_form.html.twig') }}
+{% endblock %}
