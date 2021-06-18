@@ -3,6 +3,585 @@ body {
     color: $fourth;
 }
 
+
+// vincenthome
+.home-picture-research {
+    width: 100%;
+    height: 500px;
+    ;
+}
+.part-one-home .text {
+    z-index: 1;
+    position: absolute;
+    text-align: center;
+    font-family: Georgia;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 20%;
+    color: white;
+    width: 70%;
+    text-shadow: black 2px 3px;
+}
+
+.intro-home-info {
+    display: flex;
+    width: 90%;
+    margin-top: 40px;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+}
+@media screen and (max-width: 768px) {
+    .intro-home-info{
+        display: block;
+    }
+}
+.premier-logo-note {
+    display: flex;
+}
+.logo-star {
+    width: 50px;
+    height: 20px;
+}
+.fas.fa-star {
+    font-size: xx-large;
+}
+
+.deuxieme-logo-frais {
+    display: flex;
+}
+.logo-validation {
+    width: 50px;
+    height: 20px;
+}
+.fas.fa-check-circle {
+    font-size: xx-large;
+}
+
+.troisieme-logo-experiences {
+    display: flex;
+}
+.logo-experiences {
+    width: 50px;
+    height: 20px;
+}
+.fas.fa-bolt {
+    font-size: xx-large;
+}
+
+.quatrieme-logo-partenaire {
+    display: flex;
+}
+.logo-partenaires {
+    width:40px;
+    height: 20px;
+}
+.fas.fa-wine-glass-alt {
+    font-size: xx-large;
+}
+
+.trait-home-one {
+    width: 100%;
+    border:5px solid rgb(187, 180, 180);
+    margin-bottom: 100px;
+}
+.visit-and-degust h1 {
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+@media screen and (max-width: 768px) {
+    .visit-and-degust h1{
+        text-align: center;
+    }
+}
+
+
+.degustations-home.row {
+    display: flex;
+    justify-content: space-around;
+}
+.sous-catégories-1 {
+    display: flex;
+}
+.sous-catégories-2 {
+    display: flex;
+}
+.sous-catégories-3 {
+    display: flex;
+}
+
+
+.card-title-opacity {
+    opacity: 0.9;
+    width: 100%;
+    max-height: 260px;
+    cursor: pointer;
+}
+@media screen and (max-width: 992px) {
+    .card-title-opacity {
+    height:230px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .card-title-opacity {
+    height: 200px;
+    }
+}
+@media screen and (max-width: 446px) {
+    .card-title-opacity {
+    height: 150px;
+    }
+}
+
+.card-title.h5 {
+    z-index:2;
+    position: absolute;
+    font-size: xx-large;
+    top: 120px;
+}
+
+.card.bg-dark.text-white {
+    width: 35%;
+}
+@media screen and (max-width: 768px) {
+    .card.bg-dark.text-white{
+        text-align: center;
+        width: 70%;
+        margin-bottom: 30px;
+    }
+}
+
+.first-lign-degustation {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+    .first-lign-degustation{
+        display: block;
+        text-align: -webkit-center;
+    }
+}
+
+.second-lign-degustation {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+    .second-lign-degustation{
+        display: block;
+        text-align: -webkit-center;
+    }
+}
+
+.third-lign-degustation {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+    .third-lign-degustation{
+        display: block;
+        text-align: -webkit-center;
+    }
+}
+
+.logo-partenaires-degustations {
+    display: flex;
+    justify-content: space-between;
+}
+
+.block-for-infos {
+    background-color: #59ae52;
+    height: 604px;
+    margin-top: 100px;
+}
+@media screen and (max-width: 992px) {
+    .block-for-infos{
+        height: 1050px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .block-for-infos{
+        height: 1200px;
+    }
+}
+@media screen and (max-width: 446px) {
+    .block-for-infos{
+        height: 1300px;
+    }
+}
+.two-infos-and-button {
+    display: flex;
+}
+.picture-back-green {
+    width: 40%;
+    height: 466px;
+}
+.vignes-picture-enjoy {
+    width: 100%;
+    height: 100%;
+    margin-top: 70px
+}
+@media screen and (max-width: 992px) {
+    .vignes-picture-enjoy{
+        width: auto;
+    }
+}
+.for-the-informations {
+    display: flex;
+    width: 100%;
+}
+@media screen and (max-width: 992px) {
+    .for-the-informations{
+        display: block;
+        text-align: -webkit-center;
+    }
+}
+@media screen and (max-width: 768px) {
+    .for-the-informations{
+        display: block;
+        text-align: -webkit-center;
+    }
+}
+
+
+.you-see-enjoy p {
+    font-size: 46px;
+    margin-top: 0
+ }
+
+ .text-enjoy p {
+    font-size: 20px;
+ }
+
+.button-enjoy button {
+    border-radius: 19px;
+    text-align: center;
+    width: 25%;
+}
+
+.two-title-and-text {
+    width: 50%;
+    margin: auto;
+    color: white;
+}
+@media screen and (max-width: 768px) {
+    .two-title-and-text{
+        display: block;
+        text-align: -webkit-center;
+    }
+}
+
+.actuality {
+    margin-top: 90px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+
+//A la Une //
+
+.first-lign-news-today {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+    .first-lign-news-today{
+        display: block;
+    text-align: -webkit-center;
+    }
+}
+.second-lign-news-today {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+    .second-lign-news-today{
+        display: block;
+    text-align: -webkit-center;
+    }
+}
+.type-of-presta {
+    margin-top: 13px;
+    
+}
+.rounded{
+    border-radius: 30px;
+}
+.two-type-of-presta {
+    width: 100%;
+    margin-top: 13px;
+    display: flex;
+    justify-content: space-between;
+}
+.first-case-presta {
+    width: 36%;
+}
+
+.second-case-presta {
+    width: 36%;
+}
+
+.second-case-presta .rounded.p-2.text-center {
+    background-color: #C0A312;
+}
+
+
+
+
+
+
+.card.number {
+    width: 35%;
+}
+@media screen and (max-width: 768px) {
+    .card.number {
+        text-align: center;
+        width: 70%;
+        margin-bottom: 30px;
+     }
+}
+
+h4.card-title {
+    z-index: 1;
+    position: absolute;
+    text-align: center;
+    font-family: Georgia;
+    margin: 0 auto;
+    left: 0;
+    font-size: 2.3rem;
+    right: 0;
+    top: 40%;
+    text-shadow: black 0.1rem 0.1rem;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 992px) {
+    h4.card-title {
+        font-size: 1.9rem;
+    }   
+}
+
+@media screen and (max-width: 768px) {
+     h4.card-title {
+         font-size: 1.5rem;
+     }   
+}
+
+
+.presta-price {
+    display: flex;
+    font-size: 18px;
+}
+
+
+//Prochaine expérience ? // 
+
+.next-experience {
+    text-transform: uppercase;
+    margin-bottom: 65px;
+    margin-top: 80px;
+}
+
+
+.your-next-exper {
+    display: flex
+}
+
+.first-picture-left {
+    width: 50%;
+    position: relative;
+}
+
+.title-experience-first p {
+    z-index: 1;
+    position: absolute;
+    text-align: end;
+    font-family: Georgia;
+    text-transform: uppercase;
+    margin: 0 auto;
+    width: 70%;
+    left: 0;
+    font-size: 1.5rem;
+    top: 80%;
+    color: #59ae52;
+    background-color: white;
+}
+
+.activities-exper {
+    width: 100%;
+    height: 600px;
+}
+
+.two-pictures-exper {
+    display: block;
+    margin-left: 35px;
+}
+
+.first-right-picture {
+    width: 100%;
+    position: relative;
+}
+.title-experience-second p {
+    z-index: 1;
+    position: absolute;
+    text-align: end;
+    font-family: Georgia;
+    text-transform: uppercase;
+    margin: 0 auto;
+    width: 40%;
+    font-size: 1.5rem;
+    top: 69%;
+    color: #59ae52;
+    background-color: white;
+}
+.evasion-exper {
+    width: 100%;
+    height: 280px;
+}
+
+.second-right-picture {
+    width: 100%;
+    position: relative;
+    margin-top: 35px;
+}
+.title-experience-third p {
+    z-index: 1;
+    position: absolute;
+    text-align: center;
+    font-family: Georgia;
+    text-transform: uppercase;
+    margin: 0 auto;
+    width: 38%;
+    font-size: 1.5rem;
+    right: 0;
+    top: 70%;
+    color: #59ae52;
+    background-color: white;
+}
+.evenements-locaux-exper {
+    width: 100%;
+    height: 280px;
+    
+}
+
+
+
+//Vivez toutes ces expériences //
+.live-experience {
+    text-transform: uppercase;
+    font-size: 2.0rem;
+    margin-top: 60px;
+}
+
+.the-three-div-for-experiences {
+    display: flex;
+    text-align: center;
+    margin-bottom: 160px;
+    margin-top: 50px;
+}
+
+.en-famille {
+    width: 40%;
+    position: relative;
+}
+.en-famille img {
+    width: 90%;
+    clip-path: ellipse(35% 50%);
+}
+
+.text-famille p {
+    z-index: 1;
+    position: absolute;
+    font-family: Georgia;
+    text-transform: uppercase;
+    margin: 0 auto;
+    width: 38%;
+    font-size: 1rem;
+    top: 59%;
+    color: #59ae52;
+    opacity: 0.9;
+    background-color: white;
+    margin-left: 129px;
+    font-weight: bold;
+}
+
+
+.entre-amis {
+    width: 40%;
+    position: relative;
+}
+.text-amis p {
+    z-index: 1;
+    position: absolute;
+    font-family: Georgia;
+    text-transform: uppercase;
+    margin: 0 auto;
+    width: 38%;
+    font-size: 1rem;
+    top: 59%;
+    color: #59ae52;
+    opacity: 0.9;
+    background-color: white;
+    margin-left: 129px;
+    font-weight: bold;
+}
+.entre-amis img {
+    width: 90%;
+    clip-path: ellipse(35% 50%);
+}
+
+.en-amoureux {
+    width: 40%;
+    position: relative;
+}
+.text-amoureux p {
+    z-index: 1;
+    position: absolute;
+    font-family: Georgia;
+    text-transform: uppercase;
+    margin: 0 auto;
+    width: 38%;
+    font-size: 1rem;
+    top: 59%;
+    color: #59ae52;
+    opacity: 0.9;
+    background-color: white;
+    margin-left: 129px;
+    font-weight: bold;
+}
+.en-amoureux img {
+    width: 90%;
+    clip-path: ellipse(35% 50%);
+}
+
+//decouverte-text//
+.info-decouverte h1 {
+    text-transform: uppercase;
+    font-size: 2.0rem;
+    margin-bottom: 40px;
+}
+
+.text-decouverte {
+    width: 79%;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+    color: black;
+}
+
+
+
+
+
+
+// GG_home
 .last_div_what_new {
     display: flex;
     flex-direction: column;
