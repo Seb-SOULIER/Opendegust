@@ -9,6 +9,7 @@ use App\Entity\Provider;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ProviderFixtures extends Fixture
 {
@@ -25,9 +26,14 @@ class ProviderFixtures extends Fixture
         'end' => 17
     ];
 
+    private $passwordEncoder;
     private array $otherSite = [];
-
     protected $faker;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
 
     public function load(ObjectManager $manager)
     {
@@ -43,8 +49,11 @@ class ProviderFixtures extends Fixture
             $description = new Description();
 
             $provider->setEmail($this->faker->email);
-            $provider->setRoles('ROLE_PROVIDER');
-            $provider->setPassword('toto');
+            $provider->setRoles(['ROLE_PROVIDER']);
+            $provider->setPassword($this->passwordEncoder->encodePassword(
+                $provider,
+                'toto'
+            ));
             $provider->setRegistrationAt($this->faker->dateTime);
             $provider->setCivility($this->faker->numberBetween(1, 3));
             $provider->setFirstname($this->faker->firstName);
