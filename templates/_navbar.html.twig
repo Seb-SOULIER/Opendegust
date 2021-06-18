@@ -2,8 +2,12 @@
 
     <a href="#"> <img src="{{ asset('build/images/logo.png') }}" class="px-2 img-navbrand img-fluid" alt="logo open degust"></a>
     <div>
-        <li class="icon-user fas fa-user-edit px-2"></li>
-        {% if app.user %}
+        {% if is_granted('ROLE_USER') %}
+            {% if is_granted('ROLE_PROVIDER') %}
+                <a href="{{ path("provider_edit", {id: app.user.id}) }}"><i class="icon-user fas fa-user-edit px-2"></i></a>
+            {% elseif is_granted('ROLE_CUSTOMER') %}
+                <a href="{{ path("") }}"><i class="icon-user fas fa-user-edit px-2"></i></a>
+            {% endif %}
             <a href="{{ path("app_logout") }}"><i class="icon-user fas fa-user-slash px-2"></i></a>
         {% else %}
             <a href="{{ path("app_login") }}"><i class="icon-user fas fa-user px-2"></i></a>
