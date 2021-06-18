@@ -2,11 +2,10 @@
 
 namespace App\Form;
 
-use App\Entity\Category;
 use App\Entity\Product;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,11 +15,11 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description')
-            ->add('picture')
-            ->add('price')
+            ->add('description', TextareaType::class)
+            ->add('picture', FileType::class)
+            ->add('price');
 //            ->add('provider')
-            ->add('category', CategoryType::class);
+//           ->add('category', CategoryType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

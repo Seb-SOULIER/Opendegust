@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Calendar;
+use App\Entity\Category;
 use App\Entity\Contact;
 use App\Entity\Description;
 use App\Entity\Offer;
@@ -39,6 +40,8 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 $description->setLongDescription($this->faker->sentence(50));
                 $manager->persist($description);
                 $offer->setDescription($description);
+
+                $offer->addCategory($this->getReference('category_' . rand(0, 34)));
 
                 $contact = new Contact();
                 $contact->setZipcode($this->faker->postcode);
@@ -82,6 +85,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             ProviderFixtures::class,
+            CategoryFixtures::class,
         ];
     }
 }
