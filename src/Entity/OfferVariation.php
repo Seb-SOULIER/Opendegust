@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OfferVariationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -54,10 +56,14 @@ class OfferVariation
     private ?Booking $booking;
 
     /**
-     * @ORM\OneToOne(targetEntity=Calendar::class, mappedBy="offerVariation", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Calendar::class, mappedBy="offerVariation", orphanRemoval=true)
      */
-    private ?Calendar $calendar;
+    private Collection $calendars;
 
+    public function __construct()
+    {
+        $this->calendars = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -158,19 +164,32 @@ class OfferVariation
         return $this;
     }
 
-    public function getCalendar(): ?Calendar
+    /**
+     * @return Collection|Calendar[]
+     */
+    public function getCalendars(): Collection
     {
-        return $this->calendar;
+        return $this->calendars;
     }
 
-    public function setCalendar(Calendar $calendar): self
+    public function addCalendar(Calendar $calendar): self
     {
-        // set the owning side of the relation if necessary
-        if ($calendar->getOfferVariation() !== $this) {
+        if (!$this->calendars->contains($calendar)) {
+            $this->calendars[] = $calendar;
             $calendar->setOfferVariation($this);
         }
 
-        $this->calendar = $calendar;
+        return $this;
+    }
+
+    public function removeCalendar(Calendar $calendar): self
+    {
+        if ($this->calendars->removeElement($calendar)) {
+            // set the owning side to null (unless already changed)
+            if ($calendar->getOfferVariation() === $this) {
+                $calendar->setOfferVariation(null);
+            }
+        }
 
         return $this;
     }

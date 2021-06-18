@@ -9,12 +9,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/provider")
  */
 class ProviderController extends AbstractController
 {
+    private UserPasswordEncoderInterface $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     /**
      * @Route("/{id}", name="provider_show", methods={"GET"})
      */
@@ -34,9 +42,15 @@ class ProviderController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $provider->setPassword(
+                $this->passwordEncoder->encodePassword(
+                    $provider,
+                    $form->get('password')->getData()
+                )
+            );
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('provider_index');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('provider/edit.html.twig', [

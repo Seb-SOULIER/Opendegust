@@ -4,28 +4,44 @@ namespace App\Form;
 
 use App\Entity\Contact;
 use App\Entity\Provider;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ProviderType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class)
-            ->add('password', PasswordType::class)
+            ->add('email', RepeatedType::class, [
+                'type' => EmailType::class,
+                'invalid_message' => "L'addresse email n'est pas la même",
+                'options' => ['attr' => ['class' => 'form-control']],
+                'required' => true,
+                'first_options'  => ['label' => 'Email'],
+                'second_options' => ['label' => "Confirmation de l'email"],
+            ])
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => "Le mot de passe n'est pas le même",
+                'options' => ['attr' => ['class' => 'form-control']],
+                'required' => true,
+                'first_options'  => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Confirmation du mot de passe'],
+            ])
             ->add('civility', ChoiceType::class, [
                 'choices'  => [
-                    '' => null,
-                    'Mr' => true,
-                    'Mme' => false,
+                    'Homme' => true,
+                    'Femme' => false,
                 ],
             ])
             ->add('lastname', TextType::class)
@@ -44,22 +60,23 @@ class ProviderType extends AbstractType
             ])
             ->add('siret', NumberType::class)
             ->add('vatNumber', NumberType::class)
-//            ->add('otherSite', TextType::class)
-//            ->add('knowUs', ChoiceType::class, [
-//                'choices' => [
-//                    'Par la Wild Code School' => 'Wild Code School'
-//                ]
-//            ])
-//            ->add('address', EntityType::class, [
-//                'class' => Contact::class,
-//                'choice_label' => 'address',
-//                'by_reference' => false
-//            ]);
-//            ->add('contact', null, ['choice_label' => 'zip_code'])
-//            ->add('contact', null, ['choice_label' => 'city'])
-//            ->add('contact', null, ['choice_label' => 'phone'])
-//            ->add('contact', null, ['choice_label' => 'phone2'])
-//            ->add('contact', null, ['choice_label' => 'website'])
+            ->add('otherSite', CollectionType::class, [
+                'entry_type' => TextType::class,
+                'entry_options' => [
+                    'attr' => ['class' => 'form-control'],
+                ],
+            ])
+            ->add('knowUs', ChoiceType::class, [
+                'choices' => [
+                    'réseaux sociaux' => 'réseaux sociaux',
+                    'Google' => 'Google',
+                    'Bouche à oreille' => 'Bouche à oreille',
+                    'Autre' => 'Autre'
+                ]
+            ])
+            ->add('contact', ContactType::class, [
+                'by_reference' => false
+            ])
         ;
     }
 
