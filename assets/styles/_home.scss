@@ -2,6 +2,9 @@ body {
     background-color: $white;
     color: $fourth;
 }
+
+
+// vincenthome
 .home-picture-research {
     width: 100%;
     height: 500px;
@@ -29,6 +32,11 @@ body {
     margin-left: auto;
     margin-right: auto;
     justify-content: space-between;
+}
+@media screen and (max-width: 768px) {
+    .intro-home-info{
+        display: block;
+    }
 }
 .premier-logo-note {
     display: flex;
@@ -79,7 +87,351 @@ body {
     border:5px solid rgb(187, 180, 180);
     margin-bottom: 100px;
 }
+.visit-and-degust h1 {
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+    .visit-and-degust h1{
+        text-align: center;
+    }
+}
 
-.card {
+
+.degustations-home.row {
+    display: flex;
+    justify-content: space-around;
+}
+.sous-catégories-1 {
+    display: flex;
+}
+.sous-catégories-2 {
+    display: flex;
+}
+.sous-catégories-3 {
+    display: flex;
+}
+
+
+.card-title-opacity {
+    opacity: 0.9;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.card-title.h5 {
+    z-index:2;
+    position: absolute;
+    font-size: xx-large;
+    top: 120px;
+}
+
+.card.bg-dark.text-white {
     width: 35%;
+}
+@media screen and (max-width: 768px) {
+    .card.bg-dark.text-white{
+        text-align: center;
+        width: 70%;
+        margin-bottom: 30px;
+    }
+}
+
+.first-lign-degustation {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+    .first-lign-degustation{
+        display: block;
+        text-align: -webkit-center;
+    }
+}
+
+.second-lign-degustation {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+    .second-lign-degustation{
+        display: block;
+        text-align: -webkit-center;
+    }
+}
+
+.third-lign-degustation {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+    .third-lign-degustation{
+        display: block;
+        text-align: -webkit-center;
+    }
+}
+
+.logo-partenaires-degustations {
+    display: flex;
+    justify-content: space-between;
+}
+
+.block-for-infos {
+    background-color: #59ae52;
+    height: 604px;
+    margin-top: 100px;
+}
+@media screen and (max-width: 992px) {
+    .block-for-infos{
+        height: 1050px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .block-for-infos{
+        height: 1200px;
+    }
+}
+@media screen and (max-width: 446px) {
+    .block-for-infos{
+        height: 1300px;
+    }
+}
+.two-infos-and-button {
+    display: flex;
+}
+.picture-back-green {
+    width: 40%;
+    height: 466px;
+}
+.vignes-picture-enjoy {
+    width: 100%;
+    height: 100%;
+    margin-top: 70px
+}
+@media screen and (max-width: 992px) {
+    .vignes-picture-enjoy{
+        width: auto;
+    }
+}
+.for-the-informations {
+    display: flex;
+    width: 100%;
+}
+@media screen and (max-width: 992px) {
+    .for-the-informations{
+        display: block;
+        text-align: -webkit-center;
+    }
+}
+@media screen and (max-width: 768px) {
+    .for-the-informations{
+        display: block;
+        text-align: -webkit-center;
+    }
+}
+
+
+.you-see-enjoy p {
+    font-size: 46px;
+    margin-top: 0
+ }
+
+ .text-enjoy p {
+    font-size: 20px;
+ }
+
+.button-enjoy button {
+    border-radius: 19px;
+    text-align: center;
+    width: 25%;
+}
+
+.two-title-and-text {
+    width: 50%;
+    margin: auto;
+    color: white;
+}
+@media screen and (max-width: 768px) {
+    .two-title-and-text{
+        display: block;
+        text-align: -webkit-center;
+    }
+}
+
+.actuality {
+    margin-top: 90px;
+}
+
+
+//A la Une //
+
+.first-lign-news-today {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+    .first-lign-news-today{
+        display: block;
+    text-align: -webkit-center;
+    }
+}
+.second-lign-news-today {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+    .second-lign-news-today{
+        display: block;
+    text-align: -webkit-center;
+    }
+}
+
+.card.number {
+    width: 35%;
+}
+@media screen and (max-width: 768px) {
+    .card.number {
+        text-align: center;
+        width: 70%;
+        margin-bottom: 30px;
+     }
+}
+
+h4.card-title {
+    z-index: 1;
+    position: absolute;
+    text-align: center;
+    font-family: Georgia;
+    margin: 0 auto;
+    left: 0;
+    font-size: 2.3rem;
+    right: 0;
+    top: 40%;
+    text-shadow: black 0.1rem 0.1rem;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 992px) {
+    h4.card-title {
+        font-size: 1.9rem;
+    }   
+}
+
+@media screen and (max-width: 768px) {
+     h4.card-title {
+         font-size: 1.5rem;
+     }   
+}
+
+
+.presta-price {
+    display: flex;
+    font-size: 18px;
+}
+
+
+//Prochaine expérience ? // 
+
+.next-experience h1 {
+    text-transform: capitalize;
+    margin-bottom: 65px;
+    margin-top: 80px;
+}
+// .for-height-of-exper {
+
+// }
+
+.your-next-exper {
+    display: flex
+}
+
+.first-picture-left {
+    width: 45%;
+}
+
+.title-experience p {
+    z-index: 1;
+    position: absolute;
+    text-align: center;
+    font-family: Georgia;
+    margin: 0 auto;
+    left: 0;
+    font-size: 2.3rem;
+    right: 0;
+    top: 40%;
+    text-shadow: black 0.1rem 0.1rem;
+}
+
+.activities-exper {
+    width: 100%;
+    height: 600px;
+}
+
+.two-pictures-exper {
+    display: block;
+    margin-left: 77px;
+}
+
+.first-right-picture {
+    width: 90%;
+}
+
+.evasion-exper {
+    width: 100%;
+    height: 280px;
+}
+
+.second-right-picture {
+    width: 90%
+}
+
+.evenements-locaux-exper {
+    width: 100%;
+    height: 280px;
+    margin-top: 35px;
+}
+
+
+
+
+
+
+// GG_home
+.last_div_what_new {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 80%;
+    background-color: $tertiary;
+    color: $secondary;
+}
+
+.text-color-card {
+    color: $secondary;
+}
+
+.button-card {
+    background-color : $secondary;
+    color: $white;
+    margin-bottom: 1rem;
+    border-radius: 2rem;
+
+
+}
+
+.title_what_new {
+    padding-top: 5%;
+    color: $white;
+}
+
+.card_img {
+    padding-top: 3%
+}
+
+.card-shadow {
+    box-shadow: 5px 5px 5px black;
 }
