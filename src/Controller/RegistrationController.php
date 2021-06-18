@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use App\Entity\Customer;
 use App\Entity\Provider;
 use App\Entity\User;
@@ -53,6 +54,8 @@ class RegistrationController extends AbstractController
 
     public function register(Request $request, User $user): Response
     {
+        $contact = new Contact();
+        $user->setContact($contact);
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -61,7 +64,7 @@ class RegistrationController extends AbstractController
             $user->setPassword(
                 $this->passwordEncoder->encodePassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $form->get('password')->getData()
                 )
             );
             $user->setRegistrationAt(new Datetime());

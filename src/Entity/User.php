@@ -6,10 +6,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Datetime;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\MappedSuperclass()
- * @UniqueEntity(fields={"email"})
+ * @UniqueEntity(fields={"email"}, message="Cette adresse email existe déjà")
  */
 abstract class User implements UserInterface
 {
@@ -22,6 +23,12 @@ abstract class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message="Veuillez indiquer une adresse email")
+     * @Assert\Email(
+     *     message = "L'adresse '{{ value }}' n'est pas valide.")
+     * @Assert\Length(
+     *     max="180",
+     *     maxMessage="L'adresse email est trop longue, elle ne devrait pas dépasser {{ limit }} caractères")
      */
     private string $email;
 
@@ -52,12 +59,18 @@ abstract class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
+     * @Assert\Length(
+     *     max="45",
+     *     maxMessage="Le nom est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
     private string $lastname;
 
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
+     * @Assert\Length(
+     *     max="45",
+     *     maxMessage="Le prénom est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
     private string $firstname;
 
