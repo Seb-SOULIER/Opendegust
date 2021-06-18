@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Offer;
+use App\Repository\OfferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,8 +15,11 @@ class SearchController extends AbstractController
      */
     public function index(): Response
     {
+        $offers = $this->getDoctrine()
+            ->getRepository(Offer::class)
+            ->findAll();
         return $this->render('search/index.html.twig', [
-            'controller_name' => 'SearchController',
+            'offers' => $offers
         ]);
     }
 }
