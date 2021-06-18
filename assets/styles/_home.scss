@@ -89,6 +89,7 @@ body {
 }
 .visit-and-degust h1 {
     margin-bottom: 30px;
+    text-transform: uppercase;
 }
 @media screen and (max-width: 768px) {
     .visit-and-degust h1{
@@ -115,8 +116,23 @@ body {
 .card-title-opacity {
     opacity: 0.9;
     width: 100%;
-    height: auto;
+    max-height: 260px;
     cursor: pointer;
+}
+@media screen and (max-width: 992px) {
+    .card-title-opacity {
+    height:230px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .card-title-opacity {
+    height: 200px;
+    }
+}
+@media screen and (max-width: 446px) {
+    .card-title-opacity {
+    height: 150px;
+    }
 }
 
 .card-title.h5 {
@@ -262,6 +278,8 @@ body {
 
 .actuality {
     margin-top: 90px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
 }
 
 
@@ -289,6 +307,35 @@ body {
     text-align: -webkit-center;
     }
 }
+.type-of-presta {
+    margin-top: 13px;
+    
+}
+.rounded{
+    border-radius: 30px;
+}
+.two-type-of-presta {
+    width: 100%;
+    margin-top: 13px;
+    display: flex;
+    justify-content: space-between;
+}
+.first-case-presta {
+    width: 36%;
+}
+
+.second-case-presta {
+    width: 36%;
+}
+
+.second-case-presta .rounded.p-2.text-center {
+    background-color: #C0A312;
+}
+
+
+
+
+
 
 .card.number {
     width: 35%;
@@ -336,34 +383,35 @@ h4.card-title {
 
 //Prochaine expérience ? // 
 
-.next-experience h1 {
-    text-transform: capitalize;
+.next-experience {
+    text-transform: uppercase;
     margin-bottom: 65px;
     margin-top: 80px;
 }
-// .for-height-of-exper {
 
-// }
 
 .your-next-exper {
     display: flex
 }
 
 .first-picture-left {
-    width: 45%;
+    width: 50%;
+    position: relative;
 }
 
-.title-experience p {
+.title-experience-first p {
     z-index: 1;
     position: absolute;
-    text-align: center;
+    text-align: end;
     font-family: Georgia;
+    text-transform: uppercase;
     margin: 0 auto;
+    width: 70%;
     left: 0;
-    font-size: 2.3rem;
-    right: 0;
-    top: 40%;
-    text-shadow: black 0.1rem 0.1rem;
+    font-size: 1.5rem;
+    top: 80%;
+    color: #59ae52;
+    background-color: white;
 }
 
 .activities-exper {
@@ -373,26 +421,159 @@ h4.card-title {
 
 .two-pictures-exper {
     display: block;
-    margin-left: 77px;
+    margin-left: 35px;
 }
 
 .first-right-picture {
-    width: 90%;
+    width: 100%;
+    position: relative;
 }
-
+.title-experience-second p {
+    z-index: 1;
+    position: absolute;
+    text-align: end;
+    font-family: Georgia;
+    text-transform: uppercase;
+    margin: 0 auto;
+    width: 40%;
+    font-size: 1.5rem;
+    top: 69%;
+    color: #59ae52;
+    background-color: white;
+}
 .evasion-exper {
     width: 100%;
     height: 280px;
 }
 
 .second-right-picture {
-    width: 90%
+    width: 100%;
+    position: relative;
+    margin-top: 35px;
 }
-
+.title-experience-third p {
+    z-index: 1;
+    position: absolute;
+    text-align: center;
+    font-family: Georgia;
+    text-transform: uppercase;
+    margin: 0 auto;
+    width: 38%;
+    font-size: 1.5rem;
+    right: 0;
+    top: 70%;
+    color: #59ae52;
+    background-color: white;
+}
 .evenements-locaux-exper {
     width: 100%;
     height: 280px;
-    margin-top: 35px;
+    
+}
+
+
+
+//Vivez toutes ces expériences //
+.live-experience {
+    text-transform: uppercase;
+    font-size: 2.0rem;
+    margin-top: 60px;
+}
+
+.the-three-div-for-experiences {
+    display: flex;
+    text-align: center;
+    margin-bottom: 160px;
+    margin-top: 50px;
+}
+
+.en-famille {
+    width: 40%;
+    position: relative;
+}
+.en-famille img {
+    width: 90%;
+    clip-path: ellipse(35% 50%);
+}
+
+.text-famille p {
+    z-index: 1;
+    position: absolute;
+    font-family: Georgia;
+    text-transform: uppercase;
+    margin: 0 auto;
+    width: 38%;
+    font-size: 1rem;
+    top: 59%;
+    color: #59ae52;
+    opacity: 0.9;
+    background-color: white;
+    margin-left: 129px;
+    font-weight: bold;
+}
+
+
+.entre-amis {
+    width: 40%;
+    position: relative;
+}
+.text-amis p {
+    z-index: 1;
+    position: absolute;
+    font-family: Georgia;
+    text-transform: uppercase;
+    margin: 0 auto;
+    width: 38%;
+    font-size: 1rem;
+    top: 59%;
+    color: #59ae52;
+    opacity: 0.9;
+    background-color: white;
+    margin-left: 129px;
+    font-weight: bold;
+}
+.entre-amis img {
+    width: 90%;
+    clip-path: ellipse(35% 50%);
+}
+
+.en-amoureux {
+    width: 40%;
+    position: relative;
+}
+.text-amoureux p {
+    z-index: 1;
+    position: absolute;
+    font-family: Georgia;
+    text-transform: uppercase;
+    margin: 0 auto;
+    width: 38%;
+    font-size: 1rem;
+    top: 59%;
+    color: #59ae52;
+    opacity: 0.9;
+    background-color: white;
+    margin-left: 129px;
+    font-weight: bold;
+}
+.en-amoureux img {
+    width: 90%;
+    clip-path: ellipse(35% 50%);
+}
+
+//decouverte-text//
+.info-decouverte h1 {
+    text-transform: uppercase;
+    font-size: 2.0rem;
+    margin-bottom: 40px;
+}
+
+.text-decouverte {
+    width: 79%;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+    color: black;
 }
 
 
