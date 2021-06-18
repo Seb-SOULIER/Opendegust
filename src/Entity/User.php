@@ -2,10 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Datetime;
 
 /**
  * @ORM\MappedSuperclass()
@@ -14,6 +14,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 abstract class User implements UserInterface
 {
     /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private int $id;
+
+    /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private string $email;
@@ -21,7 +28,7 @@ abstract class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private ?string $roles;
+    private array $roles;
 
 
     /**
@@ -34,26 +41,38 @@ abstract class User implements UserInterface
     /**
      * @ORM\Column(type="datetime")
      */
-    private ?\DateTimeInterface $registrationAt;
+    private ?DateTime $registrationAt;
 
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private int $civility;
 
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=45, nullable=true)
      */
     private string $lastname;
 
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=45, nullable=true)
      */
     private string $firstname;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private bool $isVerified = false;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
     public function getEmail(): ?string
     {
@@ -82,7 +101,7 @@ abstract class User implements UserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles ? json_decode($this->roles) : null;
+        $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
@@ -90,7 +109,7 @@ abstract class User implements UserInterface
     }
 
 
-    public function setRoles(?string $roles): self
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
@@ -132,12 +151,12 @@ abstract class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getRegistrationAt(): ?\DateTimeInterface
+    public function getRegistrationAt(): ?DateTime
     {
         return $this->registrationAt;
     }
 
-    public function setRegistrationAt(\DateTimeInterface $registrationAt): self
+    public function setRegistrationAt(DateTime $registrationAt): self
     {
         $this->registrationAt = $registrationAt;
 
@@ -176,6 +195,18 @@ abstract class User implements UserInterface
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

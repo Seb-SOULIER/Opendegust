@@ -12,16 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Provider extends User
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private int $id;
-
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=45, nullable=true)
      */
     private string $company;
 
@@ -32,19 +25,19 @@ class Provider extends User
 
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=45, nullable=true)
      */
     private string $socialReason;
 
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private int $siret;
 
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private int $vatNumber;
 
@@ -100,11 +93,6 @@ class Provider extends User
         $this->offers = new ArrayCollection();
         $this->products = new ArrayCollection();
         $this->files = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getCompany(): ?string

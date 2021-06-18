@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Calendar;
 use App\Entity\Contact;
 use App\Entity\Description;
 use App\Entity\Offer;
@@ -61,6 +62,13 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                     $offerVariation->setPrice(rand(1, 50));
                     $offerVariation->setCurrentVat(rand(5, 25));
                     $offerVariation->setOffer($offer);
+
+                    for ($i = 1; $i <= rand(1, 5); $i++) {
+                        $calendar = new Calendar();
+                        $calendar->setOfferVariation($offerVariation);
+                        $calendar->setStartAt($this->faker->dateTime);
+                        $manager->persist($calendar);
+                    }
                     $manager->persist($offerVariation);
                 }
 
