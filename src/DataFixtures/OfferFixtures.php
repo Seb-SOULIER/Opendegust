@@ -20,7 +20,6 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
     private const NBR_PROVIDER = 50;
 
     protected $faker;
-    public const LANGUAGE = ['Français','Anglais','Espagnol','Chinois','Japonais','Russe','Portugais'];
 
     public function load(ObjectManager $manager)
     {
@@ -32,7 +31,16 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 $offer->setName($this->faker->sentence(2));
                 $offer->setPicture($this->faker->imageUrl(640, 480, 'food', true));
                 $offer->setDomainName($this->faker->sentence(3));
-                $offer->setLanguage(json_encode(self::LANGUAGE));
+                $language = [
+                    'Français' => (bool)rand(0, 1),
+                    'Anglais' => (bool)rand(0, 1),
+                    'Espagnol' => (bool)rand(0, 1),
+                    'Chinois' => (bool)rand(0, 1),
+                    'Japonais' => (bool)rand(0, 1),
+                    'Russe' => (bool)rand(0, 1),
+                    'Portugais' => (bool)rand(0, 1)
+                ];
+                $offer->setLanguage(json_encode($language));
                 $offer->setProvider($this->getReference('provider_' . $a));
 
                 $description = new Description();

@@ -1,5 +1,5 @@
 
-{{ form_start(form, {'attr':{'class':'col-10'}}) }}
+{{ form_start(form, {'attr': {'class': 'col-10'}}) }}
 <div class="form-control col-12">
     <div class="d-flex">
         <div class="col-6">
@@ -8,12 +8,14 @@
             {{ form_label(form.description, 'Description du produit :') }}
             {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
             {{ form_label(form.price, 'Prix du produit :') }}
-            {{ form_widget(form.price, {'attr': {'class' : 'form-control'}}) }}
+            {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
 {#            {{ form_label(form.category, 'Categorie :') }}#}
 {#            {{ form_widget(form.category,{'attr':{'class':'form-control'}}) }}#}
             {{ form_label(form.picture, 'Importer une image :') }}
             {{ form_widget(form.picture, {'attr': {'class': 'form-control'}}) }}
 
+            {% from 'macros/categories.html.twig' import make_categories %}
+            {{ make_categories(categories) }}
         </div>
 {#        <div class="col-6 order1">#}
 {#            <div class="col-5 d-flex mb-4" >#}
