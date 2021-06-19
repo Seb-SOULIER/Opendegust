@@ -12,11 +12,28 @@
 
             {{ form_start(registrationForm) }}
             <div class="form-control">
-                {{ form_row(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
-                {{ form_row(registrationForm.plainPassword, {
-                    label: 'Password',
-                    'attr': {'class': 'form-control'}
-                }) }}
+                <div class="text-danger">
+                    {{ form_errors(registrationForm.email.first) }}
+                </div>
+                {{ form_label(registrationForm.email.first) }}
+                {{ form_widget(registrationForm.email.first) }}
+                <div class="text-danger">
+                    {{ form_errors(registrationForm.email.second) }}
+                </div>
+                {{ form_label(registrationForm.email.second) }}
+                {{ form_widget(registrationForm.email.second) }}
+
+                <div class="text-danger">
+                    {{ form_errors(registrationForm.password.first) }}
+                </div>
+                {{ form_label(registrationForm.password.first) }}
+                {{ form_widget(registrationForm.password.first) }}
+                <div class="text-danger">
+                    {{ form_errors(registrationForm.password.second) }}
+                </div>
+                {{ form_label(registrationForm.password.second) }}
+                {{ form_widget(registrationForm.password.second) }}
+
                 {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'form-check-label'}}) }}
             </div>
 
