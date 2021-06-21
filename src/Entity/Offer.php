@@ -6,7 +6,6 @@ use App\Repository\OfferRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\Array_;
 
 /**
  * @ORM\Entity(repositoryClass=OfferRepository::class)
@@ -120,7 +119,7 @@ class Offer
 
     public function getLanguage(): ?array
     {
-        return $this->language ? json_decode($this->language) : null;
+        return $this->language ? json_decode($this->language, true) : null;
     }
 
     public function setLanguage(?string $language): self

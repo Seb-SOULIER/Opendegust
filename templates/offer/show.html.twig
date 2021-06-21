@@ -25,7 +25,9 @@
             </tr>
             <tr>
                 <th>Language</th>
-                <td>{{ offer.language ? offer.language|json_encode : '' }}</td>
+                {% for key, value in offer.language %}
+                    <td>{{ key }} {{ value }}</td>
+                {% endfor %}
             </tr>
         </tbody>
     </table>
