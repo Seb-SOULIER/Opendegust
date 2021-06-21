@@ -10,6 +10,11 @@ body {
     height: 500px;
     ;
 }
+
+.part-one-home {
+    position: relative;
+}
+
 .part-one-home .text {
     z-index: 1;
     position: absolute;
@@ -38,6 +43,40 @@ body {
         display: block;
     }
 }
+form.search-home {
+    z-index: 1;
+    position: absolute;
+    text-align: center;
+    font-family: Georgia;
+    margin: 0 auto;
+    left: 0;
+    font-size: 2.3rem;
+    right: 0;
+    top: 40%;
+    text-shadow: black 0.1rem 0.1rem;
+    font-weight: bold;
+}
+
+input.write {
+    border-radius: 50px;
+    width: 35%;
+    font-size: x-large;
+    border: none;
+    height: 60px;
+}
+input.recherche {
+    border-radius: 50px;
+    background: rgb(145,222,138);
+    background: linear-gradient(90deg, rgba(145,222,138,1) 4%, rgba(99,222,89,1) 46%, rgba(140,175,137,1) 89%);
+    color: white;
+    width: 10%;
+    font-size: x-large;
+    position: relative;
+    right: 68px;
+    border: none;
+    height: 60px;
+}
+// quatre logo en dessous de la barre de recherche //
 .premier-logo-note {
     display: flex;
 }
@@ -87,6 +126,16 @@ body {
     border:5px solid rgb(187, 180, 180);
     margin-bottom: 100px;
 }
+
+//premiere partie terminée
+
+
+
+
+
+//visitez et degustez// 
+
+
 .visit-and-degust h1 {
     margin-bottom: 30px;
     text-transform: uppercase;
@@ -189,64 +238,49 @@ body {
     }
 }
 
-.logo-partenaires-degustations {
-    display: flex;
+.logo-partenaires {
+    // width: 100%;
+    height: auto;
+}
+
+.row.row-cols-auto {
+    align-items: center;
     justify-content: space-between;
 }
 
+
+//vous voir heureux nous rend heureux // 
+
 .block-for-infos {
     background-color: #59ae52;
-    height: 604px;
     margin-top: 100px;
 }
-@media screen and (max-width: 992px) {
-    .block-for-infos{
-        height: 1050px;
-    }
+
+.card.for-the-informations {
+    background-color: #59ae52;
+    border: none;
 }
-@media screen and (max-width: 768px) {
-    .block-for-infos{
-        height: 1200px;
-    }
+
+.card-body.picture-back-green {
+    color: white;
 }
-@media screen and (max-width: 446px) {
-    .block-for-infos{
-        height: 1300px;
-    }
-}
-.two-infos-and-button {
-    display: flex;
-}
-.picture-back-green {
-    width: 40%;
-    height: 466px;
-}
-.vignes-picture-enjoy {
-    width: 100%;
-    height: 100%;
-    margin-top: 70px
-}
-@media screen and (max-width: 992px) {
-    .vignes-picture-enjoy{
-        width: auto;
-    }
-}
-.for-the-informations {
-    display: flex;
+.picture-of-grappes {
     width: 100%;
 }
 @media screen and (max-width: 992px) {
-    .for-the-informations{
-        display: block;
-        text-align: -webkit-center;
+    .picture-of-grappes {
+        margin-top: 78px;
     }
 }
-@media screen and (max-width: 768px) {
-    .for-the-informations{
-        display: block;
-        text-align: -webkit-center;
-    }
+
+.card-body.two-title-and-text {
+    background-color: #59ae52;
 }
+
+.button-enjoy .say-more {
+    width: auto;
+}
+
 
 
 .you-see-enjoy p {
@@ -254,9 +288,11 @@ body {
     margin-top: 0
  }
 
+
  .text-enjoy p {
     font-size: 20px;
  }
+
 
 .button-enjoy button {
     border-radius: 19px;
@@ -322,6 +358,12 @@ body {
 }
 .first-case-presta {
     width: 36%;
+}
+p.rounded.bg-secondary.p-2.w-50.h-25.text-center {
+    min-width: max-content;
+}
+p.rounded.p-2.bg-secondary.text-center {
+    width: max-content;
 }
 
 .second-case-presta {
@@ -491,6 +533,21 @@ h4.card-title {
     width: 40%;
     position: relative;
 }
+@media screen and (max-width: 992px) {
+    .en-famille {
+       width: 35%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .en-famille { 
+        width: 25%;
+    }
+}
+@media screen and (max-width: 446px) {
+    .en-famille {        
+        width: 15%;
+    }
+}
 .en-famille img {
     width: 90%;
     clip-path: ellipse(35% 50%);
@@ -501,7 +558,6 @@ h4.card-title {
     position: absolute;
     font-family: Georgia;
     text-transform: uppercase;
-    margin: 0 auto;
     width: 38%;
     font-size: 1rem;
     top: 59%;
@@ -511,7 +567,6 @@ h4.card-title {
     margin-left: 129px;
     font-weight: bold;
 }
-
 
 .entre-amis {
     width: 40%;
