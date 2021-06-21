@@ -1,4 +1,15 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+{#    {{ form_widget(form) }}#}
+    {{ form_label(form.name, "Nom de l'offre :") }}
+    {{ form_widget(form.name) }}
+    {{ form_label(form.domainName, "Nom du dommaine :") }}
+    {{ form_widget(form.domainName) }}
+    {{ form_label(form.language, "Langues parlées :") }}
+{#    {% for language in form.language %}#}
+    {{ form_widget(language, {'attr': {'class': 'form-control'}}) }}
+{% for i in 1..8 %}
+    <tr><td>&emsp;{{ form_widget(form.language) }}{{ form_label(form.language[i]) }}</td></tr>
+{% endfor %}
+{#    {% endfor %}#}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
