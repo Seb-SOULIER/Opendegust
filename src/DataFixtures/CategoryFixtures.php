@@ -8,53 +8,93 @@ use Doctrine\Persistence\ObjectManager;
 
 class CategoryFixtures extends Fixture
 {
-    public const CATEGORY = [
-        ['name' => 'Visites et dégustations','parentId' => null],
-        ['name' => 'Activités','parentId' => null],
-        ['name' => 'Evasion','parentId' => null],
-        ['name' => 'Evénement','parentId' => null],
-        ['name' => 'Boisson','parentId' => 1],
-        ['name' => 'Gastronomie','parentId' => 1],
-        ['name' => 'Vin et Champagne','parentId' => 5],
-        ['name' => 'Brasserie','parentId' => 5],
-        ['name' => 'Cidrerie','parentId' => 5],
-        ['name' => 'Cognac et Pineau','parentId' => 5],
-        ['name' => 'Spiritueux','parentId' => 5],
-        ['name' => 'Foie gras','parentId' => 6],
-        ['name' => 'Charcuterie','parentId' => 6],
-        ['name' => 'Fromage','parentId' => 6],
-        ['name' => 'Fruits de mer','parentId' => 6],
-        ['name' => 'Chocolat','parentId' => 6],
-        ['name' => 'Biscuit','parentId' => 6],
-        ['name' => 'Confiserie','parentId' => 6],
-        ['name' => 'Produits de la Ferme','parentId' => 6],
-        ['name' => 'Epicerie et autres produits','parentId' => 6],
-        ['name' => 'Cours et Ateliers de dégustation','parentId' => 2],
-        ['name' => 'Cours et Ateliers culinaires','parentId' => 2],
-        ['name' => 'Balades gourmandes','parentId' => 2],
-        ['name' => 'Repas vigneron','parentId' => 2],
-        ['name' => 'Cueillette à la ferme','parentId' => 2],
-        ['name' => 'Expériences insolites','parentId' => 2],
-        ['name' => 'Pique nique au château','parentId' => 2],
-        ['name' => 'Jeux et énigmes au château','parentId' => 2],
-        ['name' => 'Séjours immersifs','parentId' => 3],
-        ['name' => 'Spa','parentId' => 3],
-        ['name' => 'Tables de spécialités locales','parentId' => 3],
-        ['name' => 'Portes ouvertes','parentId' => 4],
-        ['name' => 'Marchés de producteurs','parentId' => 4],
-        ['name' => 'Tablées gourmandes et nocturnes','parentId' => 4],
-        ['name' => 'Evénements locaux','parentId' => 4]
+    public const CATEGORIES = [
+        ['name' => 'Visites et dégustations',
+            'children' => [
+                ['name' => 'Boisson',
+                    'children' => [
+                        ['name' => 'Vin et Champagne'],
+                        ['name' => 'Brasserie'],
+                        ['name' => 'Cidrerie'],
+                        ['name' => 'Cognac et Pineau'],
+                        ['name' => 'Spiritueux']
+                    ]
+                ],
+                ['name' => 'Gastronomie',
+                    'children' => [
+                        ['name' => 'Foie gras'],
+                        ['name' => 'Charcuterie'],
+                        ['name' => 'Fromage'],
+                        ['name' => 'Fruits de mer'],
+                        ['name' => 'Chocolat'],
+                        ['name' => 'Biscuit'],
+                        ['name' => 'Confiserie'],
+                        ['name' => 'Produits de la Ferme'],
+                        ['name' => 'Epicerie et autres produits']
+                    ]
+                ]
+            ]
+        ],
+        ['name' => 'Activités',
+            'children' => [
+                ['name' => 'Cours et Ateliers de dégustation'],
+                ['name' => 'Cours et Ateliers culinaires'],
+                ['name' => 'Balades gourmandes'],
+                ['name' => 'Repas vigneron'],
+                ['name' => 'Cueillette à la ferme'],
+                ['name' => 'Expériences insolites'],
+                ['name' => 'Pique nique au château'],
+                ['name' => 'Jeux et énigmes au château']
+            ]
+        ],
+        ['name' => 'Evasion',
+            'children' => [
+                ['name' => 'Séjours immersifs'],
+                ['name' => 'Spa'],
+                ['name' => 'Tables de spécialités locales']
+            ]
+        ],
+        ['name' => 'Evénement',
+            'children' => [
+                ['name' => 'Portes ouvertes'],
+                ['name' => 'Marchés de producteurs'],
+                ['name' => 'Tablées gourmandes et nocturnes'],
+                ['name' => 'Evénements locaux']
+            ]
+        ]
     ];
+
 
     public function load(ObjectManager $manager)
     {
-        foreach (self::CATEGORY as $key => $tableCategory) {
+        // Génération des catégories mères
+        $categoryIndex = 0;
+        foreach (self::CATEGORIES as $val) {
+            $categoryIndex++;
             $category = new Category();
-            $category->setName($tableCategory['name']);
-            $category->setParentId($tableCategory['parentId']);
-            $this->addReference('category_' . $key, $category);
+            $category->setName($val['name']);
             $manager->persist($category);
+            $this->addReference('category_' . $categoryIndex, $category);
+            if (isset($val['children'])) {
+                $this->loadChildren($category, $val['children'], $manager, $categoryIndex);
+            }
         }
         $manager->flush();
+    }
+
+    private function loadChildren($category, $children, $manager, &$categoryIndex)
+    {
+
+        foreach ($children as $child) {
+            $categoryIndex++;
+            $categoryChild = new Category();
+            $categoryChild->setName($child['name']);
+            $categoryChild->setCategory($category);
+            $manager->persist($categoryChild);
+            $this->addReference('category_' . $categoryIndex, $categoryChild);
+            if (isset($child['children'])) {
+                $this->loadChildren($categoryChild, $child['children'], $manager, $categoryIndex);
+            }
+        }
     }
 }
