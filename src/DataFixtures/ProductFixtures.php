@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Category;
 use App\Entity\Product;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -10,8 +11,8 @@ use Faker\Factory;
 
 class ProductFixtures extends Fixture implements DependentFixtureInterface
 {
-    private const NBR_PROVIDER = 50;
-    private const PRODUCT_NUMBER = 4;
+    public const NBR_PROVIDER = 10;
+    public const PRODUCT_NUMBER = 4;
 
     public function load(ObjectManager $manager)
     {
@@ -21,7 +22,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             for ($i = 1; $i <= self::PRODUCT_NUMBER; $i++) {
                 $product = new Product();
                 $product->setProvider($this->getReference('provider_' . $a));
-                $product->setCategory($this->getReference('category_' . $i));
+                $product->setCategory($this->getReference('category_' . rand(7, 20)));
                 $product->setName($this->faker->sentence(1));
                 $product->setDescription($this->faker->sentence(15));
                 $product->setPicture($this->faker->imageUrl(480, 350, 'animals', true));

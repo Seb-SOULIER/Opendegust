@@ -49,7 +49,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 $manager->persist($description);
                 $offer->setDescription($description);
 
-                $offer->addCategory($this->getReference('category_' . rand(0, 34)));
+                $offer->addCategory($this->getReference('category_' . rand(1, 35)));
 
                 $contact = new Contact();
                 $contact->setZipcode($this->faker->postcode);

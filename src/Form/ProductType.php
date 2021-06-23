@@ -19,7 +19,6 @@ class ProductType extends AbstractType
             ->add('picture', FileType::class)
             ->add('price');
 //            ->add('provider')
-//           ->add('category', CategoryType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
