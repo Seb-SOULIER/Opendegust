@@ -55,7 +55,47 @@ img.open-degust-footer {
         width: 70%;
     }
 }
+.list-inline-item {
+    width: 10%;
+    text-align: center;
+    background-color: black;
+    clip-path: ellipse(46% 46%);
+    transition: transform 0.5s;
+}
+@media screen and (max-width: 1200px) {
+    .list-inline-item{
+        min-width: 13%;
+    }
+}
 
+@media screen and (max-width: 992px) {
+    .list-inline-item{
+        min-width: 18%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .list-inline-item{
+        min-width: 7%;
+    }
+}
+@media screen and (max-width: 576px) {
+    .list-inline-item{
+        width: 12%;
+        max-width: 16%;
+    }
+}
+@media screen and (max-width: 297px) {
+    .list-inline-item{
+        min-width: 12%;
+        width: 15%;
+    }
+}
+
+
+
+.fab.fa-pinterest-p, .fab.fa-linkedin-in, .fab.fa-twitter, .fab.fa-instagram, .fab.fa-facebook-f {
+    color: white;
+}
 .confidentiality.text-right {
     margin-right: 33px;
 }
