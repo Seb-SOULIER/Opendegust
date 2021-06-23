@@ -1,35 +1,22 @@
 
 {{ form_start(form, {'attr': {'class': 'col-10'}}) }}
-<div class="form-control col-12">
-    <div class="d-flex">
-        <div class="col-6">
+<div class="form-control container">
+    <div class="d-flex row">
+        <div class="col-sm">
             {{ form_label(form.name, 'Nom du produit :') }}
             {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
             {{ form_label(form.description, 'Description du produit :') }}
             {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
             {{ form_label(form.price, 'Prix du produit :') }}
             {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
-{#            {{ form_label(form.category, 'Categorie :') }}#}
-{#            {{ form_widget(form.category,{'attr':{'class':'form-control'}}) }}#}
             {{ form_label(form.picture, 'Importer une image :') }}
             {{ form_widget(form.picture, {'attr': {'class': 'form-control'}}) }}
-
-            {% from 'macros/categories.html.twig' import make_categories %}
-            {{ make_categories(categories) }}
         </div>
-{#        <div class="col-6 order1">#}
-{#            <div class="col-5 d-flex mb-4" >#}
-{#                <div class="card">#}
-{#                    {{ form_row(form.picture,{'attr':{'class':'form-control'}}) }}#}
-{#                    <img class="card-img-top" src="{{ product.picture}}" alt="{{ product.name }}">#}
-
-{#                    <div class="card-body d-flex flex-column">#}
-{#                        <h5 class="card-title text-center">toto</h5>#}
-{#                        <p class="card-text">dgsjsgj</p>#}
-{#                   </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
+        <div class="col-sm">
+            {% from 'macros/categoriesProduct.html.twig' import make_categories %}
+            {{ make_categories(categoriesDrink) }}
+            {{ make_categories(categoriesFood) }}
+        </div>
     </div>
 </div>
 
