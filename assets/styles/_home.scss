@@ -10,6 +10,11 @@ body {
     height: 500px;
     ;
 }
+
+.part-one-home {
+    position: relative;
+}
+
 .part-one-home .text {
     z-index: 1;
     position: absolute;
@@ -20,10 +25,20 @@ body {
     right: 0;
     top: 20%;
     color: white;
+    font-size: 3rem;
     width: 70%;
-    text-shadow: black 2px 3px;
+    text-shadow: black 0px -2px;
 }
 
+h1.degust-near-you {
+    font-size: 3rem;
+    margin-top: 53px;
+    color: white;
+    
+}
+h2 {
+    color: $tertiary;
+}
 .intro-home-info {
     display: flex;
     width: 90%;
@@ -38,6 +53,42 @@ body {
         display: block;
     }
 }
+form.search-home {
+    z-index: 1;
+    position: absolute;
+    text-align: center;
+    font-family: Georgia;
+    margin: 0 auto;
+    left: 0;
+    font-size: 2.3rem;
+    right: 0;
+    top: 50%;
+    text-shadow: black 0.1rem 0.1rem;
+    font-weight: bold;
+}
+
+input.write {
+    border-radius: 50px;
+    width: 35%;
+    font-size: x-large;
+    border: none;
+    height: 60px;
+    text-align: center;
+
+}
+input.recherche {
+    border-radius: 50px;
+    background: rgb(145,222,138);
+    background: linear-gradient(90deg, rgba(145,222,138,1) 4%, rgba(99,222,89,1) 46%, rgba(140,175,137,1) 89%);
+    color: white;
+    width: 10%;
+    font-size: x-large;
+    position: relative;
+    right: 68px;
+    border: none;
+    height: 60px;
+}
+// quatre logo en dessous de la barre de recherche //
 .premier-logo-note {
     display: flex;
 }
@@ -87,7 +138,17 @@ body {
     border:5px solid rgb(187, 180, 180);
     margin-bottom: 100px;
 }
-.visit-and-degust h1 {
+
+//premiere partie terminée
+
+
+
+
+
+//visitez et degustez// 
+
+
+.visit-and-degust h2 {
     margin-bottom: 30px;
     text-transform: uppercase;
 }
@@ -189,64 +250,81 @@ body {
     }
 }
 
-.logo-partenaires-degustations {
-    display: flex;
+.logo-partenaires {
+    // width: 100%;
+    height: auto;
+}
+
+.row.row-cols-auto {
+    align-items: center;
     justify-content: space-between;
 }
 
+
+
+
+
+
+//vous voir heureux nous rend heureux // 
+
 .block-for-infos {
     background-color: #59ae52;
-    height: 604px;
     margin-top: 100px;
 }
-@media screen and (max-width: 992px) {
-    .block-for-infos{
-        height: 1050px;
-    }
-}
 @media screen and (max-width: 768px) {
-    .block-for-infos{
-        height: 1200px;
-    }
-}
-@media screen and (max-width: 446px) {
-    .block-for-infos{
-        height: 1300px;
-    }
-}
-.two-infos-and-button {
-    display: flex;
-}
-.picture-back-green {
-    width: 40%;
-    height: 466px;
-}
-.vignes-picture-enjoy {
-    width: 100%;
-    height: 100%;
-    margin-top: 70px
-}
-@media screen and (max-width: 992px) {
-    .vignes-picture-enjoy{
-        width: auto;
-    }
-}
-.for-the-informations {
-    display: flex;
-    width: 100%;
-}
-@media screen and (max-width: 992px) {
-    .for-the-informations{
+    .row.informations-home {
         display: block;
         text-align: -webkit-center;
     }
 }
+
 @media screen and (max-width: 768px) {
-    .for-the-informations{
-        display: block;
-        text-align: -webkit-center;
+    .col-sm-5 {
+        width: 70%;
+    }
+    .col-sm-7 {
+        width: 100%;
+    }
+    .button-enjoy .say-more {
+        float: right;
     }
 }
+
+@media screen and (max-width: 576px) {
+    .col-sm-7 {
+        width: 100%;
+    }
+}
+.card.for-the-informations {
+    background-color: #59ae52;
+    border: none;
+}
+
+.card-body.picture-back-green {
+    color: white;
+}
+.picture-of-grappes {
+    width: 85%;
+}
+@media screen and (max-width: 992px) {
+    .picture-of-grappes {
+        margin-top: 78px;
+    }
+}
+
+.card-body.two-title-and-text {
+    background-color: #59ae52;
+}
+
+.button-enjoy .say-more {
+    width: auto;
+    float: right;
+}
+@media screen and (max-width: 576px) {
+    .button-enjoy {
+        text-align: end;
+        }
+    }
 
 
 .you-see-enjoy p {
@@ -254,15 +332,18 @@ body {
     margin-top: 0
  }
 
+
  .text-enjoy p {
     font-size: 20px;
  }
+
 
 .button-enjoy button {
     border-radius: 19px;
     text-align: center;
     width: 25%;
 }
+
 
 .two-title-and-text {
     width: 50%;
@@ -322,6 +403,12 @@ body {
 }
 .first-case-presta {
     width: 36%;
+}
+p.rounded.bg-secondary.p-2.w-50.h-25.text-center {
+    min-width: max-content;
+}
+p.rounded.p-2.bg-secondary.text-center {
+    width: max-content;
 }
 
 .second-case-presta {
@@ -388,16 +475,109 @@ h4.card-title {
     margin-bottom: 65px;
     margin-top: 80px;
 }
+@media screen and (max-width: 768px) {
+    .card-group {
+        display: block;
 
+    }
+   }
 
-.your-next-exper {
-    display: flex
+.card.column-left {
+    border: none;
 }
 
-.first-picture-left {
-    width: 50%;
-    position: relative;
+.card.first-picture-left {
+    height: 600px;
+    width: 94%;
+    align-self: center;
 }
+@media screen and (max-width: 768px) {
+    .card.first-picture-left {
+        width: 80%;
+        height: 200px;
+        margin-bottom: 20px;
+
+    }
+   }
+
+img.activities-exper {
+    height: 100%;
+    width: 100%;
+}
+
+
+.card.column-right {
+    border: none;
+}
+@media screen and (max-width: 768px) {
+    .card.column-right {
+        align-items: center;
+    }
+   }
+
+
+
+
+.card.first-right-picture {
+    height: 290px;
+    margin-bottom: 10px;
+}
+@media screen and (max-width: 768px) {
+    .card.first-right-picture {
+        width: 80%;
+        height: 200px;
+        margin-bottom: 20px;
+
+    }
+   }
+
+
+
+img.evasion-exper {
+    height: 290px;
+}
+@media screen and (max-width: 992px) {
+    img.evasion-exper {
+        height: 100%;
+    }
+   }
+   @media screen and (max-width: 768px) {
+    img.evasion-exper {
+        height: 100%;
+    }
+   }
+
+.card.second-right-picture {
+    height: 290px;
+    margin-top: 10px;
+}
+@media screen and (max-width: 768px) {
+    .card.second-right-picture {
+        width: 80%;
+        height: 200px;
+        margin-bottom: 20px;
+
+    }
+   }
+
+img.evenements-locaux-exper {
+    height: 290px;
+}
+@media screen and (max-width: 768px) {
+    img.evenements-locaux-exper {
+        width: 100%;
+
+    }
+   }
+@media screen and (max-width: 576px) {
+    img.evenements-locaux-exper {
+        width: 100%;
+    }
+   }
+
+
+
+
 
 .title-experience-first p {
     z-index: 1;
@@ -412,22 +592,10 @@ h4.card-title {
     top: 80%;
     color: #59ae52;
     background-color: white;
+    opacity: 0.9;
 }
 
-.activities-exper {
-    width: 100%;
-    height: 600px;
-}
 
-.two-pictures-exper {
-    display: block;
-    margin-left: 35px;
-}
-
-.first-right-picture {
-    width: 100%;
-    position: relative;
-}
 .title-experience-second p {
     z-index: 1;
     position: absolute;
@@ -441,16 +609,7 @@ h4.card-title {
     color: #59ae52;
     background-color: white;
 }
-.evasion-exper {
-    width: 100%;
-    height: 280px;
-}
 
-.second-right-picture {
-    width: 100%;
-    position: relative;
-    margin-top: 35px;
-}
 .title-experience-third p {
     z-index: 1;
     position: absolute;
@@ -458,114 +617,103 @@ h4.card-title {
     font-family: Georgia;
     text-transform: uppercase;
     margin: 0 auto;
-    width: 38%;
+    width: 53%;
     font-size: 1.5rem;
     right: 0;
     top: 70%;
     color: #59ae52;
     background-color: white;
 }
-.evenements-locaux-exper {
-    width: 100%;
-    height: 280px;
-    
-}
+@media screen and (max-width: 1200px) {
+    .title-experience-third p {
+        width: 80%;
+    }
+   }
+
+@media screen and (max-width: 992px) {
+    .title-experience-third p {
+        width: 85%;
+    }
+   }
+
+@media screen and (max-width: 768px) {
+    .evenements-locaux-exper {
+        width: 85%;
+    }
+   }
+   @media screen and (max-width: 576px) {
+    .title-experience-third p {
+        width: 80%;
+    }
+   }
+
+
 
 
 
 //Vivez toutes ces expériences //
+
+
+img.photo-amoureux , img.photo-famille , img.photo-amis{
+    clip-path: ellipse(35% 50%);
+}
+
+.card.image-et-titre {
+    border: none;
+}
+
+h5.card-title-loisirs {
+    z-index: 1;
+    position: absolute;
+    text-align: center;
+    font-family: Georgia;
+    margin: 0 auto;
+    left: 0;
+    font-size: 1.4rem;
+    right: 0;
+    top: 48%;
+    width: 61%;
+    color: #59ae52;
+    background-color: white;
+    opacity: 0.8;
+}
+
+
+@media screen and (max-width: 768px) {
+    .card-body-loisirs h5 {
+        font-size: 16px;
+    }
+   }
+@media screen and (max-width: 576px) {
+ .card-body-loisirs h5 {
+    font-size: 1.5rem;
+
+ }
+}
+
+img.circle {
+    width: 415px;
+    height: 277px;
+
+}
+
 .live-experience {
     text-transform: uppercase;
     font-size: 2.0rem;
     margin-top: 60px;
-}
-
-.the-three-div-for-experiences {
-    display: flex;
-    text-align: center;
-    margin-bottom: 160px;
-    margin-top: 50px;
-}
-
-.en-famille {
-    width: 40%;
-    position: relative;
-}
-.en-famille img {
-    width: 90%;
-    clip-path: ellipse(35% 50%);
-}
-
-.text-famille p {
-    z-index: 1;
-    position: absolute;
-    font-family: Georgia;
-    text-transform: uppercase;
-    margin: 0 auto;
-    width: 38%;
-    font-size: 1rem;
-    top: 59%;
-    color: #59ae52;
-    opacity: 0.9;
-    background-color: white;
-    margin-left: 129px;
-    font-weight: bold;
+    margin-bottom: 60px;
 }
 
 
-.entre-amis {
-    width: 40%;
-    position: relative;
-}
-.text-amis p {
-    z-index: 1;
-    position: absolute;
-    font-family: Georgia;
-    text-transform: uppercase;
-    margin: 0 auto;
-    width: 38%;
-    font-size: 1rem;
-    top: 59%;
-    color: #59ae52;
-    opacity: 0.9;
-    background-color: white;
-    margin-left: 129px;
-    font-weight: bold;
-}
-.entre-amis img {
-    width: 90%;
-    clip-path: ellipse(35% 50%);
-}
 
-.en-amoureux {
-    width: 40%;
-    position: relative;
-}
-.text-amoureux p {
-    z-index: 1;
-    position: absolute;
-    font-family: Georgia;
-    text-transform: uppercase;
-    margin: 0 auto;
-    width: 38%;
-    font-size: 1rem;
-    top: 59%;
-    color: #59ae52;
-    opacity: 0.9;
-    background-color: white;
-    margin-left: 129px;
-    font-weight: bold;
-}
-.en-amoureux img {
-    width: 90%;
-    clip-path: ellipse(35% 50%);
-}
+
 
 //decouverte-text//
-.info-decouverte h1 {
+.info-decouverte h2 {
     text-transform: uppercase;
     font-size: 2.0rem;
     margin-bottom: 40px;
+    margin-top: 80px;
 }
 
 .text-decouverte {
@@ -575,8 +723,6 @@ h4.card-title {
     font-weight: bold;
     color: black;
 }
-
-
 
 
 

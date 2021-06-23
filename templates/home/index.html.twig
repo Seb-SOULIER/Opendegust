@@ -7,11 +7,16 @@
 	<div class="part-one-home">
 		<img class="home-picture-research" src="{{ asset('build/images/paysage-test-projet.jpg') }}">
 		<div class="text">
-			<h1>Dégustations près de chez vous</h1>
+
+			<h1 class="degust-near-you">
+				<span style="font-weight:300">Dégustations</span>
+				<span style="font-weight:700">
+					près de chez vous</span>
+			</h1>
 		</div>
 		<form class="search-home">
-			<input class="write" type="text" name="text" class="search" placeholder="Recherchez ici!">
-			<input class="recherche" type="submit" name="submit" class="submit" value="Search">
+			<input class="write" type="text" name="text" class="search" placeholder="recherchez votre prochaine expérience">
+			<input class="recherche" type="submit" name="submit" class="submit" value="recherche">
 		</form>
 	</div>
 
@@ -66,8 +71,12 @@
 	<div class="trait-home-one"></div>
 	<div class="container">
 		<div class="visit-and-degust">
-			<h1>
-				Visitez et Dégustez</h1>
+			<h2>
+				<span style="font-weight:300">
+					Visitez</span>
+				<span>
+					et Dégustez</span>
+			</h2>
 		</div>
 	</div>
 
@@ -123,12 +132,22 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
+
+	<div class="container-fluid">
+		<div class="row row-cols-auto">
+			{% for logo in imgLogoPartenaire %}
+				<div class="col col-lg-2" style="max-width:150px">
+					<img class="logo-partenaires" style="width:100%" src="{{ logo }}" alt="" width="170px" height="120px">
+				</div>
+=======
 	<div class="container">
 		<div class="row row-cols-auto" style="align-items: center; justify-content: space-between">
 			{% for logo in imgLogoPartenaire %}
 			<div class="col-2" style="max-width:150px">
 				<img  style="width:100%" src="{{ logo }}" alt="{{ logo }}">
 			</div>
+>>>>>>> 6af8637910a300dac9e93f1a3f60b964fd2a77f1
 			{% endfor %}
 		</div>
 	</div>
@@ -160,21 +179,30 @@
 {#		</div>#}
 {#	</div>#}
 
+
 	<div class="block-for-infos">
 		<div class="container">
-			<div class="for-the-informations">
-				<div class="picture-back-green ">
-					<img class="vignes-picture-enjoy" src="https://www.pepinieres-travers.fr/4922-thickbox_default/vigne-vinifera-centennial-seedless.jpg" class="card-img" alt="...">
+			<div class="row informations-home">
+				<div class="col-sm-5">
+					<div class="card for-the-informations">
+						<div class="card-body picture-back-green">
+							<img class="picture-of-grappes" src="https://www.pepinieres-travers.fr/4922-thickbox_default/vigne-vinifera-centennial-seedless.jpg" alt="pepiniere">
+						</div>
+					</div>
 				</div>
-				<div class="two-title-and-text">
-					<div class="you-see-enjoy">
-						<p>Vous voir heureux nous rend heureux</p>
-					</div>
-					<div class="text-enjoy">
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dolor aspernatur ad aut nesciunt iste a consequuntur deserunt! Velit minus neque harum iure odit voluptate quod. Dolore assumenda dignissimos sunt.</p>
-					</div>
-					<div class="button-enjoy">
-						<button type="submit">en savoir plus *</button>
+				<div class="col-sm-7">
+					<div class="card for-the-informations">
+						<div class="card-body picture-back-green">
+							<div class="you-see-enjoy">
+								<p>Vous voir heureux nous rend heureux</p>
+							</div>
+							<div class="text-enjoy">
+								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dolor aspernatur ad aut nesciunt iste a consequuntur deserunt! Velit minus neque harum iure odit voluptate quod. Dolore assumenda dignissimos sunt.</p>
+							</div>
+							<div class="button-enjoy">
+								<button class="say-more" type="submit">en savoir plus *</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -183,8 +211,8 @@
 
 	<div class="container">
 		<div class="actuality">
-			<h1>
-				A la une</h1>
+			<h2>
+				A la une</h2>
 		</div>
 	</div>
 
@@ -279,143 +307,141 @@
 	</div>
 
 
-	<div class="container">
-		<div class="next-experience">
-			<h1>
-				Quelle sera votre prochaine expérience ?
-			</h1>
-		</div>
-		<div class="for-height-of-exper">
-			<div class="your-next-exper">
-				<div class="first-picture-left">
-					<a href="https://www.nasa.gov/moon" target="_blank" style="border:none">
-						<img class="activities-exper" src="https://images.sudouest.fr/2015/09/23/57eb989966a4bd7760c5e528/widescreen/1000x500/la-cueillette-des-raisins.jpg" alt="">
-						<div class="title-experience-first">
-							<p>
-								Les activités
-							</p>
-						</div>
-					</a>
+<div class="container">
+	<div class="next-experience">
+		<h2>
+			<span style="font-weight:300">
+				Quelle sera</span>
+			<span>votre prochaine expérience ?</span>
+		</h2>
+	</div>
+	<div class="card-group">
+		<div class="card column-left">
+			<div class="card first-picture-left">
+				<img class="activities-exper" src="https://sobusygirls.fr/uploads/293dafe0a62fc2bd6d5128338d712f391871b8c7.jpeg" alt="Card image cap">
+				<div class="title-experience-first">
+					<p>
+						Les activités
+					</p>
 				</div>
-				<div class="two-pictures-exper">
-					<div class="first-right-picture">
-						<a href="https://www.nasa.gov/moon" target="_blank" style="border:none">
-							<img class="evasion-exper" src="https://c.pxhere.com/photos/f7/be/champagne_date_drink_glasses_romance_romantic_sparkling_wine_sun-951276.jpg!d" alt="">
-							<div class="title-experience-second">
-								<p>
-									évasion
-								</p>
-							</div>
-						</a>
-					</div>
-					<div class="second-right-picture">
-						<a href="https://www.nasa.gov/moon" target="_blank" style="border:none">
-							<img class="evenements-locaux-exper" src="https://www.agence-evenementielle-innovevents.fr/wp-content/uploads/2018/04/le-lieu-ideal-pour-vos-evenements-a-strasbourg-1-672x350.jpg" alt="">
-							<div class="title-experience-third">
-								<p>
-									évènements locaux
-								</p>
-							</div>
-						</a>
-					</div>
+			</div>
+		</div>
+
+		<div class="card column-right">
+			<div class="card first-right-picture">
+				<img class="evasion-exper" src="https://i1.wp.com/www.photo-paysage.com/albums/userpics/10001/Lac-10.JPG" alt="Card image cap">
+				<div class="title-experience-second">
+					<p>
+						évasion
+					</p>
+				</div>
+			</div>
+			<div class="card second-right-picture">
+				<img class="evenements-locaux-exper" src="https://www.mairie-champniers.fr/medias/2019/08/default3.jpg" alt="Card image cap">
+				<div class="title-experience-third">
+					<p>
+						évènements locaux
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+	<div class="container">
+		<div class="live-experience">
+			<h2>
+				vivez toutes ces expériences
+			</h2>
+		</div>
+		<div class="card-group">
+			<div class="card image-et-titre">
+				<img src="https://www.chantalmathieu.com/wp-content/uploads/2013/02/IMG_9170-famille-860x573.jpg" class="photo-famille" alt="...">
+				<div class="card-body-loisirs">
+					<h5 class="card-title-loisirs">En famille</h5>
+				</div>
+			</div>
+			<div class="card image-et-titre">
+				<img src="https://fr.wikomobile.com/shop/media/wysiwyg/NEWS/Avril2018/bons-plans-amis.jpg" class="photo-amis" alt="...">
+				<div class="card-body-loisirs">
+					<h5 class="card-title-loisirs">Entre amis</h5>
+				</div>
+			</div>
+			<div class="card image-et-titre">
+				<img src="https://www.instant-mariage.fr/wp-content/uploads/2017/03/shooting-photo-amoureux-5.jpg" class="photo-amoureux" alt="...">
+				<div class="card-body-loisirs">
+					<h5 class="card-title-loisirs">En amoureux</h5>
 				</div>
 			</div>
 		</div>
 	</div>
 
+
+	<div class="container">
+		<div class="info-decouverte">
+			<h2>
+				<span style="font-weight:300">
+					Des découvertes</span>
+				<span>
+					au services de nos sens</span>
+			</h2>
+		</div>
+		<div class="text-decouverte">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem ullam, obcaecati optio reiciendis, hic blanditiis vel, qui porro harum tenetur autem repellat nesciunt nemo error dolore non iure! Quasi, amet?</p>
+		</div>
+	</div>
+
+
+	{# ceci est le travail à GG #}
+
+
+	<div class="last_div_what_new">
 		<div class="container">
-			<div class="live-experience">
-				<h1>
-					vivez toutes ces expériences
-				</h1>
+			<h2 class="title_what_new text-center  " style="text-transform: uppercase">
+				<strong>Quoi de neuf
+				</strong>chez opendegust?</h2>
+			<div class=" d-flex justify-content-around row">
+
+				<div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
+					<img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
+					<div class="card-body">
+						<h5 class="card-title">degustion de vin</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+					<div class="card-body d-flex justify-content-around">
+						<p class="text-color-card card-link">03 juin 2022</p>
+						<a href="#" class="text-color-card card-link">Découverte</a>
+					</div>
+				</div>
+
+				<div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
+					<img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
+					<div class="card-body">
+						<h5 class="card-title">degustion de vin</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+					<div class="card-body d-flex justify-content-around">
+						<p class="text-color-card card-link">03 juin 2022</p>
+						<a href="#" class="text-color-card card-link">Découverte</a>
+					</div>
+				</div>
+
+				<div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
+					<img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
+					<div class="card-body">
+						<h5 class="card-title">degustion de vin</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+					<div class="card-body d-flex justify-content-around">
+						<p class="text-color-card card-link">03 juin 2022</p>
+						<a href="#" class="text-color-card card-link">Découverte</a>
+					</div>
+				</div>
 			</div>
-			<div class="the-three-div-for-experiences">
-				<div class="en-famille">
-					<img src="https://www.chantalmathieu.com/wp-content/uploads/2013/02/IMG_9170-famille-860x573.jpg" alt="">
-					<div class="text-famille">
-						<p>En famille</p>
-					</div>
-				</div>
-				<div class="entre-amis">
-					<img src="https://fr.wikomobile.com/shop/media/wysiwyg/NEWS/Avril2018/bons-plans-amis.jpg" alt="">
-					<div class="text-amis">
-						<p>Entre amis</p>
-					</div>
-				</div>
-				<div class="en-amoureux">
-					<img src="https://www.instant-mariage.fr/wp-content/uploads/2017/03/shooting-photo-amoureux-5.jpg" alt="">
-					<div class="text-amoureux">
-						<p>En amoureux</p>
-					</div>
-				</div>
+			<div class="d-flex justify-content-around">
+				<button type="submit" class="button-card btn">Voir tout les articles</button>
 			</div>
 		</div>
-
-		<div class="container">
-			<div class="info-decouverte">
-				<h1>
-					Des découvertes au services de nos sens
-				</h1>
-			</div>
-			<div class="text-decouverte">
-			<p>Après la défaite du vil Saroumane, Gandalf et Pippin font route vers Minas Tirith, la capitale de Gondor. Pendant ce temps, Aragorn, Legolas et Gimli tentent de trouver des alliés pour contrer la gigantesque armée que Sauron s'apprête à lancer sur Minas Tirith. De leur côté, Frodon et Sam, menés par Gollum, poursuivent leur périple jusqu'au royaume du Mordor afin de détruire l'anneau maléfique.</p>
-			</div>
-		</div>
-
-
-			{# ceci est le travail à GG #}
-			<h1>Welcome on your project 3</h1>
-			<p class="homeTitle">
-				Almost before we knew it, we had left the ground.
-			</p>
-			<i class="fas fa-address-book"></i>
-			<p class="homeText">Almost before we knew it, we had left the ground.</p>
-			<div class="last_div_what_new">
-				<div class="container">
-					<h2 class="title_what_new text-center  ">
-						<strong>Quoi de neuf
-						</strong>chez opendegust?</h2>
-					<div class=" d-flex justify-content-around row">
-
-						<div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
-							<img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
-							<div class="card-body">
-								<h5 class="card-title">degustion de vin</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							</div>
-							<div class="card-body d-flex justify-content-around">
-								<p class="text-color-card card-link">03 juin 2022</p>
-								<a href="#" class="text-color-card card-link">Découverte</a>
-							</div>
-						</div>
-
-						<div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
-							<img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
-							<div class="card-body">
-								<h5 class="card-title">degustion de vin</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							</div>
-							<div class="card-body d-flex justify-content-around">
-								<p class="text-color-card card-link">03 juin 2022</p>
-								<a href="#" class="text-color-card card-link">Découverte</a>
-							</div>
-						</div>
-
-						<div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
-							<img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
-							<div class="card-body">
-								<h5 class="card-title">degustion de vin</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							</div>
-							<div class="card-body d-flex justify-content-around">
-								<p class="text-color-card card-link">03 juin 2022</p>
-								<a href="#" class="text-color-card card-link">Découverte</a>
-							</div>
-						</div>
-					</div>
-					<div class="d-flex justify-content-around">
-						<button type="submit" class="button-card btn">Voir tout les articles</button>
-					</div>
-				</div>
-			</div>
-		{% endblock %}
+	</div>
+{% endblock %}
