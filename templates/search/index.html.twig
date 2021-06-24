@@ -56,6 +56,7 @@
                 </div>
 
             </div>
+<<<<<<< HEAD
             <!-- Modal -->
             <div class="modal fade" id="modalDetail_{{ offer.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -67,6 +68,33 @@
                         <div class="modal-body">
                             <table>
                                 <thead>
+=======
+
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalDetail_{{ offer.id }}" tabindex="-1" aria-labelledby="ModalLabel_{{ offer.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel_{{ offer.id }}">{{ offer.name }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th scope="col" class="pe-1">Durée   </th>
+                                <th scope="col" class="pe-1"></th>
+                                <th scope="col" class="pe-1"></th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for offer_variation in offer.offerVariations %}
+
+>>>>>>> 6e2436cdf83370c11f15a104c192e80f0439e46b
                                 <tr>
                                     <th scope="col" class="pe-1">Durée   </th>
                                     <th scope="col" class="pe-1"></th>
@@ -92,6 +120,7 @@
                                             {{ offer_variation.capacity }} places
                                         </td>
                                         {% endif %}
+<<<<<<< HEAD
                                         <td colspan="1" class="ps-1">{{ offer_variation.price }}€</td>
 
 
@@ -105,6 +134,21 @@
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
+=======
+                                        {% else %}
+                                        {{ offer_variation.capacity }} places
+                                    </td>
+                                    {% endif %}
+                                    <td colspan="1" class="ps-1">{{ offer_variation.price }}€</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+>>>>>>> 6e2436cdf83370c11f15a104c192e80f0439e46b
                     </div>
                 </div>
             </div>
@@ -117,11 +161,5 @@
     {% endfor %}
     </div>
  </div>
-    <script>var myModal = document.getElementById('myModal')
-        var myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.bs.modal', function () {
-            myInput.focus()
-        })</script>
 
 {% endblock %}

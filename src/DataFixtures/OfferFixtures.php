@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Calendar;
+use App\Entity\Category;
 use App\Entity\Contact;
 use App\Entity\Description;
 use App\Entity\Offer;
@@ -19,7 +20,6 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
     private const NBR_PROVIDER = 50;
 
     protected $faker;
-    public const LANGUAGE = ['Français','Anglais','Espagnol','Chinois','Japonais','Russe','Portugais'];
 
     public function load(ObjectManager $manager)
     {
@@ -31,7 +31,16 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 $offer->setName($this->faker->sentence(2));
                 $offer->setPicture($this->faker->imageUrl(640, 480, 'food', true));
                 $offer->setDomainName($this->faker->sentence(3));
-                $offer->setLanguage(json_encode(self::LANGUAGE));
+                $language = [
+                    'Français' => (bool)rand(0, 1),
+                    'Anglais' => (bool)rand(0, 1),
+                    'Espagnol' => (bool)rand(0, 1),
+                    'Chinois' => (bool)rand(0, 1),
+                    'Japonais' => (bool)rand(0, 1),
+                    'Russe' => (bool)rand(0, 1),
+                    'Portugais' => (bool)rand(0, 1)
+                ];
+                $offer->setLanguage(json_encode($language));
                 $offer->setProvider($this->getReference('provider_' . $a));
 
                 $description = new Description();
@@ -39,6 +48,8 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 $description->setLongDescription($this->faker->sentence(50));
                 $manager->persist($description);
                 $offer->setDescription($description);
+
+                $offer->addCategory($this->getReference('category_' . rand(1, 35)));
 
                 $contact = new Contact();
                 $contact->setZipcode($this->faker->postcode);
@@ -82,6 +93,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             ProviderFixtures::class,
+            CategoryFixtures::class,
         ];
     }
 }

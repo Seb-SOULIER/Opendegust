@@ -17,4 +17,12 @@ class ApiController
         $response = $api->getResponse($url);
         return $response;
     }
+
+    public function zipCode(string $zip): array
+    {
+        $api = new Api();
+        $url = "https://geo.api.gouv.fr/communes?codePostal=" . $zip;
+        $response = $api->getResponse($url);
+        return $response;
+    }
 }

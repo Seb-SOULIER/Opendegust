@@ -6,6 +6,7 @@ use App\Repository\ProviderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProviderRepository::class)
@@ -15,6 +16,9 @@ class Provider extends User
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
+     * @Assert\Length(
+     *     max="45",
+     *     maxMessage="Le nom est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
     private string $company;
 
@@ -57,7 +61,7 @@ class Provider extends User
     private ?string $otherSite;
 
     /**
-     * @ORM\Column(type="json", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private ?string $knowUs;
 
@@ -157,7 +161,7 @@ class Provider extends User
 
     public function getOpening(): ?array
     {
-        return $this->opening ? json_decode($this->opening) : null;
+        return $this->opening ? json_decode($this->opening, true) : null;
     }
 
     public function setOpening(?string $opening): self
@@ -192,9 +196,9 @@ class Provider extends User
         return $this;
     }
 
-    public function getKnowUs(): ?array
+    public function getKnowUs(): ?string
     {
-        return $this->knowUs ? json_decode($this->knowUs) : null;
+        return $this->knowUs;
     }
 
     public function setKnowUs(?string $knowUs): self

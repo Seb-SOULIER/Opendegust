@@ -60,13 +60,13 @@ class ProviderFixtures extends Fixture
             $provider->setLastname($this->faker->lastName);
             $provider->setCompany($this->faker->company);
             $provider->setPicture($this->faker->imageUrl(640, 480, 'animals', true));
-            $provider->setSocialReason(array_rand(self::SOCIAL_REASONS));
+            $provider->setSocialReason(array_rand(array_flip(self::SOCIAL_REASONS)));
             $provider->setSiret($this->faker->numberBetween(11111, 64000));
             $provider->setVatNumber($this->faker->randomFloat(2, 10, 25));
             $provider->setOpening(json_encode($this->opening));
             $provider->setMonthlyFrequentation($this->faker->randomDigit());
             $provider->setOtherSite(json_encode($this->otherSite));
-            $provider->setKnowUs(json_encode(self::KNOW_US));
+            $provider->setKnowUs(array_rand(array_flip(self::KNOW_US)));
             $provider->setContact($contact);
             $provider->setDescription($description);
 

@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class CustomerFixtures extends Fixture
 {
-    private const CUSTOMER_NUMBER = 50;
+    private const CUSTOMER_NUMBER = 10;
     private const KNOW_US = ['Publicité', 'Internet', 'Bouche à oreille', 'Autre'];
 
     protected $faker;
@@ -30,7 +30,7 @@ class CustomerFixtures extends Fixture
         for ($i = 1; $i <= self::CUSTOMER_NUMBER; $i++) {
             $customer = new Customer();
             $contact = new Contact();
-            $categories = CategoryFixtures::CATEGORY;
+//            $categories = CategoryFixtures::CATEGORY;
 
             $customer->setEmail($this->faker->email);
             $customer->setRoles(['ROLE_CUSTOMER']);
@@ -46,7 +46,7 @@ class CustomerFixtures extends Fixture
             $customer->setBirthdate($this->faker->dateTime);
             $customer->setKnowUs(json_encode(self::KNOW_US));
             $customer->setGtc18($this->faker->boolean());
-            $customer->setFavory(json_encode(array_rand($categories, rand(1, 10))));
+//            $customer->setFavory(json_encode(array_rand($categories, rand(1, 4))));
 
             $contact->setCity($this->faker->city);
             $contact->setAddress($this->faker->sentence(3));

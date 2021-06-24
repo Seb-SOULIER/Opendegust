@@ -1,58 +1,414 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Home{% endblock %}
+{# {{ asset('build/images/vinvigne.jpg') }} #}
+{% block title %}Home
+{% endblock %}
 
 {% block body %}
-    <h1>Welcome on your project 3</h1>
-    <p class ="homeTitle">
-        Almost before we knew it, we had left the ground.
-    </p>
-    <i class="fas fa-address-book"></i>
-    <p class="homeText">Almost before we knew it, we had left the ground.</p>
-    <div class="last_div_what_new">
-       <div class="container">
-            <h2 class="title_what_new text-center  "><strong>Quoi de neuf </strong>chez opendegust?</h2>
-            <div class=" d-flex justify-content-around row">
+<div class="container">
+	<div class="part-one-home">
+		<img class="home-picture-research" src="{{ asset('build/images/paysage-test-projet.jpg') }}">
+		<div class="text">
 
-                <div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
-                    <img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
-                    <div class="card-body">
-                        <h5 class="card-title">degustion de vin</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="card-body d-flex justify-content-around">
-                        <p  class="text-color-card card-link">03 juin 2022</p>
-                        <a href="#" class="text-color-card card-link">Découverte</a>
-                    </div>
-                </div>
+			<h1 class="degust-near-you">
+				<span style="font-weight:300">Dégustations</span>
+				<span style="font-weight:700">
+					près de chez vous</span>
+			</h1>
+		</div>
+		<form class="search-home">
+			<input class="write" type="text" name="text" class="search" placeholder="recherchez votre prochaine expérience">
+			<input class="recherche" type="submit" name="submit" class="submit" value="recherche">
+		</form>
+	</div>
+	</div>
 
-                <div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
-                    <img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
-                    <div class="card-body">
-                        <h5 class="card-title">degustion de vin</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="card-body d-flex justify-content-around">
-                        <p  class="text-color-card card-link">03 juin 2022</p>
-                        <a href="#" class="text-color-card card-link">Découverte</a>
-                    </div>
-                </div>
+	<div class="container">
+		<div class="intro-home-info">
+			<div class="premier-logo-note col-md-2 col-lg-2">
+				<div class="logo-star">
+					<i class="fas fa-star"></i>
+				</div>
+				<div class="note-star">
+					<p>
+						4.8 de note moyenne
+					</p>
+				</div>
+			</div>
 
-                <div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
-                    <img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
-                    <div class="card-body">
-                        <h5 class="card-title">degustion de vin</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="card-body d-flex justify-content-around">
-                        <p  class="text-color-card card-link">03 juin 2022</p>
-                        <a href="#" class="text-color-card card-link">Découverte</a>
-                    </div>
-                </div>
-            </div>
-           <div class="d-flex justify-content-around" >
-                <button type="submit" class="button-card btn">Voir tout les articles</button>
-           </div>
-       </div>
-    </div>
+			<div class="deuxieme-logo-frais col-md-2 col-lg-2">
+				<div class="logo-validation">
+					<i class="fas fa-check-circle"></i>
+				</div>
+				<div>
+					<p>
+						pas de frais de réservation
+					</p>
+				</div>
+			</div>
+
+			<div class="troisieme-logo-experiences col-md-2 col-lg-2">
+				<div class="logo-experiences">
+					<i class="fas fa-bolt"></i>
+				</div>
+				<div>
+					<p>
+						plus de 100 expériences enregistrées
+					</p>
+				</div>
+			</div>
+
+			<div class="quatrieme-logo-partenaire col-md-2 col-lg-2">
+				<div class="logo-partenaires">
+					<i class="fas fa-wine-glass-alt"></i>
+				</div>
+				<div>
+					<p>
+						partenaires officiel
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="trait-home-one"></div>
+	<div class="container">
+		<div class="visit-and-degust">
+			<h2>
+				<span style="font-weight:300">
+					Visitez</span>
+				<span>
+					et Dégustez</span>
+			</h2>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="six-link-degust">
+			<div class="first-lign-degustation">
+
+				<div class="card bg-dark text-white">
+					<a href="https://www.nasa.gov/moon" target="_blank"><img class="card-title-opacity" src="https://pagtour.info/wp-content/uploads/2019/07/Sans-titre-770x512.png" alt="Gastronomie"/></a>
+					<div class="card-img-title">
+						<h4 class="card-title">Gastronomie</h4>
+					</div>
+				</div>
+
+				<div class="card bg-dark text-white">
+					<a href="https://www.nasa.gov/moon" target="_blank"><img class="card-title-opacity" src="https://www.savourez-grandest.fr/wp-content/uploads/2019/08/ALSABIERES_Brasserie_Saint_Pierre_bouteilles2.jpg" class="card-img" alt="..."/></a>
+					<div class="card-img-title">
+						<h4 class="card-title">Brasserie</h4>
+					</div>
+				</div>
+			</div>
+
+			<div class="second-lign-degustation">
+				<div class="card bg-dark text-white">
+					<a href="https://www.nasa.gov/moon" target="_blank"><img class="card-title-opacity" src="https://www.wybrecht.fr/images/Fotolia_58029491_S.jpg" class="card-img" alt="..."/></a>
+					<div class="card-img-title">
+						<h4 class="card-title">vin et champagne</h4>
+					</div>
+				</div>
+
+				<div class="card bg-dark text-white">
+					<a href="https://www.nasa.gov/moon" target="_blank"><img class="card-title-opacity" src="https://cache.magazine-avantages.fr/data/photo/w1000_ci/1ea/cidre-cuisine-boisson-food.webp" class="card-img" alt="..."/></a>
+					<div class="card-img-title">
+						<h4 class="card-title">Cidrerie</h4>
+					</div>
+				</div>
+			</div>
+
+			<div class="third-lign-degustation">
+				<div class="card bg-dark text-white">
+					<a href="https://www.nasa.gov/moon" target="_blank"><img class="card-title-opacity" src="https://www.familledrouet.fr/files/2018/12/Trophy-768x511.jpg" class="card-img" alt="..."/></a>
+					<div class="card-img-title">
+						<h4 class="card-title">Cognac et pineaux</h4>
+					</div>
+				</div>
+
+				<div class="card bg-dark text-white">
+					<a href="https://www.nasa.gov/moon" target="_blank"><img class="card-title-opacity" src="https://www.sommeliers-international.com/sites/default/files/images/articles/164_benj_kuentz_1.jpg" class="card-img" alt="..."/></a>
+					<div class="card-img-title">
+						<h4 class="card-title">Spiritueux</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row row-cols-auto">
+			{% for logo in imgLogoPartenaire %}
+				<div class="col col-lg-2" style="max-width:150px">
+					<img class="logo-partenaires" style="width:100%" src="{{ logo }}" alt="" width="170px" height="120px">
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+
+
+	<div class="block-for-infos">
+		<div class="container">
+			<div class="row informations-home">
+				<div class="col-sm-5">
+					<div class="card for-the-informations">
+						<div class="card-body picture-back-green">
+							<img class="picture-of-grappes" src="https://www.pepinieres-travers.fr/4922-thickbox_default/vigne-vinifera-centennial-seedless.jpg" alt="pepiniere">
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-7">
+					<div class="card for-the-informations">
+						<div class="card-body picture-back-green">
+							<div class="you-see-enjoy">
+								<p>Vous voir heureux nous rend heureux</p>
+							</div>
+							<div class="text-enjoy">
+								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dolor aspernatur ad aut nesciunt iste a consequuntur deserunt! Velit minus neque harum iure odit voluptate quod. Dolore assumenda dignissimos sunt.</p>
+							</div>
+							<div class="button-enjoy">
+								<button class="say-more" type="submit">en savoir plus *</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="actuality">
+			<h2>
+				A la une</h2>
+		</div>
+	</div>
+
+
+	<div class="container">
+		<div class="six-link-degust">
+
+			<div class="first-lign-news-today">
+
+				<div class="card number" style="border:none">
+					<a href="https://www.nasa.gov/moon" target="_blank"><img class="card-title-opacity" src="https://media.wonderbox.com/media/catalog/product/cache/278/other/900x600aq70/21d0a261efacb651237a9ee1c8110064/A51031/1/0/1050273-11bicg8i4x-whr_429.jpg" alt="Gastronomie"/></a>
+					<div class="for-card-infos">
+						<div class="type-of-presta">
+							<p class="rounded bg-secondary p-2 w-50 h-25 text-center" style="color:white">atelier d'oenologie</p>
+						</div>
+						<div class="presta-title">
+							<h5>Ouverture des sens avec cet atelier oenologique</h5>
+						</div>
+						<div class="presta-price">
+							<p>99 € -
+							</p>
+							<p>
+								1h30</p>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="card number" style="border:none">
+					<a href="https://www.nasa.gov/moon" target="_blank"><img class="card-title-opacity" src="https://www.parisselectbook.com/en/wp-content/uploads/2016/11/2.jpg" class="card-img" alt="..."/></a>
+					<div class="for-card-infos">
+						<div class="two-type-of-presta">
+							<div class="first-case-presta">
+								<p class="rounded p-2 bg-secondary text-center" style="color:white">Découverte</p>
+							</div>
+							<div class="second-case-presta">
+								<p class="rounded p-2  text-center" style="color:white">Prestige</p>
+							</div>
+						</div>
+						<div class="presta-title">
+							<h5>Visite à la découverte du château Pape Clément</h5>
+						</div>
+						<div class="presta-price">
+							<p>209 € -
+							</p>
+							<p>
+								2h</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="second-lign-news-today">
+				<div class="card number" style="border:none">
+					<a href="https://www.nasa.gov/moon" target="_blank"><img class="card-title-opacity" src="https://www.le-vignoble.fr/wp-content/uploads/2018/08/degust-poire-1024x684.jpg" class="card-img" alt="..."/></a>
+
+					<div class="for-card-infos">
+						<div class="type-of-presta">
+							<p class="rounded p-2 bg-secondary w-50 h-25 text-center" style="color:white">Dégustation</p>
+						</div>
+						<div class="presta-title">
+							<h5>Dégustation de cognac avec Hennessy</h5>
+						</div>
+						<div class="presta-price">
+							<p>99 € -
+							</p>
+							<p>
+								1h30
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="card number" style="border:none">
+					<a href="https://www.nasa.gov/moon" target="_blank"><img class="card-title-opacity" src="http://maliciaflore.com/wp-content/uploads/2013/11/Visuel-Montfort2-1024x682.jpg" class="card-img" alt="..."/></a>
+					<div class="for-card-infos">
+						<div class="type-of-presta">
+							<p class="rounded p-2 bg-secondary w-50 h-25 text-center" style="color:white">Découverte</p>
+						</div>
+						<div class="presta-title">
+							<h5>Découverte et dégustation de foie gras</h5>
+						</div>
+						<div class="presta-price">
+							<p>99 € -
+							</p>
+							<p>
+								1h30</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<div class="container">
+	<div class="next-experience">
+		<h2>
+			<span style="font-weight:300">
+				Quelle sera</span>
+			<span>votre prochaine expérience ?</span>
+		</h2>
+	</div>
+	<div class="card-group">
+		<div class="card column-left">
+			<div class="card first-picture-left">
+				<img class="activities-exper" src="https://sobusygirls.fr/uploads/293dafe0a62fc2bd6d5128338d712f391871b8c7.jpeg" alt="Card image cap">
+				<div class="title-experience-first">
+					<p>
+						Les activités
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="card column-right">
+			<div class="card first-right-picture">
+				<img class="evasion-exper" src="https://i1.wp.com/www.photo-paysage.com/albums/userpics/10001/Lac-10.JPG" alt="Card image cap">
+				<div class="title-experience-second">
+					<p>
+						évasion
+					</p>
+				</div>
+			</div>
+			<div class="card second-right-picture">
+				<img class="evenements-locaux-exper" src="https://www.mairie-champniers.fr/medias/2019/08/default3.jpg" alt="Card image cap">
+				<div class="title-experience-third">
+					<p>
+						évènements locaux
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+	<div class="container">
+		<div class="live-experience">
+			<h2>
+				vivez toutes ces expériences
+			</h2>
+		</div>
+		<div class="card-group">
+			<div class="card image-et-titre">
+				<img src="https://www.chantalmathieu.com/wp-content/uploads/2013/02/IMG_9170-famille-860x573.jpg" class="photo-famille" alt="photo-famille">
+				<div class="card-body-loisirs">
+					<h5 class="card-title-loisirs">En famille</h5>
+				</div>
+			</div>
+			<div class="card image-et-titre">
+				<img src="https://fr.wikomobile.com/shop/media/wysiwyg/NEWS/Avril2018/bons-plans-amis.jpg" class="photo-amis" alt="photo-amis">
+				<div class="card-body-loisirs">
+					<h5 class="card-title-loisirs">Entre amis</h5>
+				</div>
+			</div>
+			<div class="card image-et-titre">
+				<img src="https://www.instant-mariage.fr/wp-content/uploads/2017/03/shooting-photo-amoureux-5.jpg" class="photo-amoureux" alt="photo-amoureux">
+				<div class="card-body-loisirs">
+					<h5 class="card-title-loisirs">En amoureux</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container">
+		<div class="info-decouverte">
+			<h2>
+				<span style="font-weight:300">
+					Des découvertes</span>
+				<span>
+					au services de nos sens</span>
+			</h2>
+		</div>
+		<div class="text-decouverte">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem ullam, obcaecati optio reiciendis, hic blanditiis vel, qui porro harum tenetur autem repellat nesciunt nemo error dolore non iure! Quasi, amet?</p>
+		</div>
+	</div>
+
+
+	{# ceci est le travail à GG #}
+
+
+	<div class="last_div_what_new">
+		<div class="container">
+			<h2 class="title_what_new text-center  " style="text-transform: uppercase">
+				<strong>Quoi de neuf
+				</strong>chez opendegust?</h2>
+			<div class=" d-flex justify-content-around row">
+
+				<div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
+					<img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
+					<div class="card-body">
+						<h5 class="card-title">degustion de vin</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+					<div class="card-body d-flex justify-content-around">
+						<p class="text-color-card card-link">03 juin 2022</p>
+						<a href="#" class="text-color-card card-link">Découverte</a>
+					</div>
+				</div>
+
+				<div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
+					<img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
+					<div class="card-body">
+						<h5 class="card-title">degustion de vin</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+					<div class="card-body d-flex justify-content-around">
+						<p class="text-color-card card-link">03 juin 2022</p>
+						<a href="#" class="text-color-card card-link">Découverte</a>
+					</div>
+				</div>
+
+				<div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
+					<img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
+					<div class="card-body">
+						<h5 class="card-title">degustion de vin</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+					<div class="card-body d-flex justify-content-around">
+						<p class="text-color-card card-link">03 juin 2022</p>
+						<a href="#" class="text-color-card card-link">Découverte</a>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex justify-content-around">
+				<button type="submit" class="button-card btn">Voir tout les articles</button>
+			</div>
+		</div>
+	</div>
 {% endblock %}
