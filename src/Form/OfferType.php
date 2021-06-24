@@ -3,10 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Offer;
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,24 +19,17 @@ class OfferType extends AbstractType
             ->add('domainName')
             ->add('language', CollectionType::class, [
                 'required' => false,
-                'entry_type' => TextType::class,
+                'entry_type' => CheckboxType::class,
                 'entry_options' => [
                     'attr' => ['class' => 'form-control'],
                 ],
             ])
+            ->add('description', DescriptionType::class)
+            ->add('contact', ContactType::class)
+            ->add('offerVariations', OfferVariationType::class, [
+                'data_class' => null,
+                ])
 
-//                CollectionType::class
-//                , [
-//                CheckboxType::class,[
-//                'label'    => 'Show this entry publicly?',
-//                'required' => false,
-//                ]
-//                CollectionType::class, [
-//                'entry_type' => CheckboxType::class,
-//                'entry_options' => [
-//                    'attr' => ['class' => 'form-control'],
-//                ],
-//            ])
 //            ->add('provider')
 //            ->add('description')
 //            ->add('contact')

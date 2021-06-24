@@ -32,7 +32,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 $offer->setPicture($this->faker->imageUrl(640, 480, 'food', true));
                 $offer->setDomainName($this->faker->sentence(3));
                 $language = [
-                    'Français' => (bool)rand(0, 1),
+                    'Francais' => (bool)rand(0, 1),
                     'Anglais' => (bool)rand(0, 1),
                     'Espagnol' => (bool)rand(0, 1),
                     'Chinois' => (bool)rand(0, 1),

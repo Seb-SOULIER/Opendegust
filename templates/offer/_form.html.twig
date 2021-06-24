@@ -9,5 +9,9 @@
         {% for lang in form.language %}
             {{ form_widget(lang, {'attr': {'class': 'form-control'}}) }}
         {% endfor %}
+
+    {% from 'macros/categories.html.twig' import make_categories %}
+    {{ make_categories(categories) }}
+{{ dump(offer) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

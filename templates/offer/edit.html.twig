@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>Edit Offer</h1>
+    {{ dump(offer) }}
 
     {{ include('offer/_form.html.twig', {'button_label': 'Update'}) }}
 
