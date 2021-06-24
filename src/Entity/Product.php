@@ -24,7 +24,7 @@ class Product
     /**
      * @ORM\Column(type="string", length=45)
      */
-    private ?string $name = null;
+    private ?string $name;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -35,13 +35,7 @@ class Product
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $picture = null;
-
-    /**
-     * @Vich\UploadableField(mapping="img_product", fileNameProperty="picture")
-     * @var File
-     */
-    private ?File $imgProduct;
+    private ?string $picture;
 
     /**
      * @ORM\Column(type="float")
@@ -138,20 +132,6 @@ class Product
     {
         $this->category = $category;
 
-        return $this;
-    }
-
-    public function getImgProduct(): ?File
-    {
-        return $this->imgProduct;
-    }
-
-    public function setImgProduct(?File $picture = null): ?Product
-    {
-        $this->imgProduct = $picture;
-        if ($picture) {
-            $this->updateAt = new DateTime('now');
-        }
         return $this;
     }
 

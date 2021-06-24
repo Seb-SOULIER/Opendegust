@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Offer;
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -18,24 +19,13 @@ class OfferType extends AbstractType
             ->add('name')
 //            ->add('picture')
             ->add('domainName')
-            ->add('language', ChoiceType::class, array(
-                'mapped' => false,
+            ->add('language', CollectionType::class, [
                 'required' => false,
-                'expanded' => true,
-                'multiple' => true,
-                'label' => 'lang',
-                'choices' => array(
-                    'I have a job. # of hours/week:' => 'have_job',
-                    'I am work study eligible' => 'work_study',
-                    'I need assistance in finding a job' => 'find_work',
-                    'I need to learn interviewing skills' => 'interview',
-                    'I have no employment needs at this time' => 'no_needs',
-                    'I volunteer for a non-profit organization' => 'non_profit',
-                    'I need assistance with my resume' => 'resume',
-                    'I need assistance finding an internship' => 'intern',
-                    'I am undecided about my career or major' => 'major',
-                    'Other:' => 'other',
-                )));
+                'entry_type' => TextType::class,
+                'entry_options' => [
+                    'attr' => ['class' => 'form-control'],
+                ],
+            ])
 
 //                CollectionType::class
 //                , [
