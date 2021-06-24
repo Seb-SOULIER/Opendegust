@@ -3,18 +3,32 @@
 {% block title %}OpenSearch{% endblock %}
 
 {% block body %}
+{#    //map#}
+    <div class="container">
+        <div class="row">
+            <div class="col-10">
+                <div id="map"></div>
+            </div>
+            <div class="col-2">
+                <input type="text" name="address" id="address" />
+            </div>
+        </div>
+    </div>
+
+{#    //end map#}
 <div class="container">
     <div class="row">
     {% for offer in offers %}
-        <div class="card mb-3 col-sm-6" >
-            <div class="row g-0">
+        <div class="mb-3 col-sm-6" >
+            <div class="card h-100">
+            <div class=" h-100 row g-0">
                 <div class=" col-md-4" >
                     <img class="zoomHover" src="{{ offer.picture }}" alt="" style ="width:100%;">
                   {# <img class="zoomHover" src="{{ offer.offerVariations.owner.picture }}" alt="" style ="width:70%;">}#}
                     <p class="rounded p-1 bg-secondary categoryOffer text-center">category</p>
                 </div>
                 <div class="col-md-8">
-                    <div class="card-body">
+                    <div class="h-100 card-body">
                         <h5 class="card-title text-center">{{ offer.name }}</h5>
                         <p class="card-text">{{ offer.description.shortDescription }}
                         </p>
@@ -28,10 +42,12 @@
                         {% endfor %}
 
 
-                       à partir de {{ lowest_price }}€ <a type="button"  class="borderHover" data-bs-toggle="modal" data-bs-target="#modalDetail_{{ offer.id }}">
+                      <p class="mt-auto"> à partir de {{ lowest_price }}€ <a type="button"  class="borderHover" data-bs-toggle="modal" data-bs-target="#modalDetail_{{ offer.id }}">
                             détail
+                              </p>
                         </a>
                         <a href="#" class=" btn btn-primary">réserver <i class="borderHover fas fa-shopping-cart"></i></a>
+
                         <p class="card-text"><small class="text-muted"></small></p>
 {#                       #}
                     </div>
@@ -40,63 +56,64 @@
                 </div>
 
             </div>
-
-        </div>
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="modalDetail_{{ offer.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th scope="col" class="pe-1">Durée   </th>
-                                <th scope="col" class="pe-1"></th>
-                                <th scope="col" class="pe-1"></th>
-                                <th scope="col"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for offer_variation in offer.offerVariations %}
-
+            <!-- Modal -->
+            <div class="modal fade" id="modalDetail_{{ offer.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table>
+                                <thead>
                                 <tr>
-
-                                    <td colspan="1">{{ offer_variation.duration|date("h:i") }}</td>
-                                    <td colspan="1">{% if offer_variation.booking.totalPlaces is defined %}
-                                        {% if offer_variation.capacity - offer_variation.booking.totalPlaces == 1 %}
-                                            <span class ="text-warning"> {{ offer_variation.capacity - offer_variation.booking.totalPlaces }} place</span>
-                                        {% elseif offer_variation.capacity - offer_variation.booking.totalPlaces == 0 %}
-                                            <span class="text-danger">full</span>
-                                        {% else %}
-                                            {{ offer_variation.capacity - offer_variation.booking.totalPlaces }} places
-                                        {% endif %}
-                                        {% else %}
-                                        {{ offer_variation.capacity }} places
-                                    </td>
-                                    {% endif %}
-                                    <td colspan="1" class="ps-1">{{ offer_variation.price }}€</td>
-
-
-
+                                    <th scope="col" class="pe-1">Durée   </th>
+                                    <th scope="col" class="pe-1"></th>
+                                    <th scope="col" class="pe-1"></th>
+                                    <th scope="col"></th>
                                 </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                                </thead>
+                                <tbody>
+                                {% for offer_variation in offer.offerVariations %}
+
+                                    <tr>
+
+                                        <td colspan="1">{{ offer_variation.duration|date("h:i") }}</td>
+                                        <td colspan="1">{% if offer_variation.booking.totalPlaces is defined %}
+                                            {% if offer_variation.capacity - offer_variation.booking.totalPlaces == 1 %}
+                                                <span class ="text-warning"> {{ offer_variation.capacity - offer_variation.booking.totalPlaces }} place</span>
+                                            {% elseif offer_variation.capacity - offer_variation.booking.totalPlaces == 0 %}
+                                                <span class="text-danger">full</span>
+                                            {% else %}
+                                                {{ offer_variation.capacity - offer_variation.booking.totalPlaces }} places
+                                            {% endif %}
+                                            {% else %}
+                                            {{ offer_variation.capacity }} places
+                                        </td>
+                                        {% endif %}
+                                        <td colspan="1" class="ps-1">{{ offer_variation.price }}€</td>
+
+
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!--endmodal-->
+            </div>
         </div>
-        <!--endmodal-->
+
+
+
     {% endfor %}
     </div>
  </div>
