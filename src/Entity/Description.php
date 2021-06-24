@@ -60,4 +60,9 @@ class Description
     {
         return $this->getShortDescription();
     }
+
+    public function __sleep()
+    {
+        return [];
+    }
 }

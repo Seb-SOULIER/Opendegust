@@ -253,4 +253,9 @@ class Contact
 
         return $this;
     }
+
+    public function __sleep()
+    {
+        return [];
+    }
 }
