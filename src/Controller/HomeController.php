@@ -18,6 +18,7 @@ class HomeController extends AbstractController
         "https://p.ventesprivees-fr.com/pape-clement.png",
     ];
 
+
     /**
      * @Route("/", name="home")
      */
@@ -26,6 +27,7 @@ class HomeController extends AbstractController
 //        $address = "18 boulevard guillet maillet 17100 Saintes";
 //        $api = new ApiController();
 //        $localisation = $api->map($address);
+
         return $this->render('home/index.html.twig', [
 ////            'localisation' => $localisation,
              'imgLogoPartenaire' => self::IMGLOGOPARTENAIRE

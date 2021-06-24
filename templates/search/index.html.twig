@@ -45,12 +45,12 @@
 
 
         <!-- Modal -->
-        <div class="modal fade" id="modalDetail_{{ offer.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalDetail_{{ offer.id }}" tabindex="-1" aria-labelledby="ModalLabel_{{ offer.id }}" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="ModalLabel_{{ offer.id }}">{{ offer.name }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
                     </div>
                     <div class="modal-body">
                         <table>
@@ -81,9 +81,6 @@
                                     </td>
                                     {% endif %}
                                     <td colspan="1" class="ps-1">{{ offer_variation.price }}€</td>
-
-
-
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -100,11 +97,5 @@
     {% endfor %}
     </div>
  </div>
-    <script>var myModal = document.getElementById('myModal')
-        var myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.bs.modal', function () {
-            myInput.focus()
-        })</script>
 
 {% endblock %}
