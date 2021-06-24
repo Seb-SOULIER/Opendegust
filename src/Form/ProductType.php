@@ -4,10 +4,11 @@ namespace App\Form;
 
 use App\Entity\Product;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\PropertyAccess\PropertyPath;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class ProductType extends AbstractType
 {
@@ -16,7 +17,13 @@ class ProductType extends AbstractType
         $builder
             ->add('name')
             ->add('description', TextareaType::class)
-            ->add('picture', FileType::class)
+            ->add('imgProduct', VichFileType::class, [
+                'required' => false,
+                'download_label' => new PropertyPath('picture'),
+                'allow_delete' => true,
+                'delete_label' => 'Supprimer',
+                'download_uri' => true,
+            ])
             ->add('price');
 //            ->add('provider')
     }
