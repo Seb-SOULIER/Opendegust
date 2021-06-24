@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+<div class="container">
 	<div class="part-one-home">
 		<img class="home-picture-research" src="{{ asset('build/images/paysage-test-projet.jpg') }}">
 		<div class="text">
@@ -18,6 +19,7 @@
 			<input class="write" type="text" name="text" class="search" placeholder="recherchez votre prochaine expérience">
 			<input class="recherche" type="submit" name="submit" class="submit" value="recherche">
 		</form>
+	</div>
 	</div>
 
 	<div class="container">
@@ -132,6 +134,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="container-fluid">
 		<div class="row row-cols-auto">
 			{% for logo in imgLogoPartenaire %}
@@ -141,33 +144,7 @@
 			{% endfor %}
 		</div>
 	</div>
-{#	<div class="container">#}
-{#		<div#}
-{#			class="logo-partenaires-degustations">#}
 
-{#			#}{# <div class="container d-flex flex-wrap"> #}
-{#			<div></div>#}
-{#			<div>#}
-{#				<img src="https://www.lesgrappes.com/media/winemaker_tmp/11082/champagneruinart.png" alt="" width="170px" height="120px">#}
-{#			</div>#}
-{#			<div>#}
-{#				<img src="https://1000logos.net/wp-content/uploads/2021/05/Hennessy-logo.png" alt="" width="170px" height="120px">#}
-{#			</div>#}
-{#			<div>#}
-{#				<img src="https://www.lechocolat-alainducasse.com/img/le-chocolat-alain-ducasse-logo-1446054370.jpg" alt="" width="170px" height="120px">#}
-{#			</div>#}
-{#			<div>#}
-{#				<img src="https://www.produit-en-nouvelle-aquitaine.com/wp-content/uploads/2020/04/Logo-entreprise-Laguilhon.jpg" alt="" width="170px" height="120px">#}
-{#			</div>#}
-{#			<div>#}
-{#				<img src="https://allvectorlogo.com/img/2016/03/moet-chandon-logo.png" alt="" width="170px" height="120px">#}
-{#			</div>#}
-{#			<div>#}
-{#				<img src="https://p.ventesprivees-fr.com/pape-clement.png" alt="" width="170px" height="120px">#}
-{#			</div>#}
-{#			#}{# </div> #}
-{#		</div>#}
-{#	</div>#}
 
 
 	<div class="block-for-infos">
@@ -347,19 +324,19 @@
 		</div>
 		<div class="card-group">
 			<div class="card image-et-titre">
-				<img src="https://www.chantalmathieu.com/wp-content/uploads/2013/02/IMG_9170-famille-860x573.jpg" class="photo-famille" alt="...">
+				<img src="https://www.chantalmathieu.com/wp-content/uploads/2013/02/IMG_9170-famille-860x573.jpg" class="photo-famille" alt="photo-famille">
 				<div class="card-body-loisirs">
 					<h5 class="card-title-loisirs">En famille</h5>
 				</div>
 			</div>
 			<div class="card image-et-titre">
-				<img src="https://fr.wikomobile.com/shop/media/wysiwyg/NEWS/Avril2018/bons-plans-amis.jpg" class="photo-amis" alt="...">
+				<img src="https://fr.wikomobile.com/shop/media/wysiwyg/NEWS/Avril2018/bons-plans-amis.jpg" class="photo-amis" alt="photo-amis">
 				<div class="card-body-loisirs">
 					<h5 class="card-title-loisirs">Entre amis</h5>
 				</div>
 			</div>
 			<div class="card image-et-titre">
-				<img src="https://www.instant-mariage.fr/wp-content/uploads/2017/03/shooting-photo-amoureux-5.jpg" class="photo-amoureux" alt="...">
+				<img src="https://www.instant-mariage.fr/wp-content/uploads/2017/03/shooting-photo-amoureux-5.jpg" class="photo-amoureux" alt="photo-amoureux">
 				<div class="card-body-loisirs">
 					<h5 class="card-title-loisirs">En amoureux</h5>
 				</div>

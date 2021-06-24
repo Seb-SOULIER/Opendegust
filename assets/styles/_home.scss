@@ -36,6 +36,11 @@ h1.degust-near-you {
     color: white;
     
 }
+@media screen and (max-width: 768px) {
+    h1.degust-near-you{
+        font-size: 2rem;
+    }
+}
 h2 {
     color: $tertiary;
 }
@@ -482,6 +487,7 @@ h4.card-title {
     }
    }
 
+
 .card.column-left {
     border: none;
 }
@@ -560,6 +566,7 @@ img.evasion-exper {
     }
    }
 
+
 img.evenements-locaux-exper {
     height: 290px;
 }
@@ -572,6 +579,7 @@ img.evenements-locaux-exper {
 @media screen and (max-width: 576px) {
     img.evenements-locaux-exper {
         width: 100%;
+        height: 100%;
     }
    }
 
@@ -594,6 +602,11 @@ img.evenements-locaux-exper {
     background-color: white;
     opacity: 0.9;
 }
+@media screen and (max-width: 576px) {
+    .title-experience-first p {
+        font-size: 15px;
+    }
+   }
 
 
 .title-experience-second p {
@@ -609,6 +622,11 @@ img.evenements-locaux-exper {
     color: #59ae52;
     background-color: white;
 }
+@media screen and (max-width: 576px) {
+    .title-experience-second p {
+        font-size: 15px;
+    }
+   }
 
 .title-experience-third p {
     z-index: 1;
@@ -643,7 +661,14 @@ img.evenements-locaux-exper {
    }
    @media screen and (max-width: 576px) {
     .title-experience-third p {
-        width: 80%;
+        width: 75%;
+    font-size: 13px;
+    }
+   }
+   @media screen and (max-width: 280px) {
+    .title-experience-third p {
+        width: 85%;
+        font-size: smaller;
     }
    }
 
@@ -653,13 +678,29 @@ img.evenements-locaux-exper {
 
 //Vivez toutes ces expériences //
 
+// @media screen and (max-width: 576px) {
+// .live-experience h2 {
+//     margin-top: 50px;
+// }
+// }
 
 img.photo-amoureux , img.photo-famille , img.photo-amis{
     clip-path: ellipse(35% 50%);
 }
 
+@media screen and (max-width: 576px) {
+img.photo-amoureux , img.photo-famille , img.photo-amis {
+    width: 70%;
+}
+}
 .card.image-et-titre {
     border: none;
+}
+
+@media screen and (max-width: 576px) {
+    .card.image-et-titre {
+        align-items: center;
+    }
 }
 
 h5.card-title-loisirs {
