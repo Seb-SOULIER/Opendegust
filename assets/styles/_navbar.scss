@@ -1,7 +1,13 @@
 .img-navbrand {
-    width: 25vw;
+    width: 17rem;
 }
 
 .icon-user {
     height: 10vh;
+}
+
+.fa-user:before {
+    position:relative; 
+    top: 31%;
+    font-size: 2.3rem;
 }
