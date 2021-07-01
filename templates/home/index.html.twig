@@ -18,9 +18,11 @@
 					près de chez vous</span>
 			</h1>
 		</div>
-		<form class="search-home">
-			<input class="write" type="text" name="text" class="search" placeholder="recherchez votre prochaine expérience">
-			<input class="recherche" type="submit" name="submit" class="submit" value="recherche">
+		<form id="searchForm" class="search-home" method="get" action="{{ path('search_localization') }}">
+			<input class="write" type="text" id="searchField" name="q" class="search" placeholder="recherchez votre prochaine expérience">
+			<ul style="color:white" id="autocomplete"></ul>
+			{# <input class="recherche" type="submit" name="submit" class="submit" value="recherche"> #}
+			<button>Rechercher</button>
 		</form>
 	</div>
 	</div>
@@ -410,4 +412,19 @@
 			</div>
 		</div>
 	</div>
+	{# <script>
+	document.getElementById('searchField').addEventListener('input', function (event) {
+    let search = event.target.value;
+    fetch('/search/autocomplete?q=' + search)
+        .then(response => response.json())
+        .then(function (data) {
+            let list = '';
+            for (const item of data) {
+                list += `<li><a href="/search/${item.display_name}">${item.display_name}</a></li>`
+            }
+            document.getElementById('autocomplete').innerHTML = list;
+        })
+        
+});</script> #}
+
 {% endblock %}
