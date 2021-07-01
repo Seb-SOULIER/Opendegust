@@ -3,13 +3,13 @@
     <div>
         {% if is_granted('ROLE_USER') %}
             {% if is_granted('ROLE_PROVIDER') %}
-                <a href="{{ path("provider_edit", {id: app.user.id}) }}"><i class="icon-user fas fa-user-edit px-2"></i></a>
+                <a href="{{ path("provider_edit", {id: app.user.id}) }}" class="btn btn-outline-primary me-3">Mon Compte</a>
             {% elseif is_granted('ROLE_CUSTOMER') %}
-                <a href="{{ path("") }}"><i class="icon-user fas fa-user-edit px-2"></i></a>
+{#                <a href="{{ path("") }}"><i class="icon-user fas fa-user-edit px-2"></i></a>#}
             {% endif %}
-            <a href="{{ path("app_logout") }}"><i class="icon-user fas fa-user-slash px-2"></i></a>
+            <a href="{{ path("app_logout") }}" class="btn btn-outline-primary me-3">Se Déconnecter</a>
         {% else %}
-            <a href="{{ path("app_login") }}"><i class="icon-user fas fa-user px-2"></i></a>
+            <a href="{{ path("app_login") }}" class="btn btn-outline-primary me-3">Se Connecter</a>
         {% endif %}
     </div>
 </nav>
