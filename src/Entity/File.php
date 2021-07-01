@@ -4,11 +4,15 @@ namespace App\Entity;
 
 use App\Repository\FilesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use DateTime;
+use Symfony\Component\HttpFoundation\File\File as CoreFile;
 
 /**
  * @ORM\Entity(repositoryClass=FilesRepository::class)
+ * @Vich\Uploadable
  */
-class Files
+class File
 {
     /**
      * @ORM\Id
@@ -23,7 +27,7 @@ class Files
     private string $fileName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private string $filePath;
 
@@ -32,6 +36,17 @@ class Files
      * @ORM\JoinColumn(nullable=false)
      */
     private ?Provider $provider;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var ?DateTime
+     */
+    private ?DateTime $updatedAt;
+
+    /**
+     * @Vich\UploadableField(mapping="provider_files", fileNameProperty="fileName")
+     */
+    private ?CoreFile $providerFile;
 
     public function getId(): ?int
     {
@@ -71,6 +86,30 @@ class Files
     {
         $this->provider = $provider;
 
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?DateTime $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    public function getProviderFile(): ?CoreFile
+    {
+        return $this->providerFile;
+    }
+
+    public function setProviderFile(CoreFile $image = null): self
+    {
+        $this->providerFile = $image;
+        if ($image) {
+            $this->setUpdatedAt(new DateTime('now'));
+        }
         return $this;
     }
 }

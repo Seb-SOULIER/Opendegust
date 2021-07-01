@@ -4,7 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Contact;
 use App\Entity\Description;
-use App\Entity\Files;
+use App\Entity\File;
 use App\Entity\Provider;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -37,7 +37,7 @@ class ProviderFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $this->faker = Factory::create();
+        $this->faker = Factory::create('fr-FR');
 
         for ($i = 1; $i <= self::OTHER_SITE; $i++) {
             $this->otherSite[] = $this->faker->domainName;
@@ -59,7 +59,6 @@ class ProviderFixtures extends Fixture
             $provider->setFirstname($this->faker->firstName);
             $provider->setLastname($this->faker->lastName);
             $provider->setCompany($this->faker->company);
-            $provider->setPicture($this->faker->imageUrl(640, 480, 'animals', true));
             $provider->setSocialReason(array_rand(array_flip(self::SOCIAL_REASONS)));
             $provider->setSiret($this->faker->numberBetween(11111, 64000));
             $provider->setVatNumber($this->faker->randomFloat(2, 10, 25));
@@ -70,7 +69,7 @@ class ProviderFixtures extends Fixture
             $provider->setContact($contact);
             $provider->setDescription($description);
 
-            $contact->setAddress($this->faker->sentence(3));
+            $contact->setAddress($this->faker->address);
             $contact->setZipcode($this->faker->postcode);
             $contact->setCity($this->faker->city);
             $contact->setLongitude($this->faker->longitude);
@@ -86,11 +85,11 @@ class ProviderFixtures extends Fixture
             $manager->persist($description);
             $provider->setDescription($description);
 
-            $file = new Files();
-            $file->setFileName($i . ".jpeg");
-            $file->setFilePath($i);
-            $manager->persist($file);
-            $provider->addFile($file);
+//            $file = new File();
+//            $file->setFileName($i . ".jpeg");
+//            $file->setFilePath($i);
+//            $manager->persist($file);
+//            $provider->addFile($file);
 
             $this->addReference('provider_' . $i, $provider);
             $this->addReference('description_' . $i, $description);

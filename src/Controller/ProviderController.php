@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Provider;
+use App\Form\PasswordType;
 use App\Form\ProviderType;
 use App\Repository\ProviderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,24 +39,36 @@ class ProviderController extends AbstractController
      */
     public function edit(Request $request, Provider $provider): Response
     {
+        $formPw = $this->createForm(PasswordType::class, $provider);
         $form = $this->createForm(ProviderType::class, $provider);
+        $formPw->handleRequest($request);
         $form->handleRequest($request);
+//        $serializer = $this->container->get('serializer');
+//        $otherSite = $serializer->serialize($form->get('otherSite')->getData(), 'json');
+//        $provider->setOtherSite($otherSite);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($formPw->isSubmitted() && $formPw->isValid()) {
             $provider->setPassword(
                 $this->passwordEncoder->encodePassword(
                     $provider,
                     $form->get('password')->getData()
                 )
             );
-            $this->getDoctrine()->getManager()->flush();
+            return $this->redirect('/provider/' . $provider->getId() . '/edit');
+        }
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($provider);
+            $entityManager->flush();
+            $this->addFlash('success', 'Les informations de votre compte ont été modifiés avec succès !');
 
-            return $this->redirectToRoute('home');
+            return $this->redirect('/provider/' . $provider->getId() . '/edit');
         }
 
         return $this->render('provider/edit.html.twig', [
             'provider' => $provider,
             'form' => $form->createView(),
+            'formPw' => $formPw->createView(),
         ]);
     }
 
