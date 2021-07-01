@@ -79,6 +79,7 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $product->setProvider($this->getUser());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('product_index');

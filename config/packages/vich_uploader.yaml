@@ -6,3 +6,6 @@ vich_uploader:
     #        uri_prefix: /images/products
             upload_destination: '%upload_directory%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        img_product:
+            uri_prefix: /product
+            upload_destination: '%upload_directory%'

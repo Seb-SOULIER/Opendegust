@@ -13,3 +13,5 @@ import './bootstrap';
 
 require('bootstrap');
 const $ = require('jquery');
+
+window.bootstrap = require('bootstrap');

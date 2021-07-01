@@ -85,11 +85,11 @@ class ProviderFixtures extends Fixture
             $manager->persist($description);
             $provider->setDescription($description);
 
-            $file = new File();
-            $file->setFileName($i . ".jpeg");
-            $file->setFilePath($i);
-            $manager->persist($file);
-            $provider->addFile($file);
+//            $file = new File();
+//            $file->setFileName($i . ".jpeg");
+//            $file->setFilePath($i);
+//            $manager->persist($file);
+//            $provider->addFile($file);
 
             $this->addReference('provider_' . $i, $provider);
             $this->addReference('description_' . $i, $description);

@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
+use DateTime;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
+ * @Vich\Uploadable
  */
 class Product
 {
@@ -20,7 +24,7 @@ class Product
     /**
      * @ORM\Column(type="string", length=45)
      */
-    private string $name;
+    private ?string $name;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -49,6 +53,11 @@ class Product
      */
     private ?Category $category;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?\DateTimeInterface $updateAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,7 +68,7 @@ class Product
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): ?self
     {
         $this->name = $name;
 
@@ -83,7 +92,7 @@ class Product
         return $this->picture;
     }
 
-    public function setPicture(?string $picture): self
+    public function setPicture(string $picture): self
     {
         $this->picture = $picture;
 
@@ -123,6 +132,17 @@ class Product
     {
         $this->category = $category;
 
+        return $this;
+    }
+
+    public function getUpdateAt(): ?\DateTimeInterface
+    {
+        return $this->updateAt;
+    }
+
+    public function setUpdateAt(?\DateTimeInterface $updateAt): self
+    {
+        $this->updateAt = $updateAt;
         return $this;
     }
 }
