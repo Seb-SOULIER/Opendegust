@@ -30,6 +30,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' => 'J\'accepte les conditions générales d\'utilisation',
                 'constraints' => [
                     new IsTrue([
                         'message' => "Vous devez accepter les Conditions d'utilisation.",
@@ -39,7 +40,6 @@ class RegistrationFormType extends AbstractType
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => "Le mot de passe n'est pas le même",
-                'options' => ['attr' => ['class' => 'form-control']],
                 'required' => true,
                 'first_options'  => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Confirmation du mot de passe'],

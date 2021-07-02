@@ -3,9 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Provider;
-use App\Form\PasswordType;
+use App\Form\ProviderPwType;
 use App\Form\ProviderType;
-use App\Repository\ProviderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,7 +38,7 @@ class ProviderController extends AbstractController
      */
     public function edit(Request $request, Provider $provider): Response
     {
-        $formPw = $this->createForm(PasswordType::class, $provider);
+        $formPw = $this->createForm(ProviderPwType::class, $provider);
         $form = $this->createForm(ProviderType::class, $provider);
         $formPw->handleRequest($request);
         $form->handleRequest($request);
@@ -51,9 +50,11 @@ class ProviderController extends AbstractController
             $provider->setPassword(
                 $this->passwordEncoder->encodePassword(
                     $provider,
-                    $form->get('password')->getData()
+                    $formPw->get('plainPassword')->getData()
                 )
             );
+            $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Mot de passe modifié avec succès !');
             return $this->redirect('/provider/' . $provider->getId() . '/edit');
         }
         if ($form->isSubmitted() && $form->isValid()) {
@@ -83,6 +84,6 @@ class ProviderController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('provider_index');
+        return $this->redirectToRoute('home');
     }
 }
