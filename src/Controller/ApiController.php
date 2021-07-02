@@ -25,4 +25,11 @@ class ApiController
         $response = $api->getResponse($url);
         return $response;
     }
+    public function frenchApi(string $city): array
+    {
+        $api = new Api();
+        $url = "https://geo.api.gouv.fr/communes?codePostal=" . $city;
+        $response = $api->getResponse($url);
+        return $response;
+    }
 }

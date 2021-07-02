@@ -22,11 +22,6 @@ class Provider extends User
      */
     private string $company;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $picture;
-
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
@@ -87,7 +82,7 @@ class Provider extends User
     private Collection $products;
 
     /**
-     * @ORM\OneToMany(targetEntity=Files::class, mappedBy="provider", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=File::class, mappedBy="provider", orphanRemoval=true)
      */
     private Collection $files;
 
@@ -107,18 +102,6 @@ class Provider extends User
     public function setCompany(string $company): self
     {
         $this->company = $company;
-
-        return $this;
-    }
-
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(?string $picture): self
-    {
-        $this->picture = $picture;
 
         return $this;
     }
@@ -293,14 +276,14 @@ class Provider extends User
     }
 
     /**
-     * @return Collection|Files[]
+     * @return Collection|File[]
      */
     public function getFiles(): Collection
     {
         return $this->files;
     }
 
-    public function addFile(Files $file): self
+    public function addFile(File $file): self
     {
         if (!$this->files->contains($file)) {
             $this->files[] = $file;
@@ -310,7 +293,7 @@ class Provider extends User
         return $this;
     }
 
-    public function removeFile(Files $file): self
+    public function removeFile(File $file): self
     {
         if ($this->files->removeElement($file)) {
             // set the owning side to null (unless already changed)
