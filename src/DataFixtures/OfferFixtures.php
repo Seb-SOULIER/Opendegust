@@ -17,7 +17,18 @@ use DateTime;
 class OfferFixtures extends Fixture implements DependentFixtureInterface
 {
     private const OFFER_NUMBER = 4;
-    private const NBR_PROVIDER = 50;
+    private const NBR_PROVIDER = 20;
+    private const LANGUAGE = [
+        ['Francais','Anglais','Espagnol','Chinois','Japonais','Russe','Portugais'],
+        ['Francais','Anglais'],
+        ['Francais','Anglais','Chinois','Japonais'],
+        ['Francais','Russe','Portugais'],
+        ['Espagnol','Chinois','Japonais','Russe','Portugais'],
+        ['Francais','Anglais','Russe','Portugais'],
+        ['Francais','Anglais','Espagnol','Chinois','Japonais','Russe'],
+        ['Francais','Anglais','Espagnol','Russe','Portugais'],
+        ['Francais','Anglais','Espagnol','Chinois','Japonais','Russe','Portugais']
+    ];
 
     protected $faker;
 
@@ -31,16 +42,10 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 $offer->setName($this->faker->sentence(2));
                 $offer->setPicture($this->faker->imageUrl(640, 480, 'food', true));
                 $offer->setDomainName($this->faker->sentence(3));
-                $language = [
-                    'Francais' => (bool)rand(0, 1),
-                    'Anglais' => (bool)rand(0, 1),
-                    'Espagnol' => (bool)rand(0, 1),
-                    'Chinois' => (bool)rand(0, 1),
-                    'Japonais' => (bool)rand(0, 1),
-                    'Russe' => (bool)rand(0, 1),
-                    'Portugais' => (bool)rand(0, 1)
-                ];
-                $offer->setLanguage(json_encode($language));
+
+                $language = self::LANGUAGE[rand(0, 8)];
+
+                $offer->setLanguage($language);
                 $offer->setProvider($this->getReference('provider_' . $a));
 
                 $description = new Description();

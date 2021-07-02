@@ -19,9 +19,9 @@ class ProductType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('imgProduct', VichFileType::class, [
                 'required' => false,
-                'download_label' => new PropertyPath('picture'),
+//                'download_label' => new PropertyPath('picture'),
                 'allow_delete' => true,
-                'delete_label' => 'Supprimer',
+//                'delete_label' => 'Supprimer',
                 'download_uri' => true,
             ])
             ->add('price');

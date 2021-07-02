@@ -30,7 +30,7 @@ class OfferController extends AbstractController
     /**
      * @Route("/new", name="offer_new", methods={"GET","POST"})
      */
-    public function new(Request $request, Category $category): Response
+    public function new(Request $request, CategoryRepository $categoryRepository): Response
     {
         $offer = new Offer();
         $form = $this->createForm(OfferType::class, $offer);
@@ -47,7 +47,7 @@ class OfferController extends AbstractController
         return $this->render('offer/new.html.twig', [
             'offer' => $offer,
             'form' => $form->createView(),
-            'categories' => $category
+            'categories' => $categoryRepository->findByCategory(null)
         ]);
     }
 

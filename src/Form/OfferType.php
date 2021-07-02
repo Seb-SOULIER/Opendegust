@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Offer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,19 +17,42 @@ class OfferType extends AbstractType
         $builder
             ->add('name')
 //            ->add('picture')
-            ->add('domainName')
-            ->add('language', CollectionType::class, [
-                'required' => false,
-                'entry_type' => CheckboxType::class,
-                'entry_options' => [
-                    'attr' => ['class' => 'form-control'],
+//            ->add('domainName')
+//            ->add('language', CollectionType::class, [
+//                'required' => false,
+//                'entry_type' => CheckboxType::class,
+//                'entry_options' => [
+//                    'attr' => ['class' => 'form-control'],
+//                ],
+//            ])
+//            ->add('description', DescriptionType::class)
+//            ->add('contact', ContactType::class)
+            ->add('language', ChoiceType::class, [
+                'multiple' => true,
+                'expanded' => true,
+                'choices' => [
+                    'Francais' => 'Francais',
+                    'Anglais' => 'Anglais',
+                    'Portugais' => 'Portugais' ,
+                    'Chinois' => 'Chinois',
+                    'Japonais' => 'Japonais',
+                    'Espagnol' => 'Espagnol',
+                    'Russe' => 'Russe',
                 ],
-            ])
-            ->add('description', DescriptionType::class)
-            ->add('contact', ContactType::class)
-            ->add('offerVariations', OfferVariationType::class, [
-                'data_class' => null,
+
                 ])
+
+
+//            ->add('offerVariations', OfferVariationType::class)
+
+
+            ////                'data_class' => null,
+//                'required' => false,
+//                'entry_type' => CheckboxType::class,
+//                'entry_options' => [
+//                    'attr' => ['class' => 'form-control'],
+//                ]
+//                ])
 
 //            ->add('provider')
 //            ->add('description')
