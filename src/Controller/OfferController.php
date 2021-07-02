@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Offer;
 use App\Form\OfferType;
+use App\Repository\CategoryRepository;
 use App\Repository\OfferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +30,7 @@ class OfferController extends AbstractController
     /**
      * @Route("/new", name="offer_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, CategoryRepository $categoryRepository): Response
     {
         $offer = new Offer();
         $form = $this->createForm(OfferType::class, $offer);
@@ -45,6 +47,7 @@ class OfferController extends AbstractController
         return $this->render('offer/new.html.twig', [
             'offer' => $offer,
             'form' => $form->createView(),
+            'categories' => $categoryRepository->findByCategory(null)
         ]);
     }
 
@@ -61,7 +64,7 @@ class OfferController extends AbstractController
     /**
      * @Route("/{id}/edit", name="offer_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Offer $offer): Response
+    public function edit(Request $request, Offer $offer, CategoryRepository $categoryRepository): Response
     {
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
@@ -75,6 +78,7 @@ class OfferController extends AbstractController
         return $this->render('offer/edit.html.twig', [
             'offer' => $offer,
             'form' => $form->createView(),
+            'categories' => $categoryRepository->findByCategory(null)
         ]);
     }
 

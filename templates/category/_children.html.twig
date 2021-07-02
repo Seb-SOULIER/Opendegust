@@ -10,7 +10,7 @@
     {% set category_id = category.id ?? 0 %}
     {% for category in categories|sort((a, b) => a.name|lower <=> b.name|lower) %}
         <tr>
-            <td>{{ category.id }}</td>
+{#            <td>{{ category.id }}</td>#}
             <td>{{ category.name }}</td>
             <td class="">
                 <div class="d-flex justify-content-end">

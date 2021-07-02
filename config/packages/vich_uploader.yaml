@@ -9,3 +9,6 @@ vich_uploader:
         img_product:
             uri_prefix: /product
             upload_destination: '%upload_directory%'
+            namer:
+                service: Vich\UploaderBundle\Naming\OrignameNamer
+

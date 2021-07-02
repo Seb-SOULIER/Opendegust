@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ProviderFixtures extends Fixture
 {
-    private const PROVIDER_NUMBER = 50;
+    private const PROVIDER_NUMBER = 20;
     private const SOCIAL_REASONS = ['SARL', 'EURL', 'SAS', 'SASU', 'SA', 'EI'];
     private const OTHER_SITE = 3;
     private const KNOW_US = ['Publicité', 'Internet', 'Bouche à oreille', 'Autre'];
