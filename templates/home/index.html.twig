@@ -4,73 +4,77 @@
 {% endblock %}
 
 
-
-
 {% block body %}
-<div class="container-fluid">
-	<div class="part-one-home">
-		<img class="home-picture-research" src="https://www.photo-paysage.com/albums/userpics/10001/Le_lac_de_Montriond~0.jpg">
-		<div class="text">
+	<div class="container-fluid">
+		<div class="part-one-home">
+			<img class="home-picture-research" src="https://www.photo-paysage.com/albums/userpics/10001/Le_lac_de_Montriond~0.jpg">
+			<div class="text">
 
-			<h1 class="degust-near-you">
-				<span style="font-weight:300">Dégustations</span>
-				<span style="font-weight:700">
-					près de chez vous</span>
-			</h1>
+				<h1 class="degust-near-you">
+					<span style="font-weight:300">Dégustations</span>
+					<span style="font-weight:700">
+						près de chez vous</span>
+				</h1>
+			</div>
+			<form id="searchForm" class="search-home" method="get" action="{{ path('search_localization') }}">
+							<input class="write" type="text" id="searchField" name="q" class="search" placeholder="recherchez votre prochaine expérience" style="outline:none">
+							<ul style="color:white" id="autocomplete"></ul>
+							<button>Rechercher</button>
+						</form>
+			{# <form method="get" action="{{ path('search_localization') }}">
+				<input name="q" class="search" placeholder="recherchez votre prochaine expérience" style="outline:none" list="datalistOptions" id="searchField">
+				<datalist id=" id="autocomplete"">
+					<option></option>
+				</datalist>
+				<button>rechercher</button>
+			</form> #}
 		</div>
-		<form id="searchForm" class="search-home" method="get" action="{{ path('search_localization') }}">
-			<input class="write" type="text" id="searchField" name="q" class="search" placeholder="recherchez votre prochaine expérience">
-			<ul style="color:white" id="autocomplete"></ul>
-			{# <input class="recherche" type="submit" name="submit" class="submit" value="recherche"> #}
-			<button>Rechercher</button>
-		</form>
-	</div>
 	</div>
 
-		<div class="intro-home-info">
-			<div class="premier-logo-note col-md-2 col-lg-2">
-				<div class="logo-star">
-					<i class="fas fa-star"></i>
-				</div>
-				<div class="note-star">
-					<p>
-						4.8 de note moyenne
-					</p>
-				</div>
+	<div class="intro-home-info">
+		<div class="premier-logo-note col-md-2 col-lg-2">
+			<div class="logo-star">
+				<i class="fas fa-star"></i>
 			</div>
-			<div class="deuxieme-logo-frais col-md-2 col-lg-2">
-				<div class="logo-validation">
-					<i class="fas fa-check-circle"></i>
-				</div>
-				<div>
-					<p>
-						pas de frais de réservation
-					</p>
-				</div>
-			</div>
-
-			<div class="troisieme-logo-experiences col-md-2 col-lg-2">
-				<div class="logo-experiences">
-					<i class="fas fa-bolt"></i>
-				</div>
-				<div>
-					<p>
-						plus de 100 expériences enregistrées
-					</p>
-				</div>
-			</div>
-
-			<div class="quatrieme-logo-partenaire col-md-2 col-lg-2">
-				<div class="logo-partenaires">
-					<i class="fas fa-wine-glass-alt"></i>
-				</div>
-				<div>
-					<p>
-						partenaires officiel
-					</p>
-				</div>
+			<div class="note-star">
+				<p>
+					4.8 de note moyenne
+				</p>
 			</div>
 		</div>
+		<div class="deuxieme-logo-frais col-md-2 col-lg-2">
+			<div class="logo-validation">
+				<i class="fas fa-check-circle"></i>
+			</div>
+			<div>
+				<p>
+					pas de frais de réservation
+				</p>
+			</div>
+		</div>
+
+		<div class="troisieme-logo-experiences col-md-2 col-lg-2">
+			<div class="logo-experiences">
+				<i class="fas fa-bolt"></i>
+			</div>
+			<div>
+				<p>
+					plus de 100 expériences enregistrées
+				</p>
+			</div>
+		</div>
+
+		<div class="quatrieme-logo-partenaire col-md-2 col-lg-2">
+			<div class="logo-partenaires">
+				<i class="fas fa-wine-glass-alt"></i>
+			</div>
+			<div>
+				<p>
+					partenaires officiel
+				</p>
+			</div>
+		</div>
+	</div>
 	<div class="trait-home-one"></div>
 	<div class="container">
 		<div class="visit-and-degust">
@@ -145,7 +149,6 @@
 			{% endfor %}
 		</div>
 	</div>
-
 
 
 	<div class="block-for-infos">
@@ -275,45 +278,45 @@
 	</div>
 
 
-<div class="container">
-	<div class="next-experience">
-		<h2>
-			<span style="font-weight:300">
-				Quelle sera</span>
-			<span>votre prochaine expérience ?</span>
-		</h2>
-	</div>
-	<div class="card-group">
-		<div class="card column-left">
-			<div class="card first-picture-left">
-				<img class="activities-exper" src="https://sobusygirls.fr/uploads/293dafe0a62fc2bd6d5128338d712f391871b8c7.jpeg" alt="Card image cap">
-				<div class="title-experience-first">
-					<p>
-						Les activités
-					</p>
+	<div class="container">
+		<div class="next-experience">
+			<h2>
+				<span style="font-weight:300">
+					Quelle sera</span>
+				<span>votre prochaine expérience ?</span>
+			</h2>
+		</div>
+		<div class="card-group">
+			<div class="card column-left">
+				<div class="card first-picture-left">
+					<img class="activities-exper" src="https://sobusygirls.fr/uploads/293dafe0a62fc2bd6d5128338d712f391871b8c7.jpeg" alt="Card image cap">
+					<div class="title-experience-first">
+						<p>
+							Les activités
+						</p>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="card column-right">
-			<div class="card first-right-picture">
-				<img class="evasion-exper" src="https://i1.wp.com/www.photo-paysage.com/albums/userpics/10001/Lac-10.JPG" alt="Card image cap">
-				<div class="title-experience-second">
-					<p>
-						évasion
-					</p>
+			<div class="card column-right">
+				<div class="card first-right-picture">
+					<img class="evasion-exper" src="https://i1.wp.com/www.photo-paysage.com/albums/userpics/10001/Lac-10.JPG" alt="Card image cap">
+					<div class="title-experience-second">
+						<p>
+							évasion
+						</p>
+					</div>
 				</div>
-			</div>
-			<div class="card second-right-picture">
-				<img class="evenements-locaux-exper" src="https://www.mairie-champniers.fr/medias/2019/08/default3.jpg" alt="Card image cap">
-				<div class="title-experience-third">
-					<p>
-						évènements locaux
-					</p>
+				<div class="card second-right-picture">
+					<img class="evenements-locaux-exper" src="https://www.mairie-champniers.fr/medias/2019/08/default3.jpg" alt="Card image cap">
+					<div class="title-experience-third">
+						<p>
+							évènements locaux
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 
 
@@ -413,18 +416,18 @@
 		</div>
 	</div>
 	{# <script>
-	document.getElementById('searchField').addEventListener('input', function (event) {
-    let search = event.target.value;
-    fetch('/search/autocomplete?q=' + search)
-        .then(response => response.json())
-        .then(function (data) {
-            let list = '';
-            for (const item of data) {
-                list += `<li><a href="/search/${item.display_name}">${item.display_name}</a></li>`
-            }
-            document.getElementById('autocomplete').innerHTML = list;
-        })
-        
-});</script> #}
+				document.getElementById('searchField').addEventListener('input', function (event) {
+			    let search = event.target.value;
+			    fetch('/search/autocomplete?q=' + search)
+			        .then(response => response.json())
+			        .then(function (data) {
+			            let list = '';
+			            for (const item of data) {
+			                list += `<li><a href="/search/${item.display_name}">${item.display_name}</a></li>`
+			            }
+			            document.getElementById('autocomplete').innerHTML = list;
+			        })
+			        
+			});</script> #}
 
 {% endblock %}
