@@ -51,7 +51,6 @@ class RegistrationController extends AbstractController
         return $this->register($request, $user);
     }
 
-
     public function register(Request $request, User $user): Response
     {
         $contact = new Contact();

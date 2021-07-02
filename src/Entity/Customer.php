@@ -18,7 +18,7 @@ class Customer extends User
     private ?\DateTimeInterface $birthdate;
 
     /**
-     * @ORM\Column(type="json", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private ?string $knowUs;
 
@@ -59,9 +59,9 @@ class Customer extends User
         return $this;
     }
 
-    public function getKnowUs(): ?array
+    public function getKnowUs(): ?string
     {
-        return $this->knowUs ? json_decode($this->knowUs) : null;
+        return $this->knowUs;
     }
 
     public function setKnowUs(?string $knowUs): self

@@ -44,6 +44,7 @@ abstract class User implements UserInterface
      */
     private string $password;
 
+    private string $plainPassword;
 
     /**
      * @ORM\Column(type="datetime")
@@ -222,5 +223,21 @@ abstract class User implements UserInterface
         $this->isVerified = $isVerified;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlainPassword(): string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $plainPassword
+     */
+    public function setPlainPassword(string $plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
     }
 }
