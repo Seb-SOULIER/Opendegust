@@ -11,6 +11,7 @@
 #img-domaine {
     max-width: 90%;
     float: right;
+    object-fit: cover;
 }
 @media screen and(max-width: 576px) {
     #img-domaine {
@@ -34,6 +35,7 @@
 #img-offer {
     max-width: 90%;
     float: left;
+    object-fit: cover;
 }
 
 @media screen and(max-width: 576px) {
@@ -131,7 +133,7 @@
 }
 
 .list-offer-by-provider {
-    background-color: rgb(250, 212, 212);
+    background-color: #947e7c;
 }
 
 .card.card-label-price {
@@ -141,3 +143,8 @@
 #provider-offer-card {
       justify-content: center;
   }
+
+h1.my-3.text-center {
+    color: #59ae52;
+    text-shadow: 3px 3px black;
+}
