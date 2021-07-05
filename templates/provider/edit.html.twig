@@ -6,22 +6,22 @@
 <div class="d-flex align-items-center flex-column">
     <div class="col-11 col-sm-9 col-xl-8 my-3">
         {{ form_start(formPw) }}
+        <div class="text-danger">
+            {{ form_errors(formPw.plainPassword.first) }}
+        </div>
         <div class="row d-flex">
             <div class="col-md-4">
-                <div class="text-danger">
-                    {{ form_errors(formPw.password.first) }}
-                </div>
-                {{ form_label(formPw.password.first) }}
-                {{ form_widget(formPw.password.first) }}
+                {{ form_label(formPw.plainPassword.first) }}
+                {{ form_widget(formPw.plainPassword.first) }}
             </div>
             <div class="col-md-4">
                 <div class="text-danger">
-                    {{ form_errors(formPw.password.second) }}
+                    {{ form_errors(formPw.plainPassword.second) }}
                 </div>
-                {{ form_label(formPw.password.second) }}
-                {{ form_widget(formPw.password.second) }}
+                {{ form_label(formPw.plainPassword.second) }}
+                {{ form_widget(formPw.plainPassword.second) }}
             </div>
-            <div class="col-md-4 mt-4">
+            <div class="col-md-4 align-self-end">
                 <button class="btn btn-primary col-12 text-light">{{ button_label|default('Valider') }}</button>
             </div>
         </div>
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     {{ form_label(form.civility, 'Sexe') }}
-                                    {{ form_widget(form.civility, {'attr': {'class': 'form-select'}}) }}
+                                    {{ form_widget(form.civility) }}
                                 </div>
                                 <div class="row g-3 d-md-flex justify-content-between">
                                     <div class="col-md-6">
@@ -63,14 +63,14 @@
                                         <div class="text-danger">
                                             {{ form_errors(form.lastname) }}
                                         </div>
-                                        {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(form.lastname) }}
                                     </div>
                                     <div class="col-md-6">
                                         {{ form_label(form.lastname, 'Prénom') }}
                                         <div class="text-danger">
                                             {{ form_errors(form.firstname) }}
                                         </div>
-                                        {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(form.firstname) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -78,11 +78,11 @@
                                     <div class="text-danger">
                                         {{ form_errors(form.contact.website) }}
                                     </div>
-                                    {{ form_widget(form.contact.website, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_widget(form.contact.website) }}
                                 </div>
                                 {{ form_label(form.knowUs, 'Comment nous avez-vous connu?') }}
                                 {{ form_errors(form.knowUs) }}
-                                {{ form_widget(form.knowUs, {'attr': {'class': 'form-select'}}) }}
+                                {{ form_widget(form.knowUs) }}
                             </div>
                         </div>
                     </div>
@@ -98,25 +98,25 @@
                                 <div class="text-danger">
                                     {{ form_errors(form.company) }}
                                 </div>
-                                {{ form_widget(form.company, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(form.company) }}
                                 {#                {{ form_label(form.files, 'Ajouter une image') }}#}
                                 {#                {{ form_widget(form.files, {'attr': {'class': 'form-control'}}) }}#}
                                 <div class="row g-3 d-md-flex justify-content-between">
                                     <div class="col-md-6">
                                         {{ form_label(form.socialReason, 'Raison sociale') }}
-                                        {{ form_widget(form.socialReason, {'attr': {'class': 'form-select'}}) }}
+                                        {{ form_widget(form.socialReason) }}
                                     </div>
                                     <div class="col-md-6">
                                         {{ form_label(form.siret, 'Numéro SIRET') }}
                                         <div class="text-danger">
                                             {{ form_errors(form.siret) }}
                                         </div>
-                                        {{ form_widget(form.siret, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(form.siret) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     {{ form_label(form.vatNumber, 'Numéro de TVA') }}
-                                    {{ form_widget(form.vatNumber, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_widget(form.vatNumber) }}
                                 </div>
                                 {{ form_label(form.files, 'Fichier') }}
 {#                                {{ form_widget(form.files) }}#}
@@ -124,7 +124,7 @@
                                     <div class="col-md-8">
                                         {{ form_label(form.otherSite, "Déjà inscrit sur d'autres sites?") }}
                                         {{ form_errors(form.otherSite) }}
-                                        {{ form_widget(form.otherSite, {'attr': {'class': 'form-control', 'placeholder': 'abc.com, chouette.fr ...'}}) }}
+                                        {{ form_widget(form.otherSite, {'attr': {'placeholder': 'abc.com, chouette.fr ...'}}) }}
                                     </div>
                                 </div>
                             </div>
@@ -138,41 +138,41 @@
                         </h1>
                         <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                             <div class="contact__content accordion-body">
-                                {{ form_label(form.contact.address, 'Adresse') }}
-                                <div class="text-danger">
-                                    {{ form_errors(form.contact.address) }}
-                                </div>
-                                {{ form_widget(form.contact.address, {'attr': {'class': 'form-control'}}) }}
                                 <div class="row g-3 d-md-flex justify-content-between">
                                     <div class="col-md-4">
                                         {{ form_label(form.contact.zipCode, 'Code postal') }}
                                         <div class="text-danger">
                                             {{ form_errors(form.contact.zipCode) }}
                                         </div>
-                                        {{ form_widget(form.contact.zipCode, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(form.contact.zipCode, {'attr': {'id': 'formZipCode'}}) }}
                                     </div>
                                     <div class="col-md-8">
                                         {{ form_label(form.contact.city, 'Ville') }}
                                         <div class="text-danger">
                                             {{ form_errors(form.contact.city) }}
                                         </div>
-                                        {{ form_widget(form.contact.city, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(form.contact.city, {'attr': {'id': 'formCity'}}) }}
                                     </div>
                                 </div>
+                                {{ form_label(form.contact.address, 'Adresse') }}
+                                <div class="text-danger">
+                                    {{ form_errors(form.contact.address) }}
+                                </div>
+                                {{ form_widget(form.contact.address, {'attr': {'id': 'formAddress'}}) }}
                                 <div class="row g-3 d-md-flex justify-content-between">
                                     <div class="col-md-6">
                                         {{ form_label(form.contact.phone, 'Téléphone 1') }}
                                         <div class="text-danger">
                                             {{ form_errors(form.contact.phone) }}
                                         </div>
-                                        {{ form_widget(form.contact.phone, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(form.contact.phone) }}
                                     </div>
                                     <div class="col-md-6">
                                         {{ form_label(form.contact.phone2, 'Téléphone 2') }}
                                         <div class="text-danger">
                                             {{ form_errors(form.contact.phone2) }}
                                         </div>
-                                        {{ form_widget(form.contact.phone2, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(form.contact.phone2) }}
                                     </div>
                                 </div>
                             </div>

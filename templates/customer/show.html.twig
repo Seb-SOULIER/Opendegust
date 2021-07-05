@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Customer{% endblock %}
+
+{% block body %}
+    <h1>Customer</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ customer.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ customer.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ customer.roles ? customer.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ customer.password }}</td>
+            </tr>
+            <tr>
+                <th>RegistrationAt</th>
+                <td>{{ customer.registrationAt ? customer.registrationAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Civility</th>
+                <td>{{ customer.civility }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ customer.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ customer.firstname }}</td>
+            </tr>
+            <tr>
+                <th>IsVerified</th>
+                <td>{{ customer.isVerified ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Birthdate</th>
+                <td>{{ customer.birthdate ? customer.birthdate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>KnowUs</th>
+                <td>{{ customer.knowUs ? customer.knowUs|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Gtc18</th>
+                <td>{{ customer.gtc18 ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Favory</th>
+                <td>{{ customer.favory ? customer.favory|json_encode : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('customer_index') }}">back to list</a>
+
+    <a href="{{ path('customer_edit', {'id': customer.id}) }}">edit</a>
+
+    {{ include('customer/_delete_form.html.twig') }}
+{% endblock %}
