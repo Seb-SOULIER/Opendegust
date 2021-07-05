@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Offer;
+use App\Entity\OfferVariation;
 use App\Form\OfferType;
+use App\Form\OfferVariationType;
 use App\Repository\CategoryRepository;
 use App\Repository\OfferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -64,10 +66,15 @@ class OfferController extends AbstractController
     /**
      * @Route("/{id}/edit", name="offer_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Offer $offer, CategoryRepository $categoryRepository): Response
+    public function edit(Request $request, Offer $offer, OfferVariation $offerVariation, CategoryRepository $categoryRepository): Response
     {
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
+
+
+        $formVariation = $this->createForm(OfferVariationType::class, $offerVariation);
+        $formVariation->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -78,7 +85,8 @@ class OfferController extends AbstractController
         return $this->render('offer/edit.html.twig', [
             'offer' => $offer,
             'form' => $form->createView(),
-            'categories' => $categoryRepository->findByCategory(null)
+            'categories' => $categoryRepository->findByCategory(null),
+            'formVariation' => $formVariation->createView()
         ]);
     }
 

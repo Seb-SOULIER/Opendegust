@@ -36,11 +36,9 @@ class SearchController extends AbstractController
         $query = $request->query->get('q');
 
         if (null !== $query) {
-    
-        $api = new Api();
-        $url = "https://nominatim.openstreetmap.org/search?q=$"
+            $url = "https://nominatim.openstreetmap.org/search?q="
             . $query . "&format=json&addressdetails=1&limit=1&polygon_svg=1";
-        $localization = $api->getResponse($url);
+            $localization = $api->getResponse($url);
         }
 
         return $this->render('search/index.html.twig', [
@@ -57,10 +55,8 @@ class SearchController extends AbstractController
         $query = $request->query->get('q');
 
         if (null !== $query) {
-    
-        $api = new Api();
-        $url = "https://api-adresse.data.gouv.fr/search/?q=" . $query . "&limit=5&type=municipality";
-        $localization = $api->getResponse($url);
+            $url = "https://api-adresse.data.gouv.fr/search/?q=" . $query . "&limit=5&type=municipality";
+            $localization = $api->getResponse($url);
         }
 
         return $this->json($localization ?? []);

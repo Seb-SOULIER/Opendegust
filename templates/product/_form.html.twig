@@ -9,17 +9,16 @@
             {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
             {{ form_label(form.price, 'Prix du produit :') }}
             {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
-{#            {{ form_label(form.picture, 'Importer une image :') }}#}
+            {{ form_label(form.imgProduct, 'Importer une image :') }}
             {{ form_widget(form.imgProduct, {'attr': {'class': 'form-control'}}) }}
-{#            <img src="{{ vich_uploader_asset(product) }}" alt="{{ product.name }}">#}
             <div style="max-height: 150px; max-width: 100px;">
             <img style="height: 100%; width:100%;" src="{{ asset('uploads/') }}{{ product.picture }}" alt="{{ product.name }}">
             </div>
         </div>
         <div class="col-sm">
             {% from 'macros/categoriesProduct.html.twig' import make_categories %}
-            {{ make_categories(categoriesDrink) }}
-            {{ make_categories(categoriesFood) }}
+            {{ make_categories(categoriesDrink, categoryProduct) }}
+            {{ make_categories(categoriesFood, categoryProduct) }}
         </div>
     </div>
 </div>

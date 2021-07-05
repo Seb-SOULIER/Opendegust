@@ -1,16 +1,138 @@
-{{ form_start(form, {'attr': {'class': 'mb-4'}}) }}
-    {{ form_label(form.name, "Nom de l'offre :") }}
-    {{ form_widget(form.name) }}
-    {{ form_widget(form.language) }}
-    {{ form_label(form.domainName, "Nom du dommaine :") }}
-    {{ form_widget(form.domainName) }}
-{#    {{ form_label(form.language, "Langues parlées :") }}#}
-{#        {% for lang in form.language %}#}
-{#            {{ form_widget(lang, {'attr': {'class': 'form-control'}}) }}#}
-{#        {% endfor %}#}
+{% block body %}
+    <div class="d-flex align-items-center flex-column">
+        <div class="col-11 col-sm-9 col-xl-8 my-3">
+            {{ form_start(form, {'attr': {'class': 'd-flex align-items-center flex-column'}}) }}
+            <div class="provider__form w-100">
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    <div class="account form-control my-3 py-3 accordion-item">
+                        <h1 class="accordion-header" id="panelsStayOpen-headingOne">
+                            <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                <h2 class="my-3 text-primary">Offre</h2>
+                            </button>
+                        </h1>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                            <div class="account__content accordion-body">
+                                <div>
+                                    {{ form_errors(form.name) }}
+                                    {{ form_label(form.name) }}
+                                    {{ form_widget(form.name) }}
+                                </div>
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div>
+                                        {{ form_label(form.description.shortDescription) }}
+                                        {{ form_widget(form.description.shortDescription) }}
+                                    </div>
+                                </div>
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div>
+                                        {{ form_label(form.description.longDescription) }}
+                                        {{ form_widget(form.description.longDescription) }}
+                                    </div>
+                                </div>
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div>
+                                        {{ form_label(form.picture) }}
+                                        {{ form_widget(form.picture) }}
+                                    </div>
+                                </div>
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div>
+                                        {{ form_label(form.language) }}
+                                        {{ form_widget(form.language) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="favourites form-control py-3 my-3 accordion-item">
+                        <h1 class="accordion-header" id="panelsStayOpen-headingTwo">
+                            <button class="accordion-button collapsed text-center" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                <h2 class="my-3 text-primary">Domaine</h2>
+                            </button>
+                        </h1>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                            <div class="favourites__content accordion-body">
+                                <div>
+                                    {{ form_errors(form.domainName) }}
+                                    {{ form_label(form.domainName) }}
+                                    {{ form_widget(form.domainName) }}
+                                </div>
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div>
+                                        {{ form_errors(form.contact.zipCode) }}
+                                        {{ form_label(form.contact.zipCode) }}
+                                        {{ form_widget(form.contact.zipCode) }}
+                                    </div>
+                                </div>
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div>
+                                        {{ form_label(form.contact.city) }}
+                                        {{ form_widget(form.contact.city) }}
+                                    </div>
+                                </div>
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div>
+                                        {{ form_label(form.contact.address) }}
+                                        {{ form_widget(form.contact.address) }}
+                                    </div>
+                                </div>
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div>
+                                        {{ form_label(form.contact.phone) }}
+                                        {{ form_widget(form.contact.phone) }}
+                                    </div>
+                                </div>
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div>
+                                        {{ form_label(form.contact.phone2) }}
+                                        {{ form_widget(form.contact.phone2) }}
+                                    </div>
+                                </div>
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div>
+                                        {{ form_label(form.contact.website) }}
+                                        {{ form_widget(form.contact.website) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact form-control py-3 my-3 accordion-item">
+                        <h1 class="accordion-header" id="panelsStayOpen-headingThree">
+                            <button class="accordion-button collapsed text-center" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                <h2 class="my-3 text-primary">Variations</h2>
+                            </button>
+                        </h1>
+                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                            <div class="contact__content accordion-body">
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div class="">
+                                        {% for variation in form.offerVariations %}
+                                        <div class="form-control mb-3">
+                                            <h3>Variation {{ loop.index }}</h3>
+                                            <div class="col-md-6">
+                                                {{ form_label(variation.duration) }}
+                                                {{ form_widget(variation.duration) }}
+                                            </div>
+                                        <div>
+                                            {{ form_label(variation.price) }}
+                                            {{ form_widget(variation.price) }}
+                                        </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-3 col-12 col-md-6 text-light">{{ button_label|default('Valider') }}</button>
+            {{ form_end(form) }}
+            <div class="d-flex justify-content-between my-3">
+                <a href="{{ path('home') }}">Retour à l'accueil</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
-
-{#    {% from 'macros/categories.html.twig' import make_categories %}#}
-{#    {{ make_categories(categories) }}#}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\CategoryRepository;
@@ -77,9 +78,11 @@ class ProductController extends AbstractController
     {
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
+        $categoryProduct = $product->getCategory();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $product->setProvider($this->getUser());
+            $product->setCategory($categoryRepository->findOneBy(['id' => $request->request->get('categories')]));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('product_index');
@@ -90,6 +93,7 @@ class ProductController extends AbstractController
             'form' => $form->createView(),
             'categoriesDrink' => $categoryRepository->findby(['name' => "Boisson"]),
             'categoriesFood' => $categoryRepository->findby(['name' => "Gastronomie"]),
+            'categoryProduct' => $categoryProduct
         ]);
     }
 
@@ -104,5 +108,9 @@ class ProductController extends AbstractController
             $entityManager->flush();
         }
         return $this->redirectToRoute('product_index');
+    }
+
+    private function Category($get)
+    {
     }
 }
