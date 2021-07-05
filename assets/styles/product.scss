@@ -18,3 +18,10 @@
   left: auto;
   transform: rotate(45deg);
 }
+
+@media screen and(max-width: 768px) {
+  .col.d-flex.mb-4.offer {
+    justify-content: center;
+    width: 70%;
+  }
+}
