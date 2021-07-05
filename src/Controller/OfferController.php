@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Offer;
+use App\Entity\Product;
 use App\Form\OfferType;
 use App\Repository\CategoryRepository;
 use App\Repository\OfferRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,10 +56,11 @@ class OfferController extends AbstractController
     /**
      * @Route("/{id}", name="offer_show", methods={"GET"})
      */
-    public function show(Offer $offer): Response
+    public function show(Offer $offer, ProductRepository $productRepository): Response
     {
         return $this->render('offer/show.html.twig', [
             'offer' => $offer,
+            'products' => $productRepository ->findByProvider($offer -> getProvider()),
         ]);
     }
 
