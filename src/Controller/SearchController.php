@@ -62,4 +62,3 @@ class SearchController extends AbstractController
         return $this->json($localization ?? []);
     }
 }
-

@@ -109,8 +109,4 @@ class ProductController extends AbstractController
         }
         return $this->redirectToRoute('product_index');
     }
-
-    private function Category($get)
-    {
-    }
 }

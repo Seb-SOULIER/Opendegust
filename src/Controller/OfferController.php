@@ -66,8 +66,12 @@ class OfferController extends AbstractController
     /**
      * @Route("/{id}/edit", name="offer_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Offer $offer, OfferVariation $offerVariation, CategoryRepository $categoryRepository): Response
-    {
+    public function edit(
+        Request $request,
+        Offer $offer,
+        OfferVariation $offerVariation,
+        CategoryRepository $categoryRepository
+    ): Response {
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
 
