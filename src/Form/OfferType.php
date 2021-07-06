@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Offer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,17 +15,13 @@ class OfferType extends AbstractType
     {
         $builder
             ->add('name')
-//            ->add('picture')
-//            ->add('domainName')
-//            ->add('language', CollectionType::class, [
-//                'required' => false,
-//                'entry_type' => CheckboxType::class,
-//                'entry_options' => [
-//                    'attr' => ['class' => 'form-control'],
-//                ],
-//            ])
-//            ->add('description', DescriptionType::class)
-//            ->add('contact', ContactType::class)
+            ->add('picture')
+            ->add('domainName')
+            ->add('description', DescriptionType::class)
+            ->add('contact', ContactType::class)
+            ->add('offerVariations', CollectionType::class, [
+                'entry_type' => OfferVariationType::class
+                ])
             ->add('language', ChoiceType::class, [
                 'multiple' => true,
                 'expanded' => true,
@@ -40,24 +35,7 @@ class OfferType extends AbstractType
                     'Russe' => 'Russe',
                 ],
 
-                ])
-
-
-//            ->add('offerVariations', OfferVariationType::class)
-
-
-            ////                'data_class' => null,
-//                'required' => false,
-//                'entry_type' => CheckboxType::class,
-//                'entry_options' => [
-//                    'attr' => ['class' => 'form-control'],
-//                ]
-//                ])
-
-//            ->add('provider')
-//            ->add('description')
-//            ->add('contact')
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

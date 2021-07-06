@@ -20,9 +20,9 @@ class ProductType extends AbstractType
             ->add('imgProduct', VichFileType::class, [
                 'required' => false,
 //                'download_label' => new PropertyPath('picture'),
-                'allow_delete' => true,
+                'allow_delete' => false,
 //                'delete_label' => 'Supprimer',
-                'download_uri' => true,
+                'download_uri' => false,
             ])
             ->add('price');
 //            ->add('provider')
