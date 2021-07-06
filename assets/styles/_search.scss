@@ -1,32 +1,49 @@
-.zoomHover {
-  transition: transform .4s;
-}
-
-.zoomHover:hover{
-  transform: scale(1.5);
-}
-
-.borderHover{
-  transition: transform .4s;
-
-}
-
-.borderHover:hover{
-  transform: scale(1.2);
-}
+//.offerImage{
+//  object-fit: cover;
+//  width:100%;
+//  height:100%;
+//}
 
 .positionBotright{
   position:absolute;
   bottom:0;
   right:0;
   padding: 3%;
+  color: $tag-premium-color ;
+}
+
+.cardHover
+{
+border: solid 1px #adadad;
+  transition: transform 1s;
+}
+
+.cardHover:hover{
+  border: solid 1px black;
 }
 
 .categoryOffer{
-  width:75%;
-  max-width:75%;
+  color:white;
+  width:50%;
+  max-width:50%;
   min-width:25%;
 }
+
+.btnOffer{
+  width:50%;
+
+}
+
+.card-text-color{
+  color: $gray;
+}
+
+@media (max-width: 480px){
+  .btnOffer{
+    width:50%;
+  }
+}
+
 @media (max-width: 768px) {
   .categoryOffer {
     width: 50%;
@@ -37,3 +54,21 @@
     width: 50%;
   }
 }
+@include media-breakpoint-between(sm, lg) {
+  .btnOffer {
+    width: 75%;
+  }
+}
+  //@media (max-width: 480px){
+  //  .btnOffer{
+  //    width:75%;
+  //    max-width:75%;
+  //    min-width:25%;
+  //  }
+  //}
+
+  //@media (max-width: 740px){
+  //  .btnOffer{
+  //    width:75%;
+  //  }
+
