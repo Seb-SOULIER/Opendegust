@@ -37,8 +37,8 @@ class SearchController extends AbstractController
 
         if (null !== $query) {
             $api = new Api();
-            $url = "https://nominatim.openstreetmap.org/search?q=$"
-            . $query . "&format=json&addressdetails=1&limit=1&polygon_svg=1";
+            $url = "https://nominatim.openstreetmap.org/search?q="
+            . $query . "&format=json&addressdetails=1&limit=1";
             $localization = $api->getResponse($url);
         }
 
