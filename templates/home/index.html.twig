@@ -17,17 +17,10 @@
 				</h1>
 			</div>
 			<form id="searchForm" class="search-home" method="get" action="{{ path('search_localization') }}">
-							<input class="write" type="text" id="searchField" name="q" class="search" placeholder="recherchez votre prochaine expérience" style="outline:none">
-							<ul style="color:white" id="autocomplete"></ul>
+							<input class="write" type="text" id="searchField" name="q" class="search" autocomplete="off" placeholder="recherchez votre prochaine expérience" style="outline:none">
+							<ul class="shadow autocomplete" style="color:white" id="autocomplete"></ul>
 							<button class="research">Rechercher</button>
 						</form>
-			{# <form method="get" action="{{ path('search_localization') }}">
-				<input name="q" class="search" placeholder="recherchez votre prochaine expérience" style="outline:none" list="datalistOptions" id="searchField">
-				<datalist id=" id="autocomplete"">
-					<option></option>
-				</datalist>
-				<button>rechercher</button>
-			</form> #}
 		</div>
 	</div>
 

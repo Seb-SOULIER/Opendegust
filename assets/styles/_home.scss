@@ -27,6 +27,22 @@
     text-shadow: black 0px -2px;
 }
 
+ul.autocomplete {
+    color: white;
+    position: absolute;
+    top: 100%;
+    list-style: none;
+    text-align: left;
+    background-color: white;
+    padding: 2rem;
+    font-size: 1.25rem;
+    li {
+        a {
+            text-shadow: none;
+        }
+    }
+}
+
 h1.degust-near-you {
     font-size: 3rem;
     margin-top: 53px;
@@ -67,25 +83,22 @@ form.search-home {
     top: 50%;
     text-shadow: black 0.1rem 0.1rem;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
 }
 
 
 
 input.write {
     border-radius: 50px;
-    width: 35%;
+    width: 38%;
     font-size: x-large;
     border: none;
     height: 60px;
     text-align: center;
 }
 
-// @media screen and (max-width: 576px) {
-//     input.write{
-//         width: 70%;
-//         height: 2.5rem;
-//     }
-// }
+
 button.research {
     border-radius: 50px;
     background: rgb(145,222,138);
@@ -94,16 +107,12 @@ button.research {
     width: 10%;
     font-size: x-large;
     position: relative;
-    right: 68px;
+    right: 89px;
     border: none;
     height: 61px;
 }
 
-// @media screen and (max-width: 576px) {
-//     input.recherche{
-//         font
-//     }
-// }
+
 
 // quatre logo en dessous de la barre de recherche //
 
