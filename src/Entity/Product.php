@@ -6,6 +6,7 @@ use DateTime;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -36,6 +37,33 @@ class Product
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $picture;
+
+    /**
+     * @Vich\UploadableField(mapping="img_product", fileNameProperty="picture")
+     * @Assert\File(
+     *     maxSize = "1M",
+     *     mimeTypes = {"image/jpeg", "image/png", "image/webp"},
+     * )
+     * @var ?File
+     */
+    private ?File $imgProduct;
+
+    /**
+     * @return ?File
+     */
+    public function getImgProduct(): ?File
+    {
+        return $this->imgProduct;
+    }
+
+    public function setImgProduct(?File $image = null): self
+    {
+        $this->imgProduct = $image;
+        if ($image) {
+            $this->updateAt = new DateTime('now');
+        }
+        return $this;
+    }
 
     /**
      * @ORM\Column(type="float")
@@ -92,7 +120,7 @@ class Product
         return $this->picture;
     }
 
-    public function setPicture(string $picture): self
+    public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
 

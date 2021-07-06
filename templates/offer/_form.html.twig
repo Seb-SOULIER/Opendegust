@@ -1,13 +1,16 @@
-{{ form_start(form) }}
-{#    {{ form_widget(form) }}#}
+{{ form_start(form, {'attr': {'class': 'mb-4'}}) }}
     {{ form_label(form.name, "Nom de l'offre :") }}
     {{ form_widget(form.name) }}
+    {{ form_widget(form.language) }}
     {{ form_label(form.domainName, "Nom du dommaine :") }}
     {{ form_widget(form.domainName) }}
-    {{ form_label(form.language, "Langues parlées :") }}
-    {{ form_label(form.language, "Déjà inscrit sur d'autres sites?") }}
-        {% for lang in form.language %}
-            {{ form_widget(lang, {'attr': {'class': 'form-control'}}) }}
-        {% endfor %}
+{#    {{ form_label(form.language, "Langues parlées :") }}#}
+{#        {% for lang in form.language %}#}
+{#            {{ form_widget(lang, {'attr': {'class': 'form-control'}}) }}#}
+{#        {% endfor %}#}
+
+
+{#    {% from 'macros/categories.html.twig' import make_categories %}#}
+{#    {{ make_categories(categories) }}#}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

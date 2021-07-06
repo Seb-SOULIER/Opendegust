@@ -3,34 +3,39 @@
 {% block title %}OpenSearch{% endblock %}
 
 {% block body %}
-{#    //map#}
-    <div class="container">
-        <div class="row">
-            <div class="col-10">
-                <div id="map"></div>
-            </div>
-            <div class="col-2">
-                <input type="text" name="address" id="address" />
-            </div>
-        </div>
-    </div>
 
-{#    //end map#}
+    //map
+{#    <div  style="height: 150px;width:100%;#}
+{#  background-color: #333;#}
+{#position: fixed;z-index:1; top:0;">#}
+{#    </div>#}
+
+    //end map
+<div class="overflow-auto">
 <div class="container">
     <div class="row">
     {% for offer in offers %}
         <div class="mb-3 col-sm-6" >
-            <div class="card h-100">
+            <div class="card cardHover h-100">
             <div class=" h-100 row g-0">
-                <div class=" col-md-4" >
-                    <img class="zoomHover" src="{{ offer.picture }}" alt="" style ="width:100%;">
-                  {# <img class="zoomHover" src="{{ offer.offerVariations.owner.picture }}" alt="" style ="width:70%;">}#}
-                    <p class="rounded p-1 bg-secondary categoryOffer text-center">category</p>
+                <div class=" col-lg-5" >
+                    <picture>
+                        <source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_sm") }}" media="(max-width: 576px)">
+                        <source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_lg") }}" media="(max-width: 992px)">
+                        <source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_xl") }}" media="(max-width: 1200px)">
+                        <source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_xml") }}" media="(max-width: 1400px)">
+                        <source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_xxl") }}" media="(min-width: 1400px)">
+                        <img class="img-fluid" src="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_default") }}" alt="offer image">
+                    </picture>
+
+
+
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 col-lg-7">
                     <div class="h-100 card-body">
+                        <p class="rounded p-1 bg-secondary categoryOffer text-center">category</p>
                         <h5 class="card-title text-center">{{ offer.name }}</h5>
-                        <p class="card-text">{{ offer.description.shortDescription }}
+                        <p class="card-text card-text-color">{{ offer.description.shortDescription }}
                         </p>
 
                         <!-- Button trigger modal -->
@@ -40,39 +45,15 @@
                                 {% set lowest_price = offer_variation.price %}
                             {% endif %}
                         {% endfor %}
-
-
-                      <p class="mt-auto"> à partir de {{ lowest_price }}€ <a type="button"  class="borderHover" data-bs-toggle="modal" data-bs-target="#modalDetail_{{ offer.id }}">
-                            détail
+                        <p class="mt-auto"> A partir de <b>{{ lowest_price }}€. </b><a type="button"  class="borderHover" data-bs-toggle="modal" data-bs-target="#modalDetail_{{ offer.id }}">
+                            (Détail)</a>
                               </p>
-                        </a>
-                        <a href="#" class=" btn btn-primary">réserver <i class="borderHover fas fa-shopping-cart"></i></a>
-
+                        <a href="#" class="btnOffer btn btn-primary">réserver <i class="fas fa-shopping-cart"></i></a>
                         <p class="card-text"><small class="text-muted"></small></p>
-{#                       #}
                     </div>
                     <i class="positionBotright fas fa-star"></i>
-
                 </div>
-
             </div>
-<<<<<<< HEAD
-            <!-- Modal -->
-            <div class="modal fade" id="modalDetail_{{ offer.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <table>
-                                <thead>
-=======
-
-        </div>
-
-
         <!-- Modal -->
         <div class="modal fade" id="modalDetail_{{ offer.id }}" tabindex="-1" aria-labelledby="ModalLabel_{{ offer.id }}" aria-hidden="true">
             <div class="modal-dialog">
@@ -82,84 +63,43 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
                     </div>
                     <div class="modal-body">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th scope="col" class="pe-1">Durée   </th>
-                                <th scope="col" class="pe-1"></th>
-                                <th scope="col" class="pe-1"></th>
-                                <th scope="col"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                        <h6>Grille des tarifs</h6>
+                        <ul>
                             {% for offer_variation in offer.offerVariations %}
 
->>>>>>> 6e2436cdf83370c11f15a104c192e80f0439e46b
-                                <tr>
-                                    <th scope="col" class="pe-1">Durée   </th>
-                                    <th scope="col" class="pe-1"></th>
-                                    <th scope="col" class="pe-1"></th>
-                                    <th scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for offer_variation in offer.offerVariations %}
-
-                                    <tr>
-
-                                        <td colspan="1">{{ offer_variation.duration|date("h:i") }}</td>
-                                        <td colspan="1">{% if offer_variation.booking.totalPlaces is defined %}
+                                <li class="d-flex justify-content-between"><span>Tarif {{ loop.index }}: </span>
+                                    <span><i class="far fa-clock"></i> <b>{{ offer_variation.duration|date("h:i") }}</b></span>
+                                        <span><i class="fas fa-users"></i>{% if offer_variation.booking.totalPlaces is defined %}
                                             {% if offer_variation.capacity - offer_variation.booking.totalPlaces == 1 %}
-                                                <span class ="text-warning"> {{ offer_variation.capacity - offer_variation.booking.totalPlaces }} place</span>
+                                                <span class ="text-warning"> <b>{{ offer_variation.capacity - offer_variation.booking.totalPlaces }}</b> place restante</span>
                                             {% elseif offer_variation.capacity - offer_variation.booking.totalPlaces == 0 %}
-                                                <span class="text-danger">full</span>
+                                              <b>  <span class="text-danger">full</span></b>
                                             {% else %}
-                                                {{ offer_variation.capacity - offer_variation.booking.totalPlaces }} places
+                                                <b>{{ offer_variation.capacity - offer_variation.booking.totalPlaces }} </b>  places restantes
                                             {% endif %}
-                                            {% else %}
-                                            {{ offer_variation.capacity }} places
-                                        </td>
-                                        {% endif %}
-<<<<<<< HEAD
-                                        <td colspan="1" class="ps-1">{{ offer_variation.price }}€</td>
-
-
-
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-=======
                                         {% else %}
-                                        {{ offer_variation.capacity }} places
-                                    </td>
+                                <b>{{ offer_variation.capacity }}</b> places restantes </span>
                                     {% endif %}
-                                    <td colspan="1" class="ps-1">{{ offer_variation.price }}€</td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+                                <span><i class="fas fa-ticket-alt"></i>  <b>{{ offer_variation.price }}€</b></span>
+                        </li>
+                                <br>
+{#                                {% set data = offer_variation.priceVariation|json_decode() %}#}
+                        <hr>
+                                {% endfor %}
+                        </ul>
+                        </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
->>>>>>> 6e2436cdf83370c11f15a104c192e80f0439e46b
                     </div>
+                    </div>
+
                 </div>
             </div>
             <!--endmodal-->
             </div>
         </div>
-
-
-
     {% endfor %}
     </div>
  </div>
-
+    </div>
 {% endblock %}

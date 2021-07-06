@@ -8,16 +8,12 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ offer.id }}</td>
-            </tr>
-            <tr>
                 <th>Name</th>
                 <td>{{ offer.name }}</td>
             </tr>
             <tr>
                 <th>Picture</th>
-                <td>{{ offer.picture }}</td>
+                <td><img src="{{ offer.picture }}" alt="{{ offer.name }}"></td>
             </tr>
             <tr>
                 <th>DomainName</th>
@@ -25,9 +21,69 @@
             </tr>
             <tr>
                 <th>Language</th>
-                {% for key, value in offer.language %}
-                    <td>{{ key }} {{ value }}</td>
+                <td>
+                {% for value in offer.language %}
+                    {{ value }}
+                    {% if not loop.last %},{% endif %}
                 {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Short Description</th>
+                <td>
+                    {{ offer.description.shortDescription }}
+                </td>
+            </tr>
+            <tr>
+                <th>Long Description</th>
+                <td>
+                    {{ offer.description.longDescription }}
+                </td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>
+                    {% for value in offer.categories %}
+                        {{ value.name }}
+                        {% if not loop.last %},{% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Contact address</th>
+                <td>
+                    {{ offer.contact.address }}
+                </td>
+            </tr>
+            <tr>
+                <th>Contact zip</th>
+                <td>
+                    {{ offer.contact.zipCode }}
+                </td>
+            </tr>
+            <tr>
+                <th>Contact address</th>
+                <td>
+                    {{ offer.contact.city }}
+                </td>
+            </tr>
+            <tr>
+                <th>Contact phone 1</th>
+                <td>
+                    {{ offer.contact.phone }}
+                </td>
+            </tr>
+            <tr>
+                <th>Contact phone 2</th>
+                <td>
+                    {{ offer.contact.phone }}
+                </td>
+            </tr>
+            <tr>
+                <th>Contact site</th>
+                <td>
+                    {{ offer.contact.website }}
+                </td>
             </tr>
         </tbody>
     </table>

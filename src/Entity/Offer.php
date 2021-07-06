@@ -6,6 +6,7 @@ use App\Repository\OfferRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Null_;
 
 /**
  * @ORM\Entity(repositoryClass=OfferRepository::class)
@@ -65,9 +66,9 @@ class Offer
     private Collection $offerVariations;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="offer_id")
+     * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="offerId")
      */
-    private collection $categories;
+    private Collection $categories;
 
     public function __construct()
     {
@@ -122,9 +123,10 @@ class Offer
         return $this->language ? json_decode($this->language, true) : null;
     }
 
-    public function setLanguage(?string $language): self
+    public function setLanguage(?array $language): self
     {
-        $this->language = $language;
+
+        $this->language = json_encode($language) === false ? null : json_encode($language);
 
         return $this;
     }
