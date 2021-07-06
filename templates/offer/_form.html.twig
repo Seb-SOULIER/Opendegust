@@ -106,33 +106,53 @@
                         <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                             <div class="contact__content accordion-body">
                                 <div class="row g-3 d-md-flex justify-content-between">
-                                    <div class="">
+
                                         {% for variation in form.offerVariations %}
-                                        <div class="form-control mb-3">
+                                    <div class="form-control mb-3">
                                             <h3>Variation {{ loop.index }}</h3>
                                             <div class="col-md-6">
                                                 {{ form_label(variation.duration) }}
                                                 {{ form_widget(variation.duration) }}
                                             </div>
-                                        <div>
-                                            {{ form_label(variation.price) }}
-                                            {{ form_widget(variation.price) }}
-                                        </div>
-                                        </div>
-                                        {% endfor %}
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    {{ form_label(variation.price) }}
+                                                    {{ form_widget(variation.price) }}
+                                                </div>
+                                                <div class="col-md-3">
+                                                    {{ form_label(variation.currentVat) }}
+                                                    {{ form_widget(variation.currentVat) }}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ form_label(variation.capacity) }}
+                                                {{ form_widget(variation.capacity) }}
+                                            </div>
+                                            <div>
+                                                {% for calendar in variation.calendars %}
+                                                    <div class="col-md-8">
+                                                        {{ form_label(calendar.startAt) }}
+                                                        {{ form_widget(calendar.startAt) }}
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
                                     </div>
+                                        {% endfor %}
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+
             <button class="btn btn-primary mt-3 col-12 col-md-6 text-light">{{ button_label|default('Valider') }}</button>
             {{ form_end(form) }}
             <div class="d-flex justify-content-between my-3">
                 <a href="{{ path('home') }}">Retour à l'accueil</a>
             </div>
-        </div>
+
     </div>
 {% endblock %}
 
