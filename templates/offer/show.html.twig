@@ -23,7 +23,9 @@
 			</li>
 		</ol>
 	</nav>
-	<h1 style="text-align:center">{{ offer.domainName }}</h1>
+	<div class="title-offer-domain">
+		<h1 style="text-align:center">{{ offer.domainName }}</h1>
+	</div>
 	<div class="container-fluid">
 		<div class="row offer-domaine">
 			<div
@@ -31,14 +33,16 @@
 				{# <img src="{{ offer.picture }}" class="img-fluid" alt="{{ offer.name }}"> #}
 				<img src="https://images.charentelibre.fr/2016/08/23/57bb5ca47971bb604a2c5a78/golden/1000x625/lactuel-proprietaire.jpg" id="img-domaine" class="img-fluid" style="min-height: 100%" alt="{{ offer.name }}">
 			</div>
-			<div class="col-12 col-sm-6 offer-picture">
+			<div
+				class="col-12 col-sm-6 offer-picture">
 				{# <img src="{{ offer.picture }}" class="img-fluid" alt="{{ offer.name }}"> #}
-			<img src="https://www.probierfass.de/media/image/5a/77/73/le54uu54u54er.jpg" id="img-offer" class="img-fluid" style="min-height: 100%" alt="{{ offer.name }}"> </div>
+				<img src="https://www.probierfass.de/media/image/5a/77/73/le54uu54u54er.jpg" id="img-offer" class="img-fluid" style="min-height: 100%" alt="{{ offer.name }}">
+			</div>
 		</div>
 	</div>
 
 	<br>
-	<div class="container-fluid">
+	<div class="container">
 		<div class="redirection-categ-lang d-flex">
 			<div class="categories-affichage d-flex">
 				{% for value in offer.categories %}
@@ -47,13 +51,7 @@
 					{% endif %}
 				{% endfor %}
 			</div>
-			<div class="lang-affichage d-flex">
-				{% for value in offer.language %}
-					<p style="border-radius:10%; margin-left: 15px;">
-						{{ value }}</p>
-					{% if not loop.last %}{% endif %}
-				{% endfor %}
-			</div>
+
 		</div>
 	</div>
 
@@ -107,7 +105,16 @@
 						</table>
 					</div>
 				</div>
+				<div class="lang-affichage d-flex" style="flex-wrap: wrap; justify-content:center">
+					{% for value in offer.language %}
+						<p style="border-radius:10%; margin-left: 15px">
+							{{ value }}</p>
+						{% if not loop.last %}{% endif %}
+					{% endfor %}
+				</div>
 			</div>
+			
+
 
 
 			<div class="col-12 col-sm-3">
@@ -158,14 +165,14 @@
 			</div>
 		</div>
 	</div>
-<div class="container-fluid">
-<div class="list-offer-by-provider">
-        <h1 class="my-3 text-center">Nos Produits</h1>
-        <div class="row row-cols-1 row-cols-md-5 g-5" id="provider-offer-card">
-{% include "product/products.html.twig" %}
-</div>
-</div>
-</div>
+	<div class="container-fluid">
+		<div class="list-offer-by-provider">
+			<h1 class="my-3 text-center">Nos Produits</h1>
+			<div class="row row-cols-1 row-cols-md-5 g-5" id="provider-offer-card">
+				{% include "product/products.html.twig" %}
+			</div>
+		</div>
+	</div>
 	<a href="{{ path('offer_index') }}">
 		back to list</a>
 	<a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>

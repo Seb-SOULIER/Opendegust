@@ -11,3 +11,10 @@
     top: 31%;
     font-size: 2.3rem;
 }
+@media screen and(max-width:576px) {
+    .connexion-nav-reponsive {
+        width: 100%;
+        text-align: center;
+        padding-top: 10px;
+    }
+}
