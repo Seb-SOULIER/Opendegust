@@ -1,0 +1,150 @@
+ .row.offer-domaine {
+    padding-top: 14px;
+ }
+
+.breadcrumb {
+    padding-left: 10px;
+}
+.col-12.col-sm-6.domaine-picture {
+    text-align: center;
+}
+#img-domaine {
+    max-width: 90%;
+    float: right;
+    object-fit: cover;
+}
+@media screen and(max-width: 576px) {
+    #img-domaine {
+        float: none;
+    }
+}
+@media screen and(max-width: 576px) {
+    .col-12.col-sm-6.domaine-picture {
+        padding-top: 15px;
+        width: 80%;
+        margin-right: auto;
+        margin-left: auto;
+        float: none;
+    }
+}
+
+.col-12.col-sm-6.offer-picture {
+    text-align: center;
+}
+
+#img-offer {
+    max-width: 90%;
+    float: left;
+    object-fit: cover;
+}
+
+@media screen and(max-width: 576px) {
+    #img-offer {
+        float: none;
+    }
+}
+@media screen and(max-width: 576px) {
+    .col-12.col-sm-6.offer-picture {
+        padding-top: 15px;
+        width: 80%;
+        margin-right: auto;
+        margin-left: auto;
+        float: none;
+    }
+}
+
+
+.offer-domaine {
+    width: 100%;
+    height: 100%;
+}
+
+.redirection-categ-lang.d-flex {
+    justify-content: space-between;
+}
+
+.categories-affichage.d-flex {
+    min-width: 7%;
+}
+.name-categ {
+    width:100%;
+}
+
+#description-offer h2 {
+    text-align:center;
+}
+
+.row.informations-supp {
+    padding-bottom: 30px;
+}
+@media screen and(max-width: 500px) {
+.responsive-table-line td:before { content: attr(data-title); }
+.responsive-table-line table, 
+.responsive-table-line thead, 
+.responsive-table-line tbody, 
+.responsive-table-line th, 
+.responsive-table-line td, 
+.responsive-table-line tr { 
+    display: block; 
+    }
+     
+.responsive-table-line thead tr { 
+    display:none;
+    }
+.responsive-table-line td { 
+    position: relative;
+    border: 0px solid transparent;
+    padding-left: 50% !important; 
+    white-space: normal;
+    text-align:right; 
+    }
+     
+.responsive-table-line td:before { 
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 45%; 
+    padding-right: 15px; 
+    height:100%;
+    white-space: nowrap;
+    text-overflow: ellipsis !important;
+    overflow:hidden !important;
+    text-align:left;
+    background-color:#f8f8f8;
+    padding:2px;
+    }
+}
+.responsive-table-line {
+    margin:0px auto;
+    max-width:700px;
+}
+
+.table.table-bordered.table-condensed.table-body-center {
+    border: 2px solid #59ae52;
+}
+.longue-description {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.offer-contact-info h3 {
+    text-align: center;
+}
+
+.list-offer-by-provider {
+    background-color: #947e7c;
+}
+
+.card.card-label-price {
+    box-shadow: 5px 5px 5px black;
+  }
+
+#provider-offer-card {
+      justify-content: center;
+  }
+
+h1.my-3.text-center {
+    color: #59ae52;
+    text-shadow: 3px 3px black;
+}

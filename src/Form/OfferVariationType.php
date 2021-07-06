@@ -12,13 +12,11 @@ class OfferVariationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('priceVariation')
-            ->add('capacity')
+//            ->add('priceVariation')
             ->add('duration')
             ->add('price')
             ->add('currentVat')
-            ->add('offer')
-            ->add('booking')
+            ->add('capacity')
         ;
     }
 
