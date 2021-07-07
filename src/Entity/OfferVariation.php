@@ -70,9 +70,9 @@ class OfferVariation
         return $this->id;
     }
 
-    public function getPriceVariation(): ?string
+    public function getPriceVariation(): ?array
     {
-        return $this->priceVariation ? json_decode($this->priceVariation) : null;
+        return $this->priceVariation ? json_decode($this->priceVariation, true) : null;
     }
 
     public function setPriceVariation(?string $priceVariation): self

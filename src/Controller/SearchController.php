@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use App\Entity\Offer;
 use App\Repository\ContactRepository;
 use App\Service\Api;
@@ -28,6 +29,22 @@ class SearchController extends AbstractController
             'offers' => $offers
         ]);
     }
+//
+//    /**
+//     * @Route("/coordinate", name="coordinate")
+//     */
+//
+//    public function Coordinate(ContactRepository $contactRepository)
+//    {
+//        {
+//            $coordinate = $contactRepository->findAll();
+//            return $this->json($coordinate ?? []);
+//                //'{\"adultes\":3,\"enfants\":4}';
+//            //$this->json($coordinate ?? []);
+//        }
+//    }
+
+
     /**
      * @Route("/localization", name="localization")
      */

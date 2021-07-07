@@ -40,5 +40,5 @@ liip_imagine:
         offer_thumb_xxl:
             quality: 75
             filters:
-                thumbnail: { size: [ 264, 278 ], mode: outbound, allow_upscale: true }
+                thumbnail: { size: [ 264.16, 302 ], mode: outbound, allow_upscale: true }
 
