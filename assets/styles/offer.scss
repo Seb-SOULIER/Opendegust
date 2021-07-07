@@ -1,4 +1,72 @@
- .row.offer-domaine {
+
+#liste-des-prod h2 {
+    color: #59ae52;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 25px;
+}
+.responsive-table-list {
+    width: 85%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.responsive-table-list thead tr {
+    background-color: #f8f8f8;
+    border: 3px solid #59ae52;
+}
+
+@media screen and(max-width: 500px) {
+    .responsive-table-list td:before { content: attr(data-title); }
+    .responsive-table-list table, 
+    .responsive-table-list thead, 
+    .responsive-table-list tbody, 
+    .responsive-table-list th, 
+    .responsive-table-list td, 
+    .responsive-table-list tr { 
+        display: block; 
+        }
+    .responsive-table-list thead tr { 
+        display:none;
+        }
+    .responsive-table-list td { 
+        position: relative;
+        border: 0px solid transparent;
+        padding-left: 50% !important; 
+        white-space: normal;
+        text-align:right; 
+        }
+         
+    .responsive-table-list td:before { 
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 45%; 
+        padding-right: 15px; 
+        height:100%;
+        white-space: nowrap;
+        text-overflow: ellipsis !important;
+        overflow:hidden !important;
+        text-align:left;
+        background-color:#f8f8f8;
+        padding:2px;
+        border: 1px solid lightgray;
+        }
+    }
+    .responsive-table-line {
+        margin:0px auto;
+        max-width:900px;
+    }
+    
+    .table.table-bordered.table-condensed.table-body-center {
+        border: 2px solid #59ae52;
+    }
+
+.title-offer-domain h1 {
+    text-align: center;
+    color: #59ae52;
+}
+
+.row.offer-domaine {
     padding-top: 14px;
  }
 
@@ -12,6 +80,7 @@
     max-width: 90%;
     float: right;
     object-fit: cover;
+    border-radius: 2%;
 }
 @media screen and(max-width: 576px) {
     #img-domaine {
@@ -31,11 +100,12 @@
 .col-12.col-sm-6.offer-picture {
     text-align: center;
 }
-
+// box-shadow: 3px 3px 7px 0px #59ae52;
 #img-offer {
     max-width: 90%;
     float: left;
     object-fit: cover;
+    border-radius: 2%;
 }
 
 @media screen and(max-width: 576px) {
@@ -72,6 +142,7 @@
 
 #description-offer h2 {
     text-align:center;
+    color: #59ae52;
 }
 
 .row.informations-supp {
@@ -130,6 +201,7 @@
 
 .offer-contact-info h3 {
     text-align: center;
+    color: #59ae52;
 }
 
 .list-offer-by-provider {
@@ -139,6 +211,8 @@
 .card.card-label-price {
     box-shadow: 5px 5px 5px black;
   }
+
+
 
 #provider-offer-card {
       justify-content: center;

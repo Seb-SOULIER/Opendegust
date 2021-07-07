@@ -59,8 +59,13 @@ class SearchController extends AbstractController
             $localization = $api->getResponse($url);
         }
 
+        $offers = $this->getDoctrine()
+            ->getRepository(Offer::class)
+            ->findAll();
+
         return $this->render('search/index.html.twig', [
             'localization' => $localization ?? [],
+            'offers' => $offers
         ]);
     }
 

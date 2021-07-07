@@ -20,7 +20,11 @@ class OfferType extends AbstractType
             ->add('description', DescriptionType::class)
             ->add('contact', ContactType::class)
             ->add('offerVariations', CollectionType::class, [
-                'entry_type' => OfferVariationType::class
+                'entry_type' => OfferVariationType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'by_reference' => false,
+                'allow_delete' => true,
                 ])
             ->add('language', ChoiceType::class, [
                 'multiple' => true,
