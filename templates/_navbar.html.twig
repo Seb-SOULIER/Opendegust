@@ -3,12 +3,55 @@
 		<img src="{{ asset('build/images/logo.png') }}" class="px-2 img-navbrand img-fluid min-vh-75" alt="logo open degust"></a>
 	<div class="connexion-nav-reponsive">
 		{% if is_granted('ROLE_USER') %}
-			{% if is_granted('ROLE_PROVIDER') %}
-				<a href="{{ path("provider_edit", {id: app.user.id}) }}" class="btn btn-outline-primary me-3">Mon compte</a>
-			{% elseif is_granted('ROLE_CUSTOMER') %}
-				<a href="{{ path("customer_edit", {id: app.user.id}) }}" class="btn btn-outline-primary me-3">Mon Compte</a>
-			{% endif %}
-			<a href="{{ path("app_logout") }}" class="btn btn-outline-primary me-3">Se Déconnecter</a>
+			<div class="btn-group">
+				<button type="button" class="btn btn-outline-primary me-3" data-bs-toggle="dropdown" aria-expanded="false">
+					{{ app.user.firstname }}
+				</button>
+				<ul class="dropdown-menu dropdown-menu-end">
+					<li>
+						{% if is_granted('ROLE_PROVIDER') %}
+							<a href="{{ path("provider_edit", {id: app.user.id}) }}" class="dropdown-item">Mon compte</a>
+						{% elseif is_granted('ROLE_CUSTOMER') %}
+							<a href="{{ path("customer_edit", {id: app.user.id}) }}" class="dropdown-item">Mon Compte</a>
+						{% endif %}
+					</li>
+					{% if is_granted('ROLE_PROVIDER') %}
+						<li>
+							<a href="{{ path("offer_index") }}" class="dropdown-item">Mes Offres</a>
+						</li>
+						<li>
+							<a href="{{ path("product_index") }}" class="dropdown-item">Mes Produits</a>
+						</li>
+					{% endif %}
+					{% if is_granted('ROLE_CUSTOMER') %}
+						<li>
+							<a href="{{ path("provider_edit", {id: app.user.id}) }}" class="dropdown-item">Mes réservations</a>
+						</li>
+						<li>
+							<a href="{{ path("provider_edit", {id: app.user.id}) }}" class="dropdown-item">Mes Favoris</a>
+						</li>
+					{% endif %}
+					{% if is_granted('ROLE_ADMIN') %}
+						<li>
+							<a href="{{ path("admin_index") }}" class="dropdown-item">Producteurs</a>
+						</li>
+						<li>
+							<a href="{{ path("offer_index") }}" class="dropdown-item">Offres</a>
+						</li>
+						<li>
+							<a href="{{ path("product_index") }}" class="dropdown-item">Produits</a>
+						</li>
+						<li>
+							<a href="{{ path("category_index") }}" class="dropdown-item">Categories</a>
+						</li>
+					{% endif %}
+					<li>
+						<a href="{{ path("app_logout") }}" class="dropdown-item" style="border-top: 2px solid">Se Déconnecter</a>
+					</li>
+				</ul>
+			</div>
+
+
 		{% else %}
 			<a href="{{ path("app_register_customer") }}" class="btn btn-outline-primary me-3">S'inscrire</a>
 			<a href="{{ path("app_login") }}" class="btn btn-outline-primary me-3">Se Connecter</a>
