@@ -2,19 +2,33 @@
 
 {% block title %}OpenSearch{% endblock %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+{% endblock %}
 {% block body %}
-
-    //map
-{#    <div  style="height: 150px;width:100%;#}
-{#  background-color: #333;#}
-{#position: fixed;z-index:1; top:0;">#}
-{#    </div>#}
-
-    //end map
+{#{{ dump(offers.1.contact.latitude) }}#}
+{#    {{ dump(offers.1.contact.longitude) }}#}
+    <div id="maCarte"></div>
+<br>
 <div class="overflow-auto">
 <div class="container">
     <div class="row">
     {% for offer in offers %}
+{#        {{ dump(offer.contact.longitude) }}#}
+{#        <div id="long{{ offer.id }}">{{ offer.contact.longitude }}</div>#}
+{#        <div id="lat{{ offer.id }}">{{ offer.contact.latitude }}</div>#}
+
         <div class="mb-3 col-sm-6" >
             <div class="card cardHover h-100">
             <div class=" h-100 row g-0">
@@ -48,7 +62,7 @@
                         <p class="mt-auto"> A partir de <b>{{ lowest_price }}€. </b><a type="button"  class="borderHover" data-bs-toggle="modal" data-bs-target="#modalDetail_{{ offer.id }}">
                             (Détail)</a>
                               </p>
-                        <a href="#" class="btnOffer btn btn-primary">réserver <i class="fas fa-shopping-cart"></i></a>
+                        <a href="{{ path('offer_show', {'id': offer.id}) }}" class="btnOffer btn btn-primary">réserver <i class="fas fa-shopping-cart"></i></a>
                         <p class="card-text"><small class="text-muted"></small></p>
                     </div>
                     <i class="positionBotright fas fa-star"></i>
@@ -65,9 +79,10 @@
                     <div class="modal-body">
                         <h6>Grille des tarifs</h6>
                         <ul>
-                            {% for offer_variation in offer.offerVariations %}
 
-                                <li class="d-flex justify-content-between"><span>Tarif {{ loop.index }}: </span>
+                            {% for offer_variation in offer.offerVariations %}
+{#                               {{ dump( offer_variation.priceVariation) }}#}
+                                <li class="d-flex justify-content-between"><span><b>Tarif {{ loop.index }}:</b> </span>
                                     <span><i class="far fa-clock"></i> <b>{{ offer_variation.duration|date("h:i") }}</b></span>
                                         <span><i class="fas fa-users"></i>{% if offer_variation.booking.totalPlaces is defined %}
                                             {% if offer_variation.capacity - offer_variation.booking.totalPlaces == 1 %}
@@ -80,15 +95,18 @@
                                         {% else %}
                                 <b>{{ offer_variation.capacity }}</b> places restantes </span>
                                     {% endif %}
-                                <span><i class="fas fa-ticket-alt"></i>  <b>{{ offer_variation.price }}€</b></span>
                         </li>
-                                <br>
-{#                                {% set data = offer_variation.priceVariation|json_decode() %}#}
-                        <hr>
+                        <li class="d-flex justify-content-end">
+                                {% for key, price_dif in offer_variation.priceVariation %}
+                                  <span class="ps-5"><i class="fas fa-ticket-alt"></i>   {{ key }}: <b>{{ price_dif }}</b>€  </span>
                                 {% endfor %}
+                        </li>
+                        <hr>
+                            {% endfor %}
                         </ul>
                         </div>
                     <div class="modal-footer">
+                        <a href="{{ path('offer_show', {'id': offer.id}) }}" class="btnOffer btn btn-primary">réserver <i class="fas fa-shopping-cart"></i></a>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                     </div>
@@ -102,4 +120,35 @@
     </div>
  </div>
     </div>
+    <script>
+        //On initialise la carte
+        var carte = L.map('maCarte').setView([45.7460663, -0.6300671], 11);
+
+        //On charge les "tuiles"
+        L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+            minZoom: 10,
+            maxZoom: 15,
+            attribution: '&copy; OpenStreetMap France | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(carte);
+
+        //on ajoute des marqueurs
+        var marqueur = L.marker([45.7460663, -0.6300671]).addTo(carte);
+
+        //création de sa popup
+        marqueur.bindPopup("<h4>Saintes</h4>");
+
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     document.getElementById('searchField').addEventListener('input', (event) => {
+        //         const search = event.target.value;
+        // fetch(`/search/coordinate`)
+        //     .then((response) => response.json())
+        //     .then((data) => {
+        //         console.log(data)
+        //         let list = '';
+        //         for (const item of data.features) {
+        //             list += `<li><a href="/search/${item.properties.label}">${item.properties.label}</a></li>`;
+        //         }
+        //         document.getElementById('autocomplete').innerHTML = list;
+        //     });
+    </script>
 {% endblock %}
