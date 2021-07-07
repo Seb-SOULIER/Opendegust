@@ -39,6 +39,7 @@ ul.autocomplete {
     li {
         a {
             text-shadow: none;
+            text-decoration: none;
         }
     }
 }
@@ -69,8 +70,11 @@ h2 {
 @media screen and (max-width: 768px) {
     .intro-home-info{
         display: block;
+        margin-right: 0;
+        margin-bottom: 20px;
     }
 }
+
 form.search-home {
     z-index: 1;
     position: absolute;
@@ -123,6 +127,7 @@ button.research {
 .logo-star {
     width: 50px;
     height: 20px;
+    text-align: center;
 }
 .fas.fa-star {
     font-size: xx-large;
@@ -134,6 +139,7 @@ button.research {
 .logo-validation {
     width: 50px;
     height: 20px;
+    text-align: center;
 }
 .fas.fa-check-circle {
     font-size: xx-large;
@@ -145,6 +151,7 @@ button.research {
 .logo-experiences {
     width: 50px;
     height: 20px;
+    text-align: center;
 }
 .fas.fa-bolt {
     font-size: xx-large;
@@ -154,8 +161,9 @@ button.research {
     display: flex;
 }
 .logo-partenaires {
-    width:40px;
+    width:50px;
     height: 20px;
+    text-align: center;
 }
 .fas.fa-wine-glass-alt {
     font-size: xx-large;
@@ -166,6 +174,7 @@ button.research {
     border:5px solid rgb(187, 180, 180);
     margin-bottom: 100px;
 }
+
 
 //premiere partie terminée
 
