@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Offer;
+use App\Repository\ContactRepository;
 use App\Service\Api;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
