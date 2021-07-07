@@ -18,10 +18,9 @@
 			</div>
 			<form id="searchForm" class="search-home" method="get" action="{{ path('search_localization') }}">
 				<input class="write" type="search" id="searchField" name="q" class="search" autocomplete="off" placeholder="recherchez votre prochaine expérience" style="outline:none">
+				<ul class="shadow autocomplete visually-hidden" style="color:white" id="autocomplete"></ul>
 
-				<ul class="shadow autocomplete" style="color:white" id="autocomplete"></ul>
-				<input id="search-btn" type="submit" value="Rechercher"/>
-
+				<button class="research">Rechercher</button>
 			</form>
 		</div>
 	</div>
@@ -421,7 +420,7 @@
 				            }
 				            document.getElementById('autocomplete').innerHTML = list;
 				        })
-				        
+
 				});</script> #}
 
 {% endblock %}

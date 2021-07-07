@@ -6,11 +6,14 @@
                 <div class="accordion" id="accordionPanelsStayOpenExample">
                     <div class="account form-control my-3 py-3 accordion-item">
                         <h1 class="accordion-header" id="panelsStayOpen-headingOne">
-                            <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                            <button class="accordion-button text-center" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                    aria-controls="panelsStayOpen-collapseOne">
                                 <h2 class="my-3 text-primary">Offre</h2>
                             </button>
                         </h1>
-                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                             aria-labelledby="panelsStayOpen-headingOne">
                             <div class="account__content accordion-body">
                                 <div>
                                     {{ form_errors(form.name) }}
@@ -46,11 +49,14 @@
                     </div>
                     <div class="favourites form-control py-3 my-3 accordion-item">
                         <h1 class="accordion-header" id="panelsStayOpen-headingTwo">
-                            <button class="accordion-button collapsed text-center" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                            <button class="accordion-button collapsed text-center" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo"
+                                    aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
                                 <h2 class="my-3 text-primary">Domaine</h2>
                             </button>
                         </h1>
-                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                             aria-labelledby="panelsStayOpen-headingTwo">
                             <div class="favourites__content accordion-body">
                                 <div>
                                     {{ form_errors(form.domainName) }}
@@ -99,46 +105,61 @@
                     </div>
                     <div class="contact form-control py-3 my-3 accordion-item">
                         <h1 class="accordion-header" id="panelsStayOpen-headingThree">
-                            <button class="accordion-button collapsed text-center" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                            <button class="accordion-button collapsed text-center" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree"
+                                    aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                                 <h2 class="my-3 text-primary">Variations</h2>
                             </button>
                         </h1>
-                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                             aria-labelledby="panelsStayOpen-headingThree">
                             <div class="contact__content accordion-body">
                                 <div class="row g-3 d-md-flex justify-content-between">
-
+                                    <ul class="offerVariations" data-prototype="{{ form_widget(form.offerVariations.vars.prototype)|e('html_attr') }}">
                                         {% for variation in form.offerVariations %}
-                                    <div class="form-control mb-3">
-                                            <h3>Variation {{ loop.index }}</h3>
-                                            <div class="col-md-6">
-                                                {{ form_label(variation.duration) }}
-                                                {{ form_widget(variation.duration) }}
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    {{ form_label(variation.price) }}
-                                                    {{ form_widget(variation.price) }}
-                                                </div>
-                                                <div class="col-md-3">
-                                                    {{ form_label(variation.currentVat) }}
-                                                    {{ form_widget(variation.currentVat) }}
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                {{ form_label(variation.capacity) }}
-                                                {{ form_widget(variation.capacity) }}
-                                            </div>
-                                            <div>
-                                                {% for calendar in variation.calendars %}
-                                                    <div class="col-md-8">
-                                                        {{ form_label(calendar.startAt) }}
-                                                        {{ form_widget(calendar.startAt) }}
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                    </div>
-                                        {% endfor %}
+                                        <li>
+                                            <div class="form-control mb-3">
+                                                <h3>Variation {{ loop.index }}</h3>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div>
+                                                            {{ form_label(variation.duration) }}
+                                                            {{ form_widget(variation.duration) }}
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                {{ form_label(variation.price) }}
+                                                                {{ form_widget(variation.price) }}
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                {{ form_label(variation.currentVat) }}
+                                                                {{ form_widget(variation.currentVat) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            {{ form_label(variation.capacity) }}
+                                                            {{ form_widget(variation.capacity) }}
+                                                        </div>
+                                                        <div>
 
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        {% for calendar in variation.calendars %}
+
+                                                            {{ form_label(calendar.startAt) }}
+                                                            {{ form_widget(calendar.startAt) }}
+
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                    <button type="button" class="add_item_link" data-collection-holder-class="offerVariations">Add a
+                                        variation
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -147,12 +168,10 @@
             </div>
         </div>
 
-            <button class="btn btn-primary mt-3 col-12 col-md-6 text-light">{{ button_label|default('Valider') }}</button>
-            {{ form_end(form) }}
-            <div class="d-flex justify-content-between my-3">
-                <a href="{{ path('home') }}">Retour à l'accueil</a>
-            </div>
-
+        <button class="btn btn-primary mt-3 col-12 col-md-6 text-light">{{ button_label|default('Valider') }}</button>
+        {{ form_end(form) }}
+        <div class="d-flex justify-content-between my-3">
+            <a href="{{ path('home') }}">Retour à l'accueil</a>
+        </div>
     </div>
 {% endblock %}
-
