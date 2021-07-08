@@ -47,7 +47,7 @@ class CustomerController extends AbstractController
             $customer->setPassword(
                 $this->passwordEncoder->encodePassword(
                     $customer,
-                    $formPw->get('plainPassword')->getData()
+                    $formPw->get('password')->getData()
                 )
             );
             $this->addFlash('success', 'Mot de passe modifié avec succès !');

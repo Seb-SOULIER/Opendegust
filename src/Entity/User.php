@@ -44,7 +44,7 @@ abstract class User implements UserInterface
      */
     private string $password;
 
-    private string $plainPassword;
+//    private string $plainPassword;
 
     /**
      * @ORM\Column(type="datetime")
@@ -225,19 +225,19 @@ abstract class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getPlainPassword(): string
-    {
-        return $this->plainPassword;
-    }
-
-    /**
-     * @param string $plainPassword
-     */
-    public function setPlainPassword(string $plainPassword): void
-    {
-        $this->plainPassword = $plainPassword;
-    }
+//    /**
+//     * @return string
+//     */
+//    public function getPlainPassword(): string
+//    {
+//        return $this->plainPassword;
+//    }
+//
+//    /**
+//     * @param string $plainPassword
+//     */
+//    public function setPlainPassword(string $plainPassword): void
+//    {
+//        $this->plainPassword = $plainPassword;
+//    }
 }
