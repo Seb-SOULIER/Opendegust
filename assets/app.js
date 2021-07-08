@@ -10,6 +10,8 @@ import './styles/app.scss';
 
 import './search';
 
+import './offerVariationInfo';
+
 // start the Stimulus application
 import './bootstrap';
 
@@ -17,7 +19,3 @@ require('bootstrap');
 const $ = require('jquery');
 
 window.bootstrap = require('bootstrap');
-
-
-
-

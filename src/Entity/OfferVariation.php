@@ -60,6 +60,11 @@ class OfferVariation
      */
     private Collection $calendars;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private ?int $availablePlaces;
+
     public function __construct()
     {
         $this->calendars = new ArrayCollection();
@@ -70,9 +75,9 @@ class OfferVariation
         return $this->id;
     }
 
-    public function getPriceVariation(): ?string
+    public function getPriceVariation(): ?array
     {
-        return $this->priceVariation ? json_decode($this->priceVariation) : null;
+        return $this->priceVariation ? json_decode($this->priceVariation, true) : null;
     }
 
     public function setPriceVariation(?string $priceVariation): self
@@ -190,6 +195,18 @@ class OfferVariation
                 $calendar->setOfferVariation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAvailablePlaces(): ?int
+    {
+        return $this->availablePlaces;
+    }
+
+    public function setAvailablePlaces(?int $availablePlaces): self
+    {
+        $this->availablePlaces = $availablePlaces;
 
         return $this;
     }
