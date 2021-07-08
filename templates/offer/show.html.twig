@@ -50,11 +50,19 @@
 			<div class="categories-affichage d-flex">
 				{% for value in offer.categories %}
 					<p class="rounded p-2 bg-secondary text-center" style="width: 100%; color:white">{{ value.name }}</p>
-					{% if not loop.last %},
+					{% if not loop.last %}
 					{% endif %}
 				{% endfor %}
 			</div>
 
+			<div class="lang-affichage d-flex">
+				{% for value in offer.language %}
+					<p style="border-radius:10%; margin-left: 15px;">
+						{{ value }}
+					</p>
+					{% if not loop.last %}{% endif %}
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 
@@ -173,22 +181,18 @@
 			</div>
 		</div>
 	</div>
+
 	<a href="{{ path('offer_index') }}">
 		back to list</a>
 	<a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>
 {% endblock %} #}
 
 
-
-
-
-
-
-
-
-{# VERSION POUR LE CLIENT EN DESSOUS (Pas la bonne version!!!) #}{% block title %}
+{# VERSION POUR LE CLIENT EN DESSOUS (Pas la bonne version!!!) #}
+	{% block title %}
 Offer
 {% endblock %}
+
 	{% block body %}
 		<div class="title-offer-domain"> <h1 class="text-center">Le Domaine du Chêne</h1>
 	</div>
@@ -223,115 +227,117 @@ Offer
 			<div class="col-12 col-sm-9" id="description-offer">
 				<h2>Dégustation de Vins</h2>
 				<p class="longue-description">
-					<span>La visite de notre Domaine vous permettra de découvrir notre Maison et notre savoir faire. En partant du vignoble et en terminant dans nos chais de vieillissement vous découvrirez le fil de l’élaboration de nos « Pineau des Charentes » et « Cognac » d’exception.
-										Vous découvrirez la richesse d’un terroir et l’histoire que notre Domaine porte à travers les générations.</span><br>
+					<span>La visite de notre Domaine vous permettra de découvrir notre Maison et notre savoir faire. En partant du vignoble et en terminant dans nos chais de vieillissement vous découvrirez le fil de l’élaboration de nos « Pineau des Charentes » et « Cognac » d’exception.Vous découvrirez la richesse d’un terroir et l’histoire que notre Domaine porte à travers les générations.</span><br>
 
 					<span>
 						Visites sur réservation uniquement.</span>
 				</p>
-			</span>
-		</p>
 
-		<div>
-			<div class="offer-contact-info">
-				<h3>Informations Supplémentaires</h3>
-			</div>
+				<div class="offer-contact-info">
+					<h3>Informations Supplémentaires</h3>
+				</div>
 
-			<div class="responsive-table-line">
-				<table class="table table-bordered table-condensed table-body-center">
-					<thead>
-						<tr>
-							<th>Adresse</th>
-							<th>Code Postal</th>
-							<th>Ville</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td data-title="Adresse">20 rue des Chênes</td>
-							<td data-title="Code Postal">17800</td>
-							<td data-title="Ville">Saint Palais de Phiolin</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+				<div class="responsive-table-line">
+					<table class="table table-bordered table-condensed table-body-center">
+						<thead>
+							<tr>
+								<th>Adresse</th>
+								<th>Code Postal</th>
+								<th>Ville</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td data-title="Adresse">20 rue des Chênes</td>
+								<td data-title="Code Postal">17800</td>
+								<td data-title="Ville">Saint Palais de Phiolin</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
-			<div class="responsive-table-line">
-				<table class="table table-bordered table-condensed table-body-center">
-					<thead>
-						<tr>
-							<th>Téléphone</th>
-							<th>Portable</th>
-							<th>Site Internet</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td data-title="Téléphone">
-								05 46 70 90 53</td>
-							<td data-title="Portable">
-								06 14 90 47 21</td>
-							<td data-title="Site Internet">www.ledomaineduchene.fr</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<div class="lang-affichage d-flex">
-			{% for value in offer.language %}
-				<p>
-					{{ value }}</p>
-				{% if not loop.last %}{% endif %}
-			{% endfor %}
-		</div>
-	</div>
+				<div class="responsive-table-line">
+					<table class="table table-bordered table-condensed table-body-center">
+						<thead>
+							<tr>
+								<th>Téléphone</th>
+								<th>Portable</th>
+								<th>Site Internet</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td data-title="Téléphone">
+									05 46 70 90 53</td>
+								<td data-title="Portable">
+									06 14 90 47 21</td>
+								<td data-title="Site Internet">www.ledomaineduchene.fr</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
-	<div class="col-12 col-sm-3">
-		<form class="row g-3">
-			<div class="col-md-6">
-				<label for="inputEmail4" class="form-label">Email</label>
-				<input type="email" class="form-control" id="inputEmail4">
-			</div>
-			<div class="col-md-6">
-				<label for="inputPassword4" class="form-label">Password</label>
-				<input type="password" class="form-control" id="inputPassword4">
-			</div>
-			<div class="col-12">
-				<label for="inputAddress" class="form-label">Address</label>
-				<input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-			</div>
-			<div class="col-12">
-				<label for="inputAddress2" class="form-label">Address 2</label>
-				<input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-			</div>
-			<div class="col-md-6">
-				<label for="inputCity" class="form-label">City</label>
-				<input type="text" class="form-control" id="inputCity">
-			</div>
-			<div class="col-md-4">
-				<label for="inputState" class="form-label">State</label>
-				<select id="inputState" class="form-select">
-					<option selected>Choose...</option>
-					<option>...</option>
-				</select>
-			</div>
-			<div class="col-md-2">
-				<label for="inputZip" class="form-label">Zip</label>
-				<input type="text" class="form-control" id="inputZip">
-			</div>
-			<div class="col-12">
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" id="gridCheck">
-					<label class="form-check-label" for="gridCheck">
-						Check me out
-					</label>
+				<div class="lang-affichage d-flex">
+					{% for value in offer.language %}
+							<p>
+							{{ value }}</p>
+					{% if not loop.last %}{% endif %}
+					{% endfor %}
 				</div>
 			</div>
-			<div class="col-12">
-				<button type="submit" class="btn btn-primary">Sign in</button>
-			</div>
-		</form>
-	</div>
+
+			<form class="col-3">
+					<div>
+						<label for="calendar">
+							{% if calendarsCount <= 1 %}
+								<h5>Date disponible pour cette activité :</h5>
+							{% else %}
+								<h5>Dates disponibles pour cette activité :</h5>
+							{% endif %}
+						</label>
+						<select id="calendar" class="form-select shadow" name="q" style="height: 50px;">
+							{% for offer_variation in offerVariations %}
+								{% for calendar in offer_variation.calendars %}
+									<option value="{{ calendar.id }}">{{ calendar.startAt|date }}</option>
+								{% endfor %}
+							{% endfor %}
+						</select>
+					</div>
+			</form>
+		</div>
+
+	{#        <div class="d-flex row justify-content-center">#}
+{#                {{ form_start(form, {'attr': {'class': 'col-11 col-md-4'}}) }}#}
+	{#                <div class="d-flex flex-column my-3 form-control shadow">#}
+	{#                    <div class="form-control mt-3 shadow-sm">#}
+	{#						<p><strong>Tarifs :</strong></p>#}
+	{#						<p>place adulte : <span id="adultPrice">{{ offerVariation.priceVariation[0] }}</span> €</p>#}
+	{#						<p>place enfant : <span id="childPrice">{{ offerVariation.priceVariation[1] }}</span> €</p>#}
+	{#                        <i class="fas fa-users me-3"></i>#}
+	{#						{{ form_label(form.adultPlaces) }}#}
+	{#                        {{ form_widget(form.adultPlaces, {'attr': {'id': 'adultPlaces'}}) }}#}
+	{#                        <i class="fas fa-users mt-3 me-3"></i>#}
+	{#						{{ form_label(form.childPlaces) }}#}
+	{#                        {{ form_widget(form.childPlaces, {'attr': {'id': 'childPlaces'}}) }}#}
+	{#                        <p class="text-end mt-3"><strong>Total : <span id="price">230,00</span> €</strong></p>#}
+	{#                    </div>#}
+
+	{#                            <div class="d-flex align-items-center">#}
+	{#                                <img class="me-3" src="{{ asset("build/images/calendar-icon_34471.png") }}" alt="calendar" width="10%">Choisissez une date<i class="fas fa-chevron-down align-self-end align-self-center"></i>#}
+	{#                            </div>#}
+
+	{#                    <input class="w-60 btn btn-primary align-self-end text-light my-3" type="submit" value="Demander la réservation">#}
+	{#                </div>#}
+	{#                {{ form_end(form) }}#}
+	{#        </div>#}
+
+	{#        <a href="{{ path('offer_index') }}">back to list</a>#}
+
+	{#        <a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>#}
+
+	{#        {{ include('offer/_delete_form.html.twig') }}#}
+	{#    </div>#}
+
 </div></div><div class="container-fluid">
 <div class="list-offer-by-provider">
 	<h2 class="my-3 text-center">Nos Produits</h2>

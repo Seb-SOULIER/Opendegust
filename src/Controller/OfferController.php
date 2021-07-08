@@ -2,25 +2,29 @@
 
 namespace App\Controller;
 
+use App\Entity\Booking;
 use App\Entity\Offer;
 use App\Entity\OfferVariation;
+use App\Form\BookingType;
 use App\Form\OfferType;
 use App\Form\OfferVariationType;
+use App\Repository\CalendarRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\OfferRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/offer")
+ * @Route("/offer", name="offer")
  */
 class OfferController extends AbstractController
 {
     /**
-     * @Route("/", name="offer_index", methods={"GET"})
+     * @Route("/", name="_index", methods={"GET"})
      */
     public function index(OfferRepository $offerRepository): Response
     {
@@ -30,7 +34,7 @@ class OfferController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="offer_new", methods={"GET","POST"})
+     * @Route("/new", name="_new", methods={"GET","POST"})
      */
     public function new(Request $request, CategoryRepository $categoryRepository): Response
     {
@@ -54,18 +58,63 @@ class OfferController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="offer_show", methods={"GET"})
+     * @Route("/{id<\d+>}", name="_show", methods={"GET"})
      */
-    public function show(Offer $offer, ProductRepository $productRepository): Response
+    public function show(Request $request, Offer $offer, ProductRepository $productRepository): Response
     {
+        $booking = new Booking();
+//        $capacity = $offerVariation->getCapacity() - ($adultPlaces + $childPlaces);
+        $offerVariations = $offer->getOfferVariations();
+        $form = $this->createForm(BookingType::class, $booking);
+        $form->handleRequest($request);
+        $calendarsCount = 0;
+        if (null !== $offerVariations) {
+            foreach ($offerVariations as $offerVariation) {
+                $calendarsCount += count($offerVariation->getCalendars());
+            }
+        }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+//            $customer = $this->getUser();
+
+//            $adultPlaces = $request->get('adultPlaces');
+//            $childPlaces = $request->get('childPlaces');
+
+//            $booking->setTotalPrice(
+//                ($adultPlaces * $offerVariation->getPriceVariation()[0])
+//                + ($childPlaces * $offerVariation->getPriceVariation()[1])
+//            );
+//            $booking->setTotalPlaces($adultPlaces + $childPlaces);
+//            $booking->setPlaces(json_encode([
+//                'adultes' => $request->get('adultPlaces'),
+//                'enfants' => $request->get('childPlaces')]));
+//            $booking->setCustomer($customer);
+//            $booking->setCreatedAt(new \DateTime());
+//            $booking->setOfferVariation($offerVariation);
+//            $booking->setVat($offerVariation->getVat());
+//            $booking->setPriceVariationBook(json_encode([
+//                'adultes' => $offerVariation->getPriceVariation()[0],
+//                'enfants' => $offerVariation->getPriceVariation()[1],
+//            ]));
+
+            $entityManager->persist($booking);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home');
+        }
+
         return $this->render('offer/show.html.twig', [
             'offer' => $offer,
-            'products' => $productRepository ->findByProvider($offer -> getProvider()),
+            'products' => $productRepository->findByProvider($offer -> getProvider()),
+            'offerVariations' => $offerVariations,
+            'calendarsCount' => $calendarsCount,
+            'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="offer_edit", methods={"GET","POST"})
+     * @Route("/{id<\d+>}/edit", name="_edit", methods={"GET","POST"})
      */
     public function edit(
         Request $request,
@@ -96,7 +145,7 @@ class OfferController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="offer_delete", methods={"POST"})
+     * @Route("/{id<\d+>}", name="_delete", methods={"POST"})
      */
     public function delete(Request $request, Offer $offer): Response
     {
@@ -107,5 +156,20 @@ class OfferController extends AbstractController
         }
 
         return $this->redirectToRoute('offer_index');
+    }
+
+    /**
+     * @Route("/offer-variation-info", name="_variation_info", methods={"GET"}, priority="1")
+     */
+    public function offerVariationInfo(Request $request, CalendarRepository $calendarRepository): JsonResponse
+    {
+        $query = $request->query->get('q');
+        if (null !== $query) {
+            $calendar = $calendarRepository->findOneBy(['id' => $query]);
+            if (null !== $calendar) {
+                $offerVariation = $calendar->getOfferVariation();
+            }
+        }
+        return $this->json($offerVariation ?? []);
     }
 }
