@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 links.forEach((elem) => {
                     elem.addEventListener('click', (e) => {
                         e.preventDefault();
-                        const result = event.target.innerText;
+                        const result = e.target.innerText;
                         document.getElementById('searchField').value = result;
                     });
                 });
