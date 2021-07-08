@@ -13,7 +13,7 @@ class ProviderPwType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('plainPassword', RepeatedType::class, [
+            ->add('password', RepeatedType::class, [
                 'type' => \Symfony\Component\Form\Extension\Core\Type\PasswordType::class,
                 'invalid_message' => "Le mot de passe n'est pas le même",
                 'required' => true,
