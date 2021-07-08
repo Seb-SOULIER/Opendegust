@@ -41,4 +41,7 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [ 264.16, 302 ], mode: outbound, allow_upscale: true }
-
+        product_thumb_default:
+            quality: 75
+            filters:
+                thumbnail: { size: [100, 250 ], mode: outbound, allow_upscale: true }
