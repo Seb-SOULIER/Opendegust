@@ -7,9 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 let list = '';
                 // eslint-disable-next-line no-restricted-syntax
                 for (const item of data.features) {
-                    list += `<li><a href="/search/${item.properties.label}">${item.properties.label}</a></li>`;
+                    list += `<li><a class="search-link" href="/search/${item.properties.label}">${item.properties.label}</a></li>`;
                 }
                 document.getElementById('autocomplete').innerHTML = list;
+                const links = document.querySelectorAll('.search-link');
+                links.forEach((elem) => {
+                    elem.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const result = e.target.innerText;
+                        document.getElementById('searchField').value = result;
+                    });
+                });
             });
     });
     document.getElementById('searchField').addEventListener('keyup', () => {

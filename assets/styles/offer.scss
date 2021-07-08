@@ -77,10 +77,11 @@
     text-align: center;
 }
 #img-domaine {
-    max-width: 90%;
+    max-width: 70%;
     float: right;
     object-fit: cover;
     border-radius: 2%;
+    box-shadow: 3px 3px 7px 0px #59ae52;
 }
 @media screen and(max-width: 576px) {
     #img-domaine {
@@ -100,12 +101,13 @@
 .col-12.col-sm-6.offer-picture {
     text-align: center;
 }
-// box-shadow: 3px 3px 7px 0px #59ae52;
+
 #img-offer {
-    max-width: 90%;
+    max-width: 70%;
     float: left;
     object-fit: cover;
     border-radius: 2%;
+    box-shadow: 3px 3px 7px 0px #59ae52;
 }
 
 @media screen and(max-width: 576px) {
@@ -218,7 +220,15 @@
       justify-content: center;
   }
 
-h1.my-3.text-center {
-    color: #59ae52;
-    text-shadow: 3px 3px black;
+h2.my-3.text-center {
+    color: #60de55;
+}
+
+.lang-affichage.d-flex {
+    flex-wrap: wrap;
+    justify-content:center;
+    p {
+        border-radius:10%;
+        margin-left: 15px;
+    }
 }

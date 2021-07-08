@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Offer
+{# {% block title %}Offer
 {% endblock %}
 {% block body %}
 	<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
@@ -28,14 +28,18 @@
 	<div class="container-fluid">
 		<div class="row offer-domaine">
 			<div
-				class="col-12 col-sm-6 domaine-picture">
-				{# <img src="{{ offer.picture }}" class="img-fluid" alt="{{ offer.name }}"> #}
-				<img src="https://images.charentelibre.fr/2016/08/23/57bb5ca47971bb604a2c5a78/golden/1000x625/lactuel-proprietaire.jpg" id="img-domaine" class="img-fluid" style="min-height: 100%" alt="{{ offer.name }}">
+				class="col-12 col-sm-6 domaine-picture"> #}
+
+{# <img src="{{ offer.picture }}" class="img-fluid" alt="{{ offer.name }}"> #}
+
+{# <img src="https://images.charentelibre.fr/2016/08/23/57bb5ca47971bb604a2c5a78/golden/1000x625/lactuel-proprietaire.jpg" id="img-domaine" class="img-fluid" style="min-height: 100%" alt="{{ offer.name }}">
 			</div>
 			<div
-				class="col-12 col-sm-6 offer-picture">
-				{# <img src="{{ offer.picture }}" class="img-fluid" alt="{{ offer.name }}"> #}
-				<img src="https://www.probierfass.de/media/image/5a/77/73/le54uu54u54er.jpg" id="img-offer" class="img-fluid" style="min-height: 100%" alt="{{ offer.name }}">
+				class="col-12 col-sm-6 offer-picture"> #}
+
+{# <img src="{{ offer.picture }}" class="img-fluid" alt="{{ offer.name }}"> #}
+
+{# <img src="https://www.probierfass.de/media/image/5a/77/73/le54uu54u54er.jpg" id="img-offer" class="img-fluid" style="min-height: 100%" alt="{{ offer.name }}">
 			</div>
 		</div>
 	</div>
@@ -112,9 +116,9 @@
 						</table>
 					</div>
 				</div>
-				<div class="lang-affichage d-flex" style="flex-wrap: wrap; justify-content:center">
+				<div class="lang-affichage d-flex">
 					{% for value in offer.language %}
-						<p style="border-radius:10%; margin-left: 15px">
+						<p>
 							{{ value }}</p>
 						{% if not loop.last %}{% endif %}
 					{% endfor %}
@@ -181,57 +185,164 @@
 	<a href="{{ path('offer_index') }}">
 		back to list</a>
 	<a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>
+{% endblock %} #}
 
-	<form>
-        <div class="d-flex row justify-content-center">
-			<div class="col-4">
-				<label for="calendar">
-					{% if calendarsCount <= 1 %}
-						<h5>Date disponible pour cette activité :</h5>
-					{% else %}
-						<h5>Dates disponibles pour cette activité :</h5>
-					{% endif %}
-				</label>
-				<select id="calendar" class="form-select shadow" name="q" style="height: 50px;">
-					{% for offer_variation in offerVariations %}
-						{% for calendar in offer_variation.calendars %}
-							<option value="{{ calendar.id }}">{{ calendar.startAt|date }}</option>
-						{% endfor %}
-					{% endfor %}
-				</select>
-			</div>
-        </div>
-	</form>
 
-{#        <div class="d-flex row justify-content-center">#}
-{#                {{ form_start(form, {'attr': {'class': 'col-11 col-md-4'}}) }}#}
-{#                <div class="d-flex flex-column my-3 form-control shadow">#}
-{#                    <div class="form-control mt-3 shadow-sm">#}
-{#						<p><strong>Tarifs :</strong></p>#}
-{#						<p>place adulte : <span id="adultPrice">{{ offerVariation.priceVariation[0] }}</span> €</p>#}
-{#						<p>place enfant : <span id="childPrice">{{ offerVariation.priceVariation[1] }}</span> €</p>#}
-{#                        <i class="fas fa-users me-3"></i>#}
-{#						{{ form_label(form.adultPlaces) }}#}
-{#                        {{ form_widget(form.adultPlaces, {'attr': {'id': 'adultPlaces'}}) }}#}
-{#                        <i class="fas fa-users mt-3 me-3"></i>#}
-{#						{{ form_label(form.childPlaces) }}#}
-{#                        {{ form_widget(form.childPlaces, {'attr': {'id': 'childPlaces'}}) }}#}
-{#                        <p class="text-end mt-3"><strong>Total : <span id="price">230,00</span> €</strong></p>#}
-{#                    </div>#}
-
-{#                            <div class="d-flex align-items-center">#}
-{#                                <img class="me-3" src="{{ asset("build/images/calendar-icon_34471.png") }}" alt="calendar" width="10%">Choisissez une date<i class="fas fa-chevron-down align-self-end align-self-center"></i>#}
-{#                            </div>#}
-
-{#                    <input class="w-60 btn btn-primary align-self-end text-light my-3" type="submit" value="Demander la réservation">#}
-{#                </div>#}
-{#                {{ form_end(form) }}#}
-{#        </div>#}
-
-{#        <a href="{{ path('offer_index') }}">back to list</a>#}
-
-{#        <a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>#}
-
-{#        {{ include('offer/_delete_form.html.twig') }}#}
-{#    </div>#}
+{# VERSION POUR LE CLIENT EN DESSOUS (Pas la bonne version!!!) #}
+	{% block title %}
+Offer
 {% endblock %}
+
+	{% block body %}
+		<div class="title-offer-domain"> <h1 class="text-center">Le Domaine du Chêne</h1>
+	</div>
+	<div class="container-fluid">
+		<div class="row offer-domaine">
+			<div
+				class="col-12 col-sm-6 domaine-picture">
+				{# <img src="{{ offer.picture }}" class="img-fluid" alt="{{ offer.name }}"> #}
+				<img src="https://images.charentelibre.fr/2016/08/23/57bb5ca47971bb604a2c5a78/golden/1000x625/lactuel-proprietaire.jpg" id="img-domaine" class="img-fluid" style="min-height: 100%" alt="{{ offer.name }}">
+			</div>
+			<div
+				class="col-12 col-sm-6 offer-picture">
+				{# <img src="{{ offer.picture }}" class="img-fluid" alt="{{ offer.name }}"> #}
+				<img src="https://www.probierfass.de/media/image/5a/77/73/le54uu54u54er.jpg" id="img-offer" class="img-fluid" style="min-height: 100%" alt="{{ offer.name }}">
+			</div>
+		</div>
+	</div>
+
+	<br>
+	<div class="container">
+		<div class="redirection-categ-lang d-flex">
+			<div class="categories-affichage d-flex">
+				<p class="rounded p-2 bg-secondary text-center" style="width: 100%; color:white">Dégustation</p>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="container">
+		<div class="row informations-supp">
+			<div class="col-12 col-sm-9" id="description-offer">
+				<h2>Dégustation de Vins</h2>
+				<p class="longue-description">
+					<span>La visite de notre Domaine vous permettra de découvrir notre Maison et notre savoir faire. En partant du vignoble et en terminant dans nos chais de vieillissement vous découvrirez le fil de l’élaboration de nos « Pineau des Charentes » et « Cognac » d’exception.Vous découvrirez la richesse d’un terroir et l’histoire que notre Domaine porte à travers les générations.</span><br>
+
+					<span>
+						Visites sur réservation uniquement.</span>
+				</p>
+
+				<div class="offer-contact-info">
+					<h3>Informations Supplémentaires</h3>
+				</div>
+
+				<div class="responsive-table-line">
+					<table class="table table-bordered table-condensed table-body-center">
+						<thead>
+							<tr>
+								<th>Adresse</th>
+								<th>Code Postal</th>
+								<th>Ville</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td data-title="Adresse">20 rue des Chênes</td>
+								<td data-title="Code Postal">17800</td>
+								<td data-title="Ville">Saint Palais de Phiolin</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="responsive-table-line">
+					<table class="table table-bordered table-condensed table-body-center">
+						<thead>
+							<tr>
+								<th>Téléphone</th>
+								<th>Portable</th>
+								<th>Site Internet</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td data-title="Téléphone">
+									05 46 70 90 53</td>
+								<td data-title="Portable">
+									06 14 90 47 21</td>
+								<td data-title="Site Internet">www.ledomaineduchene.fr</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="lang-affichage d-flex">
+					{% for value in offer.language %}
+							<p>
+							{{ value }}</p>
+					{% if not loop.last %}{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+
+			<form class="col-3">
+					<div>
+						<label for="calendar">
+							{% if calendarsCount <= 1 %}
+								<h5>Date disponible pour cette activité :</h5>
+							{% else %}
+								<h5>Dates disponibles pour cette activité :</h5>
+							{% endif %}
+						</label>
+						<select id="calendar" class="form-select shadow" name="q" style="height: 50px;">
+							{% for offer_variation in offerVariations %}
+								{% for calendar in offer_variation.calendars %}
+									<option value="{{ calendar.id }}">{{ calendar.startAt|date }}</option>
+								{% endfor %}
+							{% endfor %}
+						</select>
+					</div>
+			</form>
+		</div>
+
+	{#        <div class="d-flex row justify-content-center">#}
+{#                {{ form_start(form, {'attr': {'class': 'col-11 col-md-4'}}) }}#}
+	{#                <div class="d-flex flex-column my-3 form-control shadow">#}
+	{#                    <div class="form-control mt-3 shadow-sm">#}
+	{#						<p><strong>Tarifs :</strong></p>#}
+	{#						<p>place adulte : <span id="adultPrice">{{ offerVariation.priceVariation[0] }}</span> €</p>#}
+	{#						<p>place enfant : <span id="childPrice">{{ offerVariation.priceVariation[1] }}</span> €</p>#}
+	{#                        <i class="fas fa-users me-3"></i>#}
+	{#						{{ form_label(form.adultPlaces) }}#}
+	{#                        {{ form_widget(form.adultPlaces, {'attr': {'id': 'adultPlaces'}}) }}#}
+	{#                        <i class="fas fa-users mt-3 me-3"></i>#}
+	{#						{{ form_label(form.childPlaces) }}#}
+	{#                        {{ form_widget(form.childPlaces, {'attr': {'id': 'childPlaces'}}) }}#}
+	{#                        <p class="text-end mt-3"><strong>Total : <span id="price">230,00</span> €</strong></p>#}
+	{#                    </div>#}
+
+	{#                            <div class="d-flex align-items-center">#}
+	{#                                <img class="me-3" src="{{ asset("build/images/calendar-icon_34471.png") }}" alt="calendar" width="10%">Choisissez une date<i class="fas fa-chevron-down align-self-end align-self-center"></i>#}
+	{#                            </div>#}
+
+	{#                    <input class="w-60 btn btn-primary align-self-end text-light my-3" type="submit" value="Demander la réservation">#}
+	{#                </div>#}
+	{#                {{ form_end(form) }}#}
+	{#        </div>#}
+
+	{#        <a href="{{ path('offer_index') }}">back to list</a>#}
+
+	{#        <a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>#}
+
+	{#        {{ include('offer/_delete_form.html.twig') }}#}
+	{#    </div>#}
+
+</div></div><div class="container-fluid">
+<div class="list-offer-by-provider">
+	<h2 class="my-3 text-center">Nos Produits</h2>
+	<div class="row row-cols-1 row-cols-md-5 g-5" id="provider-offer-card">
+		{% include "product/products.html.twig" %}
+	</div>
+</div></div><a href="{{ path('offer_index') }}">
+back to list</a><a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>{% endblock %}
