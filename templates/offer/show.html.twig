@@ -46,11 +46,19 @@
 			<div class="categories-affichage d-flex">
 				{% for value in offer.categories %}
 					<p class="rounded p-2 bg-secondary text-center" style="width: 100%; color:white">{{ value.name }}</p>
-					{% if not loop.last %},
+					{% if not loop.last %}
 					{% endif %}
 				{% endfor %}
 			</div>
 
+			<div class="lang-affichage d-flex">
+				{% for value in offer.language %}
+					<p style="border-radius:10%; margin-left: 15px;">
+						{{ value }}
+					</p>
+					{% if not loop.last %}{% endif %}
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 
@@ -169,7 +177,61 @@
 			</div>
 		</div>
 	</div>
+
 	<a href="{{ path('offer_index') }}">
 		back to list</a>
 	<a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>
+
+	<form>
+        <div class="d-flex row justify-content-center">
+			<div class="col-4">
+				<label for="calendar">
+					{% if calendarsCount <= 1 %}
+						<h5>Date disponible pour cette activité :</h5>
+					{% else %}
+						<h5>Dates disponibles pour cette activité :</h5>
+					{% endif %}
+				</label>
+				<select id="calendar" class="form-select shadow" name="q" style="height: 50px;">
+					{% for offer_variation in offerVariations %}
+						{% for calendar in offer_variation.calendars %}
+							<option value="{{ calendar.id }}">{{ calendar.startAt|date }}</option>
+						{% endfor %}
+					{% endfor %}
+				</select>
+			</div>
+        </div>
+	</form>
+
+{#        <div class="d-flex row justify-content-center">#}
+{#                {{ form_start(form, {'attr': {'class': 'col-11 col-md-4'}}) }}#}
+{#                <div class="d-flex flex-column my-3 form-control shadow">#}
+{#                    <div class="form-control mt-3 shadow-sm">#}
+{#						<p><strong>Tarifs :</strong></p>#}
+{#						<p>place adulte : <span id="adultPrice">{{ offerVariation.priceVariation[0] }}</span> €</p>#}
+{#						<p>place enfant : <span id="childPrice">{{ offerVariation.priceVariation[1] }}</span> €</p>#}
+{#                        <i class="fas fa-users me-3"></i>#}
+{#						{{ form_label(form.adultPlaces) }}#}
+{#                        {{ form_widget(form.adultPlaces, {'attr': {'id': 'adultPlaces'}}) }}#}
+{#                        <i class="fas fa-users mt-3 me-3"></i>#}
+{#						{{ form_label(form.childPlaces) }}#}
+{#                        {{ form_widget(form.childPlaces, {'attr': {'id': 'childPlaces'}}) }}#}
+{#                        <p class="text-end mt-3"><strong>Total : <span id="price">230,00</span> €</strong></p>#}
+{#                    </div>#}
+
+{#                            <div class="d-flex align-items-center">#}
+{#                                <img class="me-3" src="{{ asset("build/images/calendar-icon_34471.png") }}" alt="calendar" width="10%">Choisissez une date<i class="fas fa-chevron-down align-self-end align-self-center"></i>#}
+{#                            </div>#}
+
+{#                    <input class="w-60 btn btn-primary align-self-end text-light my-3" type="submit" value="Demander la réservation">#}
+{#                </div>#}
+{#                {{ form_end(form) }}#}
+{#        </div>#}
+
+{#        <a href="{{ path('offer_index') }}">back to list</a>#}
+
+{#        <a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>#}
+
+{#        {{ include('offer/_delete_form.html.twig') }}#}
+{#    </div>#}
 {% endblock %}

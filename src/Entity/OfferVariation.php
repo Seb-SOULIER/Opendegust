@@ -60,6 +60,11 @@ class OfferVariation
      */
     private Collection $calendars;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private ?int $availablePlaces;
+
     public function __construct()
     {
         $this->calendars = new ArrayCollection();
@@ -190,6 +195,18 @@ class OfferVariation
                 $calendar->setOfferVariation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAvailablePlaces(): ?int
+    {
+        return $this->availablePlaces;
+    }
+
+    public function setAvailablePlaces(?int $availablePlaces): self
+    {
+        $this->availablePlaces = $availablePlaces;
 
         return $this;
     }

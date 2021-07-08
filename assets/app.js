@@ -12,6 +12,8 @@ import './js/search';
 import './js/map';
 import './js/concatForm';
 
+import './offerVariationInfo';
+
 // start the Stimulus application
 import './bootstrap';
 
