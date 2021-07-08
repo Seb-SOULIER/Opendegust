@@ -8,7 +8,9 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 
-import './search';
+import './js/search';
+import './js/map';
+import './js/concatForm';
 
 import './offerVariationInfo';
 

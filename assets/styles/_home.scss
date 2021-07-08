@@ -1,7 +1,3 @@
-body {
-    background-color: $white;
-    color: $fourth;
-}
 
 
 // vincenthome
@@ -31,11 +27,42 @@ body {
     text-shadow: black 0px -2px;
 }
 
+ul.autocomplete {
+    position: absolute;
+    top: 100%;
+    list-style: none;
+    text-align: left;
+    background-color: rgba(360,360,360,0.7);
+    padding: 1.0rem 2.5rem;
+    font-size: 1.25rem;
+    border-radius: 0 0 6px 30px;
+    width: 70%;
+    margin-left: 5%;
+    li {
+        transition: transform 0.3s;
+        a {
+            color: #524c4c;
+            text-shadow: none;
+
+            text-decoration: none;
+
+        }
+        a:hover {
+            color: #59ae52;
+
+        }
+
+    }
+    li:hover {
+        transform: scale(1.1);
+    }
+}
+
 h1.degust-near-you {
     font-size: 3rem;
-    margin-top: 53px;
+    margin-top: 40px;
     color: white;
-    
+
 }
 @media screen and (max-width: 768px) {
     h1.degust-near-you{
@@ -57,57 +84,49 @@ h2 {
 @media screen and (max-width: 768px) {
     .intro-home-info{
         display: block;
+        margin-right: 0;
+        margin-bottom: 20px;
     }
 }
+
 form.search-home {
     z-index: 1;
     position: absolute;
-    text-align: center;
     font-family: Georgia;
-    margin: 0 auto;
-    left: 0;
-    font-size: 2.3rem;
-    right: 0;
+    left: 20vw;
+    right: 20vw;
     top: 50%;
     text-shadow: black 0.1rem 0.1rem;
-    font-weight: bold;
 }
 
 
 
 input.write {
     border-radius: 50px;
-    width: 35%;
+    width: 100%;
     font-size: x-large;
     border: none;
     height: 60px;
-    text-align: center;
+    text-align: start;
+    padding-left: 1rem;
 }
 
-// @media screen and (max-width: 576px) {
-//     input.write{
-//         width: 70%;
-//         height: 2.5rem;
-//     }
-// }
+
 button.research {
     border-radius: 50px;
     background: rgb(145,222,138);
     background: linear-gradient(90deg, rgba(145,222,138,1) 4%, rgba(99,222,89,1) 46%, rgba(140,175,137,1) 89%);
     color: white;
-    width: 10%;
+    width: 25%;
     font-size: x-large;
-    position: relative;
-    right: 68px;
+    position: absolute;
+    right: 0;
     border: none;
-    height: 61px;
+    height: 60px;
+    bottom:0;
 }
 
-// @media screen and (max-width: 576px) {
-//     input.recherche{
-//         font
-//     }
-// }
+
 
 // quatre logo en dessous de la barre de recherche //
 
@@ -118,6 +137,7 @@ button.research {
 .logo-star {
     width: 50px;
     height: 20px;
+    text-align: center;
 }
 .fas.fa-star {
     font-size: xx-large;
@@ -129,6 +149,7 @@ button.research {
 .logo-validation {
     width: 50px;
     height: 20px;
+    text-align: center;
 }
 .fas.fa-check-circle {
     font-size: xx-large;
@@ -140,6 +161,7 @@ button.research {
 .logo-experiences {
     width: 50px;
     height: 20px;
+    text-align: center;
 }
 .fas.fa-bolt {
     font-size: xx-large;
@@ -149,8 +171,9 @@ button.research {
     display: flex;
 }
 .logo-partenaires {
-    width:40px;
+    width:50px;
     height: 20px;
+    text-align: center;
 }
 .fas.fa-wine-glass-alt {
     font-size: xx-large;
@@ -162,13 +185,14 @@ button.research {
     margin-bottom: 100px;
 }
 
+
 //premiere partie terminée
 
 
 
 
 
-//visitez et degustez// 
+//visitez et degustez//
 
 
 .visit-and-degust h2 {
@@ -289,7 +313,7 @@ button.research {
 
 
 
-//vous voir heureux nous rend heureux // 
+//vous voir heureux nous rend heureux //
 
 .block-for-infos {
     background-color: #59ae52;
@@ -415,7 +439,7 @@ button.research {
 }
 .type-of-presta {
     margin-top: 13px;
-    
+
 }
 .rounded{
     border-radius: 30px;
@@ -477,13 +501,13 @@ h4.card-title {
 @media screen and (max-width: 992px) {
     h4.card-title {
         font-size: 1.9rem;
-    }   
+    }
 }
 
 @media screen and (max-width: 768px) {
      h4.card-title {
          font-size: 1.5rem;
-     }   
+     }
 }
 
 
@@ -493,7 +517,7 @@ h4.card-title {
 }
 
 
-//Prochaine expérience ? // 
+//Prochaine expérience ? //
 
 .next-experience {
     text-transform: uppercase;

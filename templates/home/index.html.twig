@@ -17,17 +17,11 @@
 				</h1>
 			</div>
 			<form id="searchForm" class="search-home" method="get" action="{{ path('search_localization') }}">
-							<input class="write" type="text" id="searchField" name="q" class="search" placeholder="recherchez votre prochaine expérience" style="outline:none">
-							<ul style="color:white" id="autocomplete"></ul>
-							<button class="research">Rechercher</button>
-						</form>
-			{# <form method="get" action="{{ path('search_localization') }}">
-				<input name="q" class="search" placeholder="recherchez votre prochaine expérience" style="outline:none" list="datalistOptions" id="searchField">
-				<datalist id=" id="autocomplete"">
-					<option></option>
-				</datalist>
-				<button>rechercher</button>
-			</form> #}
+				<input class="write" type="search" id="searchField" name="q" class="search" autocomplete="off" placeholder="recherchez votre prochaine expérience" style="outline:none">
+				<ul class="shadow autocomplete visually-hidden" style="color:white" id="autocomplete"></ul>
+
+				<button class="research">Rechercher</button>
+			</form>
 		</div>
 	</div>
 
@@ -149,7 +143,6 @@
 			{% endfor %}
 		</div>
 	</div>
-
 
 	<div class="block-for-infos">
 		<div class="container">
@@ -416,18 +409,18 @@
 		</div>
 	</div>
 	{# <script>
-				document.getElementById('searchField').addEventListener('input', function (event) {
-			    let search = event.target.value;
-			    fetch('/search/autocomplete?q=' + search)
-			        .then(response => response.json())
-			        .then(function (data) {
-			            let list = '';
-			            for (const item of data) {
-			                list += `<li><a href="/search/${item.display_name}">${item.display_name}</a></li>`
-			            }
-			            document.getElementById('autocomplete').innerHTML = list;
-			        })
-			        
-			});</script> #}
+					document.getElementById('searchField').addEventListener('input', function (event) {
+				    let search = event.target.value;
+				    fetch('/search/autocomplete?q=' + search)
+				        .then(response => response.json())
+				        .then(function (data) {
+				            let list = '';
+				            for (const item of data) {
+				                list += `<li><a href="/search/${item.display_name}">${item.display_name}</a></li>`
+				            }
+				            document.getElementById('autocomplete').innerHTML = list;
+				        })
+
+				});</script> #}
 
 {% endblock %}

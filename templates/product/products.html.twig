@@ -1,26 +1,29 @@
-{# <pre>
-    {{ dump(products) }}
-</pre> #}
 {% for product in products %}
-{#                    {% if is_granted("ROLE_ADMIN") or product.provider == app.user %}#}
-                <div class="col d-flex mb-4 offer" >
-                    <div class="card card-label-price">
-                        {% if product.picture starts with 'https' %}
-                            <img class="card-img-top" src="{{ product.picture }}" alt="{{ product.name }}">
-                        {% else %}
-                            <img class="card-img-top" src="{{ asset('uploads/') }}{{ product.picture }}" alt="{{ product.name }} poster">
-                        {% endif %}
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title text-center">{{ product.name }}</h5>
-                            <p class="card-text fs-6 fw-light lh-1">{{ product.description }}</p>
-                            {% if is_granted("ROLE_ADMIN") or product.provider == app.user %}
-                            <a class="button-card mt-auto text-center" href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a>
-                            {% endif %}
-                        </div>
-                        <div class="label-price">
-                            <span>{{ product.price }}€</span>
-                        </div>
-                    </div>
+{#    {% if is_granted("ROLE_ADMIN") or product.provider == app.user %}#}
+        <div class="col d-flex mb-4 offer" >
+            <div class="card card-label-price">
+                {% if product.picture starts with 'https' %}
+                    <img class="card-img-top" src="{{ product.picture }}" alt="{{ product.name }}">
+                {% else %}
+{#                   @TODO a revoir image product#}
+                    <picture class="d-flex justify-content-center">
+                        <source srcset="{{ asset('uploads/' ~ product.picture)|imagine_filter('product_thumb_default') }}">
+                        <img class="w-auto card-img-top" src="{{ asset('uploads/' ~ product.picture) }}" alt="{{ product.name }} poster">
+                    </picture>
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center">{{ product.name }}</h5>
+                    <p class="card-text fs-6 fw-light lh-1">{{ product.description }}</p>
+                    {% if is_granted("ROLE_ADMIN") or product.provider == app.user %}
+                    <a class="button-card mt-auto text-center" href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a>
+                    {% endif %}
                 </div>
-{#                    {% endif %}#}
-                {% endfor %}
+                <div class="label-price">
+                    <span>{{ product.price }}€</span>
+                </div>
+            </div>
+        </div>
+{#    {% endif %}#}
+{% endfor %}
+
+

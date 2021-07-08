@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use App\Entity\Offer;
+use App\Repository\ContactRepository;
 use App\Service\Api;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,6 +29,22 @@ class SearchController extends AbstractController
             'offers' => $offers
         ]);
     }
+//
+//    /**
+//     * @Route("/coordinate", name="coordinate")
+//     */
+//
+//    public function Coordinate(ContactRepository $contactRepository)
+//    {
+//        {
+//            $coordinate = $contactRepository->findAll();
+//            return $this->json($coordinate ?? []);
+//                //'{\"adultes\":3,\"enfants\":4}';
+//            //$this->json($coordinate ?? []);
+//        }
+//    }
+
+
     /**
      * @Route("/localization", name="localization")
      */
@@ -37,12 +55,17 @@ class SearchController extends AbstractController
 
         if (null !== $query) {
             $url = "https://nominatim.openstreetmap.org/search?q="
-            . $query . "&format=json&addressdetails=1&limit=1&polygon_svg=1";
+            . $query . "&format=json&addressdetails=1&limit=1";
             $localization = $api->getResponse($url);
         }
 
+        $offers = $this->getDoctrine()
+            ->getRepository(Offer::class)
+            ->findAll();
+
         return $this->render('search/index.html.twig', [
             'localization' => $localization ?? [],
+            'offers' => $offers
         ]);
     }
 
