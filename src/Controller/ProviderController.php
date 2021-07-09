@@ -61,7 +61,7 @@ class ProviderController extends AbstractController
             $provider->setPassword(
                 $this->passwordEncoder->encodePassword(
                     $provider,
-                    $formPw->get('plainPassword')->getData()
+                    $formPw->get('password')->getData()
                 )
             );
             $this->getDoctrine()->getManager()->flush();
