@@ -6,29 +6,25 @@
 
 {% block body %}
 	<div class="container-fluid">
-		<div class="part-one-home">
-					{# <picture class="home-picture-research">
-                        <source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("home_thumb_first_image") }}">
-                        <img class="img-fluid" src="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("home_thumb_first_image") }}" alt="le lac de Montriond">
-                    </picture> #}
-
+		<div
+			class="part-one-home">
+			{# <picture class="home-picture-research">
+			    <source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("home_thumb_first_image") }}">
+			    <img class="img-fluid" src="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("home_thumb_first_image") }}" alt="le lac de Montriond">
+			    </picture> #}
 			<img class="home-picture-research" src="https://www.photo-paysage.com/albums/userpics/10001/Le_lac_de_Montriond~0.jpg">
 			<div class="text">
-
 				<h1 class="degust-near-you">
 					<span style="font-weight:300">Dégustations</span>
 					<span style="font-weight:700">
 						près de chez vous</span>
 				</h1>
 			</div>
-			<form id="searchForm" class="search-home" method="get" action="{{ path('search_localization') }}">
-				<input class="write" type="search" id="searchField" name="q" class="search" autocomplete="off" placeholder="recherchez votre prochaine expérience" style="outline:none">
-				<ul class="shadow autocomplete visually-hidden" style="color:white" id="autocomplete"></ul>
-
-				<button class="research">Rechercher</button>
-			</form>
+			{# {% include "search-barre/search.html.twig" %} #}
 		</div>
 	</div>
+
+	
 
 	<div class="intro-home-info">
 		<div class="premier-logo-note col-md-2 col-lg-2">
@@ -96,7 +92,6 @@
 						<h4 class="card-title">Gastronomie</h4>
 					</div>
 				</div>
-
 				<div class="card bg-dark text-white">
 					<a href="search" target="_blank"><img class="card-title-opacity" src="https://www.savourez-grandest.fr/wp-content/uploads/2019/08/ALSABIERES_Brasserie_Saint_Pierre_bouteilles2.jpg" class="card-img" alt="..."/></a>
 					<div class="card-img-title">
@@ -104,7 +99,6 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="second-lign-degustation">
 				<div class="card bg-dark text-white">
 					<a href="search" target="_blank"><img class="card-title-opacity" src="https://www.wybrecht.fr/images/Fotolia_58029491_S.jpg" class="card-img" alt="..."/></a>
@@ -112,7 +106,6 @@
 						<h4 class="card-title">vin et champagne</h4>
 					</div>
 				</div>
-
 				<div class="card bg-dark text-white">
 					<a href="search" target="_blank"><img class="card-title-opacity" src="https://cache.magazine-avantages.fr/data/photo/w1000_ci/1ea/cidre-cuisine-boisson-food.webp" class="card-img" alt="..."/></a>
 					<div class="card-img-title">
@@ -120,7 +113,6 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="third-lign-degustation">
 				<div class="card bg-dark text-white">
 					<a href="search" target="_blank"><img class="card-title-opacity" src="https://www.familledrouet.fr/files/2018/12/Trophy-768x511.jpg" class="card-img" alt="..."/></a>
@@ -128,7 +120,6 @@
 						<h4 class="card-title">Cognac et pineaux</h4>
 					</div>
 				</div>
-
 				<div class="card bg-dark text-white">
 					<a href="search" target="_blank"><img class="card-title-opacity" src="https://www.sommeliers-international.com/sites/default/files/images/articles/164_benj_kuentz_1.jpg" class="card-img" alt="..."/></a>
 					<div class="card-img-title">
@@ -138,7 +129,6 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="container-fluid">
 		<div class="row row-cols-auto">
 			{% for logo in imgLogoPartenaire %}
@@ -148,7 +138,6 @@
 			{% endfor %}
 		</div>
 	</div>
-
 	<div class="block-for-infos">
 		<div class="container">
 			<div class="row informations-home">
@@ -177,15 +166,12 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="container">
 		<div class="actuality">
 			<h2>
 				A la une</h2>
 		</div>
 	</div>
-
-
 	<div class="container">
 		<div class="six-link-degust">
 
@@ -208,8 +194,6 @@
 						</div>
 					</div>
 				</div>
-
-
 				<div class="card number" style="border:none">
 					<a href="#" target="_blank"><img class="card-title-opacity" src="https://www.parisselectbook.com/en/wp-content/uploads/2016/11/2.jpg" class="card-img" alt="..."/></a>
 					<div class="for-card-infos">
@@ -233,7 +217,6 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="second-lign-news-today">
 				<div class="card number" style="border:none">
 					<a href="#" target="_blank"><img class="card-title-opacity" src="https://www.le-vignoble.fr/wp-content/uploads/2018/08/degust-poire-1024x684.jpg" class="card-img" alt="..."/></a>
@@ -274,8 +257,6 @@
 			</div>
 		</div>
 	</div>
-
-
 	<div class="container">
 		<div class="next-experience">
 			<h2>
@@ -295,7 +276,6 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="card column-right">
 				<div class="card first-right-picture">
 					<img class="evasion-exper" src="https://i1.wp.com/www.photo-paysage.com/albums/userpics/10001/Lac-10.JPG" alt="Card image cap">
@@ -316,8 +296,6 @@
 			</div>
 		</div>
 	</div>
-
-
 	<div class="container">
 		<div class="live-experience">
 			<h2>
@@ -345,8 +323,6 @@
 			</div>
 		</div>
 	</div>
-
-
 	<div class="container">
 		<div class="info-decouverte">
 			<h2>
@@ -363,8 +339,6 @@
 
 
 	{# ceci est le travail à GG #}
-
-
 	<div class="last_div_what_new">
 		<div class="container">
 			<h2 class="title_what_new text-center  " style="text-transform: uppercase">
@@ -414,18 +388,18 @@
 		</div>
 	</div>
 	{# <script>
-					document.getElementById('searchField').addEventListener('input', function (event) {
-				    let search = event.target.value;
-				    fetch('/search/autocomplete?q=' + search)
-				        .then(response => response.json())
-				        .then(function (data) {
-				            let list = '';
-				            for (const item of data) {
-				                list += `<li><a href="/search/${item.display_name}">${item.display_name}</a></li>`
-				            }
-				            document.getElementById('autocomplete').innerHTML = list;
-				        })
-
-				});</script> #}
+						document.getElementById('searchField').addEventListener('input', function (event) {
+					    let search = event.target.value;
+					    fetch('/search/autocomplete?q=' + search)
+					        .then(response => response.json())
+					        .then(function (data) {
+					            let list = '';
+					            for (const item of data) {
+					                list += `<li><a href="/search/${item.display_name}">${item.display_name}</a></li>`
+					            }
+					            document.getElementById('autocomplete').innerHTML = list;
+					        })
+	
+					});</script> #}
 
 {% endblock %}

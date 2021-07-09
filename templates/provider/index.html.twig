@@ -1,20 +1,95 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProviderController!{% endblock %}
+{% block title %}Hello ProviderController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	{# <div id="liste-des-prod">
+									<h2>Liste des Producteurs</h2>
+								</div>
+								<div class="responsive-table-list">
+									<table class="table table-bordered table-condensed table-body-center">
+										<thead>
+											<tr>
+												<th>Nom/Prénom</th>
+												<th>Nom du Domaine</th>
+												<th>Nom de l'Offre</th>
+												<th>Email</th>
+												<th style="text-align:center">Action</th>
+											</tr>
+										</thead>
+										<tbody> #}
+	{# {% for provider in providers %}
+												<tr>
+													<td data-title="Nom/Prénom">
+														{{ provider.lastname }}
+														{{ provider.firstname }}
+													</td>
+													<td data-title="Nom du Domaine" style="font-size: 14px">
+														{{ provider.company }}
+													</td>
+													<td data-title="Nom de l'Offre" style="font-size: 14px">{{ offer.name }}</td>
+													<td data-title="Email">
+														<a href="mailto:{{ offer.provider.email }}" style="font-size: 12px">{{ offer.provider.email }}</a>
+													</td>
+													<td data-title="Action" style="font-size: 14px; text-align:center">
+														<a href="{{ path('provider_show', {'id': offer.id}) }}">Voir</a>
+													</td>
+												</tr> #}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	{# <div class="card-group liste-provider">
+					<div class="the-identities">
+						<div class="carte-identite-provider-picture">
+							<img class="picture-of-provider" src="https://image.shutterstock.com/display_pic_with_logo/1778015/1627712716/stock-photo-beautiful-woman-official-photo-for-id-international-passport-identity-card-driver-license-1627712716.jpg" class="card-img-top" alt="identity">
+						</div>
+						<div class="carte-identite-provider-text">
+							<p class="informations-perso">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas nostrum aspernatur maxime architecto. Voluptatem id aliquam, recusandae cumque eveniet eius blanditiis ratione dolorem facere distinctio, obcaecati non vel nobis aut?</p>
+						</div>
+					</div>
+				</div> #}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/souli/Documents/Projet/Projet3/saintes-php-2103-project3-open-degust/src/Controller/ProviderController.php'|file_link(0) }}">src/Controller/ProviderController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/souli/Documents/Projet/Projet3/saintes-php-2103-project3-open-degust/templates/provider/index.html.twig'|file_link(0) }}">templates/provider/index.html.twig</a></code></li>
-    </ul>
-</div>
+
+		<div class="container">
+        <div class="row">
+			{% for provider in providers %}
+				<div class="card col-sm-5 p-3 m-3 ">
+					<div class="row g-0">
+						<div class="col-md-4">
+
+							<img class="picture-of-provider" src="https://image.shutterstock.com/display_pic_with_logo/1778015/1627712716/stock-photo-beautiful-woman-official-photo-for-id-international-passport-identity-card-driver-license-1627712716.jpg" class="img-fluid rounded-start" alt="...">
+                            <h5 class="card-title">{{ provider.lastname }}
+														{{ provider.firstname }}</h5>
+
+						</div>
+						<div class="col-md-8">
+							<div class="carte-identite-provider-text">
+								<h5 class="card-title">{{ provider.company }}</h5>
+								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+								<p class="card-text">
+									<small class="text-muted">Last updated 3 mins ago</small>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+                {% endfor %}
+			
+			 <div class="card col-sm-5 p-3 m-3">
+				<div class="row g-0">
+					<div class="col-md-4">
+						<img src="..." class="img-fluid rounded-start" alt="...">
+					</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title">Card title</h5>
+							<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+							<p class="card-text">
+								<small class="text-muted">Last updated 3 mins ago</small>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
 {% endblock %}

@@ -17,17 +17,18 @@
             crossorigin=""></script>
 {% endblock %}
 {% block body %}
-    {# {{ dump(offers.1.contact.latitude) }} #}
-    {# {{ dump(offers.1.contact.longitude) }} #}
+
+{#{{ dump(offers.1.contact.latitude) }}#}
+{#    {{ dump(offers.1.contact.longitude) }}#}
     <div id="maCarte"></div>
-    <br>
-    <div class="overflow-auto">
-        <div class="container">
-            <div class="row">
-                {% for offer in offers %}
-                    {# {{ dump(offer.contact.longitude) }} #}
-                    {# <div id="long{{ offer.id }}">{{ offer.contact.longitude }}</div> #}
-                    {# <div id="lat{{ offer.id }}">{{ offer.contact.latitude }}</div> #}
+<br>
+<div class="overflow-auto">
+<div class="container">
+    <div class="row">
+    {% for offer in offers %}
+{#{{ dump(offer.contact.longitude) }}#}
+{#<div id="long{{ offer.id }}">{{ offer.contact.longitude }}</div>#}
+{#<div id="lat{{ offer.id }}">{{ offer.contact.latitude }}</div>#}
 
                     <div class="mb-3 col-sm-6">
                         <div class="card cardHover h-100" data-lat="{{ offer.contact.latitude }}" data-long="{{ offer.contact.longitude }}">
