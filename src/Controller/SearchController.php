@@ -11,10 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-  /**
-     * @Route("/search", name="search_")
-     */
-
+/**
+* @Route("/search", name="search_")
+*/
 class SearchController extends AbstractController
 {
     /**
@@ -29,20 +28,17 @@ class SearchController extends AbstractController
             'offers' => $offers
         ]);
     }
-//
-//    /**
-//     * @Route("/coordinate", name="coordinate")
-//     */
-//
-//    public function Coordinate(ContactRepository $contactRepository)
-//    {
-//        {
-//            $coordinate = $contactRepository->findAll();
-//            return $this->json($coordinate ?? []);
-//                //'{\"adultes\":3,\"enfants\":4}';
-//            //$this->json($coordinate ?? []);
-//        }
-//    }
+
+    /**
+     * @Route("/coordinate", name="coordinate")
+     */
+    public function coordinate(Request $request, ContactRepository $contactRepository): Response
+    {
+        $coordinate = $contactRepository->findAll();
+        return $this->json($coordinate ?? []);
+            //'{\"adultes\":3,\"enfants\":4}';
+        //$this->json($coordinate ?? []);
+    }
 
 
     /**
