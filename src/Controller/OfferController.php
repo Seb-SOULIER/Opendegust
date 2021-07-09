@@ -161,8 +161,12 @@ class OfferController extends AbstractController
     /**
      * @Route("/offer-variation-info", name="_variation_info", methods={"GET"}, priority="1")
      */
-    public function offerVariationInfo(Request $request, CalendarRepository $calendarRepository): JsonResponse
-    {
+    public function offerVariationInfo(
+        OfferRepository $offerRepository,
+        Request $request,
+        CalendarRepository $calendarRepository
+    ): Response {
+        $offerVariation = [];
         $query = $request->query->get('q');
         if (null !== $query) {
             $calendar = $calendarRepository->findOneBy(['id' => $query]);
@@ -170,6 +174,10 @@ class OfferController extends AbstractController
                 $offerVariation = $calendar->getOfferVariation();
             }
         }
-        return $this->json($offerVariation ?? []);
+//        return $this->json($offerVariation, 200, [], ['groups' => ['offer', 'offerVariation']]);
+        return $this->render('offer/index.html.twig', [
+            'offers' => $offerRepository->findAll(),
+            'offerVariation' => $offerVariation
+        ]);
     }
 }

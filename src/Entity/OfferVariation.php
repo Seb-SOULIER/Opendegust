@@ -6,6 +6,7 @@ use App\Repository\OfferVariationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=OfferVariationRepository::class)
@@ -13,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class OfferVariation
 {
     /**
+     * @Groups({"offerVariation"})
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -20,26 +22,31 @@ class OfferVariation
     private int $id;
 
     /**
+     * @Groups({"offerVariation"})
      * @ORM\Column(type="json")
      */
     private ?string $priceVariation;
 
     /**
+     * @Groups({"offerVariation"})
      * @ORM\Column(type="integer")
      */
     private int $capacity;
 
     /**
+     * @Groups({"offerVariation"})
      * @ORM\Column(type="time")
      */
     private ?\DateTimeInterface $duration;
 
     /**
+     * @Groups({"offerVariation"})
      * @ORM\Column(type="integer")
      */
     private int $price;
 
     /**
+     * @Groups({"offerVariation"})
      * @ORM\Column(type="float")
      */
     private float $currentVat;
@@ -51,16 +58,19 @@ class OfferVariation
     private ?Offer $offer;
 
     /**
+     * @Groups({"offerVariation"})
      * @ORM\OneToOne(targetEntity=Booking::class, mappedBy="offerVariation", cascade={"persist", "remove"})
      */
     private ?Booking $booking;
 
     /**
+     * @Groups({"offerVariation"})
      * @ORM\OneToMany(targetEntity=Calendar::class, mappedBy="offerVariation", orphanRemoval=true)
      */
     private Collection $calendars;
 
     /**
+     * @Groups({"offerVariation"})
      * @ORM\Column(type="integer", nullable=true)
      */
     private ?int $availablePlaces;
