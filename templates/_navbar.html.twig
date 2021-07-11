@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
 	<a href="{{ path("home") }}">
 		<img src="{{ asset('build/images/logo.png') }}" class="px-2 img-navbrand img-fluid min-vh-75" alt="logo open degust"></a>
+{% include "search-barre/search.html.twig" %}
+
 	<div class="connexion-nav-reponsive">
 		{% if is_granted('ROLE_USER') %}
 			<div class="btn-group">

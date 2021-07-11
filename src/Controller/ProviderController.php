@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Provider;
 use App\Form\ProviderPwType;
 use App\Form\ProviderType;
+use App\Repository\ProviderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,6 +22,16 @@ class ProviderController extends AbstractController
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->passwordEncoder = $passwordEncoder;
+    }
+
+     /**
+     * @Route("/", name="provider_index")
+     */
+    public function index(ProviderRepository $providerRepository): Response
+    {
+        return $this->render('provider/index.html.twig', [
+            'providers' => $providerRepository->findAll()
+        ]);
     }
 
     /**
