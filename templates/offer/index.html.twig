@@ -4,18 +4,18 @@
 {% endblock %}
 
 {% block body %}
-	{{ dump('offerVariation') }}
 	<div id="liste-des-prod">
-		<h2>Liste des Producteurs</h2>
+		<h2>Liste de mes offres</h2>
 	</div>
 	<div class="responsive-table-list">
 		<table class="table table-bordered table-condensed table-body-center">
 			<thead>
 				<tr>
-					<th>Nom/Prénom</th>
-					<th>Nom du Domaine</th>
-					<th>Nom de l'Offre</th>
-					<th>Email</th>
+					<th>Nom</th>
+					<th>Durées</th>
+					<th>Dates</th>
+					<th>Nbr de places</th>
+					<th>Places réservés</th>
 					<th style="text-align:center">Action</th>
 				</tr>
 			</thead>
@@ -40,7 +40,9 @@
 				{% endfor %}
 			</tbody>
 		</table>
-		<a style="float:right" href="{{ path('offer_new') }}">Create new</a>
+		<div class = "d-flex justify-content-center">
+		<a class="btn btn-success m-3" href="{{ path('offer_new') }}">Créer une nouvelle Offre</a>
+		</div>
 	</div>
 {% endblock %}
 

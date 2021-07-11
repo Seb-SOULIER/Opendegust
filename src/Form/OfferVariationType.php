@@ -24,9 +24,17 @@ class OfferVariationType extends AbstractType
                 ])
             ->add('capacity')
             ->add('calendars', CollectionType::class, [
-                'entry_type' => CalendarType::class
+                'entry_type' => CalendarType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'by_reference' => false,
+                'allow_delete' => true,
             ])
-            ->add('delete', ButtonType::class)
+            ->add('calendar', ButtonType::class, [
+                'attr' => ['class' => 'add_item_link', 'data-collection-holder-class' => 'calendars']
+            ])
+            ->add('delete', ButtonType::class, [
+                ])
         ;
     }
 
