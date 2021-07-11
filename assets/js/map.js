@@ -1,4 +1,5 @@
 export default class Map {
+    // eslint-disable-next-line class-methods-use-this
     init() {
         // On initialise la carte
         let L;
@@ -13,7 +14,7 @@ export default class Map {
 
         const cards = document.querySelectorAll('[data-lat]');
         cards.forEach((elem) => {
- //           console.log(elem.getAttribute('data-lat'), elem.getAttribute('data-long'));
+            //           console.log(elem.getAttribute('data-lat'), elem.getAttribute('data-long'));
         });
         // on ajoute des marqueurs
 

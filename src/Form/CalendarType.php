@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Calendar;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +18,7 @@ class CalendarType extends AbstractType
                 'choice_translation_domain' => true,
                 'date_format' => 'ddMMMyyyy',
             ])
-
+            ->add('delete', ButtonType::class)
         ;
     }
 

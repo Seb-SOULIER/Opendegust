@@ -7,7 +7,11 @@
 		{% if is_granted('ROLE_USER') %}
 			<div class="btn-group">
 				<button type="button" class="btn btn-outline-primary me-3" data-bs-toggle="dropdown" aria-expanded="false">
-					{{ app.user.email }}
+					{% if app.user.firstname %}
+						{{ app.user.firstname }}
+					{% else %}
+						Complete ton profil
+					{% endif %}
 				</button>
 				<ul class="dropdown-menu dropdown-menu-end">
 					<li>

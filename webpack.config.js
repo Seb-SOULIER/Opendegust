@@ -63,7 +63,9 @@ Encore
 
     // enables @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {
+        // eslint-disable-next-line no-param-reassign
         config.useBuiltIns = 'usage';
+        // eslint-disable-next-line no-param-reassign
         config.corejs = 3;
     })
 
