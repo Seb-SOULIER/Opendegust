@@ -7,6 +7,8 @@
 .card.col-sm-5.p-3.m-3 {
     border: 1px solid green;
     border-radius: 20px;
+    height: auto;
+    background-color: #35f95f17;
 }
 
 .carte-identite-provider-picture {
@@ -20,11 +22,22 @@ img.picture-of-provider {
     object-fit: contain;
 }
 
+@media screen and(max-width: 768px) {
+    img.picture-of-provider {
+        height: auto;
+    }
+}
 .carte-identite-provider-text {
     border-left: 1px solid green;
     padding-left: 14px;
     padding: 0.6rem;
     height: 100%;
+}
+
+@media screen and(max-width: 768px) {
+    .carte-identite-provider-text {
+        border-left: none;
+    }
 }
 
 p.informations-perso {
