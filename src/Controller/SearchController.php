@@ -48,12 +48,12 @@ class SearchController extends AbstractController
     {
 
         $query = $request->query->get('q');
-
         if (null !== $query) {
             $url = "https://nominatim.openstreetmap.org/search?q="
             . $query . "&format=json&addressdetails=1&limit=1";
             $localization = $api->getResponse($url);
         }
+
 
         $offers = $this->getDoctrine()
             ->getRepository(Offer::class)
@@ -61,8 +61,8 @@ class SearchController extends AbstractController
 
         return $this->render('search/index.html.twig', [
             'localization' => $localization ?? [],
-            'offers' => $offers
-        ]);
+            'offers' => $offers,
+            ]);
     }
 
     /**
