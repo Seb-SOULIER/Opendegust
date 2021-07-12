@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Category;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\CategoryRepository;
@@ -18,6 +17,16 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ProductController extends AbstractController
 {
+    /**
+     * @Route("/barre", name="product_barre")
+     */
+    public function barre(CategoryRepository $categoryRepository): Response
+    {
+        return $this->render('sidebar/sidebar.html.twig', [
+            'categories' => $categoryRepository->findby(['category' => null])
+        ]);
+    }
+
     /**
      * @Route("/", name="product_index", methods={"GET"})
      */
