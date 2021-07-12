@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Contact;
 use App\Entity\Offer;
 use App\Repository\CategoryRepository;
 use App\Repository\ContactRepository;
@@ -63,7 +62,7 @@ class SearchController extends AbstractController
         return $this->render('search/index.html.twig', [
             'localization' => $localization ?? [],
             'offers' => $offers,
-            'categories' => $categoryRepository->findby(['category' => null])
+            'categories' => $categoryRepository->findBy(['category' => null])
         ]);
     }
 

@@ -6,7 +6,15 @@ export default class Map {
         // On initialise la carte
         const locSearch = document.querySelector('[data-loclat]');
         //  locSearch.getAttribute('data-loc-lat'),locSearch.getAttribute('data-loc-lon')
-        const carte = L.map('maCarte').setView([locSearch.getAttribute('data-loclat'), locSearch.getAttribute('data-loclon')], 11);
+        let zoom = 11;
+        if (parseInt(locSearch.getAttribute('data-zoom'), 10) === 5) {
+            zoom = 5;
+        }
+
+        const carte = L.map('maCarte', { zoomControl: false }).setView([locSearch.getAttribute('data-loclat'), locSearch.getAttribute('data-loclon')], zoom);
+        L.control.zoom({
+            position: 'bottomright',
+        }).addTo(carte);
         // On charge les "tuiles"
         L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
             minZoom: 2,

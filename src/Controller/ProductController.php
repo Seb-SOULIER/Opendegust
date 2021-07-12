@@ -18,16 +18,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/barre", name="product_barre")
-     */
-    public function barre(CategoryRepository $categoryRepository): Response
-    {
-        return $this->render('sidebar/sidebar.html.twig', [
-
-        ]);
-    }
-
-    /**
      * @Route("/", name="product_index", methods={"GET"})
      */
     public function index(ProductRepository $productRepository): Response

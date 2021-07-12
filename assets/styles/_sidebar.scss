@@ -1,21 +1,9 @@
 $primary-color: #59ae52;
 $secondary-color: #292a2c;
 
-//$browser-context: 16;
-
-//@function em($pixels, $context: $browser-context) {
-//  @return #{$pixels/$context}em;
-//}
-
 $transition-duration: 600ms;
 $transition-delay: $transition-duration;
 $sidebar-transition: $transition-duration opacity $transition-delay, $transition-duration visibility $transition-delay;
-
-.wp-content {
-  //margin-top: 60px;
-  margin-left: 60px;
-  height: 40vh;
-}
 
 [data-component='sidebar'] {
 
@@ -30,7 +18,7 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
     background-color: $secondary-color;
     height: 300px;
     width: 60px;
-    top: 0;
+    top: 8.5vh;
     overflow: hidden;
     transition: width .5s;
     a {
@@ -70,7 +58,7 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
     position: fixed;
     left: 160px;
     width: 195px;
-    top: 0;
+    top: 8.5vh;
     background-color: $primary-color;
     height: 300px;
     opacity: 0;
@@ -91,7 +79,7 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
     position: fixed;
     background-color: #fff;
     left: 355px;
-    top: 0;
+    top: 8.5vh;
     height: 300px;
     width: 280px;
     opacity: 0;
