@@ -23,12 +23,13 @@
 {#    {{ dump(localization.0.lon) }}#}
     {# {{ dump(offers.1.contact.latitude) }} #}
     {# {{ dump(offers.1.contact.longitude) }} #}
-    <div id="maCarte"></div>
+    {% include 'sidebar/sidebar.html.twig' %}
+
     <br>
     <div class="overflow-auto">
 
 {#        {% if localization is defined %}#}
-        <div class="container" data-loclat="{{ localization.0.lat | default("46.16") }}" data-loclon="{{ localization.0.lon | default("3.19619")}}"  data-zoom="{{ localization.0.lat|default("5") }}">
+        <div class="container" data-loclat="{{ localization.0.lat|default("46.16") }}" data-loclon="{{ localization.0.lon|default("3.19619") }}"  data-zoom="{{ localization.0.lat|default("5") }}">
 {#            {% else %}#}
 {#            <div class="container" data-loclat="{{ localization.0.lat }}" data-loclon="{{ localization.0.lon }}">#}
 {#                {% endif %}#}
