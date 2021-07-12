@@ -1,8 +1,3 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}barre de recherche{% endblock %}
-
-{% block body %}
 <div data-component="sidebar">
     <form action="" method="GET">
     <div class="sidebar">
@@ -88,7 +83,8 @@
 
 <div class="wp-content">
     <div class="container-fluid">
-        MAP
+        <div id="maCarte">
+        </div>
     </div>
 </div>
 
@@ -399,4 +395,3 @@
             end: settings.end
         });
     </script>
-{% endblock %}

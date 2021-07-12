@@ -23,7 +23,7 @@ class ProductController extends AbstractController
     public function barre(CategoryRepository $categoryRepository): Response
     {
         return $this->render('sidebar/sidebar.html.twig', [
-            'categories' => $categoryRepository->findby(['category' => null])
+
         ]);
     }
 

@@ -28,9 +28,9 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
   .first-menu {
     position: fixed;
     background-color: $secondary-color;
-    height: 40vh;
+    height: 300px;
     width: 60px;
-    top: 9vh;
+    top: 0;
     overflow: hidden;
     transition: width .5s;
     a {
@@ -65,14 +65,14 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
   }
 
 
-  //blue menu
+  //green menu
   .submenu {
     position: fixed;
     left: 160px;
     width: 195px;
-    top: 9vh;
+    top: 0;
     background-color: $primary-color;
-    height: 40vh;
+    height: 300px;
     opacity: 0;
     visibility: hidden;
     transition: $sidebar-transition;
@@ -91,8 +91,8 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
     position: fixed;
     background-color: #fff;
     left: 355px;
-    top: 9vh;
-    height: 40vh;
+    top: 0;
+    height: 300px;
     width: 280px;
     opacity: 0;
     visibility: hidden;

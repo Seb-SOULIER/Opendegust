@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    {{ encore_entry_link_tags('map') }}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""/>
@@ -12,26 +13,25 @@
 {% block javascripts %}
     {{ parent() }}
     <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-            crossorigin=""></script>
+{#    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"#}
+{#            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="#}
+{#            crossorigin=""></script>#}
 {% endblock %}
 {% block body %}
 
-{#{{ dump(offers.1.contact.latitude) }}#}
-{#    {{ dump(offers.1.contact.longitude) }}#}
-    <div id="maCarte"></div>
-<br>
+{#    {{ dump(localization.0.lat) }}#}
+{#    {{ dump(localization.0.lon) }}#}
+    {# {{ dump(offers.1.contact.latitude) }} #}
+    {# {{ dump(offers.1.contact.longitude) }} #}
+    {% include 'sidebar/sidebar.html.twig' %}
 
-<div class="container">
-    <div class="row">
-    {% for offer in offers %}
-{#{{ dump(offer.contact.longitude) }}#}
-{#<div id="long{{ offer.id }}">{{ offer.contact.longitude }}</div>#}
-{#<div id="lat{{ offer.id }}">{{ offer.contact.latitude }}</div>#}
-
+    <br>
+    <div class="overflow-auto">
+        <div class="container" data-loclat="{{ localization.0.lat }}" data-loclon="{{ localization.0.lon }}">
+            <div class="row" >
+                {% for offer in offers %}
                     <div class="mb-3 col-sm-6">
-                        <div class="card cardHover h-100" data-lat="{{ offer.contact.latitude }}" data-long="{{ offer.contact.longitude }}">
+                        <div class="card cardHover h-100" data-lat="{{ offer.contact.latitude }}" data-long="{{ offer.contact.longitude }}" data-name="{{ offer.domainName }}">
                             <div class=" h-100 row g-0">
                                 <div class=" col-lg-5">
                                     <picture>
