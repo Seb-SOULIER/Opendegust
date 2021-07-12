@@ -1,0 +1,34 @@
+
+.card-group.liste-provider {
+    padding: 3rem;
+    justify-content: space-around;
+}
+
+.card.col-sm-5.p-3.m-3 {
+    border: 1px solid green;
+    border-radius: 20px;
+}
+
+.carte-identite-provider-picture {
+    width: 35%;
+}
+
+img.picture-of-provider {
+    width: 100%;
+    height: 70%;
+    padding: 0.7rem;
+    object-fit: contain;
+}
+
+.carte-identite-provider-text {
+    border-left: 1px solid green;
+    padding-left: 14px;
+    padding: 0.6rem;
+    height: 100%;
+}
+
+p.informations-perso {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+}

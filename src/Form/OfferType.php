@@ -29,6 +29,7 @@ class OfferType extends AbstractType
             ->add('language', ChoiceType::class, [
                 'multiple' => true,
                 'expanded' => true,
+                'row_attr' => ['class' => 'text-editor'],
                 'choices' => [
                     'Francais' => 'Francais',
                     'Anglais' => 'Anglais',

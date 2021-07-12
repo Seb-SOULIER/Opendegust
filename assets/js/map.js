@@ -1,6 +1,7 @@
 import "leaflet";
 
 export default class Map {
+    // eslint-disable-next-line class-methods-use-this
     init() {
         // On initialise la carte
         const locSearch = document.querySelector('[data-loclat]');
