@@ -1,8 +1,5 @@
-$primary-color: #59ae52;
-$secondary-color: #292a2c;
-
 $transition-duration: 600ms;
-$transition-delay: $transition-duration;
+$transition-delay: 600ms;
 $sidebar-transition: $transition-duration opacity $transition-delay, $transition-duration visibility $transition-delay;
 
 [data-component='sidebar'] {
@@ -15,12 +12,12 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
   //black menu
   .first-menu {
     position: fixed;
-    background-color: $secondary-color;
+    background-color: $black;
     height: 300px;
     width: 60px;
-    top: 8.5vh;
+    top: 9vh;
     overflow: hidden;
-    transition: width .5s;
+    transition: width 2s 1s;
     a {
       color: #fff;
     }
@@ -40,12 +37,13 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
     .list-group-item {
       border-radius: 0;
       &:hover {
-        background-color: $primary-color;
+        background-color: $primary;
       }
     }
   }
   .first-menu:hover {
     width: 160px;
+    transition:width 0.5s;
   }
 
   .list-group-item {
@@ -58,8 +56,8 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
     position: fixed;
     left: 160px;
     width: 195px;
-    top: 8.5vh;
-    background-color: $primary-color;
+    top: 9vh;
+    background-color: $primary;
     height: 300px;
     opacity: 0;
     visibility: hidden;
@@ -74,19 +72,20 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
     visibility: visible;
     opacity: 1;
   }
+
   //white menu
   .sub-submenu {
     position: fixed;
     background-color: #fff;
     left: 355px;
-    top: 8.5vh;
+    top: 9vh;
     height: 300px;
     width: 280px;
     opacity: 0;
     visibility: hidden;
     transition: $sidebar-transition;
     a {
-      color: $primary-color;
+      color: $primary;
     }
     .list-group-item:hover {
       background-color: transparent;

@@ -29,8 +29,25 @@ class OfferController extends AbstractController
      */
     public function index(OfferRepository $offerRepository): Response
     {
+        $offers = $offerRepository->findByProvider($this->getUser());
+
+        $allOffers = [];
+        $alltime = [];
+
+        foreach ($offers as $key => $offer) {
+            $offerVariations = $offer->getofferVariations();
+            foreach ($offerVariations as $key1 => $offerVariation) {
+                $calendars = $offerVariation->getCalendars();
+                foreach ($calendars as $calendar) {
+                    $allOffers[$key][] = $calendar->getStartAt();
+                    $alltime[$key][$key1][] = $calendar->getStartAt();
+                }
+            }
+        }
         return $this->render('offer/index.html.twig', [
-            'offers' => $offerRepository->findByProvider($this->getUser()),
+            'offers' => $offers,
+            'allOffers' => $allOffers,
+            'allDuree' => $alltime
         ]);
     }
 
