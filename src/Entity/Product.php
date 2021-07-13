@@ -25,7 +25,7 @@ class Product
     /**
      * @ORM\Column(type="string", length=45)
      */
-    private ?string $name;
+    private ?string $name = null;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -36,7 +36,7 @@ class Product
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $picture;
+    private ?string $picture = null;
 
     /**
      * @Vich\UploadableField(mapping="img_product", fileNameProperty="picture")
