@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> <!-- /.Offre -->
                     <div class="favourites form-control py-3 my-3 accordion-item">
                         <h1 class="accordion-header" id="panelsStayOpen-headingTwo">
                             <button class="accordion-button collapsed text-center" type="button"
@@ -91,7 +91,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> <!-- /.Domaine -->
                     <div class="contact form-control py-3 my-3 accordion-item">
                         <h1 class="accordion-header" id="panelsStayOpen-headingThree">
                             <button class="accordion-button collapsed text-center" type="button"
@@ -103,54 +103,16 @@
                         <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
                              aria-labelledby="panelsStayOpen-headingThree">
                             <div class="contact__content accordion-body">
-                                <div class="row g-3 d-md-flex justify-content-between">
-                                    <ul class="offerVariations" data-prototype="{{ form_widget(form.offerVariations.vars.prototype)|e('html_attr') }}">
-                                        {% for variation in form.offerVariations %}
-                                        <li>
-                                            <div class="form-control mb-3">
-                                                <h3>Variation {{ loop.index }}</h3>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div>
-                                                            {{ form_label(variation.duration) }}
-                                                            {{ form_widget(variation.duration) }}
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                {{ form_label(variation.price) }}
-                                                                {{ form_widget(variation.price) }}
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                {{ form_label(variation.currentVat) }}
-                                                                {{ form_widget(variation.currentVat) }}
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            {{ form_label(variation.capacity) }}
-                                                            {{ form_widget(variation.capacity) }}
-                                                        </div>
-                                                        <div>
-                                                            {{ form_widget(variation) }}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <ul class="calendars" data-prototype="{{ form_widget(variation.calendars.vars.prototype)|e('html_attr') }}">
-                                                        {% for calendar in variation.calendars %}
-                                                            {{ form_label(calendar.startAt) }}
-                                                            {{ form_widget(calendar.startAt) }}
-                                                        {% endfor %}
-                                                        </ul>
-                                                        <button type="button" class="add_item_link" data-collection-holder-class="calendars">New date
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        {% endfor %}
-                                    </ul>
-                                    <button type="button" class="add_item_link" data-collection-holder-class="offerVariations">Add a
-                                        variation
-                                    </button>
+                                <div id="conteneur">
+                                    <div class="fils"> {{ render((controller('App\\Controller\\OfferController::addform'))) }} </div>
+                                </div>
+                                <div class="btn btn-primary" onclick="cloner()">Ajouter une variation</div>
+                                <script type="text/javascript">
+                                    function cloner() {
+                                        var clone=document.querySelector("div.fils").cloneNode(true);
+                                        document.getElementById("conteneur").appendChild(clone);
+                                    }
+                                </script>
                                 </div>
                             </div>
                         </div>
@@ -161,4 +123,5 @@
         <button class="btn btn-primary mt-3 col-12 col-md-6 text-light">{{ button_label|default('Valider') }}</button>
         {{ form_end(form) }}
     </div>
+    {{ encore_entry_script_tags('concat-form') }}
 
