@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
+use App\Entity\Calendar;
 use App\Entity\Offer;
 use App\Entity\OfferVariation;
 use App\Form\BookingType;
@@ -29,7 +30,7 @@ class OfferController extends AbstractController
     public function index(OfferRepository $offerRepository): Response
     {
         return $this->render('offer/index.html.twig', [
-            'offers' => $offerRepository->findAll(),
+            'offers' => $offerRepository->findByProvider($this->getUser()),
         ]);
     }
 
@@ -39,6 +40,7 @@ class OfferController extends AbstractController
     public function new(Request $request, CategoryRepository $categoryRepository): Response
     {
         $offer = new Offer();
+
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
 
@@ -50,6 +52,8 @@ class OfferController extends AbstractController
             return $this->redirectToRoute('offer_index');
         }
 
+        $offerVariation = new OfferVariation();
+        $offer->addOfferVariation($offerVariation);
         return $this->render('offer/new.html.twig', [
             'offer' => $offer,
             'form' => $form->createView(),

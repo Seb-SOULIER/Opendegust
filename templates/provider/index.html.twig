@@ -50,7 +50,7 @@
 
 
 		<div class="container">
-        <div class="row">
+        <div class="row provider-list">
 			{% for provider in providers %}
 				<div class="card col-sm-5 p-3 m-3 ">
 					<div class="row g-0 providers">
@@ -65,12 +65,10 @@
 							<div class="carte-identite-provider-text">
 								<h5 class="card-title">{{ provider.company }}</h5>
 								<p class="card-text">{{ provider.description }}</p>
-								<p class="card-text">{{ provider.description }}</p>
-								<p class="card-text">{{ provider.description }}</p>
 								<p class="card-text">
 									<small class="text-muted">{{ provider.contact.website }}</small>
 								</p>
-								{# <a href="{{ path('provider_show', {'id': provider.id}) }}">Voir</a> #}
+								<a href="{{ path('provider_show', {'id': provider.id}) }}">Voir</a>
 							</div>
 						</div>
 					</div>

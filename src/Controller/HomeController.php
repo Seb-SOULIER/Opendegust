@@ -13,8 +13,6 @@ class HomeController extends AbstractController
         "https://www.lesgrappes.com/media/winemaker_tmp/11082/champagneruinart.png",
         "https://1000logos.net/wp-content/uploads/2021/05/Hennessy-logo.png",
         "https://allvectorlogo.com/img/2016/03/moet-chandon-logo.png",
-        "https://cdn.radiofrance.fr/s3/cruiser-production/2020/12/27022e6c-3823-484b-bda9-290f9d3a452f/
-        860_laguilhon_3.webp",
         "https://www.lechocolat-alainducasse.com/img/le-chocolat-alain-ducasse-logo-1446054370.jpg",
         "https://p.ventesprivees-fr.com/pape-clement.png",
     ];

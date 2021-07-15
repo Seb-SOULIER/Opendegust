@@ -46,7 +46,7 @@ class Product
      * )
      * @var ?File
      */
-    private ?File $imgProduct;
+    private ?File $imgProduct = null;
 
     /**
      * @return ?File
@@ -120,7 +120,7 @@ class Product
         return $this->picture;
     }
 
-    public function setPicture(?string $picture): self
+    public function setPicture(string $picture): self
     {
         $this->picture = $picture;
 
