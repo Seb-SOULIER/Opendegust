@@ -27,8 +27,46 @@ export default class Map {
         cards.forEach((elem) => {
             // console.log(elem.getAttribute('data-lat'), elem.getAttribute('data-long'));
             const marqueur = L.marker([elem.getAttribute('data-lat'), elem.getAttribute('data-long')]).addTo(carte);
-            marqueur.bindPopup(`<h4>${[elem.getAttribute('data-name')]}</h4>`);
+            // marqueur.bindPopup(`<div class="flex-column"><img class="imgpopup" src="https://cdn.pixabay.com/photo/2021/07/09/06/52/lavender-6398415_960_720.jpg"<h4>${[elem.getAttribute('data-name')]}</h4><p>texte</p></div>`);
+            marqueur.bindPopup(`
+  <div class="row g-0 popup-card">
+    <div class="col-5">
+      <img class="imgpopup" src="https://cdn.pixabay.com/photo/2017/06/23/17/38/beer-2435382_960_720.jpg" class="img-fluid rounded-start" alt="image correspondant a la degustation">
+    </div>
+    <div class="col-7">
+    
+      <div class="card-body">
+        <h6 class="card-title">${[elem.getAttribute('data-name')]}</h6>
+        <p class="card-text">${[elem.getAttribute('data-name')]}</p>
+        <a class="linkpopup" href="/offer/${[elem.getAttribute('data-id')]}" target="_blank">réserver</a>
+      </div>
+    </div>
+  </div>`)
+            // marqueur.on('click');
+            elem.addEventListener("click", (event)=>{
+                event.preventDefault();
+
+                let poslat = event.target.getAttribute('data-lat');
+                let poslon = event.target.getAttribute('data-long');
+                console.log(poslon, poslat);
+                // if (poslat && poslon) {
+                //     let locat = pos.split(',');
+                    carte.setView([poslat, poslon], 11, {animate: true, duration: 1.5});
+                    return false;
+            })
         });
+   // , {animation: true}
+
+        // function markerFunction(id) {
+        //     for (let i in cards) {
+        //         let markerID = marqueur[i].options.title;
+        //         let position = marqueur[i].getLatLng();
+        //         if (markerID == id) {
+        //             map.setView(position, 11);
+        //             marqueur[i].openPopup();
+        //         };
+        //     }
+        // }
         // on ajoute des marqueurs
         //  marqueur.bindPopup(([elem.getAttribute('data-name')]));
         // const myIcon = L.icon({
