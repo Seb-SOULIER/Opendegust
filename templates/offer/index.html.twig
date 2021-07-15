@@ -5,103 +5,56 @@
 
 {% block body %}
 	<div id="liste-des-prod">
-		<h2>Liste des Producteurs</h2>
+		<h2>Liste de mes offres</h2>
 	</div>
 	<div class="responsive-table-list">
 		<table class="table table-bordered table-condensed table-body-center">
 			<thead>
 				<tr>
-					<th>Nom/Prénom</th>
-					<th>Nom du Domaine</th>
-					<th>Nom de l'Offre</th>
-					<th>Email</th>
-					<th style="text-align:center">Action</th>
-				</tr>
+					<th class="text-center">Nom</th>
+					<th class="text-center">Durées</th>
+					<th class="text-center">Dates</th>
+					<th class="text-center">Nbr de places</th>
+					<th class="text-center">Places réservés</th>
+					<th class="text-center">Action</th>
 			</thead>
 			<tbody>
-				{% for offer in offers %}
-					<tr>
-						<td data-title="Nom/Prénom"> {{ offer.provider.lastname }}
-							{{ offer.provider.firstname }} </td>
-						<td data-title="Nom du Domaine" style="font-size: 14px"> {{ offer.domainName }} </td>
-						<td data-title="Nom de l'Offre" style="font-size: 14px">{{ offer.name }}</td>
-						<td data-title="Email">
-							<a href="mailto:{{ offer.provider.email }}" style="font-size: 12px">{{ offer.provider.email }}</a>
+			{% for key, offer in offers %}
+				<tr>
+					<td class="text-center" rowspan="{{ (allOffers[key])|length }}">
+						{{ offer.name }}
+					</td>
+					{% for key2, variation in offer.offerVariations %}
+						<td class="text-center" rowspan="{{ (allDuree[key][key2])|length }}">
+							{{ variation.duration|date('h:m') }}
 						</td>
-						<td data-title="Action"class="text-center">
-							<a href="{{ path('offer_show', {'id': offer.id}) }}">Voir</a>
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="6">no records found</td>
-					</tr>
-				{% endfor %}
+						{% for date in variation.calendars %}
+							<td class="text-center">
+								{{ date.startAt|date('d M Y - h:m') }}
+							</td>
+							<td class="text-center">
+								{{ variation.capacity }} places
+							</td>
+							<td class="text-center">
+								{{ variation.availablePlaces|default('0') }} places
+							</td>
+							<td class="text-center">
+								<a href="">Détail</a>
+							</td>
+				</tr>
+						{% endfor %}
+					{% endfor %}
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
 			</tbody>
 		</table>
-		<a style="float:right" href="{{ path('offer_new') }}">Create new</a>
+		<div class = "d-flex justify-content-center">
+		<a class="btn btn-success m-3" href="{{ path('offer_new') }}">Créer une nouvelle Offre</a>
+		</div>
 	</div>
 {% endblock %}
 
 
-
-
-
-
-
-{# VERSION POUR LE CLIENT #}
-
-
-
-
-{#{% block body %}#}
-{#	<div id="liste-des-prod">#}
-{#		<h2>Liste des Producteurs</h2>#}
-{#	</div>#}
-{#	<div class="responsive-table-list">#}
-{#		<table class="table table-bordered table-condensed table-body-center">#}
-{#			<thead>#}
-{#				<tr>#}
-{#					<th>Nom/Prénom</th>#}
-{#					<th>Nom du Domaine</th>#}
-{#					<th>Nom de l'Offre</th>#}
-{#					<th>Email</th>#}
-{#					<th style="text-align:center">Action</th>#}
-{#				</tr>#}
-{#			</thead>#}
-{#			<tbody>#}
-{#					<tr>#}
-{#						<td data-title="Nom/Prénom"> Grogniart#}
-{#							Denis </td>#}
-{#						<td data-title="Nom du Domaine" style="font-size: 14px"> Le Domaine du Chêne </td>#}
-{#						<td data-title="Nom de l'Offre" style="font-size: 14px">Dégustation de Vins</td>#}
-{#						<td data-title="Email">#}
-{#							<a href="mailto:contact@ledomaineduchene.fr" style="font-size: 12px">contact@ledomaineduchene.fr</a>#}
-{#						</td>#}
-{#						<td data-title="Action"class="text-center">#}
-{#							<a href="/offer/1">Voir</a>#}
-{#						</td>#}
-{#					</tr>#}
-{#					{% for offer in offers %}#}
-{#					<tr>#}
-{#						<td data-title="Nom/Prénom"> {{ offer.provider.lastname }}#}
-{#							{{ offer.provider.firstname }} </td>#}
-{#						<td data-title="Nom du Domaine" style="font-size: 14px"> {{ offer.domainName }} </td>#}
-{#						<td data-title="Nom de l'Offre" style="font-size: 14px">{{ offer.name }}</td>#}
-{#						<td data-title="Email">#}
-{#							<a href="mailto:{{ offer.provider.email }}" style="font-size: 12px">{{ offer.provider.email }}</a>#}
-{#						</td>#}
-{#						<td data-title="Action"class="text-center">#}
-{#							<a href="{{ path('offer_show', {'id': offer.id}) }}">Voir</a>#}
-{#						</td>#}
-{#					</tr>#}
-{#				{% else %}#}
-{#					<tr>#}
-{#						<td colspan="6">no records found</td>#}
-{#					</tr>#}
-{#				{% endfor %}#}
-{#			</tbody>#}
-{#		</table>#}
-{#		<a style="float:right" href="offer/new">Create new</a>#}
-{#	</div>#}
-{#{% endblock %}#}

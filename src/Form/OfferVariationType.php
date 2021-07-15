@@ -25,10 +25,15 @@ class OfferVariationType extends AbstractType
                 ])
             ->add('capacity')
             ->add('calendars', CollectionType::class, [
-                'entry_type' => CalendarType::class
+                'entry_type' => CalendarType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'by_reference' => false,
+                'allow_delete' => true,
             ])
             ->add('availablePlaces', HiddenType::class)
-            ->add('delete', ButtonType::class)
+            ->add('delete', ButtonType::class, [
+                ])
         ;
     }
 

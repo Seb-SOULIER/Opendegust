@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Contact;
 use App\Entity\Offer;
+use App\Repository\CategoryRepository;
 use App\Repository\ContactRepository;
 use App\Service\Api;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,10 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-  /**
-     * @Route("/search", name="search_")
-     */
-
+/**
+* @Route("/search", name="search_")
+*/
 class SearchController extends AbstractController
 {
     /**
@@ -29,26 +28,23 @@ class SearchController extends AbstractController
             'offers' => $offers
         ]);
     }
-//
-//    /**
-//     * @Route("/coordinate", name="coordinate")
-//     */
-//
-//    public function Coordinate(ContactRepository $contactRepository)
-//    {
-//        {
-//            $coordinate = $contactRepository->findAll();
-//            return $this->json($coordinate ?? []);
-//                //'{\"adultes\":3,\"enfants\":4}';
-//            //$this->json($coordinate ?? []);
-//        }
-//    }
+
+    /**
+     * @Route("/coordinate", name="coordinate")
+     */
+    public function coordinate(Request $request, ContactRepository $contactRepository): Response
+    {
+        $coordinate = $contactRepository->findAll();
+        return $this->json($coordinate ?? []);
+            //'{\"adultes\":3,\"enfants\":4}';
+        //$this->json($coordinate ?? []);
+    }
 
 
     /**
      * @Route("/localization", name="localization")
      */
-    public function search(Request $request, Api $api): Response
+    public function search(Request $request, Api $api, CategoryRepository $categoryRepository): Response
     {
 
         $query = $request->query->get('q');
@@ -65,7 +61,8 @@ class SearchController extends AbstractController
 
         return $this->render('search/index.html.twig', [
             'localization' => $localization ?? [],
-            'offers' => $offers
+            'offers' => $offers,
+            'categories' => $categoryRepository->findBy(['category' => null])
         ]);
     }
 

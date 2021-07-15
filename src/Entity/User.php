@@ -73,7 +73,7 @@ abstract class User implements UserInterface
      *     max="45",
      *     maxMessage="Le prénom est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
-    private string $firstname;
+    private ?string $firstname;
 
     /**
      * @ORM\Column(type="boolean")
@@ -216,7 +216,7 @@ abstract class User implements UserInterface
         return $this->firstname;
     }
 
-    public function setFirstname(string $firstname): self
+    public function setFirstname(?string $firstname): self
     {
         $this->firstname = $firstname;
 

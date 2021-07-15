@@ -17,31 +17,31 @@
 
 @media screen and(max-width: 500px) {
     .responsive-table-list td:before { content: attr(data-title); }
-    .responsive-table-list table, 
-    .responsive-table-list thead, 
-    .responsive-table-list tbody, 
-    .responsive-table-list th, 
-    .responsive-table-list td, 
-    .responsive-table-list tr { 
-        display: block; 
+    .responsive-table-list table,
+    .responsive-table-list thead,
+    .responsive-table-list tbody,
+    .responsive-table-list th,
+    .responsive-table-list td,
+    .responsive-table-list tr {
+        display: block;
         }
-    .responsive-table-list thead tr { 
+    .responsive-table-list thead tr {
         display:none;
         }
-    .responsive-table-list td { 
+    .responsive-table-list td {
         position: relative;
         border: 0px solid transparent;
-        padding-left: 50% !important; 
+        padding-left: 50% !important;
         white-space: normal;
-        text-align:right; 
+        text-align:right;
         }
-         
-    .responsive-table-list td:before { 
+
+    .responsive-table-list td:before {
         position: absolute;
         top: 0px;
         left: 0px;
-        width: 45%; 
-        padding-right: 15px; 
+        width: 45%;
+        padding-right: 15px;
         height:100%;
         white-space: nowrap;
         text-overflow: ellipsis !important;
@@ -56,7 +56,7 @@
         margin:0px auto;
         max-width:900px;
     }
-    
+
     .table.table-bordered.table-condensed.table-body-center {
         border: 2px solid #59ae52;
     }
@@ -152,32 +152,32 @@
 }
 @media screen and(max-width: 500px) {
 .responsive-table-line td:before { content: attr(data-title); }
-.responsive-table-line table, 
-.responsive-table-line thead, 
-.responsive-table-line tbody, 
-.responsive-table-line th, 
-.responsive-table-line td, 
-.responsive-table-line tr { 
-    display: block; 
+.responsive-table-line table,
+.responsive-table-line thead,
+.responsive-table-line tbody,
+.responsive-table-line th,
+.responsive-table-line td,
+.responsive-table-line tr {
+    display: block;
     }
-     
-.responsive-table-line thead tr { 
+
+.responsive-table-line thead tr {
     display:none;
     }
-.responsive-table-line td { 
+.responsive-table-line td {
     position: relative;
     border: 0px solid transparent;
-    padding-left: 50% !important; 
+    padding-left: 50% !important;
     white-space: normal;
-    text-align:right; 
+    text-align:right;
     }
-     
-.responsive-table-line td:before { 
+
+.responsive-table-line td:before {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 45%; 
-    padding-right: 15px; 
+    width: 45%;
+    padding-right: 15px;
     height:100%;
     white-space: nowrap;
     text-overflow: ellipsis !important;

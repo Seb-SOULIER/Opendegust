@@ -17,30 +17,32 @@
                             <div class="account__content accordion-body">
                                 <div>
                                     {{ form_errors(form.name) }}
-                                    {{ form_label(form.name) }}
+                                    {{ form_label(form.name, "Nom :") }}
                                     {{ form_widget(form.name) }}
                                 </div>
                                 <div class="row g-3 d-md-flex justify-content-between">
                                     <div>
-                                        {{ form_label(form.description.shortDescription) }}
+                                        {{ form_label(form.description.shortDescription, "Description courte :") }}
                                         {{ form_widget(form.description.shortDescription) }}
                                     </div>
                                 </div>
                                 <div class="row g-3 d-md-flex justify-content-between">
                                     <div>
-                                        {{ form_label(form.description.longDescription) }}
+                                        {{ form_label(form.description.longDescription, "Description longue :") }}
                                         {{ form_widget(form.description.longDescription) }}
                                     </div>
                                 </div>
+{#                                @todo Seb -> mettre en image a charger#}
                                 <div class="row g-3 d-md-flex justify-content-between">
                                     <div>
-                                        {{ form_label(form.picture) }}
+                                        {{ form_label(form.picture, "Image :") }}
                                         {{ form_widget(form.picture) }}
                                     </div>
                                 </div>
+{#                                @todo Seb -> alignement des checkbox#}
                                 <div class="row g-3 d-md-flex justify-content-between">
                                     <div>
-                                        {{ form_label(form.language) }}
+                                        {{ form_label(form.language, "Langues :") }}
                                         {{ form_widget(form.language) }}
                                     </div>
                                 </div>
@@ -60,45 +62,33 @@
                             <div class="favourites__content accordion-body">
                                 <div>
                                     {{ form_errors(form.domainName) }}
-                                    {{ form_label(form.domainName) }}
+                                    {{ form_label(form.domainName, "Nom du Domaine :") }}
                                     {{ form_widget(form.domainName) }}
                                 </div>
-                                <div class="row g-3 d-md-flex justify-content-between">
-                                    <div>
-                                        {{ form_errors(form.contact.zipCode) }}
-                                        {{ form_label(form.contact.zipCode) }}
-                                        {{ form_widget(form.contact.zipCode) }}
-                                    </div>
+                                <div>
+                                    {{ form_errors(form.contact.zipCode) }}
+                                    {{ form_label(form.contact.zipCode, "Code Postal :") }}
+                                    {{ form_widget(form.contact.zipCode) }}
                                 </div>
-                                <div class="row g-3 d-md-flex justify-content-between">
-                                    <div>
-                                        {{ form_label(form.contact.city) }}
-                                        {{ form_widget(form.contact.city) }}
-                                    </div>
+                                <div>
+                                    {{ form_label(form.contact.city, "Ville :") }}
+                                    {{ form_widget(form.contact.city) }}
                                 </div>
-                                <div class="row g-3 d-md-flex justify-content-between">
-                                    <div>
-                                        {{ form_label(form.contact.address) }}
-                                        {{ form_widget(form.contact.address) }}
-                                    </div>
+                                <div>
+                                    {{ form_label(form.contact.address, "Adresse :") }}
+                                    {{ form_widget(form.contact.address) }}
                                 </div>
-                                <div class="row g-3 d-md-flex justify-content-between">
-                                    <div>
-                                        {{ form_label(form.contact.phone) }}
-                                        {{ form_widget(form.contact.phone) }}
-                                    </div>
+                                <div>
+                                    {{ form_label(form.contact.phone, "Numéro de téléphone :") }}
+                                    {{ form_widget(form.contact.phone) }}
                                 </div>
-                                <div class="row g-3 d-md-flex justify-content-between">
-                                    <div>
-                                        {{ form_label(form.contact.phone2) }}
-                                        {{ form_widget(form.contact.phone2) }}
-                                    </div>
+                                <div>
+                                    {{ form_label(form.contact.phone2, "Autre numéro :") }}
+                                    {{ form_widget(form.contact.phone2) }}
                                 </div>
-                                <div class="row g-3 d-md-flex justify-content-between">
-                                    <div>
-                                        {{ form_label(form.contact.website) }}
-                                        {{ form_widget(form.contact.website) }}
-                                    </div>
+                                <div>
+                                    {{ form_label(form.contact.website, "Site Web :") }}
+                                    {{ form_widget(form.contact.website) }}
                                 </div>
                             </div>
                         </div>
@@ -145,12 +135,14 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
+                                                        <ul class="calendars" data-prototype="{{ form_widget(variation.calendars.vars.prototype)|e('html_attr') }}">
                                                         {% for calendar in variation.calendars %}
-
                                                             {{ form_label(calendar.startAt) }}
                                                             {{ form_widget(calendar.startAt) }}
-
                                                         {% endfor %}
+                                                        </ul>
+                                                        <button type="button" class="add_item_link" data-collection-holder-class="calendars">New date
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -170,8 +162,6 @@
 
         <button class="btn btn-primary mt-3 col-12 col-md-6 text-light">{{ button_label|default('Valider') }}</button>
         {{ form_end(form) }}
-        <div class="d-flex justify-content-between my-3">
-            <a href="{{ path('home') }}">Retour à l'accueil</a>
-        </div>
     </div>
+    {{ encore_entry_script_tags('concat-form') }}
 {% endblock %}

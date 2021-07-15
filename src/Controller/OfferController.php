@@ -27,8 +27,25 @@ class OfferController extends AbstractController
      */
     public function index(OfferRepository $offerRepository): Response
     {
+        $offers = $offerRepository->findByProvider($this->getUser());
+
+        $allOffers = [];
+        $alltime = [];
+
+        foreach ($offers as $key => $offer) {
+            $offerVariations = $offer->getofferVariations();
+            foreach ($offerVariations as $key1 => $offerVariation) {
+                $calendars = $offerVariation->getCalendars();
+                foreach ($calendars as $calendar) {
+                    $allOffers[$key][] = $calendar->getStartAt();
+                    $alltime[$key][$key1][] = $calendar->getStartAt();
+                }
+            }
+        }
         return $this->render('offer/index.html.twig', [
-            'offers' => $offerRepository->findAll(),
+            'offers' => $offers,
+            'allOffers' => $allOffers,
+            'allDuree' => $alltime
         ]);
     }
 
@@ -38,6 +55,7 @@ class OfferController extends AbstractController
     public function new(Request $request, CategoryRepository $categoryRepository): Response
     {
         $offer = new Offer();
+
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
 
@@ -54,6 +72,8 @@ class OfferController extends AbstractController
             return $this->redirectToRoute('offer_index');
         }
 
+        $offerVariation = new OfferVariation();
+        $offer->addOfferVariation($offerVariation);
         return $this->render('offer/new.html.twig', [
             'offer' => $offer,
             'form' => $form->createView(),
