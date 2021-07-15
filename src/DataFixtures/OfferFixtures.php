@@ -29,6 +29,13 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
         ['Francais','Anglais','Espagnol','Russe','Portugais'],
         ['Francais','Anglais','Espagnol','Chinois','Japonais','Russe','Portugais']
     ];
+    private const PICTURE = [
+        '0' => 'http://4.bp.blogspot.com/-sOxM1VOF3aw/UFurFiwGKTI/AAAAAAAAD5s/wFABJmlvBHQ/s1600/IMG_4751.JPG',
+        '1' => 'https://cache.cosmopolitan.fr/data/photo/w1000_ci/54/amis-restaurant.webp',
+        '2' => 'https://cache.cosmopolitan.fr/data/photo/w1000_ci/54/amis-restaurant.webp',
+        '3' => 'https://www.nordundsud.at/wp-content/uploads/2020/10/Coffrets-degustation-458x458.jpg',
+        '4' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
+    ];
 
     protected $faker;
 
@@ -40,7 +47,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
             for ($i = 1; $i <= self::OFFER_NUMBER; $i++) {
                 $offer = new Offer();
                 $offer->setName($this->faker->sentence(2));
-                $offer->setPicture($this->faker->imageUrl(640, 480, 'food', true));
+                $offer->setPicture(self::PICTURE[rand(0, 4)]);
                 $offer->setDomainName($this->faker->sentence(3));
 
                 $language = self::LANGUAGE[rand(0, 8)];
