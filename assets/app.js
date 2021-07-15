@@ -12,7 +12,7 @@ import './js/search';
 import './js/map';
 import './js/concatForm';
 
-import './offerVariationInfo';
+import './js/offer-variation-info';
 
 // start the Stimulus application
 import './bootstrap';

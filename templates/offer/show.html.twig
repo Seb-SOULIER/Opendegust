@@ -224,7 +224,7 @@ Offer
 
 	<div class="container">
 		<div class="row informations-supp">
-			<div class="col-12 col-sm-9" id="description-offer">
+			<div class="col-12 col-sm-8" id="description-offer">
 				<h2>Dégustation de Vins</h2>
 				<p class="longue-description">
 					<span>La visite de notre Domaine vous permettra de découvrir notre Maison et notre savoir faire. En partant du vignoble et en terminant dans nos chais de vieillissement vous découvrirez le fil de l’élaboration de nos « Pineau des Charentes » et « Cognac » d’exception.Vous découvrirez la richesse d’un terroir et l’histoire que notre Domaine porte à travers les générations.</span><br>
@@ -286,7 +286,8 @@ Offer
 				</div>
 			</div>
 
-			<form class="col-3">
+			<div class="col-sm-4">
+				<form>
 					<div>
 						<label for="calendar">
 							{% if calendarsCount <= 1 %}
@@ -298,51 +299,34 @@ Offer
 						<select id="calendar" class="form-select shadow" name="q" style="height: 50px;">
 							{% for offer_variation in offerVariations %}
 								{% for calendar in offer_variation.calendars %}
-									<option value="{{ calendar.id }}">{{ calendar.startAt|date }}</option>
+								<option value="{{ calendar.id }}">{{ calendar.startAt|date }}</option>
 								{% endfor %}
 							{% endfor %}
 						</select>
 					</div>
-			</form>
+				</form>
+
+				<div id="formBooking" class="d-flex row justify-content-center">
+					{{ render(controller('App\\Controller\\OfferController::offerVariationInfo', {'id': offerVariations[0].calendars[0].id})) }}
+				</div>
+
+			</div>
 		</div>
+		<div>
+	        <a href="{{ path('offer_index') }}">back to list</a>
 
-	{#        <div class="d-flex row justify-content-center">#}
-{#                {{ form_start(form, {'attr': {'class': 'col-11 col-md-4'}}) }}#}
-	{#                <div class="d-flex flex-column my-3 form-control shadow">#}
-	{#                    <div class="form-control mt-3 shadow-sm">#}
-	{#						<p><strong>Tarifs :</strong></p>#}
-	{#						<p>place adulte : <span id="adultPrice">{{ offerVariation.priceVariation[0] }}</span> €</p>#}
-	{#						<p>place enfant : <span id="childPrice">{{ offerVariation.priceVariation[1] }}</span> €</p>#}
-	{#                        <i class="fas fa-users me-3"></i>#}
-	{#						{{ form_label(form.adultPlaces) }}#}
-	{#                        {{ form_widget(form.adultPlaces, {'attr': {'id': 'adultPlaces'}}) }}#}
-	{#                        <i class="fas fa-users mt-3 me-3"></i>#}
-	{#						{{ form_label(form.childPlaces) }}#}
-	{#                        {{ form_widget(form.childPlaces, {'attr': {'id': 'childPlaces'}}) }}#}
-	{#                        <p class="text-end mt-3"><strong>Total : <span id="price">230,00</span> €</strong></p>#}
-	{#                    </div>#}
+	        <a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>
 
-	{#                            <div class="d-flex align-items-center">#}
-	{#                                <img class="me-3" src="{{ asset("build/images/calendar-icon_34471.png") }}" alt="calendar" width="10%">Choisissez une date<i class="fas fa-chevron-down align-self-end align-self-center"></i>#}
-	{#                            </div>#}
+	        {{ include('offer/_delete_form.html.twig') }}
+	    </div>
 
-	{#                    <input class="w-60 btn btn-primary align-self-end text-light my-3" type="submit" value="Demander la réservation">#}
-	{#                </div>#}
-	{#                {{ form_end(form) }}#}
-	{#        </div>#}
-
-	{#        <a href="{{ path('offer_index') }}">back to list</a>#}
-
-	{#        <a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>#}
-
-	{#        {{ include('offer/_delete_form.html.twig') }}#}
-	{#    </div>#}
-
-</div></div><div class="container-fluid">
-<div class="list-offer-by-provider">
-	<h2 class="my-3 text-center">Nos Produits</h2>
-	<div class="row row-cols-1 row-cols-md-5 g-5" id="provider-offer-card">
-		{% include "product/products.html.twig" %}
+<div class="container-fluid">
+	<div class="list-offer-by-provider">
+		<h2 class="my-3 text-center">Nos Produits</h2>
+		<div class="row row-cols-1 row-cols-md-5 g-5" id="provider-offer-card">
+			{% include "product/products.html.twig" %}
+		</div>
 	</div>
-</div></div><a href="{{ path('offer_index') }}">
-back to list</a><a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>{% endblock %}
+</div><a href="{{ path('offer_index') }}">
+back to list</a><a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>
+{% endblock %}
