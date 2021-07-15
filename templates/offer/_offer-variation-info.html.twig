@@ -1,0 +1,52 @@
+{{ form_start(form, {'method': 'GET'}) }}
+<div class="d-flex flex-column my-3 form-control shadow">
+    <div class="form-control mt-3 shadow-sm">
+        <p><strong>Places restantes :</strong>
+            <span id="availablePlaces">{{ offerVariation.availablePlaces }}</span> / <span id="capacity">{{ offerVariation.capacity }}</span>
+        </p>
+        <p><strong>Durée :</strong>
+            <span id="duration">{{ offerVariation.duration|date('H\\hi\\m\\i\\n') }}</span>
+        </p>
+        <p><strong>Tarifs :</strong></p>
+        <p>place adulte :
+            <span id="adultPrice">{{ offerVariation.priceVariation.adultes }}</span> €
+        </p>
+        <p>place enfant :
+            <span id="childPrice">{{ offerVariation.priceVariation.enfants }}</span> €
+        </p>
+        <i class="fas fa-users me-3"></i> Nombre d'adultes :
+        {{ form_row(form.adultPlaces) }}
+        <button id="removeAdult" class="btn-minus-plus" data-change="adult" data-sens="1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+            </svg>
+        </button>
+        <span id="nbrAdultPlaces"> 0 </span>
+        <button id="addAdult" class="btn-minus-plus" data-change="adult" data-sens="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg>
+        </button>
+        <br>
+        <i class="fas fa-users mt-3 me-3"></i> Nombre d'enfants :
+        {{ form_row(form.childPlaces) }}
+        <button id="removeChild" class="btn-minus-plus">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+            </svg>
+        </button>
+        <span id="nbrChildPlaces"> 0 </span>
+        <button id="addChild" class="btn-minus-plus" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg>
+        </button>
+        <p class="text-end mt-3"><strong>Total : <span id="price">0</span> €</strong></p>
+    </div>
+    <input class="w-60 btn btn-primary align-self-end text-light my-3" type="submit" value="Demander la réservation">
+</div>
+{{ form_end(form) }}

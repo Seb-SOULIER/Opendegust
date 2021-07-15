@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Contact;
 use App\Entity\Offer;
+use App\Repository\CategoryRepository;
 use App\Repository\ContactRepository;
 use App\Service\Api;
 use Doctrine\ORM\EntityManagerInterface;
@@ -38,16 +38,16 @@ class SearchController extends AbstractController
     /**
      * @Route("/", name="localization")
      */
-    public function search(Request $request, Api $api): Response
+    public function search(Request $request, Api $api, CategoryRepository $categoryRepository): Response
     {
 
         $query = $request->query->get('q');
+
         if (null !== $query) {
             $url = "https://nominatim.openstreetmap.org/search?q="
             . $query . "&format=json&addressdetails=1&limit=1";
             $localization = $api->getResponse($url);
         }
-
 
         $offers = $this->getDoctrine()
             ->getRepository(Offer::class)
@@ -56,7 +56,8 @@ class SearchController extends AbstractController
         return $this->render('search/index.html.twig', [
             'localization' => $localization ?? [],
             'offers' => $offers,
-            ]);
+            'categories' => $categoryRepository->findBy(['category' => null])
+        ]);
     }
 
     /**

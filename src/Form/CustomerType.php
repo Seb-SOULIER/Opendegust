@@ -63,7 +63,7 @@ class CustomerType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('contact', ContactType::class, [
+            ->add('contact', ContactCustomerType::class, [
                 'by_reference' => false
             ])
         ;

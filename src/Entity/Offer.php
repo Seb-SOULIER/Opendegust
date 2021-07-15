@@ -178,7 +178,7 @@ class Offer
     /**
      * @return Collection|OfferVariation[]
      */
-    public function getOfferVariations(): ?Collection
+    public function getOfferVariations(): Collection
     {
         return $this->offerVariations;
     }
