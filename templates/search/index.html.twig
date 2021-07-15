@@ -9,11 +9,11 @@
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""/>
 {% endblock %}
+
 {% block javascripts %}
 {% endblock %}
 {% block body %}
-    <div id="maCarte"></div>
-    <br>
+    {% include 'sidebar/sidebar.html.twig' %}
     {% include '/search/card_offer.html.twig' %}
     {{ encore_entry_script_tags('map') }}
 {% endblock %}

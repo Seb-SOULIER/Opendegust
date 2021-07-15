@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Offer;
 use App\Repository\CategoryRepository;
 use App\Repository\ContactRepository;
+use App\Repository\OfferRepository;
 use App\Service\Api;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,27 +32,43 @@ class SearchController extends AbstractController
             $this->addFlash('success', 'Offre ajouté en favori');
         }
         $manager->flush();
-
         return $this->redirectToRoute('search_localization');
     }
 
     /**
+     * @Route("/coordinate", name="coordinate")
+     */
+    public function coordinate(Request $request, ContactRepository $contactRepository): Response
+    {
+        $coordinate = $contactRepository->findAll();
+        return $this->json($coordinate ?? []);
+            //'{\"adultes\":3,\"enfants\":4}';
+        //$this->json($coordinate ?? []);
+    }
+
+
+    /**
      * @Route("/", name="localization")
      */
-    public function search(Request $request, Api $api, CategoryRepository $categoryRepository): Response
-    {
+    public function search(
+        Request $request,
+        Api $api,
+        CategoryRepository $categoryRepository,
+        OfferRepository  $offerRepository
+    ): Response {
 
         $query = $request->query->get('q');
+
         if (null !== $query) {
             $url = "https://nominatim.openstreetmap.org/search?q="
             . $query . "&format=json&addressdetails=1&limit=1";
             $localization = $api->getResponse($url);
         }
 
-
-        $offers = $this->getDoctrine()
-            ->getRepository(Offer::class)
-            ->findAll();
+        $lang=$request->query->get('language');
+//        $offers = $this->getDoctrine()
+//            ->getRepository(Offer::class)
+        $offers = $offerRepository->findFilter($request,$localization ??[]);
 
         return $this->render('search/index.html.twig', [
             'localization' => $localization ?? [],

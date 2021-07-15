@@ -6,7 +6,6 @@ use App\Entity\OfferVariation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PercentType;
@@ -24,16 +23,18 @@ class OfferVariationType extends AbstractType
             ->add('currentVat', PercentType::class, [
                 ])
             ->add('capacity')
-            ->add('calendars', CollectionType::class, [
-                'entry_type' => CalendarType::class,
-                'entry_options' => ['label' => false],
-                'allow_add' => true,
-                'by_reference' => false,
-                'allow_delete' => true,
+//            ->add('calendars', CollectionType::class, [
+//                'entry_type' => CalendarType::class,
+//                'entry_options' => ['label' => false],
+//                'allow_add' => true,
+//                'by_reference' => false,
+//                'allow_delete' => true,
+//            ])
+            ->add('calendar', ButtonType::class, [
+                'attr' => ['class' => 'btn btn-success', 'data-collection-holder-class' => 'calendars']
             ])
-            ->add('availablePlaces', HiddenType::class)
-            ->add('delete', ButtonType::class, [
-                ])
+//            ->add('delete', ButtonType::class, [
+//                ])
         ;
     }
 

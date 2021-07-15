@@ -41,21 +41,21 @@ export default class Map {
         <a class="linkpopup" href="/offer/${[elem.getAttribute('data-id')]}" target="_blank">réserver</a>
       </div>
     </div>
-  </div>`)
+  </div>`);
             // marqueur.on('click');
-            elem.addEventListener("click", (event)=>{
+            elem.addEventListener('click', (event) => {
                 event.preventDefault();
 
-                let poslat = event.target.getAttribute('data-lat');
-                let poslon = event.target.getAttribute('data-long');
+                const poslat = event.target.getAttribute('data-lat');
+                const poslon = event.target.getAttribute('data-long');
                 console.log(poslon, poslat);
                 // if (poslat && poslon) {
                 //     let locat = pos.split(',');
-                    carte.setView([poslat, poslon], 11, {animate: true, duration: 1.5});
-                    return false;
-            })
+                carte.setView([poslat, poslon], 11, { animate: true, duration: 1.5 });
+                return false;
+            });
         });
-   // , {animation: true}
+        // , {animation: true}
 
         // function markerFunction(id) {
         //     for (let i in cards) {
