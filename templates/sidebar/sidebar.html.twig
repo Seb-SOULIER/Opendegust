@@ -1,86 +1,88 @@
 
 <div data-component="sidebar" class="sticky-top">
-    <form action="" method="GET">
-    <div class="sidebar">
-        <ul class="list-group flex-column d-inline-block first-menu">
-            <li class="list-group-item pl-3 py-2">
-                <a><i class="fas fa-calendar-alt" aria-hidden="true"><span class="ml-2 align-middle"> Dates</span></i></a>
-                <ul class="list-group flex-column d-inline-block submenu">
-                    <li class="list-group-item pl-4">
-                        <label for="dateStart"> A partir du :</label>
-                        <input type="date" name="dateStart">
-                    </li>
-                    <li class="list-group-item pl-4">
-                        <label for="dateStop"> Jusqu'au :</label>
-                        <input type="date" name="dateStop">
-                    </li>
-                </ul> <!-- /.submenu -->
-            </li> <!-- /.list-group-Dates -->
+    <div class="sidebar-wrapper">
+        <div id="maCarte"></div>
+        <form action="" method="GET">
+            <div class="sidebar">
+                <ul class="list-group flex-column d-inline-block first-menu">
+                    <li class="list-group-item pl-3 py-2">
+                        <a><i class="fas fa-calendar-alt" aria-hidden="true"><span class="ml-2 align-middle"> Dates</span></i></a>
+                        <ul class="list-group flex-column d-inline-block submenu">
+                            <li class="list-group-item pl-4">
+                                <label for="dateStart"> A partir du :</label>
+                                <input type="date" name="dateStart">
+                            </li>
+                            <li class="list-group-item pl-4">
+                                <label for="dateStop"> Jusqu'au :</label>
+                                <input type="date" name="dateStop">
+                            </li>
+                        </ul> <!-- /.submenu -->
+                    </li> <!-- /.list-group-Dates -->
 
-            <li class="list-group-item pl-3 py-2">
-                <a><i class="fas fa-sort-amount-down" aria-hidden="true"><span class="ml-2 align-middle"> Categories</span></i></a>
-                <ul class="list-group flex-column d-inline-block submenu" style="overflow: auto">
-                        {% from 'macros/categoriesClient.html.twig' import make_categories %}
-                        {{ make_categories(categories) }}
-                </ul> <!-- /.submenu -->
-            </li> <!-- /.list-group-category -->
+                    <li class="list-group-item pl-3 py-2">
+                        <a><i class="fas fa-sort-amount-down" aria-hidden="true"><span class="ml-2 align-middle"> Categories</span></i></a>
+                        <ul class="list-group flex-column d-inline-block submenu" style="overflow: auto">
+                            {% from 'macros/categoriesClient.html.twig' import make_categories %}
+                            {{ make_categories(categories) }}
+                        </ul> <!-- /.submenu -->
+                    </li> <!-- /.list-group-category -->
 
-            <li class="list-group-item pl-3 py-2">
-                <a><i class="fas fa-money-bill-wave" aria-hidden="true"><span class="ml-2 align-middle"> Prix</span></i></a>
-                <ul class="list-group flex-column d-inline-block submenu" style="width: 400px">
-                    <li class="list-group-item pl-4">
-                        <div class="container">
-                            <h1>Tarif</h1>
-                            <div class="multi-range"></div>
-                            <a><label for="start-hour">De : <input id="start-hour" class="start-hour" type="number" min="0"></label>€
-                                <label for="end-hour"> à : <input id="end-hour" class="end-hour" type="number">€</label></a>
-                        </div>
-                    </li>
-                </ul> <!-- /.submenu -->
-            </li> <!-- /.list-group-Price -->
+                    <li class="list-group-item pl-3 py-2">
+                        <a><i class="fas fa-money-bill-wave" aria-hidden="true"><span class="ml-2 align-middle"> Prix</span></i></a>
+                        <ul class="list-group flex-column d-inline-block submenu" style="width: 400px">
+                            <li class="list-group-item pl-4">
+                                <div class="container">
+                                    <h1>Tarif</h1>
+                                    <div class="multi-range"></div>
+                                    <a><label for="start-hour">De : <input id="start-hour" class="start-hour" type="number" min="0"></label>€
+                                        <label for="end-hour"> à : <input id="end-hour" class="end-hour" type="number">€</label></a>
+                                </div>
+                            </li>
+                        </ul> <!-- /.submenu -->
+                    </li> <!-- /.list-group-Price -->
 
-            <li class="list-group-item pl-3 py-2">
-                <a><i class="fas fa-language" aria-hidden="true"><span class="ml-2 align-middle"> Langues</span></i></a>
-                <ul class="list-group flex-column d-inline-block submenu">
-                    <li class="list-group-item pl-4">
-                        <input type="checkbox" name = "language" id="francais" value="francais">
-                        <label for="francais">Francais</label>
-                    </li>
-                    <li class="list-group-item pl-4">
-                        <input type="checkbox" name = "language" id="anglais" value="anglais">
-                        <label for="anglais">Anglais</label>
-                    </li>
-                    <li class="list-group-item pl-4">
-                        <input type="checkbox" name = "language" id="espagnol" value="espagnol">
-                        <label for=espagnol">Espagnol</label>
-                    </li>
-                    <li class="list-group-item pl-4">
-                        <input type="checkbox" name = "language" id="chinois" value="chinois">
-                        <label for="chinois">Chinois</label>
-                    </li>
-                    <li class="list-group-item pl-4">
-                        <input type="checkbox" name = "language" id="Japonais" value="japonais">
-                        <label for="Japonais">Japonais</label>
-                    </li>
-                    <li class="list-group-item pl-4">
-                        <input type="checkbox" name = "language" id="russe" value="russe">
-                        <label for="russe">russe</label>
-                    </li>
-                    <li class="list-group-item pl-4">
-                        <input type="checkbox" name = "language" id="portugais" value="portugais">
-                        <label for=portugais">Portugais</label>
-                    </li>
-                </ul>
-            </li> <!-- /.list-group-language -->
+                    <li class="list-group-item pl-3 py-2">
+                        <a><i class="fas fa-language" aria-hidden="true"><span class="ml-2 align-middle"> Langues</span></i></a>
+                        <ul class="list-group flex-column d-inline-block submenu">
+                            <li class="list-group-item pl-4">
+                                <input type="checkbox" name = "language" id="francais" value="francais">
+                                <label for="francais">Francais</label>
+                            </li>
+                            <li class="list-group-item pl-4">
+                                <input type="checkbox" name = "language" id="anglais" value="anglais">
+                                <label for="anglais">Anglais</label>
+                            </li>
+                            <li class="list-group-item pl-4">
+                                <input type="checkbox" name = "language" id="espagnol" value="espagnol">
+                                <label for=espagnol">Espagnol</label>
+                            </li>
+                            <li class="list-group-item pl-4">
+                                <input type="checkbox" name = "language" id="chinois" value="chinois">
+                                <label for="chinois">Chinois</label>
+                            </li>
+                            <li class="list-group-item pl-4">
+                                <input type="checkbox" name = "language" id="Japonais" value="japonais">
+                                <label for="Japonais">Japonais</label>
+                            </li>
+                            <li class="list-group-item pl-4">
+                                <input type="checkbox" name = "language" id="russe" value="russe">
+                                <label for="russe">russe</label>
+                            </li>
+                            <li class="list-group-item pl-4">
+                                <input type="checkbox" name = "language" id="portugais" value="portugais">
+                                <label for=portugais">Portugais</label>
+                            </li>
+                        </ul>
+                    </li> <!-- /.list-group-language -->
 
-            <li class="list-group-item pl-3 py-2">
-                <a><span><button type="submit" class="btn btn-success"> Filtrer</button></span></a>
-            </li> <!-- /.list-apply-choice -->
+                    <li class="list-group-item pl-3 py-2">
+                        <a><span><button type="submit" class="btn btn-success"> Filtrer</button></span></a>
+                    </li> <!-- /.list-apply-choice -->
 
-        </ul> <!-- /.first-menu -->
-    </div> <!-- /.sidebar -->
-    </form>
-    <div id="maCarte">
+                </ul> <!-- /.first-menu -->
+            </div> <!-- /.sidebar -->
+        </form>
+
     </div>
 </div>
 

@@ -5,21 +5,23 @@ $transition-duration: 600ms;
 $transition-delay: $transition-duration;
 $sidebar-transition: $transition-duration opacity $transition-delay, $transition-duration visibility $transition-delay;
 
-[data-component='sidebar'] {
+.sidebar-wrapper {
+  position: relative;
+}
 
+[data-component='sidebar'] {
   .sidebar {
-    position: fixed;
+    position: absolute;
+    top: 0;
     z-index: 9999;
   }
 
   //black menu
   .first-menu {
-    position: fixed;
+    position: absolute;
     background-color: $secondary-color;
     height: 300px;
     width: 60px;
-    top: 8.5vh;
-    overflow: hidden;
     transition: width .5s;
     a {
       color: #fff;
@@ -39,6 +41,7 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
     }
     .list-group-item {
       border-radius: 0;
+      position: initial;
       &:hover {
         background-color: $primary-color;
       }
@@ -55,12 +58,14 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
 
   //green menu
   .submenu {
-    position: fixed;
+    position: absolute;
+    top: 0;
+    bottom: 0;
     left: 160px;
     width: 195px;
-    top: 8.5vh;
     background-color: $primary-color;
-    height: 300px;
+    overflow: auto;
+    //height: 300px;
     opacity: 0;
     visibility: hidden;
     transition: $sidebar-transition;
