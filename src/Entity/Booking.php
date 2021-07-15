@@ -20,12 +20,12 @@ class Booking
     /**
      * @ORM\Column(type="json")
      */
-    private string $places;
+    private ?string $places;
 
     /**
      * @ORM\Column(type="json")
      */
-    private string $priceVariationBook;
+    private ?string $priceVariationBook;
 
     /**
      * @ORM\Column(type="float")
@@ -40,7 +40,7 @@ class Booking
     /**
      * @ORM\Column(type="float")
      */
-    private float $vat;
+    private ?float $vat;
 
     /**
      * @ORM\Column(type="integer")
@@ -50,7 +50,7 @@ class Booking
     /**
      * @ORM\ManyToOne(targetEntity=Customer::class, inversedBy="bookings")
      */
-    private ?Customer $customer;
+    private Customer $customer;
 
     /**
      * @ORM\OneToOne(targetEntity=OfferVariation::class, inversedBy="booking", cascade={"persist", "remove"})
@@ -62,26 +62,27 @@ class Booking
         return $this->id;
     }
 
-    public function getPlaces(): ?string
+    public function getPlaces(): ?array
     {
-        return $this->places;
+        return $this->places ? json_decode($this->places, true) : null;
     }
 
-    public function setPlaces(string $places): self
+    public function setPlaces(?array $places): self
     {
-        $this->places = $places;
+        $this->places = json_encode($places) === false ? null : json_encode($places);
 
         return $this;
     }
 
-    public function getPriceVariationBook(): ?string
+    public function getPriceVariationBook(): ?array
     {
-        return $this->priceVariationBook;
+        return $this->priceVariationBook ? json_decode($this->priceVariationBook, true) : null;
     }
 
-    public function setPriceVariationBook(string $priceVariationBook): self
+    public function setPriceVariationBook(?array $priceVariationBook): self
     {
-        $this->priceVariationBook = $priceVariationBook;
+        $this->priceVariationBook =
+            json_encode($priceVariationBook) === false ? null : json_encode($priceVariationBook);
 
         return $this;
     }
@@ -115,7 +116,7 @@ class Booking
         return $this->vat;
     }
 
-    public function setVat(float $vat): self
+    public function setVat(?float $vat): self
     {
         $this->vat = $vat;
 
@@ -134,12 +135,12 @@ class Booking
         return $this;
     }
 
-    public function getCustomer(): ?Customer
+    public function getCustomer(): Customer
     {
         return $this->customer;
     }
 
-    public function setCustomer(?Customer $customer): self
+    public function setCustomer(Customer $customer): self
     {
         $this->customer = $customer;
 

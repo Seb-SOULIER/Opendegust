@@ -1,4 +1,23 @@
 .form-box {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.facebook {
+  background: $facebook;
+  color: $light;
+  &:hover {
+    color: $light;
+    background: lighten($facebook, 5%);
+  }
+}
+
+.google {
+  background: $light;
+  color: $dark;
+  &:hover {
+    background: $light;
+    color: $dark;
+  }
 }
