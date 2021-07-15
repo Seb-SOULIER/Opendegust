@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Booking;
+use App\Repository\OfferVariationRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,11 +15,11 @@ class BookingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('adultPlaces', ChoiceType::class, [
+        ->add('adultPlaces', HiddenType::class, [
             'mapped' => false,
             'label' => "Nombre d'adultes :",
         ])
-        ->add('childPlaces', ChoiceType::class, [
+        ->add('childPlaces', HiddenType::class, [
             'mapped' => false,
             'label' => "Nombre d'enfants :",
         ])

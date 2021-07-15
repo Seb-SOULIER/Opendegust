@@ -7,6 +7,7 @@ use App\Repository\CategoryRepository;
 use App\Repository\ContactRepository;
 use App\Repository\OfferRepository;
 use App\Service\Api;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,18 +18,22 @@ use Symfony\Component\Routing\Annotation\Route;
 */
 class SearchController extends AbstractController
 {
-//    /**
-//     * @Route("/", name="index")
-//     */
-//    public function index(): Response
-//    {
-//        $offers = $this->getDoctrine()
-//            ->getRepository(Offer::class)
-//            ->findAll();
-//        return $this->render('search/index.html.twig', [
-//            'offers' => $offers
-//        ]);
-//    }
+    /**
+     * @Route("/{id}/favory", name="favory", methods={"GET","POST"})
+     */
+
+    public function addToFavorite(Request $request, Offer $offer, EntityManagerInterface $manager): Response
+    {
+        if ($this->getUser()->isInFavory($offer)) {
+            $this->getUser()->removeFavory($offer);
+            $this->addFlash('warning', 'Offre supprimé des favoris');
+        } else {
+            $this->getUser()->addFavory($offer);
+            $this->addFlash('success', 'Offre ajouté en favori');
+        }
+        $manager->flush();
+        return $this->redirectToRoute('search_localization');
+    }
 
     /**
      * @Route("/coordinate", name="coordinate")
@@ -53,6 +58,7 @@ class SearchController extends AbstractController
     ): Response {
 
         $query = $request->query->get('q');
+
         if (null !== $query) {
             $url = "https://nominatim.openstreetmap.org/search?q="
             . $query . "&format=json&addressdetails=1&limit=1";
@@ -67,8 +73,7 @@ class SearchController extends AbstractController
         return $this->render('search/index.html.twig', [
             'localization' => $localization ?? [],
             'offers' => $offers,
-            'categories' => $categoryRepository->findBy(['category' => null]),
-            'lang'=>$lang
+            'categories' => $categoryRepository->findBy(['category' => null])
         ]);
     }
 

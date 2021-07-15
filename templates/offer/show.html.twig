@@ -3,41 +3,13 @@
 {% block title %}Offer
 {% endblock %}
 {% block body %}
-	<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item active">
-				<a style="text-decoration:none" href="/">Accueil</a>
-			</li>
-			<li class="breadcrumb-item active">
-				<a style="text-decoration:none" href="#">Home</a>
-			</li>
-			<li class="breadcrumb-item active">
-				<a style="text-decoration:none" href="#">Home</a>
-			</li>
-			<li class="breadcrumb-item active">
-				<a style="text-decoration:none" href="#">Home</a>
-			</li>
-			<li class="breadcrumb-item active">
-				<a style="text-decoration:none" href="#">Home</a>
-			</li>
-		</ol>
-	</nav>
 	<div class="title-offer-domain">
 		<h1 style="text-align:center">{{ offer.domainName }}</h1>
 	</div>
 	<div class="container-fluid">
 		<div class="row offer-domaine">
-			<div class="col-12 col-sm-6 domaine-picture">
-
-				<img src="{{ offer.picture }}" class="img-fluid" alt="{{ offer.name }}">
-
-				{# <img src="https://images.charentelibre.fr/2016/08/23/57bb5ca47971bb604a2c5a78/golden/1000x625/lactuel-proprietaire.jpg" id="img-domaine" class="img-fluid" style="min-height: 100%" alt="{{ offer.name }}"> #}
-			</div>
 			<div class="col-12 col-sm-6 offer-picture">
-
 				<img src="{{ offer.picture }}" class="img-fluid" alt="{{ offer.name }}">
-
-				{# <img src="https://www.probierfass.de/media/image/5a/77/73/le54uu54u54er.jpg" id="img-offer" class="img-fluid" style="min-height: 100%" alt="{{ offer.name }}"> #}
 			</div>
 		</div>
 	</div>
@@ -66,7 +38,7 @@
 
 	<div class="container">
 		<div class="row informations-supp">
-			<div class="col-12 col-sm-9" id="description-offer">
+			<div class="col-12 col-lg-8" id="description-offer">
 				<h2>{{ offer.name }}</h2>
 				<p class="longue-description">{{ offer.description.longDescription }}</p>
 
@@ -113,60 +85,32 @@
 						</table>
 					</div>
 				</div>
-				{# <div class="lang-affichage d-flex">
-					{% for value in offer.language %}
-						<p>
-							{{ value }}</p>
-						{% if not loop.last %}{% endif %}
-					{% endfor %}
-				</div> #}
 			</div>
 
-			<div class="col-12 col-sm-3">
-				<form class="row g-3">
-					<div class="col-md-6">
-						<label for="inputEmail4" class="form-label">Email</label>
-						<input type="email" class="form-control" id="inputEmail4">
-					</div>
-					<div class="col-md-6">
-						<label for="inputPassword4" class="form-label">Password</label>
-						<input type="password" class="form-control" id="inputPassword4">
-					</div>
-					<div class="col-12">
-						<label for="inputAddress" class="form-label">Address</label>
-						<input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-					</div>
-					<div class="col-12">
-						<label for="inputAddress2" class="form-label">Address 2</label>
-						<input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-					</div>
-					<div class="col-md-6">
-						<label for="inputCity" class="form-label">City</label>
-						<input type="text" class="form-control" id="inputCity">
-					</div>
-					<div class="col-md-4">
-						<label for="inputState" class="form-label">State</label>
-						<select id="inputState" class="form-select">
-							<option selected>Choose...</option>
-							<option>...</option>
+			<div class="col-lg-4">
+				<form>
+					<div>
+						<label for="calendar">
+							{% if calendarsCount <= 1 %}
+								<h5>Date disponible pour cette activité :</h5>
+							{% else %}
+								<h5>Dates disponibles pour cette activité :</h5>
+							{% endif %}
+						</label>
+						<select id="calendar" class="form-select shadow" name="q" style="height: 50px;">
+							{% for offer_variation in offerVariations %}
+								{% for calendar in offer_variation.calendars %}
+									<option value="{{ calendar.id }}">{{ calendar.startAt|date }}</option>
+								{% endfor %}
+							{% endfor %}
 						</select>
 					</div>
-					<div class="col-md-2">
-						<label for="inputZip" class="form-label">Zip</label>
-						<input type="text" class="form-control" id="inputZip">
-					</div>
-					<div class="col-12">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" id="gridCheck">
-							<label class="form-check-label" for="gridCheck">
-								Check me out
-							</label>
-						</div>
-					</div>
-					<div class="col-12">
-						<button type="submit" class="btn btn-primary">Sign in</button>
-					</div>
 				</form>
+
+				<div id="formBooking" class="d-flex row justify-content-center">
+					{{ render(controller('App\\Controller\\OfferController::offerVariationInfo', {'id': offerVariations[0].calendars[0].id})) }}
+				</div>
+
 			</div>
 		</div>
 	</div>
@@ -175,57 +119,13 @@
 			<h1 class="my-3 text-center">Nos Produits</h1>
 			<div class="row row-cols-1 row-cols-md-5 g-5" id="provider-offer-card">
 				{% for product in products %}
-					{{ product }}
 					{% include "product/products.html.twig" %}
 				{% endfor %}
 			</div>
 		</div>
 	</div>
 
-	<a href="{{ path('offer_index') }}">
-		back to list</a>
+	<a href="{{ path('offer_index') }}">back to list</a>
 	<a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>
+
 {% endblock %}
-
-
-
-{#        <div class="d-flex row justify-content-center">#}
-{#                {{ form_start(form, {'attr': {'class': 'col-11 col-md-4'}}) }}#}
-{#                <div class="d-flex flex-column my-3 form-control shadow">#}
-{#                    <div class="form-control mt-3 shadow-sm">#}
-{#						<p><strong>Tarifs :</strong></p>#}
-{#						<p>place adulte : <span id="adultPrice">{{ offerVariation.priceVariation[0] }}</span> €</p>#}
-{#						<p>place enfant : <span id="childPrice">{{ offerVariation.priceVariation[1] }}</span> €</p>#}
-{#                        <i class="fas fa-users me-3"></i>#}
-{#						{{ form_label(form.adultPlaces) }}#}
-{#                        {{ form_widget(form.adultPlaces, {'attr': {'id': 'adultPlaces'}}) }}#}
-{#                        <i class="fas fa-users mt-3 me-3"></i>#}
-{#						{{ form_label(form.childPlaces) }}#}
-{#                        {{ form_widget(form.childPlaces, {'attr': {'id': 'childPlaces'}}) }}#}
-{#                        <p class="text-end mt-3"><strong>Total : <span id="price">230,00</span> €</strong></p>#}
-{#                    </div>#}
-
-{#                            <div class="d-flex align-items-center">#}
-{#                                <img class="me-3" src="{{ asset("build/images/calendar-icon_34471.png") }}" alt="calendar" width="10%">Choisissez une date<i class="fas fa-chevron-down align-self-end align-self-center"></i>#}
-{#                            </div>#}
-
-{#                    <input class="w-60 btn btn-primary align-self-end text-light my-3" type="submit" value="Demander la réservation">#}
-{#                </div>#}
-{#                {{ form_end(form) }}#}
-{#        </div>#}
-
-{#        <a href="{{ path('offer_index') }}">back to list</a>#}
-
-{#        <a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>#}
-
-{#        {{ include('offer/_delete_form.html.twig') }}#}
-{#    </div>#}
-
-{# </div></div><div class="container-fluid">
-<div class="list-offer-by-provider">
-	<h2 class="my-3 text-center">Nos Produits</h2>
-	<div class="row row-cols-1 row-cols-md-5 g-5" id="provider-offer-card">
-		{% include "product/products.html.twig" %}
-	</div>
-</div></div><a href="{{ path('offer_index') }}">
-back to list</a><a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>{% endblock %} #}

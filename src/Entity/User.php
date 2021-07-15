@@ -40,7 +40,7 @@ abstract class User implements UserInterface
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private string $password;
 
@@ -79,6 +79,16 @@ abstract class User implements UserInterface
      * @ORM\Column(type="boolean")
      */
     private bool $isVerified = false;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private string $facebookId;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private string $googleId;
 
     /**
      * @return int
@@ -225,19 +235,26 @@ abstract class User implements UserInterface
         return $this;
     }
 
-//    /**
-//     * @return string
-//     */
-//    public function getPlainPassword(): string
-//    {
-//        return $this->plainPassword;
-//    }
-//
-//    /**
-//     * @param string $plainPassword
-//     */
-//    public function setPlainPassword(string $plainPassword): void
-//    {
-//        $this->plainPassword = $plainPassword;
-//    }
+    public function getFacebookId(): ?string
+    {
+        return $this->facebookId;
+    }
+
+    public function setFacebookId(string $facebookId): self
+    {
+        $this->facebookId = $facebookId;
+        return $this;
+    }
+
+    public function getGoogleId(): ?string
+    {
+        return $this->googleId;
+    }
+
+    public function setGoogleId(string $googleId): self
+    {
+        $this->googleId = $googleId;
+
+        return $this;
+    }
 }

@@ -10,12 +10,10 @@ use App\Form\BookingType;
 use App\Form\CalendarType;
 use App\Form\OfferType;
 use App\Form\OfferVariationType;
-use App\Repository\CalendarRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\OfferRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -65,6 +63,11 @@ class OfferController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($offer);
+            $offerVariations = $offer->getOfferVariations();
+            foreach ($offerVariations as $offerVariation) {
+                $offerVariation->setAvailablePlaces($offerVariation->getCapacity());
+            }
+            $entityManager->persist($offer);
             $entityManager->flush();
 
             return $this->redirectToRoute('offer_index');
@@ -82,11 +85,7 @@ class OfferController extends AbstractController
      */
     public function show(Request $request, Offer $offer, ProductRepository $productRepository): Response
     {
-        $booking = new Booking();
-//        $capacity = $offerVariation->getCapacity() - ($adultPlaces + $childPlaces);
         $offerVariations = $offer->getOfferVariations();
-        $form = $this->createForm(BookingType::class, $booking);
-        $form->handleRequest($request);
         $calendarsCount = 0;
         if (null !== $offerVariations) {
             foreach ($offerVariations as $offerVariation) {
@@ -94,42 +93,11 @@ class OfferController extends AbstractController
             }
         }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-//            $customer = $this->getUser();
-
-//            $adultPlaces = $request->get('adultPlaces');
-//            $childPlaces = $request->get('childPlaces');
-
-//            $booking->setTotalPrice(
-//                ($adultPlaces * $offerVariation->getPriceVariation()[0])
-//                + ($childPlaces * $offerVariation->getPriceVariation()[1])
-//            );
-//            $booking->setTotalPlaces($adultPlaces + $childPlaces);
-//            $booking->setPlaces(json_encode([
-//                'adultes' => $request->get('adultPlaces'),
-//                'enfants' => $request->get('childPlaces')]));
-//            $booking->setCustomer($customer);
-//            $booking->setCreatedAt(new \DateTime());
-//            $booking->setOfferVariation($offerVariation);
-//            $booking->setVat($offerVariation->getVat());
-//            $booking->setPriceVariationBook(json_encode([
-//                'adultes' => $offerVariation->getPriceVariation()[0],
-//                'enfants' => $offerVariation->getPriceVariation()[1],
-//            ]));
-
-            $entityManager->persist($booking);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('home');
-        }
-
         return $this->render('offer/show.html.twig', [
             'offer' => $offer,
             'products' => $productRepository->findByProvider($offer -> getProvider()),
             'offerVariations' => $offerVariations,
             'calendarsCount' => $calendarsCount,
-            'form' => $form->createView(),
         ]);
     }
 
@@ -179,25 +147,48 @@ class OfferController extends AbstractController
     }
 
     /**
-     * @Route("/offer-variation-info", name="_variation_info", methods={"GET"}, priority="1")
+     * @Route("/offer-variation-info/{id<\d+>}", name="_variation_info", methods={"GET"})
      */
     public function offerVariationInfo(
-        OfferRepository $offerRepository,
-        Request $request,
-        CalendarRepository $calendarRepository
+        Calendar $calendar,
+        Request $request
     ): Response {
-        $offerVariation = [];
-        $query = $request->query->get('q');
-        if (null !== $query) {
-            $calendar = $calendarRepository->findOneBy(['id' => $query]);
-            if (null !== $calendar) {
-                $offerVariation = $calendar->getOfferVariation();
-            }
+        $offerVariation = $calendar->getOfferVariation();
+        $booking = new Booking();
+        $form = $this->createForm(BookingType::class, $booking);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid() && $offerVariation) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $adultPlaces = $request->get('adultPlaces');
+            $childPlaces = $request->get('childPlaces');
+
+            $booking->setTotalPrice(
+                ($adultPlaces * $offerVariation->getPriceVariation()[0])
+                + ($childPlaces * $offerVariation->getPriceVariation()[1])
+            );
+            $booking->setTotalPlaces($adultPlaces + $childPlaces);
+            $booking->setPlaces([
+                'adultes' => $request->get('adultPlaces'),
+                'enfants' => $request->get('childPlaces')]);
+            $booking->setCustomer($this->getUser());
+            $booking->setCreatedAt(new \DateTime());
+            $booking->setOfferVariation($offerVariation);
+            $booking->setVat($offerVariation->getCurrentVat());
+            $booking->setPriceVariationBook([
+                'adultes' => $offerVariation->getPriceVariation()[0],
+                'enfants' => $offerVariation->getPriceVariation()[1]
+            ]);
+
+            $entityManager->persist($booking);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home');
         }
-//        return $this->json($offerVariation, 200, [], ['groups' => ['offer', 'offerVariation']]);
-        return $this->render('offer/index.html.twig', [
-            'offers' => $offerRepository->findAll(),
-            'offerVariation' => $offerVariation
+        return $this->render('offer/_offer-variation-info.html.twig', [
+            'offerVariation' => $offerVariation,
+            'form' => $form->createView()
         ]);
     }
 

@@ -25,8 +25,12 @@ security:
             anonymous: true
             lazy: true
             guard:
+                entry_point:
+                    auth.login_form_authenticator
                 authenticators:
                     - auth.login_form_authenticator
+                    - App\Security\FacebookAuthenticator
+                    - App\Security\GoogleAuthenticator
                 provider: all_users
             logout:
                 path: app_logout
