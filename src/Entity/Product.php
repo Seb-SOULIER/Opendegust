@@ -46,7 +46,7 @@ class Product
      * )
      * @var ?File
      */
-    private ?File $imgProduct;
+    private ?File $imgProduct = null;
 
     /**
      * @return ?File

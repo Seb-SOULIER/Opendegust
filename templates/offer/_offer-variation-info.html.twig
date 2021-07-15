@@ -1,4 +1,4 @@
-{{ form_start(form, {'method': 'GET'}) }}
+{{ form_start(form, {'action': path('offer_variation_info', {'id': calendar.id})}) }}
 <div class="d-flex flex-column my-3 form-control shadow">
     <div class="form-control mt-3 shadow-sm">
         <p><strong>Places restantes :</strong>
@@ -10,9 +10,11 @@
         <p><strong>Tarifs :</strong></p>
         <p>place adulte :
             <span id="adultPrice">{{ offerVariation.priceVariation.adultes }}</span> €
+            {{ form_row(form.adultPrice, {'value': offerVariation.priceVariation.adultes}) }}
         </p>
         <p>place enfant :
             <span id="childPrice">{{ offerVariation.priceVariation.enfants }}</span> €
+            {{ form_row(form.childPrice, {'value': offerVariation.priceVariation.enfants}) }}
         </p>
         <i class="fas fa-users me-3"></i> Nombre d'adultes :
         {{ form_row(form.adultPlaces) }}

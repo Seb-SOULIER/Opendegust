@@ -16,12 +16,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @Route("/offer", name="offer")
  */
 class OfferController extends AbstractController
 {
+    private Security $security;
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
     /**
      * @Route("/", name="_index", methods={"GET"})
      */
@@ -84,7 +90,7 @@ class OfferController extends AbstractController
     /**
      * @Route("/{id<\d+>}", name="_show", methods={"GET"})
      */
-    public function show(Request $request, Offer $offer, ProductRepository $productRepository): Response
+    public function show(Offer $offer, ProductRepository $productRepository): Response
     {
         $offerVariations = $offer->getOfferVariations();
         $calendarsCount = 0;
@@ -148,7 +154,7 @@ class OfferController extends AbstractController
     }
 
     /**
-     * @Route("/offer-variation-info/{id<\d+>}", name="_variation_info", methods={"GET"})
+     * @Route("/offer-variation-info/{id<\d+>}", name="_variation_info")
      */
     public function offerVariationInfo(
         Calendar $calendar,
@@ -159,27 +165,28 @@ class OfferController extends AbstractController
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid() && $offerVariation) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-
-            $adultPlaces = $request->get('adultPlaces');
-            $childPlaces = $request->get('childPlaces');
-
+            $adultPlaces = $form->get('adultPlaces')->getData();
+            $childPlaces = $form->get('childPlaces')->getData();
+            $adultPrice = $form->get('adultPrice')->getData();
+            $childPrice = $form->get('childPrice')->getData();
             $booking->setTotalPrice(
-                ($adultPlaces * $offerVariation->getPriceVariation()[0])
-                + ($childPlaces * $offerVariation->getPriceVariation()[1])
+                ($adultPlaces * $adultPrice)
+                + ($childPlaces * $childPrice)
             );
             $booking->setTotalPlaces($adultPlaces + $childPlaces);
             $booking->setPlaces([
-                'adultes' => $request->get('adultPlaces'),
-                'enfants' => $request->get('childPlaces')]);
-            $booking->setCustomer($this->getUser());
+                'adultes' => $adultPlaces,
+                'enfants' => $childPlaces
+            ]);
+            $booking->setCustomer($this->security->getUser());
             $booking->setCreatedAt(new \DateTime());
             $booking->setOfferVariation($offerVariation);
             $booking->setVat($offerVariation->getCurrentVat());
             $booking->setPriceVariationBook([
-                'adultes' => $offerVariation->getPriceVariation()[0],
-                'enfants' => $offerVariation->getPriceVariation()[1]
+                'adultes' => $adultPrice,
+                'enfants' => $childPrice
             ]);
 
             $entityManager->persist($booking);
@@ -188,6 +195,7 @@ class OfferController extends AbstractController
             return $this->redirectToRoute('home');
         }
         return $this->render('offer/_offer-variation-info.html.twig', [
+            'calendar' => $calendar,
             'offerVariation' => $offerVariation,
             'form' => $form->createView()
         ]);

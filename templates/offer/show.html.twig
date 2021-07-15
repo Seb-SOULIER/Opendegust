@@ -123,24 +123,22 @@
 			</div>
 
 			<div class="col-lg-4">
-				<form>
-					<div>
-						<label for="calendar">
-							{% if calendarsCount <= 1 %}
-								<h5>Date disponible pour cette activité :</h5>
-							{% else %}
-								<h5>Dates disponibles pour cette activité :</h5>
-							{% endif %}
-						</label>
-						<select id="calendar" class="form-select shadow" name="q" style="height: 50px;">
-							{% for offer_variation in offerVariations %}
-								{% for calendar in offer_variation.calendars %}
-									<option value="{{ calendar.id }}">{{ calendar.startAt|date }}</option>
-								{% endfor %}
+				<div>
+					<label for="calendar">
+						{% if calendarsCount <= 1 %}
+							<h5>Date disponible pour cette activité :</h5>
+						{% else %}
+							<h5>Dates disponibles pour cette activité :</h5>
+						{% endif %}
+					</label>
+					<select id="calendar" class="form-select shadow" name="q" style="height: 50px;">
+						{% for offer_variation in offerVariations %}
+							{% for calendar in offer_variation.calendars %}
+								<option value="{{ calendar.id }}">{{ calendar.startAt|date("\\L\\e\\ d m Y à H\\hm") }}</option>
 							{% endfor %}
-						</select>
-					</div>
-				</form>
+						{% endfor %}
+					</select>
+				</div>
 
 				<div id="formBooking" class="d-flex row justify-content-center">
 					{{ render(controller('App\\Controller\\OfferController::offerVariationInfo', {'id': offerVariations[0].calendars[0].id})) }}
