@@ -11,33 +11,44 @@
 		<table class="table table-bordered table-condensed table-body-center">
 			<thead>
 				<tr>
-					<th>Nom</th>
-					<th>Durées</th>
-					<th>Dates</th>
-					<th>Nbr de places</th>
-					<th>Places réservés</th>
-					<th style="text-align:center">Action</th>
-				</tr>
+					<th class="text-center">Nom</th>
+					<th class="text-center">Durées</th>
+					<th class="text-center">Dates</th>
+					<th class="text-center">Nbr de places</th>
+					<th class="text-center">Places réservés</th>
+					<th class="text-center">Action</th>
 			</thead>
 			<tbody>
-				{% for offer in offers %}
-					<tr>
-						<td data-title="Nom/Prénom"> {{ offer.provider.lastname }}
-							{{ offer.provider.firstname }} </td>
-						<td data-title="Nom du Domaine" style="font-size: 14px"> {{ offer.domainName }} </td>
-						<td data-title="Nom de l'Offre" style="font-size: 14px">{{ offer.name }}</td>
-						<td data-title="Email">
-							<a href="mailto:{{ offer.provider.email }}" style="font-size: 12px">{{ offer.provider.email }}</a>
+			{% for key, offer in offers %}
+				<tr>
+					<td class="text-center" rowspan="{{ (allOffers[key])|length }}">
+						{{ offer.name }}
+					</td>
+					{% for key2, variation in offer.offerVariations %}
+						<td class="text-center" rowspan="{{ (allDuree[key][key2])|length }}">
+							{{ variation.duration|date('h:m') }}
 						</td>
-						<td data-title="Action"class="text-center">
-							<a href="{{ path('offer_show', {'id': offer.id}) }}">Voir</a>
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="6">no records found</td>
-					</tr>
-				{% endfor %}
+						{% for date in variation.calendars %}
+							<td class="text-center">
+								{{ date.startAt|date('d M Y - h:m') }}
+							</td>
+							<td class="text-center">
+								{{ variation.capacity }} places
+							</td>
+							<td class="text-center">
+								{{ variation.availablePlaces|default('0') }} places
+							</td>
+							<td class="text-center">
+								<a href="">Détail</a>
+							</td>
+				</tr>
+						{% endfor %}
+					{% endfor %}
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
 			</tbody>
 		</table>
 		<div class = "d-flex justify-content-center">

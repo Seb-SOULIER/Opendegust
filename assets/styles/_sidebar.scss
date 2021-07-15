@@ -19,10 +19,11 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
   //black menu
   .first-menu {
     position: absolute;
-    background-color: $secondary-color;
+    background-color: $black;
     height: 300px;
     width: 60px;
     transition: width .5s;
+    top: 0;
     a {
       color: #fff;
     }
@@ -43,12 +44,13 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
       border-radius: 0;
       position: initial;
       &:hover {
-        background-color: $primary-color;
+        background-color: $primary;
       }
     }
   }
   .first-menu:hover {
     width: 160px;
+    transition:width 0.5s;
   }
 
   .list-group-item {
@@ -63,7 +65,8 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
     bottom: 0;
     left: 160px;
     width: 195px;
-    background-color: $primary-color;
+    background-color: $primary;
+    height: 300px;
     overflow: auto;
     //height: 300px;
     opacity: 0;
@@ -79,19 +82,20 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
     visibility: visible;
     opacity: 1;
   }
+
   //white menu
   .sub-submenu {
     position: fixed;
     background-color: #fff;
     left: 355px;
-    top: 8.5vh;
+    top: 9vh;
     height: 300px;
     width: 280px;
     opacity: 0;
     visibility: hidden;
     transition: $sidebar-transition;
     a {
-      color: $primary-color;
+      color: $primary;
     }
     .list-group-item:hover {
       background-color: transparent;

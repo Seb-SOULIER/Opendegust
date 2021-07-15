@@ -17,8 +17,8 @@
         </div>
         <div class="col-sm">
             {% from 'macros/categoriesProduct.html.twig' import make_categories %}
-            {{ make_categories(categoriesDrink, categoryProduct) }}
-            {{ make_categories(categoriesFood, categoryProduct) }}
+            {{ make_categories(categoriesDrink, categoryProduct|default(null)) }}
+            {{ make_categories(categoriesFood, categoryProduct|default(null)) }}
         </div>
     </div>
 </div>
