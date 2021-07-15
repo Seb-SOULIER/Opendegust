@@ -1,6 +1,3 @@
-$primary-color: #59ae52;
-$secondary-color: #292a2c;
-
 $transition-duration: 600ms;
 $transition-delay: $transition-duration;
 $sidebar-transition: $transition-duration opacity $transition-delay, $transition-duration visibility $transition-delay;
@@ -24,6 +21,7 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
     width: 60px;
     transition: width .5s;
     top: 0;
+    bottom: 0;
     a {
       color: #fff;
     }
@@ -83,24 +81,25 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
     opacity: 1;
   }
 
-  //white menu
-  .sub-submenu {
-    position: fixed;
-    background-color: #fff;
-    left: 355px;
-    top: 9vh;
-    height: 300px;
-    width: 280px;
-    opacity: 0;
-    visibility: hidden;
-    transition: $sidebar-transition;
-    a {
-      color: $primary;
-    }
-    .list-group-item:hover {
-      background-color: transparent;
-    }
-  }
+  ////white menu
+  //.sub-submenu {
+  //  position: fixed;
+  //  background-color: #fff;
+  //  left: 355px;
+  //  top: 9vh;
+  //  height: 300px;
+  //  width: 280px;
+  //  opacity: 0;
+  //  visibility: hidden;
+  //  transition: $sidebar-transition;
+  //  a {
+  //    color: $primary;
+  //  }
+  //  .list-group-item:hover {
+  //    background-color: transparent;
+  //  }
+  //}
+
   .submenu li:hover .sub-submenu {
     visibility: visible;
     opacity: 1;
@@ -112,17 +111,17 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
     border-radius: 0;
   }
 
-  .arrow {
-    position: fixed;
-    left: 329px;
-    width: 0;
-    height: 0;
-    border-top: 27px solid transparent;
-    border-bottom: 27px solid transparent;
-
-    border-right: 27px solid white;
-    &:nth-child(3) {top: 20px;}
-  }
+  //.arrow {
+  //  position: fixed;
+  //  left: 329px;
+  //  width: 0;
+  //  height: 0;
+  //  border-top: 27px solid transparent;
+  //  border-bottom: 27px solid transparent;
+  //
+  //  border-right: 27px solid white;
+  //  &:nth-child(3) {top: 20px;}
+  //}
 
   // Range Slider price
 

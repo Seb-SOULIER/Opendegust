@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Offer;
 use App\Repository\CategoryRepository;
 use App\Repository\ContactRepository;
+use App\Repository\OfferRepository;
 use App\Service\Api;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,18 +17,18 @@ use Symfony\Component\Routing\Annotation\Route;
 */
 class SearchController extends AbstractController
 {
-    /**
-     * @Route("/", name="index")
-     */
-    public function index(): Response
-    {
-        $offers = $this->getDoctrine()
-            ->getRepository(Offer::class)
-            ->findAll();
-        return $this->render('search/index.html.twig', [
-            'offers' => $offers
-        ]);
-    }
+//    /**
+//     * @Route("/", name="index")
+//     */
+//    public function index(): Response
+//    {
+//        $offers = $this->getDoctrine()
+//            ->getRepository(Offer::class)
+//            ->findAll();
+//        return $this->render('search/index.html.twig', [
+//            'offers' => $offers
+//        ]);
+//    }
 
     /**
      * @Route("/coordinate", name="coordinate")
@@ -42,27 +43,32 @@ class SearchController extends AbstractController
 
 
     /**
-     * @Route("/localization", name="localization")
+     * @Route("/", name="localization")
      */
-    public function search(Request $request, Api $api, CategoryRepository $categoryRepository): Response
-    {
+    public function search(
+        Request $request,
+        Api $api,
+        CategoryRepository $categoryRepository,
+        OfferRepository  $offerRepository
+    ): Response {
 
         $query = $request->query->get('q');
-
         if (null !== $query) {
             $url = "https://nominatim.openstreetmap.org/search?q="
             . $query . "&format=json&addressdetails=1&limit=1";
             $localization = $api->getResponse($url);
         }
 
-        $offers = $this->getDoctrine()
-            ->getRepository(Offer::class)
-            ->findAll();
+        $lang=$request->query->get('language');
+//        $offers = $this->getDoctrine()
+//            ->getRepository(Offer::class)
+        $offers = $offerRepository->findFilter($request,$localization ??[]);
 
         return $this->render('search/index.html.twig', [
             'localization' => $localization ?? [],
             'offers' => $offers,
-            'categories' => $categoryRepository->findBy(['category' => null])
+            'categories' => $categoryRepository->findBy(['category' => null]),
+            'lang'=>$lang
         ]);
     }
 
