@@ -4,51 +4,6 @@
 {% endblock %}
 
 {% block body %}
-	{# <div id="liste-des-prod">
-									<h2>Liste des Producteurs</h2>
-								</div>
-								<div class="responsive-table-list">
-									<table class="table table-bordered table-condensed table-body-center">
-										<thead>
-											<tr>
-												<th>Nom/Prénom</th>
-												<th>Nom du Domaine</th>
-												<th>Nom de l'Offre</th>
-												<th>Email</th>
-												<th style="text-align:center">Action</th>
-											</tr>
-										</thead>
-										<tbody> #}
-	{# {% for provider in providers %}
-												<tr>
-													<td data-title="Nom/Prénom">
-														{{ provider.lastname }}
-														{{ provider.firstname }}
-													</td>
-													<td data-title="Nom du Domaine" style="font-size: 14px">
-														{{ provider.company }}
-													</td>
-													<td data-title="Nom de l'Offre" style="font-size: 14px">{{ offer.name }}</td>
-													<td data-title="Email">
-														<a href="mailto:{{ offer.provider.email }}" style="font-size: 12px">{{ offer.provider.email }}</a>
-													</td>
-													<td data-title="Action" style="font-size: 14px; text-align:center">
-														<a href="{{ path('provider_show', {'id': offer.id}) }}">Voir</a>
-													</td>
-												</tr> #}
-
-	{# <div class="card-group liste-provider">
-					<div class="the-identities">
-						<div class="carte-identite-provider-picture">
-							<img class="picture-of-provider" src="https://image.shutterstock.com/display_pic_with_logo/1778015/1627712716/stock-photo-beautiful-woman-official-photo-for-id-international-passport-identity-card-driver-license-1627712716.jpg" class="card-img-top" alt="identity">
-						</div>
-						<div class="carte-identite-provider-text">
-							<p class="informations-perso">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas nostrum aspernatur maxime architecto. Voluptatem id aliquam, recusandae cumque eveniet eius blanditiis ratione dolorem facere distinctio, obcaecati non vel nobis aut?</p>
-						</div>
-					</div>
-				</div> #}
-
-
 		<div class="container">
         <div class="row provider-list">
 			{% for provider in providers %}

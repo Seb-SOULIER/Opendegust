@@ -7,7 +7,7 @@ export default class Map {
         const locSearch = document.querySelector('[data-loclat]');
         //  locSearch.getAttribute('data-loc-lat'),locSearch.getAttribute('data-loc-lon')
         let zoom = 11;
-        if (parseInt(locSearch.getAttribute('data-zoom'),10) === 5) {
+        if (parseInt(locSearch.getAttribute('data-zoom'), 10) === 5) {
             zoom = 5;
         }
 

@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContactType extends AbstractType
+class ContactCustomerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -20,7 +20,7 @@ class ContactType extends AbstractType
 //            ->add('latitude')
             ->add('phone', TextType::class)
             ->add('phone2', TextType::class)
-            ->add('website', TextType::class)
+//            ->add('website', TextType::class)
 //            ->add('provider')
 //            ->add('offer')
 //            ->add('customer')

@@ -1,0 +1,92 @@
+
+<div data-component="sidebar" class="sticky-top">
+    <form action="" method="GET">
+    <div class="sidebar">
+        <input type="hidden" name="q" value="{{ app.request.get('q') }}">
+{#        {{ dump(app.request.get('q')) }}#}
+        <ul class="list-group flex-column d-inline-block first-menu">
+            <li class="list-group-item pl-3 py-2">
+                <a><i class="fas fa-calendar-alt" aria-hidden="true"><span class="ml-2 align-middle"> Dates</span></i></a>
+                <ul class="list-group flex-column d-inline-block submenu">
+                    <li class="list-group-item pl-4">
+                        <label for="date-start"> A partir du :</label>
+                        <input id="date-start" type="date" name="date-start" min="{{ "now"|date("Y-m-d") }}" value="{{ app.request.get('date-start') }}">
+                    </li>
+                    <li class="list-group-item pl-4">
+                        <label for="date-end"> Jusqu'au :</label>
+                        <input id="date-end" type="date" name="date-end" min="{{ "now"|date("Y-m-d") }}" value="{{ app.request.get('date-end') }}">
+                    </li>
+                </ul> <!-- /.submenu -->
+            </li> <!-- /.list-group-Dates -->
+
+            <li class="list-group-item pl-3 py-2">
+                <a><i class="fas fa-sort-amount-down" aria-hidden="true"><span class="ml-2 align-middle"> Categories</span></i></a>
+                <ul class="list-group flex-column d-inline-block submenu" style="overflow: auto">
+                        {% from 'macros/categoriesClient.html.twig' import make_categories %}
+                        {{ make_categories(categories) }}
+                </ul> <!-- /.submenu -->
+            </li> <!-- /.list-group-category -->
+
+            <li class="list-group-item pl-3 py-2">
+                <a><i class="fas fa-money-bill-wave" aria-hidden="true"><span class="ml-2 align-middle"> Prix</span></i></a>
+                <ul class="list-group flex-column d-inline-block submenu" style="width: 400px">
+                    <li class="list-group-item pl-4">
+                        <div class="container">
+                            <div class="multi-range">
+                                <label for="min-price">De : <input class="form-control" id="min-price" type="text" min="0"></label>€
+                                <label for="max-price"> à : <input class="form-control" id="max-price" type="text"></label>€
+                            </div>
+                        </div>
+                    </li>
+                </ul> <!-- /.submenu -->
+            </li> <!-- /.list-group-Price -->
+
+            <li class="list-group-item pl-3 py-2">
+                <a><i class="fas fa-language" aria-hidden="true"><span class="ml-2 align-middle"> Langues</span></i></a>
+                <ul class="list-group flex-column d-inline-block submenu">
+                    <li class="list-group-item pl-4">
+                        <input type="checkbox" name = "language[]" id="francais" value="francais">
+                        <label for="francais">Francais</label>
+                    </li>
+                    <li class="list-group-item pl-4">
+                        <input type="checkbox" name = "language[]" id="anglais" value="anglais">
+                        <label for="anglais">Anglais</label>
+                    </li>
+                    <li class="list-group-item pl-4">
+                        <input type="checkbox" name = "language[]" id="espagnol" value="espagnol">
+                        <label for=espagnol">Espagnol</label>
+                    </li>
+                    <li class="list-group-item pl-4">
+                        <input type="checkbox" name = "language[]" id="chinois" value="chinois">
+                        <label for="chinois">Chinois</label>
+                    </li>
+                    <li class="list-group-item pl-4">
+                        <input type="checkbox" name = "language[]" id="Japonais" value="japonais">
+                        <label for="Japonais">Japonais</label>
+                    </li>
+                    <li class="list-group-item pl-4">
+                        <input type="checkbox" name = "language[]" id="russe" value="russe">
+                        <label for="russe">russe</label>
+                    </li>
+                    <li class="list-group-item pl-4">
+                        <input type="checkbox" name = "language[]" id="portugais" value="portugais">
+                        <label for=portugais">Portugais</label>
+                    </li>
+                </ul>
+            </li> <!-- /.list-group-language -->
+
+            <li class="list-group-item pl-3 py-2">
+                <a><span><button type="submit" class="btn btn-success"> Filtrer</button></span></a>
+            </li> <!-- /.list-apply-choice -->
+
+        </ul> <!-- /.first-menu -->
+    </div> <!-- /.sidebar -->
+    </form>
+    <div id="maCarte">
+    </div>
+</div>
+
+{#<div class="wp-content">#}
+
+{#</div>#}
+

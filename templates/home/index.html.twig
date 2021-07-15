@@ -1,21 +1,29 @@
 {% extends 'base.html.twig' %}
-{# {{ asset('build/images/vinvigne.jpg') }} #}
 {% block title %}Home
 {% endblock %}
 
 
 {% block body %}
 	<div class="container-fluid">
+
 		<div class="part-one-home">
 			<img class="home-picture-research" src="{{ asset('build/images/Le-lac-de-Montriond.jpg') }}">
-			<div class="text">
+				<div class="text">
 				<h1 class="degust-near-you">
 					<span style="font-weight:300">Dégustations</span>
 					<span style="font-weight:700">
 						près de chez vous</span>
 				</h1>
 			</div>
-		</div>
+
+		{% for category, messages in app.flashes %}
+			{% for message in messages %}
+				<div class="alert alert-{{ category }}">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endfor %}
+
 	</div>
 	<div class="intro-home-info">
 		<div class="premier-logo-note col-md-2 col-lg-2">
@@ -390,19 +398,4 @@
 			</div>
 		</div>
 	</div>
-	{# <script>
-							document.getElementById('searchField').addEventListener('input', function (event) {
-						    let search = event.target.value;
-						    fetch('/search/autocomplete?q=' + search)
-						        .then(response => response.json())
-						        .then(function (data) {
-						            let list = '';
-						            for (const item of data) {
-						                list += `<li><a href="/search/${item.display_name}">${item.display_name}</a></li>`
-						            }
-						            document.getElementById('autocomplete').innerHTML = list;
-						        })
-	
-						});</script> #}
-
 {% endblock %}

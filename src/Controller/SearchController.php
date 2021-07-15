@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Contact;
 use App\Entity\Offer;
+use App\Repository\CategoryRepository;
 use App\Repository\ContactRepository;
 use App\Service\Api;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,7 +44,7 @@ class SearchController extends AbstractController
     /**
      * @Route("/localization", name="localization")
      */
-    public function search(Request $request, Api $api): Response
+    public function search(Request $request, Api $api, CategoryRepository $categoryRepository): Response
     {
 
         $query = $request->query->get('q');
@@ -62,7 +62,8 @@ class SearchController extends AbstractController
         return $this->render('search/index.html.twig', [
             'localization' => $localization ?? [],
             'offers' => $offers,
-            ]);
+            'categories' => $categoryRepository->findBy(['category' => null])
+        ]);
     }
 
     /**

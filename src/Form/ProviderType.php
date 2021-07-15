@@ -59,7 +59,7 @@ class ProviderType extends AbstractType
                     'Autre' => 'Autre'
                 ]
             ])
-            ->add('contact', ContactType::class, [
+            ->add('contact', ContactProviderType::class, [
                 'by_reference' => false
             ])
             ->add(
