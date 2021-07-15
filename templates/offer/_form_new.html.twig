@@ -31,14 +31,14 @@
                                         {{ form_widget(form.description.longDescription) }}
                                     </div>
                                 </div>
-{#                                @todo Seb -> mettre en image a charger#}
+                                @todo Seb -> mettre en image a charger
                                 <div class="row g-3 d-md-flex justify-content-between">
                                     <div>
                                         {{ form_label(form.picture, "Image :") }}
                                         {{ form_widget(form.picture) }}
                                     </div>
                                 </div>
-{#                                @todo Seb -> alignement des checkbox#}
+                                @todo Seb -> alignement des checkbox
                                 <div class="row g-3 d-md-flex justify-content-between">
                                     <div>
                                         {{ form_label(form.language, "Langues :") }}
@@ -103,12 +103,16 @@
                         <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
                              aria-labelledby="panelsStayOpen-headingThree">
                             <div class="contact__content accordion-body">
+{#                                {% for variation in form.offerVariations %}#}
+{#                                    {{ form_label(variation.duration) }}#}
+{#                                    {{ form_widget(variation.duration) }}#}
+{#                                {% endfor %}#}
                                 <div id="conteneur">
                                     <div class="fils"> {{ render((controller('App\\Controller\\OfferController::addform'))) }} </div>
                                 </div>
                                 <div class="btn btn-primary" onclick="cloner()">Ajouter une variation</div>
                                 <script type="text/javascript">
-                                    function cloner() {
+                                    function cloner() }
                                         var clone=document.querySelector("div.fils").cloneNode(true);
                                         document.getElementById("conteneur").appendChild(clone);
                                     }
@@ -123,5 +127,122 @@
         <button class="btn btn-primary mt-3 col-12 col-md-6 text-light">{{ button_label|default('Valider') }}</button>
         {{ form_end(form) }}
     </div>
+
+
+    {# Ici, il signale l'emplacement de son fichier Twig #}
+{# src/Sdz/BlogBundle/Resources/views/Blog/formulaire.html.twig #}
+
+{# Ici, il affiche son formulaire #}
+{# Le formulaire reste inchangé #}
+    <div class="well">
+        <form method="post">
+            {{ form_widget(form) }}
+            <input type="submit" class="btn btn-primary" />
+        </form>
+    </div>
+    {# Ici, le formulaire est fermé #}
+
+{# Ici, il charge la bibliothèque JQuery depuis le site officiel de JQuery #}
+{# On charge la bibliothèque jQuery. Ici, je la prends depuis le site jquery.com,
+   mais si vous l'avez en local, changez simplement l'adresse. #}
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+
+    {# Et ici commence le script #}
+{# Il faut savoir qu'en JavaScript, on peut aller chercher les variables par sélecteur, c'est à dire que dans le code html, tu as des balises, et que ces balises, on peut faire des choses en JavaScript avec en utilisant leur nom en html. #}
+{# Voici le script en question : #}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+            // C'est là que ça t'intéresse : Winzou a une balise html qui contient le 'data-prototype' que tu as vu.
+            // Chez lui, elle s'appelle "sdz_blogbundle_articletype_categories", mais chez toi elle a un autre nom :
+            // à toi de changer cette variable pour donner le nom de la div à la place de "sdz_blogbundle_articletype_categories" :)
+            var $container = $('div#sdz_blogbundle_articletype_categories');
+
+            // On ajoute un lien pour ajouter une nouvelle catégorie
+            // Ici, tu peux aussi modifier le code : vu que tu ne souhaites pas ajouter une catégorie,
+            // mais un commentaire, remplace categorie par commentaire :)
+            var $lienAjout = $('<a href="#" id="ajout_categorie" class="btn">Ajouter une catégorie</a>');
+            $container.append($lienAjout);
+
+            // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+            $lienAjout.click(function(e) {
+                // Pareil ici, on remplace dans le nom de la fonction Categorie par Commentaire
+                ajouterCategorie($container);
+                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                return false;
+            });
+
+            // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+            // Là, c'est un petit truc qui va permettre de compter les commentaires à rajouter et de leur
+            // donner à chacun un identifiant unique, pas besoin d'y toucher.
+            var index = $container.find(':input').length;
+
+            // On ajoute un premier champ directement s'il n'en existe pas déjà un (cas d'un nouvel article par exemple).
+            if (index == 0) {
+                // ATTENTION ! Si la fonction ajouterCategorie a été renommée ajouterCommentaire, bien penser à la renommer ici aussi !
+                ajouterCategorie($container);
+            } else {
+                // Pour chaque catégorie déjà existante, on ajoute un lien de suppression
+                // On récupère depuis la variable container toutes les div enfant qu'elle contient (children('div'))
+                // et pour chacune d'entre elle (.each()), on ajoute un lien qui permet de la supprimer.
+                $container.children('div').each(function() {
+                    ajouterLienSuppression($(this));
+                });
+            }
+
+            // La fonction qui ajoute un formulaire Categorie
+            // ATTENTION ! Toujours l'histoire de renommage Categorie/Commentaire ;)
+            // Voici la fameuse fonction qu'on va utilise pour fabriquer de nouveaux commentaires dans ton formulaire :)
+            function ajouterCategorie($container) {
+                // Dans le contenu de l'attribut « data-prototype », on remplace :
+                // - le texte "__name__label__" qu'il contient par le label du champ
+                // - le texte "__name__" qu'il contient par le numéro du champ
+                // Ici, on met dans la variable prototype une copie du champ data-prototype de la variable container qui est modifié :
+                // On prend le code dans data-prototype
+                // On remplace dedans la chaîne __name__label__ par le label qu'il faut vraiment mettre,
+                // ici Catégorie n°{le numéro généré automatiquement de tout à l'heure}
+                // (donc bien penser à remplacer Catégorie par Commentaire pour toi)
+                // On remplace dedans la chaîne __name__ par le nom qu'il faut vraiment mettre,
+                // ici {le numéro généré automatiquement de tout à l'heure}
+                // Toute le texte généré est mis dans la variable prototype.
+                var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, 'Catégorie n°' + (index+1))
+                    .replace(/__name__/g, index));
+
+                // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+                ajouterLienSuppression($prototype);
+
+                // On ajoute le prototype modifié à la fin de la balise <div>
+                $container.append($prototype);
+
+                // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+                index++;
+            }
+
+            // La fonction qui ajoute un lien de suppression d'une catégorie
+            // La super fonction pour ajouter un lien qui supprime le commentaire
+            // (en fait, ça ne supprime pas un commentaire, mais juste une div qui contenait
+            // le formulaire de création d'un nouveau commentaire)
+            function ajouterLienSuppression($prototype) {
+                // Création du lien
+                // On fabrique une variable qui va contenir un lien de suppression
+                $lienSuppression = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+
+                // Ajout du lien
+                // On ajoute ce lien à la variable prototype
+                $prototype.append($lienSuppression);
+
+                // Ajout du listener sur le clic du lien
+                // On met en place un listener
+                // (écouteur : un truc qui va faire des actions en fonction d'un événement)
+                // qui va écouter les événements de clic sur le lien de suppression
+                $lienSuppression.click(function(e) {
+                    // Lorsque quelqu'un clique sur le lien, on supprime le prototype, donc la div, qui disparaît alors de la page
+                    $prototype.remove();
+                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                    return false;
+                });
+            }
+        });
+    </script>
     {{ encore_entry_script_tags('concat-form') }}
 

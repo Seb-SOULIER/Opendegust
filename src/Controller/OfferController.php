@@ -58,9 +58,9 @@ class OfferController extends AbstractController
     public function new(Request $request, CategoryRepository $categoryRepository): Response
     {
         $offer = new Offer();
-
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();

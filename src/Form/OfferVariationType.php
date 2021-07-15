@@ -23,16 +23,16 @@ class OfferVariationType extends AbstractType
             ->add('currentVat', PercentType::class, [
                 ])
             ->add('capacity')
-            ->add('calendars', CollectionType::class, [
-                'entry_type' => CalendarType::class,
-                'entry_options' => ['label' => false],
-                'allow_add' => true,
-                'by_reference' => false,
-                'allow_delete' => true,
-            ])
-//            ->add('calendar', ButtonType::class, [
-//                'attr' => ['class' => 'btn btn-success', 'data-collection-holder-class' => 'calendars']
+//            ->add('calendars', CollectionType::class, [
+//                'entry_type' => CalendarType::class,
+//                'entry_options' => ['label' => false],
+//                'allow_add' => true,
+//                'by_reference' => false,
+//                'allow_delete' => true,
 //            ])
+            ->add('calendar', ButtonType::class, [
+                'attr' => ['class' => 'btn btn-success', 'data-collection-holder-class' => 'calendars']
+            ])
 //            ->add('delete', ButtonType::class, [
 //                ])
         ;
