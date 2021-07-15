@@ -75,7 +75,7 @@ class Offer
     /**
      * @ORM\ManyToMany(targetEntity=Customer::class, mappedBy="favory")
      */
-    private $customers;
+    private Collection $customers;
 
     public function __construct()
     {

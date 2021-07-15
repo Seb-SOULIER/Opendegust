@@ -40,7 +40,7 @@ class Customer extends User
     /**
      * @ORM\ManyToMany(targetEntity=Offer::class, inversedBy="customers")
      */
-    private $favory;
+    private Collection $favory;
 
     public function __construct()
     {
