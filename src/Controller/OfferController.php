@@ -7,6 +7,7 @@ use App\Entity\Calendar;
 use App\Entity\Offer;
 use App\Entity\OfferVariation;
 use App\Form\BookingType;
+use App\Form\CalendarType;
 use App\Form\OfferType;
 use App\Form\OfferVariationType;
 use App\Repository\CategoryRepository;
@@ -55,9 +56,9 @@ class OfferController extends AbstractController
     public function new(Request $request, CategoryRepository $categoryRepository): Response
     {
         $offer = new Offer();
-
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -72,8 +73,6 @@ class OfferController extends AbstractController
             return $this->redirectToRoute('offer_index');
         }
 
-        $offerVariation = new OfferVariation();
-        $offer->addOfferVariation($offerVariation);
         return $this->render('offer/new.html.twig', [
             'offer' => $offer,
             'form' => $form->createView(),
@@ -190,6 +189,34 @@ class OfferController extends AbstractController
         return $this->render('offer/_offer-variation-info.html.twig', [
             'offerVariation' => $offerVariation,
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/addform", name="_addform")
+     */
+    public function addform(Request $request): Response
+    {
+        $offerVariation = new OfferVariation();
+
+        $form = $this->createForm(OfferVariationType::class, $offerVariation);
+        $form->handleRequest($request);
+
+        $calendar = new Calendar();
+        $formCalendar = $this->createForm(CalendarType::class, $calendar);
+        $formCalendar->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($offerVariation);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('');
+        }
+
+        return $this->render('offer/_form_date.html.twig', [
+            'form' => $form->createView(),
+            'formCalendar' => $formCalendar->createView(),
         ]);
     }
 }
