@@ -6,6 +6,7 @@ use App\Entity\Contact;
 use App\Entity\Offer;
 use App\Repository\ContactRepository;
 use App\Service\Api;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,32 +18,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/{id}/favory", name="favory", methods={"GET","POST"})
      */
-    public function index(): Response
+
+    public function addToFavorite(Request $request, Offer $offer, EntityManagerInterface $manager): Response
     {
-        $offers = $this->getDoctrine()
-            ->getRepository(Offer::class)
-            ->findAll();
-        return $this->render('search/index.html.twig', [
-            'offers' => $offers
-        ]);
+        if ($this->getUser()->isInFavory($offer)) {
+            $this->getUser()->removeFavory($offer);
+            $this->addFlash('warning', 'Offre supprimé des favoris');
+        } else {
+            $this->getUser()->addFavory($offer);
+            $this->addFlash('success', 'Offre ajouté en favori');
+        }
+        $manager->flush();
+
+        return $this->redirectToRoute('search_localization');
     }
 
     /**
-     * @Route("/coordinate", name="coordinate")
-     */
-    public function coordinate(Request $request, ContactRepository $contactRepository): Response
-    {
-        $coordinate = $contactRepository->findAll();
-        return $this->json($coordinate ?? []);
-            //'{\"adultes\":3,\"enfants\":4}';
-        //$this->json($coordinate ?? []);
-    }
-
-
-    /**
-     * @Route("/localization", name="localization")
+     * @Route("/", name="localization")
      */
     public function search(Request $request, Api $api): Response
     {
