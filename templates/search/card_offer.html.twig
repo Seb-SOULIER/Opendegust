@@ -69,14 +69,14 @@
 											</a>
 									{% endif %}
 
-{#									<i class="bi {{ app.user.isInFavory(offer) ? 'fas fa-star' : 'far fa-star' }}"></i>#}
+									<i class="bi {{ app.user.isInFavory(offer) ? 'fas fa-star' : 'far fa-star' }}"></i>
 
-{#									{% if app.user and is_granted('ROLE_CUSTOMER') %}#}
-{#										href="{{ path('search_favory', {id: offer.id}) }}#}
-{#										<a id="favorite" href="{{ path('search_favory', {id: offer.id})}}">#}
-{#											<i class="bi {{ app.user.isInFavory(offer) ? 'fas fa-star' : 'far fa-star' }}"></i>#}
-{#										</a>#}
-{#									{% endif %}#}
+									{% if app.user and is_granted('ROLE_CUSTOMER') %}
+										href="{{ path('search_favory', {id: offer.id}) }}
+										<a id="favorite" href="{{ path('search_favory', {id: offer.id})}}">
+											<i class="bi {{ app.user.isInFavory(offer) ? 'fas fa-star' : 'far fa-star' }}"></i>
+										</a>
+									{% endif %}
 								</div>
 							</div>
 						</div>
