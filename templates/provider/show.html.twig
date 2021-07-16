@@ -8,18 +8,13 @@
 		class="color-body-for-provider">
 		<h2 class="text-center">{{ provider.firstname }}
 			{{ provider.lastname }}</h2>
-		<div class="container">
-			<div class="provider-id-picture">
-				<img class="profil-picture" src="https://www.fredericvigier.com/wp-content/uploads/2021/01/directeur-communication-photo-cv.jpg" alt="">
-			</div>
+		<div class="container text-center">
+				<img class="profil-picture w-50" src="{{ provider.picture }}" alt="">
 		</div>
-
-		<div class="container">
 			<div class="bio-provider">
 				<h3>Biographie</h3>
 				<p>{{ provider.description.longDescription }}</p>
 			</div>
-		</div>
 
 
 		<div class="accordion accordion-flush-contact" id="accordionFlushExample">
