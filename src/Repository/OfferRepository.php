@@ -25,8 +25,11 @@ class OfferRepository extends ServiceEntityRepository
       */
     public function findFilter(Request $request, array $localization): array
     {
+        $lat = $localization[0]['lat'];
+        $lon = $localization[0]['lon'];
+
         $query = $this->createQueryBuilder('o')
-                ->select ('o','ov')
+//                ->add('distance','(6371 * acos(cos(radians(' . $lat . ')) * cos(radians(lo.latitude)) * cos(radians(lo.longitude) - radians(' . $lon . ')) + sin(radians(' . $lat . ')) * sin(radians(lo.latitude))))')
                 ->join('o.offerVariations','ov')
                 ->join('ov.calendars','c')
                 ->join('o.categories','ca')
@@ -71,10 +74,7 @@ class OfferRepository extends ServiceEntityRepository
                     ->setParameter('category', $category);
             }
         }
-
-//        $lat = $localization[0]['lat'];
-//        $lon = $localization[0]['lon'];
-//        $query->OrderBy(POW(('lo.longitude' - $lon),2) + POW(('lo.latitude' - $lat),2),'ASC');
+//        $query->orderBy('distance','ASC');
 
         return $query->getQuery()->getResult();
     }
