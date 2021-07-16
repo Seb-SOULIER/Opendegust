@@ -111,8 +111,8 @@ class ProviderFixtures extends Fixture
             $contact->setAddress($this->faker->address);
             $contact->setZipcode($this->faker->postcode);
             $contact->setCity($this->faker->city);
-            $contact->setLongitude($this->faker->longitude);
-            $contact->setLatitude($this->faker->latitude);
+            $contact->setLongitude($this->faker->randomFloat(4, 1, 5));
+            $contact->setLatitude($this->faker->randomFloat(4, 43, 50));
             $contact->setPhone($this->faker->phoneNumber);
             $contact->setPhone2($this->faker->phoneNumber);
             $contact->setWebsite($this->faker->domainName);
