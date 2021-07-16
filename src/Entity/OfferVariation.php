@@ -25,7 +25,7 @@ class OfferVariation
      * @Groups({"offerVariation"})
      * @ORM\Column(type="json")
      */
-    private string $priceVariation;
+    private array $priceVariation = [];
 
     /**
      * @Groups({"offerVariation"})
@@ -87,12 +87,12 @@ class OfferVariation
 
     public function getPriceVariation(): array
     {
-        return json_decode($this->priceVariation, true);
+        return $this->priceVariation;
     }
 
-    public function setPriceVariation(string $priceVariation): self
+    public function setPriceVariation(array $priceVariation): self
     {
-        $this->priceVariation = $priceVariation ;
+        $this->priceVariation = $priceVariation;
 
         return $this;
     }

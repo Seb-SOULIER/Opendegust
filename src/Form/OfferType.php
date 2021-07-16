@@ -18,7 +18,7 @@ class OfferType extends AbstractType
             ->add('picture')
             ->add('domainName')
             ->add('description', DescriptionType::class)
-            ->add('contact', ContactType::class)
+            ->add('contact', ContactProviderType::class)
             ->add('language', ChoiceType::class, [
                 'multiple' => true,
                 'expanded' => true,

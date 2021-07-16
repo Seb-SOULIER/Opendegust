@@ -43,7 +43,7 @@ class SearchController extends AbstractController
         Request $request,
         Api $api,
         CategoryRepository $categoryRepository,
-        OfferRepository  $offerRepository
+        OfferRepository $offerRepository
     ): Response {
 
         $query = $request->query->get('q');
@@ -54,10 +54,10 @@ class SearchController extends AbstractController
             $localization = $api->getResponse($url);
         }
 
-        $lang=$request->query->get('language');
+        $lang = $request->query->get('language');
 //        $offers = $this->getDoctrine()
 //            ->getRepository(Offer::class)
-        $offers = $offerRepository->findFilter($request,$localization ??[]);
+        $offers = $offerRepository->findFilter($request, $localization ?? []);
 
         return $this->render('search/index.html.twig', [
             'localization' => $localization ?? [],

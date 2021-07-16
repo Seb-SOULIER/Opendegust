@@ -77,14 +77,16 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
 
                 for ($i = 1; $i <= rand(1, 5); $i++) {
                     $offerVariation = new OfferVariation();
-                    $offerVariation->setPriceVariation(json_encode([
+                    $offerVariation->setPriceVariation([
                         'adultes' => rand(1, 50),
-                        'enfants' => rand(1, 30)]));
-                    $offerVariation->setCapacity(rand(1, 50));
+                        'enfants' => rand(1, 30)]);
+                    $capacity = rand(1, 50);
+                    $offerVariation->setCapacity($capacity);
                     $offerVariation->setDuration((new DateTime())->setTime(rand(0, 10), rand(0, 59)));
                     $offerVariation->setPrice(rand(1, 50));
                     $offerVariation->setCurrentVat(rand(5, 25));
                     $offerVariation->setOffer($offer);
+                    $offerVariation->setAvailablePlaces($capacity);
 
                     for ($i = 1; $i <= rand(1, 5); $i++) {
                         $calendar = new Calendar();

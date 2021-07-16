@@ -20,12 +20,12 @@ class Booking
     /**
      * @ORM\Column(type="json")
      */
-    private ?string $places;
+    private array $places = [];
 
     /**
      * @ORM\Column(type="json")
      */
-    private ?string $priceVariationBook;
+    private array $priceVariationBook = [];
 
     /**
      * @ORM\Column(type="float")
@@ -62,27 +62,26 @@ class Booking
         return $this->id;
     }
 
-    public function getPlaces(): ?array
+    public function getPlaces(): array
     {
-        return $this->places ? json_decode($this->places, true) : null;
+        return $this->places;
     }
 
-    public function setPlaces(?array $places): self
+    public function setPlaces(array $places): self
     {
-        $this->places = json_encode($places) === false ? null : json_encode($places);
+        $this->places = $places;
 
         return $this;
     }
 
-    public function getPriceVariationBook(): ?array
+    public function getPriceVariationBook(): array
     {
-        return $this->priceVariationBook ? json_decode($this->priceVariationBook, true) : null;
+        return $this->priceVariationBook;
     }
 
-    public function setPriceVariationBook(?array $priceVariationBook): self
+    public function setPriceVariationBook(array $priceVariationBook): self
     {
-        $this->priceVariationBook =
-            json_encode($priceVariationBook) === false ? null : json_encode($priceVariationBook);
+        $this->priceVariationBook = $priceVariationBook;
 
         return $this;
     }
