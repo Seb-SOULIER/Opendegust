@@ -19,33 +19,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     /**
-     * @Route("/{id}/favory", name="favory", methods={"GET","POST"})
+     * @Route("/{id}/favory", name="favory", methods={"GET"})
      */
 
     public function addToFavorite(Request $request, Offer $offer, EntityManagerInterface $manager): Response
     {
         if ($this->getUser()->isInFavory($offer)) {
             $this->getUser()->removeFavory($offer);
-            $this->addFlash('warning', 'Offre supprimé des favoris');
         } else {
             $this->getUser()->addFavory($offer);
-            $this->addFlash('success', 'Offre ajouté en favori');
         }
         $manager->flush();
-        return $this->redirectToRoute('search_localization');
-    }
 
-    /**
-     * @Route("/coordinate", name="coordinate")
-     */
-    public function coordinate(Request $request, ContactRepository $contactRepository): Response
-    {
-        $coordinate = $contactRepository->findAll();
-        return $this->json($coordinate ?? []);
-            //'{\"adultes\":3,\"enfants\":4}';
-        //$this->json($coordinate ?? []);
+        return $this->json([
+            'isInFavory' => $this->getUser()->isInFavory($offer)
+        ]);
     }
-
 
     /**
      * @Route("/", name="localization")
