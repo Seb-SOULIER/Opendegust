@@ -1,19 +1,18 @@
 {% macro make_categories(categories) %}
-        {% set key = 0 %}
-        {% for category in categories %}
-
-            <li class="list-group-item pl-4">
-                <input type="checkbox" name="categories[]" id="category_{{ category.id }}" value="{{ category.id }}">
-                <label for="category_{{ category.id }}">{{ category.name }}</label>
-                {% if (category.categories|length) %}
-                    <ul class="list-group flex-column d-inline-block sub-submenu" style="overflow: auto">
-                        <span class="arrow" style="top:114px;"></span>
-                        {% set key = key + 1 %}
+    <div class="container">
+        <ul class="d-flex col pt-2">
+            {% for category in categories %}
+                <div class="d-flex flex-column">
+                    <div>
+                        <input type="checkbox" name="category[]" id="category_{{ category.id }}" value="{{ category.id }}"
+                                {% if category.id in app.request.get('category') %} checked {% endif %}>
+                        <label for="category_{{ category.id }}">{{ category.name }}</label>
+                        {% if (category.categories|length) %}
                         {{ _self.make_categories(category.categories) }}
-                    </ul>
-
-                {% endif %}
-            </li>
-
-        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </ul>
+    </div>
 {% endmacro %}

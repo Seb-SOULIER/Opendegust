@@ -27,30 +27,7 @@
     text-shadow: black 0px -2px;
 }
 
-ul.autocomplete {
-    z-index: 1;
-    position: absolute;
-    top: 100%;
-    list-style: none;
-    text-align: left;
-    background-color: rgba(255, 255, 255, 0.7);
 
-    font-size: 1.25rem;
-    border-radius: 6px 6px 30px 30px;
-    width: 33%;
-    li {
-        transition: transform 0.3s;
-        padding: 0.2rem;
-        a {
-            color: #524c4c;
-            text-shadow: none;
-            text-decoration: none;
-        }
-        a:hover {
-            color: #59ae52;
-        }
-    }
-}
 
 h1.degust-near-you {
     font-size: 3rem;
@@ -82,38 +59,6 @@ h2 {
         margin-bottom: 20px;
     }
 }
-
-form.search-home {
-    font-family: Georgia;
-    text-shadow: black 0.1rem 0.1rem;
-    display: flex;
-    width: 40%;
-    height: 2rem;
-}
-
-
-
-input.write {
-    border-radius: 50px;
-    border: 1px solid #59ae52 ;
-    text-align: start;
-    padding-left: 1rem;
-    width: 75%;
-    text-align: center;
-}
-
-
-button.research {
-    border-radius: 50px;
-    background: linear-gradient(
-90deg
-, #91de8a 4%, #63de59 46%, #8caf89 89%);
-    color: white;
-    min-width: 8%;
-    border: none
-}
-
-
 
 // quatre logo en dessous de la barre de recherche //
 
@@ -315,7 +260,7 @@ button.research {
 
 @media screen and (max-width: 768px) {
     .col-sm-5 {
-        width: 70%;
+        width: 90%;
     }
     .col-sm-7 {
         width: 100%;
@@ -339,12 +284,15 @@ button.research {
     color: white;
 }
 .picture-of-grappes {
-    width: 85%;
+    width: 100%;
     object-fit: cover;
+    height: 100%;
 }
 @media screen and (max-width: 992px) {
     .picture-of-grappes {
         margin-top: 78px;
+        margin: auto;
+        height: 50%;
     }
 }
 
@@ -364,13 +312,13 @@ button.research {
 
 
 .you-see-enjoy p {
-    font-size: 46px;
+    font-size: 2.8rem;
     margin-top: 0
  }
 
 
  .text-enjoy p {
-    font-size: 20px;
+    font-size: 1.2rem;
  }
 
 

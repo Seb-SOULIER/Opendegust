@@ -1,4 +1,3 @@
-{% block body %}
     <div class="d-flex align-items-center flex-column">
         <div class="col-11 col-sm-9 col-xl-8 my-3">
             {{ form_start(form, {'attr': {'class': 'd-flex align-items-center flex-column'}}) }}
@@ -131,7 +130,7 @@
                                                             {{ form_widget(variation.capacity) }}
                                                         </div>
                                                         <div>
-
+                                                            {{ form_widget(variation) }}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -159,9 +158,7 @@
                 </div>
             </div>
         </div>
-
-        <button class="btn btn-primary mt-3 col-12 col-md-6 text-light">{{ button_label|default('Valider') }}</button>
+        <button class="btn btn-primary mt-3 col-12 col-md-6 text-light" type="submit">{{ button_label|default('Valider') }}</button>
         {{ form_end(form) }}
     </div>
-    {{ encore_entry_script_tags('concat-form') }}
-{% endblock %}
+

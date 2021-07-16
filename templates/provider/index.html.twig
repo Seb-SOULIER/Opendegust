@@ -4,59 +4,14 @@
 {% endblock %}
 
 {% block body %}
-	{# <div id="liste-des-prod">
-									<h2>Liste des Producteurs</h2>
-								</div>
-								<div class="responsive-table-list">
-									<table class="table table-bordered table-condensed table-body-center">
-										<thead>
-											<tr>
-												<th>Nom/Prénom</th>
-												<th>Nom du Domaine</th>
-												<th>Nom de l'Offre</th>
-												<th>Email</th>
-												<th style="text-align:center">Action</th>
-											</tr>
-										</thead>
-										<tbody> #}
-	{# {% for provider in providers %}
-												<tr>
-													<td data-title="Nom/Prénom">
-														{{ provider.lastname }}
-														{{ provider.firstname }}
-													</td>
-													<td data-title="Nom du Domaine" style="font-size: 14px">
-														{{ provider.company }}
-													</td>
-													<td data-title="Nom de l'Offre" style="font-size: 14px">{{ offer.name }}</td>
-													<td data-title="Email">
-														<a href="mailto:{{ offer.provider.email }}" style="font-size: 12px">{{ offer.provider.email }}</a>
-													</td>
-													<td data-title="Action" style="font-size: 14px; text-align:center">
-														<a href="{{ path('provider_show', {'id': offer.id}) }}">Voir</a>
-													</td>
-												</tr> #}
-
-	{# <div class="card-group liste-provider">
-					<div class="the-identities">
-						<div class="carte-identite-provider-picture">
-							<img class="picture-of-provider" src="https://image.shutterstock.com/display_pic_with_logo/1778015/1627712716/stock-photo-beautiful-woman-official-photo-for-id-international-passport-identity-card-driver-license-1627712716.jpg" class="card-img-top" alt="identity">
-						</div>
-						<div class="carte-identite-provider-text">
-							<p class="informations-perso">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas nostrum aspernatur maxime architecto. Voluptatem id aliquam, recusandae cumque eveniet eius blanditiis ratione dolorem facere distinctio, obcaecati non vel nobis aut?</p>
-						</div>
-					</div>
-				</div> #}
-
-
 		<div class="container">
-        <div class="row">
+        <div class="row provider-list">
 			{% for provider in providers %}
 				<div class="card col-sm-5 p-3 m-3 ">
-					<div class="row g-0">
+					<div class="row g-0 providers">
 						<div class="col-md-4">
 
-							<img class="picture-of-provider" src="https://image.shutterstock.com/display_pic_with_logo/1778015/1627712716/stock-photo-beautiful-woman-official-photo-for-id-international-passport-identity-card-driver-license-1627712716.jpg" class="img-fluid rounded-start" alt="...">
+							<img class="picture-of-provider" src="http://joseph-godian.fr/wp-content/uploads/2012/02/DSC_1668-format-cv.jpg" class="img-fluid rounded-start" alt="...">
                             <h5 class="card-title">{{ provider.lastname }}
 														{{ provider.firstname }}</h5>
 
@@ -64,31 +19,16 @@
 						<div class="col-md-8">
 							<div class="carte-identite-provider-text">
 								<h5 class="card-title">{{ provider.company }}</h5>
-								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+								<p class="card-text">{{ provider.description }}</p>
 								<p class="card-text">
-									<small class="text-muted">Last updated 3 mins ago</small>
+									<small class="text-muted">{{ provider.contact.website }}</small>
 								</p>
+								<a href="{{ path('provider_show', {'id': provider.id}) }}">Voir</a>
 							</div>
 						</div>
 					</div>
 				</div>
                 {% endfor %}
-			 <div class="card col-sm-5 p-3 m-3">
-				<div class="row g-0">
-					<div class="col-md-4">
-						<img src="..." class="img-fluid rounded-start" alt="...">
-					</div>
-					<div class="col-md-8">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-							<p class="card-text">
-								<small class="text-muted">Last updated 3 mins ago</small>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
     </div>
 {% endblock %}

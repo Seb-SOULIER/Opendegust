@@ -72,10 +72,16 @@ class Offer
      */
     private Collection $categories;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Customer::class, mappedBy="favory")
+     */
+    private Collection $customers;
+
     public function __construct()
     {
         $this->offerVariations = new ArrayCollection();
         $this->categories = new ArrayCollection();
+        $this->customers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -221,6 +227,33 @@ class Offer
     {
         if ($this->categories->removeElement($category)) {
             $category->removeOfferId($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Customer[]
+     */
+    public function getCustomers(): Collection
+    {
+        return $this->customers;
+    }
+
+    public function addCustomer(Customer $customer): self
+    {
+        if (!$this->customers->contains($customer)) {
+            $this->customers[] = $customer;
+            $customer->addFavory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCustomer(Customer $customer): self
+    {
+        if ($this->customers->removeElement($customer)) {
+            $customer->removeFavory($this);
         }
 
         return $this;

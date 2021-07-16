@@ -43,6 +43,5 @@ document.addEventListener('DOMContentLoaded', () => {
             addFormToCollection($collectionHolderClass);
         });
     });
-    initCollection('ul.offerVariations');
     initCollection('ul.calendars');
 });
