@@ -51,7 +51,7 @@ class OfferRepository extends ServiceEntityRepository
             foreach ($request->query->get('language') as $language) {
                 $query = $query
                     ->andWhere('o.language LIKE :language')
-                    ->setParameter('language', '%'.$language.'%');
+                    ->setParameter('language', '%' . $language . '%');
             }
         }
 

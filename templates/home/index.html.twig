@@ -6,7 +6,6 @@
 
 {% block body %}
 	<div class="container-fluid">
-
 		<div class="part-one-home">
 			<img class="home-picture-research" src="{{ asset('build/images/Le-lac-de-Montriond.jpg') }}">
 				<div class="text">
@@ -29,7 +28,7 @@
 	<div class="intro-home-info">
 		<div class="premier-logo-note col-md-2 col-lg-2">
 			<div class="logo-star">
-				<i class="fas fa-star"></i>
+				<i class="fas fa-star logo"></i>
 			</div>
 			<div class="note-star">
 				<p>
@@ -85,17 +84,20 @@
 			<div class="first-lign-degustation">
 
 				<div class="card bg-dark text-white">
-					<a href="search"><img class="card-title-opacity" src="{{ asset('build/images/Gastronomie.png') }}" alt="Gastronomie"/></a>
+					<a href="/search?category[]={{ gastronomy[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/Gastronomie.png') }}" alt="Gastronomie"/></a>
 					<div class="card-img-title">
-						<a class="text-light" href="search">
+						<a class="text-light" href="/search?category[]={{ gastronomy[0].id }}">
+						{# <pre>
+							{{ dump(gastronomy[0].id) }}
+						</pre> #}
 							<h4 class="card-title">Gastronomie</h4>
 						</a>
 					</div>
 				</div>
 				<div class="card bg-dark text-white">
-					<a href="search"><img class="card-title-opacity" src="{{ asset('build/images/Brasserie.jpg') }}" class="card-img" alt="Brasserie"/></a>
+					<a href="/search?category[]={{ brassery[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/Brasserie.jpg') }}" class="card-img" alt="Brasserie"/></a>
 					<div class="card-img-title">
-						<a class="text-light" href="search">
+						<a class="text-light" href="/search?category[]={{ brassery[0].id }}">
 							<h4 class="card-title">Brasserie</h4>
 						</a>
 					</div>
@@ -103,17 +105,17 @@
 			</div>
 			<div class="second-lign-degustation">
 				<div class="card bg-dark text-white">
-					<a href="search"><img class="card-title-opacity" src="{{ asset('build/images/vin-et-champagne.jpg') }}" class="card-img" alt="vin"/></a>
+					<a href="/search?category[]={{ champagne[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/vin-et-champagne.jpg') }}" class="card-img" alt="vin"/></a>
 					<div class="card-img-title">
-						<a class="text-light" href="search">
+						<a class="text-light" href="/search?category[]={{ champagne[0].id }}">
 							<h4 class="card-title">vin et champagne</h4>
 						</a>
 					</div>
 				</div>
 				<div class="card bg-dark text-white">
-					<a href="search"><img class="card-title-opacity" src="{{ asset('build/images/Cidrerie.webp') }}" class="card-img" alt="Cidrerie"/></a>
+					<a href="/search?category[]={{ brassery[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/Cidrerie.webp') }}" class="card-img" alt="Cidrerie"/></a>
 					<div class="card-img-title">
-						<a class="text-light" href="search">
+						<a class="text-light" href="/search?category[]={{ cidrery[0].id }}">
 							<h4 class="card-title">Cidrerie</h4>
 						</a>
 					</div>
@@ -121,17 +123,17 @@
 			</div>
 			<div class="third-lign-degustation">
 				<div class="card bg-dark text-white">
-					<a href="search"><img class="card-title-opacity" src="{{ asset('build/images/Cognac-et-Pineaux.jpg') }}" class="card-img" alt="Cognac et pineaux"/></a>
+					<a href="/search?category[]={{ cognac[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/Cognac-et-Pineaux.jpg') }}" class="card-img" alt="Cognac et pineaux"/></a>
 					<div class="card-img-title">
-						<a class="text-light" href="search">
+						<a class="text-light" href="/search?category[]={{ cognac[0].id }}">
 							<h4 class="card-title">Cognac et pineaux</h4>
 						</a>
 					</div>
 				</div>
 				<div class="card bg-dark text-white">
-					<a href="search"><img class="card-title-opacity" src="{{ asset('build/images/spiritueux.jpg') }}" class="card-img" alt="Spiritueux"/></a>
+					<a href="/search?category[]={{ spirituous[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/spiritueux.jpg') }}" class="card-img" alt="Spiritueux"/></a>
 					<div class="card-img-title">
-						<a class="text-light" href="search">
+						<a class="text-light" href="/search?category[]={{ spirituous[0].id }}">
 							<h4 class="card-title">Spiritueux</h4>
 						</a>
 					</div>
@@ -280,11 +282,13 @@
 		<div class="card-group">
 			<div class="card column-left">
 				<div class="card first-picture-left">
-					<img class="activities-exper" src="{{ asset('build/images/activites.jpeg') }}" alt="Card image cap">
+					<img class="activities-exper" src="{{ asset('build/images/activites.jpeg') }}"  alt="Card image cap">
 					<div class="title-experience-first">
+					<a href="/search?category[]={{ activities[0].id }}">
 						<p>
 							Les activités
 						</p>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -292,17 +296,21 @@
 				<div class="card first-right-picture">
 					<img class="evasion-exper" src="{{ asset('build/images/evasion.jpeg') }}" alt="Card image cap">
 					<div class="title-experience-second">
+					<a href="/search?category[]={{ evasion[0].id }}">
 						<p>
 							évasion
 						</p>
+						</a>
 					</div>
 				</div>
 				<div class="card second-right-picture">
 					<img class="evenements-locaux-exper" src="{{ asset('build/images/evenements-locaux.jpg') }}" alt="Card image cap">
 					<div class="title-experience-third">
+					<a href="/search?category[]={{ evenements[0].id }}">
 						<p>
 							évènements locaux
 						</p>
+						</a>
 					</div>
 				</div>
 			</div>

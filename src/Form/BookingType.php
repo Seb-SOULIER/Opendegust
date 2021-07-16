@@ -16,12 +16,16 @@ class BookingType extends AbstractType
     {
         $builder
         ->add('adultPlaces', HiddenType::class, [
-            'mapped' => false,
-            'label' => "Nombre d'adultes :",
+            'mapped' => false
         ])
         ->add('childPlaces', HiddenType::class, [
-            'mapped' => false,
-            'label' => "Nombre d'enfants :",
+            'mapped' => false
+        ])
+        ->add('adultPrice', HiddenType::class, [
+            'mapped' => false
+        ])
+        ->add('childPrice', HiddenType::class, [
+            'mapped' => false
         ])
 //            ->add('places')
 //            ->add('priceVariationBook')

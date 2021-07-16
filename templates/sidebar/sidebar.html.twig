@@ -1,5 +1,6 @@
-<div data-component="sidebar" class="sticky-top">
-    <div class="sidebar-wrapper">
+<div data-component="sidebar"  class="sticky-top">
+    <div>{% include "_navbar.html.twig" %}</div>
+    <div id="sidebarWrapper" class="sidebar-wrapper">
         <div id="maCarte"></div>
         <form action="" method="GET">
             <input type="hidden" value="{{ app.request.get('q') }}" name="q">
@@ -34,15 +35,15 @@
                                 <div class="container">
                                     <p>Tarif</p>
                                     <a><label for="price-min">De :</label>
-                                            <div class="d-flex" >
-                                                <input id="price-min" class="form-control pe-0 w-75" type="number" name="price-min" value="{{ app.request.get('price-min') }}" min="0">
-                                                <span class = "fs-3">€</span>
-                                            </div>
-                                       <label for="price-max"> à :</label>
-                                            <div class="d-flex" >
-                                                <input id="price-max" class="form-control pe-0 w-75" type="number" name="price-max" value="{{ app.request.get('price-max') }}">
-                                                <span class = "fs-3">€</span>
-                                            </div>
+                                        <div class="d-flex" >
+                                            <input id="price-min" class="form-control pe-0 w-75" type="number" name="price-min" value="{{ app.request.get('price-min') }}" min="0">
+                                            <span class = "fs-3">€</span>
+                                        </div>
+                                        <label for="price-max"> à :</label>
+                                        <div class="d-flex" >
+                                            <input id="price-max" class="form-control pe-0 w-75" type="number" name="price-max" value="{{ app.request.get('price-max') }}">
+                                            <span class = "fs-3">€</span>
+                                        </div>
                                     </a>
                                 </div>
                             </li>
@@ -54,37 +55,37 @@
                         <ul class="list-group flex-column d-inline-block submenu">
                             <li class="list-group-item pl-4 m-0">
                                 <input type="checkbox" name="language[]" id="francais" value="francais"
-                                    {% if 'francais' in app.request.get('language') %} checked {% endif %}>
+                                        {% if 'francais' in app.request.get('language') %} checked {% endif %}>
                                 <label for="francais">Francais</label>
                             </li>
                             <li class="list-group-item pl-4 m-0">
                                 <input type="checkbox" name = "language[]" id="anglais" value="anglais"
-                                    {% if 'anglais' in app.request.get('language') %} checked {% endif %}>
+                                        {% if 'anglais' in app.request.get('language') %} checked {% endif %}>
                                 <label for="anglais">Anglais</label>
                             </li>
                             <li class="list-group-item pl-4 m-0">
                                 <input type="checkbox" name = "language_3" id="espagnol" value="espagnol"
-                                    {% if 'espagnol' in app.request.get('language') %} checked {% endif %}>
+                                        {% if 'espagnol' in app.request.get('language') %} checked {% endif %}>
                                 <label for=espagnol">Espagnol</label>
                             </li>
                             <li class="list-group-item pl-4 m-0">
                                 <input type="checkbox" name = "language[]" id="chinois" value="chinois"
-                                    {% if 'chinois' in app.request.get('language') %} checked {% endif %}>
+                                        {% if 'chinois' in app.request.get('language') %} checked {% endif %}>
                                 <label for="chinois">Chinois</label>
                             </li>
                             <li class="list-group-item pl-4 m-0">
                                 <input type="checkbox" name = "language[]" id="japonais" value="japonais"
-                                {% if 'japonais' in app.request.get('language') %} checked {% endif %}>
+                                        {% if 'japonais' in app.request.get('language') %} checked {% endif %}>
                                 <label for="japonais">Japonais</label>
                             </li>
                             <li class="list-group-item pl-4 m-0">
                                 <input type="checkbox" name = "language[]" id="russe" value="russe"
-                                {% if 'russe' in app.request.get('language') %} checked {% endif %}>
+                                        {% if 'russe' in app.request.get('language') %} checked {% endif %}>
                                 <label for="russe">Russe</label>
                             </li>
                             <li class="list-group-item pl-4 m-0">
                                 <input type="checkbox" name = "language[]" id="portugais" value="portugais"
-                                {% if 'portugais' in app.request.get('language') %} checked {% endif %}>
+                                        {% if 'portugais' in app.request.get('language') %} checked {% endif %}>
                                 <label for=portugais">Portugais</label>
                             </li>
                         </ul>
@@ -97,6 +98,25 @@
                 </ul> <!-- /.first-menu -->
             </div> <!-- /.sidebar -->
         </form>
+
     </div>
 </div>
+
+
 {{ encore_entry_script_tags('map') }}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sidebar = document.getElementById('sidebarWrapper');
+        window.addEventListener('scroll', () => {
+            sidebar.className = "sidebar-wrapper-hidden";
+        })
+
+        sidebar.addEventListener('click', () => {
+            sidebar.className = "sidebar-wrapper";
+        })
+    })
+
+</script>
+
+

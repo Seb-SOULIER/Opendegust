@@ -4,13 +4,21 @@ $sidebar-transition: $transition-duration opacity $transition-delay, $transition
 
 .sidebar-wrapper {
   position: relative;
+  transform: translateY(0);
+  transition:transform 1s 0s;
+}
+
+.sidebar-wrapper-hidden {
+  position:relative;
+  transform: translateY(-90%);
+  transition:transform 1s 0s;
 }
 
 [data-component='sidebar'] {
   .sidebar {
     position: absolute;
-    top: 0;
-    z-index: 9999;
+    bottom: 300px;
+    z-index: 500;
   }
 
   //black menu
