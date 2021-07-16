@@ -52,17 +52,15 @@
                                             (Détail)</a>
                                     </p>
                                     <a href="{{ path('offer_show', {'id': offer.id}) }}"
-                                       class="btnOffer btn btn-primary">réserver <i
-                                                class="fas fa-shopping-cart"></i></a>
+                                       class="btnOffer btn btn-primary">réserver <i class="fas fa-shopping-cart"></i></a>
                                     <p class="card-text"><small class="text-muted"></small></p>
-                                    {% if app.user and is_granted('ROLE_CUSTOMER') %}
-                                        <a href="{{ path('search_favory', {id: offer.id}) }}">
-                                            <i class="bi {{ app.user.isInFavory(offer) ? 'fas fa-star' : 'far fa-star' }}"></i>
-                                        </a>
-                                    {% endif %}
+{#                                    {% if app.user and is_granted('ROLE_CUSTOMER') %}#}
+{#                                        href="{{ path('search_favory', {id: offer.id}) }}#}
+{#                                        <a id="favorite" href="{{ path('search_favory', {id: offer.id})}}">#}
+{#                                            <i class="bi {{ app.user.isInFavory(offer) ? 'fas fa-star' : 'far fa-star' }}"></i>#}
+{#                                        </a>#}
+{#                                    {% endif %}#}
                                 </div>
-
-
                             </div>
                         </div>
                         <!-- Modal -->

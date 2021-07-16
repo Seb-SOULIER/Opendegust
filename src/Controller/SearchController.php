@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     /**
-     * @Route("/{id}/favory", name="favory", methods={"GET","POST"})
+     * @Route("/{id}/favory", name="favory", methods={"GET"})
      */
 
     public function addToFavorite(Request $request, Offer $offer, EntityManagerInterface $manager): Response
@@ -32,7 +32,9 @@ class SearchController extends AbstractController
         }
         $manager->flush();
 
-        return $this->redirectToRoute('search_localization');
+        return $this->json([
+            'isInFavory' => $this->getUser()->isInFavory($offer)
+        ]);
     }
 
     /**

@@ -32,7 +32,16 @@ border: solid 1px #adadad;
 
 .btnOffer{
   width:50%;
+}
 
+.btn-primary{
+  color: $light;
+}
+
+.btn-primary:hover {
+  color: $light;
+  background-color: #72ba6c;
+  border-color: #6ab663;
 }
 
 .card-text-color{
