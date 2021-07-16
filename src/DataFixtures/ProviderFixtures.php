@@ -18,6 +18,44 @@ class ProviderFixtures extends Fixture
     private const OTHER_SITE = 3;
     private const KNOW_US = ['Publicité', 'Internet', 'Bouche à oreille', 'Autre'];
 
+    private const PICTURE = [
+        '0' => 'https://st.depositphotos.com/1269204/1219/i/600/depositphotos_
+        12196477-stock-photo-smiling-men-isolated-on-the.jpg',
+        '1' => 'https://thumbs.dreamstime.com/b/personne-intelligente-en-lunettes-
+        un-homme-tenue-officielle-est-debout-sur-fond-blanc-dans-le-studio-165962936.jpg',
+        '2' => 'https://media.istockphoto.com/photos/happy-man-winking-and-pointing-
+        at-you-picture-id899284784',
+        '3' => 'https://thumbs.dreamstime.com/z/portrait-de-jeune-homme-heureux-soulevant-
+        ses-mains-97191757.jpg',
+        '4' => 'https://thumbs.dreamstime.com/b/jeune-homme-heureux-93838547.jpg',
+        '5' => 'https://previews.123rf.com/images/antonioguillem/antonioguillem1405/antonioguillem140500085/
+        28373650-jeune-homme-heureux-adolescent-positif-gestes-ok-isol%C3%A9-sur-un-fond-blanc.jpg',
+        '6' => 'https://previews.123rf.com/images/rido/rido1407/rido140700015/29862726-portrait-de-jeune-
+        homme-heureux-afficher-thumb-up-isol%C3%A9-sur-fond-blanc.jpg',
+        '7' => 'https://previews.123rf.com/images/goodluz/goodluz1505/goodluz150500041/39464767-portrait-
+        de-sourire-homme-d-%C3%A2ge-m%C3%BBr-debout-dans-le-couloir.jpg',
+        '8' => 'https://st3.depositphotos.com/1037987/15097/i/600/depositphotos_150975580-stock-photo-
+        portrait-of-businesswoman-in-office.jpg',
+        '9' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReY6MKiIHGTapFjCbA3D6P7BwWDw9go7_
+        WAytnNnf-cMWCl1obSOg0gYv8ggH2wjvTkug&usqp=CAU',
+        '10' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReY6MKiIHGTapFjCbA3D6P7BwWDw9go7_
+        WAytnNnf-cMWCl1obSOg0gYv8ggH2wjvTkug&usqp=CAU',
+        '11' => 'https://webservices-storage.lmsoft.com/3248/photogallery/images/pictures/
+        089f8ced6e3c5f88da7a5081c7452b8f.jpg',
+        '12' => 'https://thumbs.dreamstime.com/b/femme-mill%C3%A9naire-regardant-la-cam%C3%A9ra-sur-
+        le-fond-blanc-image-de-portrait-137947265.jpg',
+        '13' => 'https://thumbs.dreamstime.com/z/portrait-de-jeune-homme-heureux-soulevant-ses-mains
+        -97191757.jpg',
+        '14' => 'https://thumbs.dreamstime.com/z/portrait-de-jeune-homme-heureux-soulevant-ses-mains-
+        97191757.jpg',
+        '15' => 'https://image.freepik.com/photos-gratuite/jolie-femme-regardant-camera_23-2147767413.jpg',
+        '16' => 'https://thumbs.dreamstime.com/b/femme-mill%C3%A9naire-regardant-la-cam%C3%A9ra-sur-le-fond-
+        blanc-image-de-portrait-137947265.jpg',
+        '17' => 'https://ak.picdn.net/shutterstock/videos/21394198/thumb/1.jpg',
+        '18' => 'https://ak.picdn.net/shutterstock/videos/7076620/thumb/1.jpg'
+    ];
+
+
     private array $opening = [
         'day' => ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
         'start' => 7,
@@ -56,6 +94,7 @@ class ProviderFixtures extends Fixture
             ));
             $provider->setRegistrationAt($this->faker->dateTime);
             $provider->setCivility($this->faker->numberBetween(1, 3));
+            $provider->setPicture(self::PICTURE[rand(0, 18)]);
             $provider->setFirstname($this->faker->firstName);
             $provider->setLastname($this->faker->lastName);
             $provider->setCompany($this->faker->company);
