@@ -32,9 +32,59 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
     private const PICTURE = [
         '0' => 'http://4.bp.blogspot.com/-sOxM1VOF3aw/UFurFiwGKTI/AAAAAAAAD5s/wFABJmlvBHQ/s1600/IMG_4751.JPG',
         '1' => 'https://cache.cosmopolitan.fr/data/photo/w1000_ci/54/amis-restaurant.webp',
-        '2' => 'https://cache.cosmopolitan.fr/data/photo/w1000_ci/54/amis-restaurant.webp',
+        '2' => 'https://via.placeholder.com/640x480.png/00ff22?text=food+quasi',
         '3' => 'https://www.nordundsud.at/wp-content/uploads/2020/10/Coffrets-degustation-458x458.jpg',
         '4' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
+        '5' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz815SFgVmz0F1SD685KEczMhF2WLo-tKH8A&usqp=CAU',
+        '6' => 'https://www.laroutedesgourmets.fr/831-thickbox_default/degustation-de-fromages-a-paris.jpg',
+        '7' => 'https://beecity.fr/app/uploads/2019/10/Ateliers-r%C3%A9colte-du-miel-Photo-Clara-720x790-c-default.jpg',
+        '8' => 'https://www.enil.fr/images/illustrations/enil/ateliers/yaourt/ENSEMENCEMENT.JPG',
+        '9' => 'https://scontent-cdt1-1.xx.fbcdn.net/v/t1.6435-9/86871778_2471299583121891_2194054236088565760_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=973b4a&_nc_ohc=0kH0jCJH0H0AX_0h7MJ&_nc_ht=scontent-cdt1-1.xx&oh=fb4b0996681a180498dd1b65702775ab&oe=60F556A3',
+        '10' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Curitiba_Botanic_Garden.jpg/330px-Curitiba_Botanic_Garden.jpg',
+        '11' => 'https://webservices-storage.lmsoft.com/3248/photogallery/images/pictures/089f8ced6e3c5f88da7a5081c7452b8f.jpg',
+        '12' => 'https://biscuitsetcompagnie.com/journal/wp-content/uploads/2017/01/255001000_betises_de_cambrai_a_la_menthe_120g_02.jpg',
+        '13' => 'https://www.lafermedesaintbonnet.fr/wp-content/uploads/2016/11/viande-bio-14.jpg',
+        '14' => 'https://le-cdn.website-editor.net/c181047c4b0c4afeb69d195e5bd540e1/dms3rep/multi/opt/degustation+de+spiritueux-602w.jpg',
+        '15' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
+        '16' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
+        '17' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
+        '18' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
+        '19' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
+        '20' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
+        '21' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
+        '22' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
+        '23' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
+        '24' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
+        '25' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
+    ];
+
+    private const NAME = [
+        '0' => 'Dégustation en plein air',
+        '1' => 'Dégustation couverte',
+        '2' => 'Visite au château Aguilard',
+        '3' => 'Dégustation de Vin blanc',
+        '4' => 'Dégustation de bières',
+        '5' => 'Dégustation de jambon',
+        '6' => 'Dégustation de fromage',
+        '7' => 'Atelier découverte du miel',
+        '8' => 'atelier production de produits laitiers',
+        '9' => 'Dégustation produits laitiers',
+        '10' => 'Découverte jardin bottannique',
+        '11' => 'Cours de Cuisine en pleine nature',
+        '12' => 'Dégustation Friandises locales',
+        '13' => 'Dégustation viande bio',
+        '14' => 'Dégustation de Spiritueux',
+        '15' => 'Atelier Spa',
+        '16' => 'Dégustation couverte',
+        '17' => 'Dégustation couverte',
+        '18' => 'Dégustation couverte',
+        '19' => 'Dégustation couverte',
+        '20' => 'Dégustation couverte',
+        '21' => 'Dégustation couverte',
+        '22' => 'Dégustation couverte',
+        '23' => 'Dégustation couverte',
+        '24' => 'Dégustation couverte',
+        '25' => 'Dégustation couverte'
     ];
 
     protected $faker;
@@ -46,8 +96,8 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
         for ($a = 1; $a <= self::NBR_PROVIDER; $a++) {
             for ($i = 1; $i <= self::OFFER_NUMBER; $i++) {
                 $offer = new Offer();
-                $offer->setName($this->faker->sentence(2));
-                $offer->setPicture(self::PICTURE[rand(0, 4)]);
+                $offer->setName(self::NAME[rand(0,25)]);
+                $offer->setPicture(self::PICTURE[rand(0, 25)]);
                 $offer->setDomainName($this->faker->sentence(3));
 
                 $language = self::LANGUAGE[rand(0, 8)];

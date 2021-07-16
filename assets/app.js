@@ -16,7 +16,6 @@ import './js/offer-variation-info';
 // start the Stimulus application
 import './bootstrap';
 
-require('bootstrap');
 const $ = require('jquery');
 
 window.bootstrap = require('bootstrap');
