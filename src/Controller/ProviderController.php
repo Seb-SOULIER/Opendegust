@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
 use App\Entity\Provider;
 use App\Form\ProviderPwType;
 use App\Form\ProviderType;
+use App\Repository\OfferRepository;
+use App\Repository\ProductRepository;
 use App\Repository\ProviderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,10 +40,12 @@ class ProviderController extends AbstractController
     /**
      * @Route("/{id}", name="provider_show", methods={"GET"})
      */
-    public function show(Provider $provider): Response
+    public function show(Provider $provider, ProductRepository $productRepository): Response
     {
+
         return $this->render('provider/show.html.twig', [
             'provider' => $provider,
+            'products' => $productRepository->findBy(['provider' => $provider->getId()])
         ]);
     }
 

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Offer;
 use App\Repository\CategoryRepository;
 use App\Repository\ContactRepository;
+use App\Repository\OfferRepository;
 use App\Service\Api;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,10 +26,8 @@ class SearchController extends AbstractController
     {
         if ($this->getUser()->isInFavory($offer)) {
             $this->getUser()->removeFavory($offer);
-            $this->addFlash('warning', 'Offre supprimé des favoris');
         } else {
             $this->getUser()->addFavory($offer);
-            $this->addFlash('success', 'Offre ajouté en favori');
         }
         $manager->flush();
 
@@ -40,8 +39,12 @@ class SearchController extends AbstractController
     /**
      * @Route("/", name="localization")
      */
-    public function search(Request $request, Api $api, CategoryRepository $categoryRepository): Response
-    {
+    public function search(
+        Request $request,
+        Api $api,
+        CategoryRepository $categoryRepository,
+        OfferRepository  $offerRepository
+    ): Response {
 
         $query = $request->query->get('q');
 
@@ -51,9 +54,10 @@ class SearchController extends AbstractController
             $localization = $api->getResponse($url);
         }
 
-        $offers = $this->getDoctrine()
-            ->getRepository(Offer::class)
-            ->findAll();
+        $lang=$request->query->get('language');
+//        $offers = $this->getDoctrine()
+//            ->getRepository(Offer::class)
+        $offers = $offerRepository->findFilter($request,$localization ??[]);
 
         return $this->render('search/index.html.twig', [
             'localization' => $localization ?? [],

@@ -82,3 +82,14 @@ border: solid 1px #adadad;
   //    width:75%;
   //  }
 
+.img-fluid.offers-image {
+  object-fit: cover;
+    height: 294px;
+}
+
+.starfav{
+  color:$tag-premium-color;
+  position: absolute;
+  top: 5px;
+  left:5px;
+}

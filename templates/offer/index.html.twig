@@ -39,7 +39,7 @@
 								{{ variation.availablePlaces|default('0') }} places
 							</td>
 							<td class="text-center">
-								<a href="">Détail</a>
+								<a href="{{ path('offer_edit', {'id': offer.id}) }}">Détail</a>
 							</td>
 				</tr>
 						{% endfor %}
@@ -56,5 +56,3 @@
 		</div>
 	</div>
 {% endblock %}
-
-

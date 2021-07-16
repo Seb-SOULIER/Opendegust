@@ -1,90 +1,146 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Provider{% endblock %}
+{% block title %}Provider
+{% endblock %}
 
 {% block body %}
-    <h1>Provider</h1>
+	<div
+		class="color-body-for-provider">
+		<h2 class="text-center">{{ provider.firstname }}
+			{{ provider.lastname }}</h2>
+		<div class="container">
+			<div class="provider-id-picture">
+				<img class="profil-picture" src="https://www.fredericvigier.com/wp-content/uploads/2021/01/directeur-communication-photo-cv.jpg" alt="">
+			</div>
+		</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ provider.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ provider.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ provider.roles ? provider.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ provider.password }}</td>
-            </tr>
-            <tr>
-                <th>RegistrationAt</th>
-                <td>{{ provider.registrationAt ? provider.registrationAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Civility</th>
-                <td>{{ provider.civility }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ provider.lastname }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ provider.firstname }}</td>
-            </tr>
-            <tr>
-                <th>IsVerified</th>
-                <td>{{ provider.isVerified ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Company</th>
-                <td>{{ provider.company }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ provider.picture }}</td>
-            </tr>
-            <tr>
-                <th>SocialReason</th>
-                <td>{{ provider.socialReason }}</td>
-            </tr>
-            <tr>
-                <th>Siret</th>
-                <td>{{ provider.siret }}</td>
-            </tr>
-            <tr>
-                <th>VatNumber</th>
-                <td>{{ provider.vatNumber }}</td>
-            </tr>
-            <tr>
-                <th>Opening</th>
-                <td>{{ provider.opening ? provider.opening|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>MonthlyFrequentation</th>
-                <td>{{ provider.monthlyFrequentation }}</td>
-            </tr>
-            <tr>
-                <th>OtherSite</th>
-                <td>{{ provider.otherSite ? provider.otherSite|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>KnowUs</th>
-                <td>{{ provider.knowUs ? provider.knowUs|json_encode : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+		<div class="container">
+			<div class="bio-provider">
+				<h3>Biographie</h3>
+				<p>{{ provider.description.longDescription }}</p>
+			</div>
+		</div>
 
-    <a href="{{ path('provider_index') }}">back to list</a>
 
-    <a href="{{ path('provider_edit', {'id': provider.id}) }}">edit</a>
+		<div class="accordion accordion-flush-contact" id="accordionFlushExample">
+			<div class="accordion-item company-contact">
+				<h2 class="accordion-header" id="flush-headingOne">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="font-size: 1.5rem">
+						A Propos
+					</button>
+				</h2>
+				<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+					<div class="accordion-body">
+						<div class="row">
+							<div class="col-12 col-sm-6">
+								<div>
+									<h5>Nom de l'entreprise</h5>
+									<p>{{ provider.company }}</p>
+								</div>
+								<div>
+									<h5>Type</h5>
+									<p>{{ provider.socialReason }}</p>
+								</div>
+								<div>
+									<h5>Vérifiée ?</h5>
+									<p>{{ provider.isVerified }}</p>
+								</div>
+								<div>
+									<h5>Fréquentation</h5>
+									<p>{{ provider.monthlyFrequentation }}</p>
+								</div>
+							</div>
 
-    {{ include('provider/_delete_form.html.twig') }}
-{% endblock %}
+							<div class="col-12 col-sm-6">
+								<div>
+									<h5>N° SIRET</h5>
+									<p>{{ provider.siret }}</p>
+								</div>
+								<div>
+									<h5>N° TVA</h5>
+									<p>{{ provider.vatNumber }}</p>
+								</div>
+								<div>
+									<h5>Autres Sites</h5>
+									{% for provider_site in provider.otherSite %}
+										<p>
+											<a href="{{ provider_site }}">{{ provider_site }}</a>
+										</p>
+									{% endfor %}
+								</div>
+								<div>
+									<h5>Comment avez-vous connu ce site ?</h5>
+									<p>{{ provider.knowUs ? provider.knowUs|json_encode : '' }}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="flush-headingTwo">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo" style="font-size: 1.5rem">
+							Contact
+						</button>
+					</h2>
+					<div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+						<div class="accordion-body">
+							<div class="row">
+								<div class="col-12 col-sm-6">
+									<div>
+										<h5>Email</h5>
+										<a href="mailto:">
+											<p>{{ provider.email }}</p>
+										</a>
+									</div>
+									<div>
+										<h5>Numéro de Téléphone</h5>
+										<p>{{ provider.contact.phone }}</p>
+									</div>
+									<div>
+										<h5>Numéro Portable</h5>
+										<p>{{ provider.contact.phone2 }}</p>
+									</div>
+								</div>
+								<div class="col-12 col-sm-6">
+									<div>
+										<h5>Ville</h5>
+										<p>{{ provider.contact.city }}</p>
+									</div>
+									<div>
+										<h5>Code Postal</h5>
+										<p>{{ provider.contact.zipCode }}</p>
+									</div>
+									<div>
+										<h5>Site web</h5>
+										<p>{{ provider.contact.website }}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<div class="list-offer-by-provider">
+				<h1 class="my-3 text-center">Nos Produits</h1>
+				<div class="row row-cols-1 row-cols-md-5 g-5" id="provider-offer-card">
+					{% for product in products %}
+						{% include "product/products.html.twig" %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<a href="{{ path('provider_index') }}">
+				back to list</a>
+
+			<a href="{{ path('provider_edit', {'id': provider.id}) }}">edit</a>
+
+			{{ include('provider/_delete_form.html.twig') }}
+		</div>
+	{% endblock %}

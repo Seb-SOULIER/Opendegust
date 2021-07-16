@@ -6,7 +6,17 @@
 
 {% block body %}
 	<div class="container-fluid">
-<<<<<<< HEAD
+
+		<div class="part-one-home">
+			<img class="home-picture-research" src="{{ asset('build/images/Le-lac-de-Montriond.jpg') }}">
+				<div class="text">
+				<h1 class="degust-near-you">
+					<span style="font-weight:300">Dégustations</span>
+					<span style="font-weight:700">
+						près de chez vous</span>
+				</h1>
+			</div>
+
 		{% for category, messages in app.flashes %}
 			{% for message in messages %}
 				<div class="alert alert-{{ category }}">
@@ -14,21 +24,7 @@
 				</div>
 			{% endfor %}
 		{% endfor %}
-		<div class="part-one-home">
-					{# <picture class="home-picture-research">
-                        <source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("home_thumb_first_image") }}">
-                        <img class="img-fluid" src="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("home_thumb_first_image") }}" alt="le lac de Montriond">
-                    </picture> #}
-			<img class="home-picture-research" src="https://www.photo-paysage.com/albums/userpics/10001/Le_lac_de_Montriond~0.jpg">
-			<div class="text">
-				<h1 class="degust-near-you">
-					<span style="font-weight:300">Dégustations</span>
-					<span style="font-weight:700">
-						près de chez vous</span>
-				</h1>
-			</div>
-			{# {% include "search-barre/search.html.twig" %} #}
-		</div>
+
 	</div>
 	<div class="intro-home-info">
 		<div class="premier-logo-note col-md-2 col-lg-2">
@@ -89,43 +85,58 @@
 			<div class="first-lign-degustation">
 
 				<div class="card bg-dark text-white">
-					<a href="search" target="_blank"><img class="card-title-opacity" src="https://pagtour.info/wp-content/uploads/2019/07/Sans-titre-770x512.png" alt="Gastronomie"/></a>
+					<a href="/search?category[]={{ gastronomy[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/Gastronomie.png') }}" alt="Gastronomie"/></a>
 					<div class="card-img-title">
-						<h4 class="card-title">Gastronomie</h4>
+						<a class="text-light" href="/search?category[]={{ gastronomy[0].id }}">
+						{# <pre>
+							{{ dump(gastronomy[0].id) }}
+						</pre> #}
+							<h4 class="card-title">Gastronomie</h4>
+						</a>
 					</div>
 				</div>
 				<div class="card bg-dark text-white">
-					<a href="search" target="_blank"><img class="card-title-opacity" src="https://www.savourez-grandest.fr/wp-content/uploads/2019/08/ALSABIERES_Brasserie_Saint_Pierre_bouteilles2.jpg" class="card-img" alt="..."/></a>
+					<a href="/search?category[]={{ brassery[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/Brasserie.jpg') }}" class="card-img" alt="Brasserie"/></a>
 					<div class="card-img-title">
-						<h4 class="card-title">Brasserie</h4>
+						<a class="text-light" href="/search?category[]={{ brassery[0].id }}">
+							<h4 class="card-title">Brasserie</h4>
+						</a>
 					</div>
 				</div>
 			</div>
 			<div class="second-lign-degustation">
 				<div class="card bg-dark text-white">
-					<a href="search" target="_blank"><img class="card-title-opacity" src="https://www.wybrecht.fr/images/Fotolia_58029491_S.jpg" class="card-img" alt="..."/></a>
+					<a href="/search?category[]={{ champagne[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/vin-et-champagne.jpg') }}" class="card-img" alt="vin"/></a>
 					<div class="card-img-title">
-						<h4 class="card-title">vin et champagne</h4>
+						<a class="text-light" href="/search?category[]={{ champagne[0].id }}">
+							<h4 class="card-title">vin et champagne</h4>
+						</a>
 					</div>
 				</div>
 				<div class="card bg-dark text-white">
-					<a href="search" target="_blank"><img class="card-title-opacity" src="https://cache.magazine-avantages.fr/data/photo/w1000_ci/1ea/cidre-cuisine-boisson-food.webp" class="card-img" alt="..."/></a>
+					<a href="/search?category[]={{ brassery[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/Cidrerie.webp') }}" class="card-img" alt="Cidrerie"/></a>
 					<div class="card-img-title">
-						<h4 class="card-title">Cidrerie</h4>
+						<a class="text-light" href="/search?category[]={{ cidrery[0].id }}">
+							<h4 class="card-title">Cidrerie</h4>
+						</a>
 					</div>
 				</div>
 			</div>
 			<div class="third-lign-degustation">
 				<div class="card bg-dark text-white">
-					<a href="search" target="_blank"><img class="card-title-opacity" src="https://www.familledrouet.fr/files/2018/12/Trophy-768x511.jpg" class="card-img" alt="..."/></a>
+					<a href="/search?category[]={{ cognac[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/Cognac-et-Pineaux.jpg') }}" class="card-img" alt="Cognac et pineaux"/></a>
 					<div class="card-img-title">
-						<h4 class="card-title">Cognac et pineaux</h4>
+						<a class="text-light" href="/search?category[]={{ cognac[0].id }}">
+							<h4 class="card-title">Cognac et pineaux</h4>
+						</a>
 					</div>
 				</div>
 				<div class="card bg-dark text-white">
-					<a href="search" target="_blank"><img class="card-title-opacity" src="https://www.sommeliers-international.com/sites/default/files/images/articles/164_benj_kuentz_1.jpg" class="card-img" alt="..."/></a>
+					<a href="/search?category[]={{ spirituous[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/spiritueux.jpg') }}" class="card-img" alt="Spiritueux"/></a>
 					<div class="card-img-title">
-						<h4 class="card-title">Spiritueux</h4>
+						<a class="text-light" href="/search?category[]={{ spirituous[0].id }}">
+							<h4 class="card-title">Spiritueux</h4>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -146,7 +157,7 @@
 				<div class="col-sm-5">
 					<div class="card for-the-informations">
 						<div class="card-body picture-back-green">
-							<img class="picture-of-grappes" src="https://www.pepinieres-travers.fr/4922-thickbox_default/vigne-vinifera-centennial-seedless.jpg" alt="pepiniere">
+							<img class="picture-of-grappes" src="{{ asset('build/images/producteur-local.jpg') }}" alt="pepiniere">
 						</div>
 					</div>
 				</div>
@@ -157,10 +168,12 @@
 								<p>Vous voir heureux nous rend heureux</p>
 							</div>
 							<div class="text-enjoy">
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dolor aspernatur ad aut nesciunt iste a consequuntur deserunt! Velit minus neque harum iure odit voluptate quod. Dolore assumenda dignissimos sunt.</p>
+								<p>Depuis l’arrivée du COVID-19 et suite aux restrictions sanitaires imposées par le gouvernement limitant les canaux de distribution pour la production agricole Française (marchés, cantine, restaurants) de nombreuses filières se retrouvent en difficulté.</p>
+									<p>Face à cette crise, la réaction du monde agricole, de la production et la distribution, a été exemplaire en proposant instantanément des solutions agiles pour créer des débouchés en urgence.</p>
+									<p>Les producteurs pourront ainsi trouver des nouveaux partenaires solidaires pour écouler leurs stocks et ainsi limiter l’impact de la crise.</p>
 							</div>
 							<div class="button-enjoy">
-								<button class="say-more" type="submit">en savoir plus *</button>
+								<a href="provider"><button class="say-more" type="submit">Voir nos producteurs</button></a>
 							</div>
 						</div>
 					</div>
@@ -180,7 +193,7 @@
 			<div class="first-lign-news-today">
 
 				<div class="card number" style="border:none">
-					<a href="#" target="_blank"><img class="card-title-opacity" src="https://media.wonderbox.com/media/catalog/product/cache/278/other/900x600aq70/21d0a261efacb651237a9ee1c8110064/A51031/1/0/1050273-11bicg8i4x-whr_429.jpg" alt="Gastronomie"/></a>
+					<a href="#"><img class="card-title-opacity" src="{{ asset('build/images/atelier-doenologie.jpg') }}" alt="Gastronomie"/></a>
 					<div class="for-card-infos">
 						<div class="type-of-presta">
 							<p class="rounded bg-secondary p-2 w-50 h-25 text-center" style="color:white">atelier d'oenologie</p>
@@ -197,7 +210,7 @@
 					</div>
 				</div>
 				<div class="card number" style="border:none">
-					<a href="#" target="_blank"><img class="card-title-opacity" src="https://www.parisselectbook.com/en/wp-content/uploads/2016/11/2.jpg" class="card-img" alt="..."/></a>
+					<a href="#"><img class="card-title-opacity" src="{{ asset('build/images/visite-chateau.jpg') }}" class="card-img" alt="..."/></a>
 					<div class="for-card-infos">
 						<div class="two-type-of-presta">
 							<div class="first-case-presta">
@@ -221,7 +234,7 @@
 			</div>
 			<div class="second-lign-news-today">
 				<div class="card number" style="border:none">
-					<a href="#" target="_blank"><img class="card-title-opacity" src="https://www.le-vignoble.fr/wp-content/uploads/2018/08/degust-poire-1024x684.jpg" class="card-img" alt="..."/></a>
+					<a href="#"><img class="card-title-opacity" src="{{ asset('build/images/degust-poire.jpg') }}" class="card-img" alt="..."/></a>
 
 					<div class="for-card-infos">
 						<div class="type-of-presta">
@@ -240,7 +253,7 @@
 					</div>
 				</div>
 				<div class="card number" style="border:none">
-					<a href="#" target="_blank"><img class="card-title-opacity" src="http://maliciaflore.com/wp-content/uploads/2013/11/Visuel-Montfort2-1024x682.jpg" class="card-img" alt="..."/></a>
+					<a href="#"><img class="card-title-opacity" src="{{ asset('build/images/foie-gras.jpg') }}" class="card-img" alt="..."/></a>
 					<div class="for-card-infos">
 						<div class="type-of-presta">
 							<p class="rounded p-2 bg-secondary w-50 h-25 text-center" style="color:white">Découverte</p>
@@ -270,29 +283,35 @@
 		<div class="card-group">
 			<div class="card column-left">
 				<div class="card first-picture-left">
-					<img class="activities-exper" src="https://sobusygirls.fr/uploads/293dafe0a62fc2bd6d5128338d712f391871b8c7.jpeg" alt="Card image cap">
+					<img class="activities-exper" src="{{ asset('build/images/activites.jpeg') }}"  alt="Card image cap">
 					<div class="title-experience-first">
+					<a href="/search?category[]={{ activities[0].id }}">
 						<p>
 							Les activités
 						</p>
+						</a>
 					</div>
 				</div>
 			</div>
 			<div class="card column-right">
 				<div class="card first-right-picture">
-					<img class="evasion-exper" src="https://i1.wp.com/www.photo-paysage.com/albums/userpics/10001/Lac-10.JPG" alt="Card image cap">
+					<img class="evasion-exper" src="{{ asset('build/images/evasion.jpeg') }}" alt="Card image cap">
 					<div class="title-experience-second">
+					<a href="/search?category[]={{ evasion[0].id }}">
 						<p>
 							évasion
 						</p>
+						</a>
 					</div>
 				</div>
 				<div class="card second-right-picture">
-					<img class="evenements-locaux-exper" src="https://www.mairie-champniers.fr/medias/2019/08/default3.jpg" alt="Card image cap">
+					<img class="evenements-locaux-exper" src="{{ asset('build/images/evenements-locaux.jpg') }}" alt="Card image cap">
 					<div class="title-experience-third">
+					<a href="/search?category[]={{ evenements[0].id }}">
 						<p>
 							évènements locaux
 						</p>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -306,19 +325,19 @@
 		</div>
 		<div class="card-group">
 			<div class="card image-et-titre">
-				<img src="https://www.chantalmathieu.com/wp-content/uploads/2013/02/IMG_9170-famille-860x573.jpg" class="photo-famille" alt="photo-famille">
+				<img src="{{ asset('build/images/en-famille.jpg') }}" class="photo-famille" alt="photo-famille">
 				<div class="card-body-loisirs">
 					<h5 class="card-title-loisirs">En famille</h5>
 				</div>
 			</div>
 			<div class="card image-et-titre">
-				<img src="https://fr.wikomobile.com/shop/media/wysiwyg/NEWS/Avril2018/bons-plans-amis.jpg" class="photo-amis" alt="photo-amis">
+				<img src="{{ asset('build/images/entre-amis.jpg') }}" class="photo-amis" alt="photo-amis">
 				<div class="card-body-loisirs">
 					<h5 class="card-title-loisirs">Entre amis</h5>
 				</div>
 			</div>
 			<div class="card image-et-titre">
-				<img src="https://www.instant-mariage.fr/wp-content/uploads/2017/03/shooting-photo-amoureux-5.jpg" class="photo-amoureux" alt="photo-amoureux">
+				<img src="{{ asset('build/images/en-amoureux.jpg') }}" class="photo-amoureux" alt="photo-amoureux">
 				<div class="card-body-loisirs">
 					<h5 class="card-title-loisirs">En amoureux</h5>
 				</div>
@@ -389,19 +408,4 @@
 			</div>
 		</div>
 	</div>
-	{# <script>
-						document.getElementById('searchField').addEventListener('input', function (event) {
-					    let search = event.target.value;
-					    fetch('/search/autocomplete?q=' + search)
-					        .then(response => response.json())
-					        .then(function (data) {
-					            let list = '';
-					            for (const item of data) {
-					                list += `<li><a href="/search/${item.display_name}">${item.display_name}</a></li>`
-					            }
-					            document.getElementById('autocomplete').innerHTML = list;
-					        })
-
-					});</script> #}
-
 {% endblock %}

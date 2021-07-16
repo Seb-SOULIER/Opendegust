@@ -27,7 +27,6 @@ final class Version20210624095520 extends AbstractMigration
         $this->addSql('CREATE TABLE contact (id INT AUTO_INCREMENT NOT NULL, address VARCHAR(255) DEFAULT NULL, zip_code VARCHAR(50) DEFAULT NULL, city VARCHAR(90) DEFAULT NULL, longitude DOUBLE PRECISION DEFAULT NULL, latitude DOUBLE PRECISION DEFAULT NULL, phone VARCHAR(45) DEFAULT NULL, phone2 VARCHAR(45) DEFAULT NULL, website VARCHAR(100) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE customer (id INT AUTO_INCREMENT NOT NULL, contact_id INT DEFAULT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, registration_at DATETIME NOT NULL, civility INT DEFAULT NULL, lastname VARCHAR(45) DEFAULT NULL, firstname VARCHAR(45) DEFAULT NULL, is_verified TINYINT(1) NOT NULL, birthdate DATE DEFAULT NULL, know_us JSON DEFAULT NULL, gtc18 TINYINT(1) DEFAULT NULL, favory JSON DEFAULT NULL, UNIQUE INDEX UNIQ_81398E09E7927C74 (email), UNIQUE INDEX UNIQ_81398E09E7A1254A (contact_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE description (id INT AUTO_INCREMENT NOT NULL, short_description VARCHAR(255) DEFAULT NULL, long_description LONGTEXT DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE files (id INT AUTO_INCREMENT NOT NULL, provider_id INT NOT NULL, file_name VARCHAR(255) NOT NULL, file_path VARCHAR(255) NOT NULL, INDEX IDX_6354059A53A8AA (provider_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE newsletter (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE offer (id INT AUTO_INCREMENT NOT NULL, provider_id INT NOT NULL, description_id INT DEFAULT NULL, contact_id INT NOT NULL, name VARCHAR(100) NOT NULL, picture VARCHAR(255) DEFAULT NULL, domain_name VARCHAR(100) NOT NULL, language JSON DEFAULT NULL, INDEX IDX_29D6873EA53A8AA (provider_id), UNIQUE INDEX UNIQ_29D6873ED9F966B (description_id), UNIQUE INDEX UNIQ_29D6873EE7A1254A (contact_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE offer_variation (id INT AUTO_INCREMENT NOT NULL, offer_id INT NOT NULL, price_variation JSON NOT NULL, capacity INT NOT NULL, duration TIME NOT NULL, price INT NOT NULL, current_vat DOUBLE PRECISION NOT NULL, INDEX IDX_C15E4E2E53C674EE (offer_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -40,7 +39,6 @@ final class Version20210624095520 extends AbstractMigration
         $this->addSql('ALTER TABLE category_offer ADD CONSTRAINT FK_C1E5C87712469DE2 FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE category_offer ADD CONSTRAINT FK_C1E5C87753C674EE FOREIGN KEY (offer_id) REFERENCES offer (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE customer ADD CONSTRAINT FK_81398E09E7A1254A FOREIGN KEY (contact_id) REFERENCES contact (id)');
-        $this->addSql('ALTER TABLE files ADD CONSTRAINT FK_6354059A53A8AA FOREIGN KEY (provider_id) REFERENCES provider (id)');
         $this->addSql('ALTER TABLE offer ADD CONSTRAINT FK_29D6873EA53A8AA FOREIGN KEY (provider_id) REFERENCES provider (id)');
         $this->addSql('ALTER TABLE offer ADD CONSTRAINT FK_29D6873ED9F966B FOREIGN KEY (description_id) REFERENCES description (id)');
         $this->addSql('ALTER TABLE offer ADD CONSTRAINT FK_29D6873EE7A1254A FOREIGN KEY (contact_id) REFERENCES contact (id)');
@@ -67,7 +65,6 @@ final class Version20210624095520 extends AbstractMigration
         $this->addSql('ALTER TABLE offer_variation DROP FOREIGN KEY FK_C15E4E2E53C674EE');
         $this->addSql('ALTER TABLE booking DROP FOREIGN KEY FK_E00CEDDEB6BBB063');
         $this->addSql('ALTER TABLE calendar DROP FOREIGN KEY FK_6EA9A146B6BBB063');
-        $this->addSql('ALTER TABLE files DROP FOREIGN KEY FK_6354059A53A8AA');
         $this->addSql('ALTER TABLE offer DROP FOREIGN KEY FK_29D6873EA53A8AA');
         $this->addSql('ALTER TABLE product DROP FOREIGN KEY FK_D34A04ADA53A8AA');
         $this->addSql('DROP TABLE booking');
@@ -77,7 +74,6 @@ final class Version20210624095520 extends AbstractMigration
         $this->addSql('DROP TABLE contact');
         $this->addSql('DROP TABLE customer');
         $this->addSql('DROP TABLE description');
-        $this->addSql('DROP TABLE files');
         $this->addSql('DROP TABLE newsletter');
         $this->addSql('DROP TABLE offer');
         $this->addSql('DROP TABLE offer_variation');
