@@ -56,11 +56,27 @@
 									<p class="card-text">
 										<small class="text-muted"></small>
 									</p>
+
+
+
 									{% if app.user and is_granted('ROLE_CUSTOMER') %}
-										<a href="{{ path('search_favory', {id: offer.id}) }}">
-											<i class="bi {{ app.user.isInFavory(offer) ? 'fas fa-star' : 'far fa-star' }}"></i>
+										<a data-favorite="" href="{{ path('search_favory', {id: offer.id}) }}">
+											<i class="starfav {{ app.user.isInFavory(offer) ? 'fas' : 'far' }} fa-star"></i>
 										</a>
+										{% else %}
+											<a href="{{ path('app_register_customer') }}">
+												<i class="starfav far fa-star"></i>
+											</a>
 									{% endif %}
+
+{#									<i class="bi {{ app.user.isInFavory(offer) ? 'fas fa-star' : 'far fa-star' }}"></i>#}
+
+{#									{% if app.user and is_granted('ROLE_CUSTOMER') %}#}
+{#										href="{{ path('search_favory', {id: offer.id}) }}#}
+{#										<a id="favorite" href="{{ path('search_favory', {id: offer.id})}}">#}
+{#											<i class="bi {{ app.user.isInFavory(offer) ? 'fas fa-star' : 'far fa-star' }}"></i>#}
+{#										</a>#}
+{#									{% endif %}#}
 								</div>
 							</div>
 						</div>
@@ -137,3 +153,36 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	const addToFavorite = (event) => {
+
+		event.preventDefault();
+
+		// Get the link object you click in the DOM
+		let favoriteListLink = event.currentTarget;
+		let link = favoriteListLink.href;
+		// Send an HTTP request with fetch to the URI defined in the href
+		fetch(link)
+				// Extract the JSON from the response
+				.then(res => res.json())
+				// Then update the icon
+				.then(function(res) {
+					let favorylistIcon = favoriteListLink.firstElementChild;
+					if (res.isInFavory) {
+						favorylistIcon.classList.remove('far'); // Remove the .bi-heart (empty heart) from classes in <i> element
+						favorylistIcon.classList.add('fas'); // Add the .bi-heart-fill (full heart) from classes in <i> element
+					} else {
+						favorylistIcon.classList.remove('fas'); // Remove the .bi-heart-fill (full heart) from classes in <i> element
+						favorylistIcon.classList.add('far'); // Add the .bi-heart (empty heart) from classes in <i> element
+					}
+				});
+	}
+	document.addEventListener("DOMContentLoaded", () => {
+		const favorites = document.querySelectorAll("[data-favorite]");
+		favorites.forEach((elem) => {
+			elem.addEventListener('click', addToFavorite);
+		})
+	})
+
+</script>

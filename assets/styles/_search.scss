@@ -32,7 +32,16 @@ border: solid 1px #adadad;
 
 .btnOffer{
   width:50%;
+}
 
+.btn-primary{
+  color: $light;
+}
+
+.btn-primary:hover {
+  color: $light;
+  background-color: #72ba6c;
+  border-color: #6ab663;
 }
 
 .card-text-color{
@@ -76,4 +85,11 @@ border: solid 1px #adadad;
 .img-fluid.offers-image {
   object-fit: cover;
     height: 294px;
+}
+
+.starfav{
+  color:$tag-premium-color;
+  position: absolute;
+  top: 5px;
+  left:5px;
 }
