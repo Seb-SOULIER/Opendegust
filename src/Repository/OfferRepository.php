@@ -26,11 +26,11 @@ class OfferRepository extends ServiceEntityRepository
     public function findFilter(Request $request, array $localization): array
     {
         $query = $this->createQueryBuilder('o')
-                ->select ('o','ov')
-                ->join('o.offerVariations','ov')
-                ->join('ov.calendars','c')
-                ->join('o.categories','ca')
-                ->join('o.contact','lo');
+                ->select('o', 'ov')
+                ->join('o.offerVariations', 'ov')
+                ->join('ov.calendars', 'c')
+                ->join('o.categories', 'ca')
+                ->join('o.contact', 'lo');
 
         if (!empty($request->query->get('price-min'))) {
             $query = $query
@@ -48,7 +48,7 @@ class OfferRepository extends ServiceEntityRepository
             foreach ($request->query->get('language') as $language) {
                 $query = $query
                     ->andWhere('o.language LIKE :language')
-                    ->setParameter('language', '%'.$language.'%');
+                    ->setParameter('language', '%' . $language . '%');
             }
         }
 
