@@ -29,11 +29,13 @@ class OfferRepository extends ServiceEntityRepository
         $lon = $localization[0]['lon'];
 
         $query = $this->createQueryBuilder('o')
-//                ->add('distance','(6371 * acos(cos(radians(' . $lat . ')) * cos(radians(lo.latitude)) * cos(radians(lo.longitude) - radians(' . $lon . ')) + sin(radians(' . $lat . ')) * sin(radians(lo.latitude))))')
-                ->join('o.offerVariations','ov')
-                ->join('ov.calendars','c')
-                ->join('o.categories','ca')
-                ->join('o.contact','lo');
+            ->select('o')
+            ->addSelect( '(6371 * acos(cos(radians(' . $lat . ')) * cos(radians(lo.latitude)) * cos(radians(lo.longitude) - radians(' . $lon . ')) + sin(radians(' . $lat . ')) * sin(radians(lo.latitude)))) AS HIDDEN distance')
+////            ->select('o')
+            ->join('o.offerVariations','ov')
+            ->join('ov.calendars','c')
+            ->join('o.categories','ca')
+            ->join('o.contact','lo');
 
         if (!empty($request->query->get('price-min'))) {
             $query = $query
@@ -74,7 +76,8 @@ class OfferRepository extends ServiceEntityRepository
                     ->setParameter('category', $category);
             }
         }
-//        $query->orderBy('distance','ASC');
+
+        $query->orderBy('distance','ASC');
 
         return $query->getQuery()->getResult();
     }

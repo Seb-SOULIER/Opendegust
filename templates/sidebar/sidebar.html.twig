@@ -1,104 +1,105 @@
-<div data-component="sidebar"  class="sticky-top">
-    <div>{% include "_navbar.html.twig" %}</div>
-    <div id="sidebarWrapper" class="sidebar-wrapper">
-        <div id="maCarte"></div>
-        <form action="" method="GET">
-            <input type="hidden" value="{{ app.request.get('q') }}" name="q">
-            <div class="sidebar">
-                <ul class="list-group flex-column d-inline-block first-menu">
-                    <li class="list-group-item pl-3 py-2">
-                        <a><i class="fas fa-calendar-alt" aria-hidden="true"><span class="ml-2 align-middle"> Dates</span></i></a>
-                        <ul class="list-group flex-column d-inline-block submenu">
-                            <li class="list-group-item pl-4">
-                                <label for="dateStart"> A partir du :</label>
-                                <input type="date" name="dateStart" min="{{ "now"|date("Y-m-d") }}" value="{{ app.request.get('dateStart') }}">
-                            </li>
-                            <li class="list-group-item pl-4">
-                                <label for="dateStop"> Jusqu'au :</label>
-                                <input type="date" name="dateStop" min="{{ "now"|date("Y-m-d") }}" value="{{ app.request.get('dateStop') }}">
-                            </li>
-                        </ul> <!-- /.submenu -->
-                    </li> <!-- /.list-group-Dates -->
 
-                    <li class="list-group-item pl-3 py-2">
-                        <a><i class="fas fa-sort-amount-down" aria-hidden="true"><span class="ml-2 align-middle"> Categories</span></i></a>
-                        <ul class="list-group flex-column d-inline-block submenu" style="overflow: auto; width:calc(100vw - 160px)">
-                            {% from 'macros/categoriesClient.html.twig' import make_categories %}
-                            {{ make_categories(categories) }}
-                        </ul> <!-- /.submenu -->
-                    </li> <!-- /.list-group-category -->
+<div id="sidebarWrapper" class="sidebar-wrapper" data-component="sidebar">
+    <div id="maCarte"></div>
+    <form action="" method="GET">
+        <input type="hidden" value="{{ app.request.get('q') }}" name="q">
+        <div class="sidebar">
+            <ul class="list-group flex-column d-inline-block first-menu">
+                <li class="list-group-item pl-3 py-2">
+                    <a><i class="fas fa-calendar-alt" aria-hidden="true"><span class="ml-2 align-middle"> Dates</span></i></a>
+                    <ul class="list-group flex-column d-inline-block submenu">
+                        <li class="list-group-item pl-4">
+                            <label class="labelForm" for="dateStart"> A partir du :</label>
+                            <input type="date" id="dateStart" name="dateStart" min="{{ "now"|date("Y-m-d") }}" value="{{ app.request.get('dateStart') }}">
+                        </li>
+                        <li class="list-group-item pl-4">
+                            <label class="labelForm" for="dateStop"> Jusqu'au :</label>
+                            <input type="date" id="dateStop" name="dateStop" min="{{ "now"|date("Y-m-d") }}" value="{{ app.request.get('dateStop') }}">
+                        </li>
+                    </ul> <!-- /.submenu -->
+                </li> <!-- /.list-group-Dates -->
 
-                    <li class="list-group-item pl-3 py-2">
-                        <a><i class="fas fa-money-bill-wave" aria-hidden="true"><span class="ml-2 align-middle"> Prix</span></i></a>
-                        <ul class="list-group flex-column d-inline-block submenu">
-                            <li class="list-group-item pl-4">
-                                <div class="container">
-                                    <p>Tarif</p>
-                                    <a><label for="price-min">De :</label>
-                                        <div class="d-flex" >
-                                            <input id="price-min" class="form-control pe-0 w-75" type="number" name="price-min" value="{{ app.request.get('price-min') }}" min="0">
-                                            <span class = "fs-3">€</span>
-                                        </div>
-                                        <label for="price-max"> à :</label>
-                                        <div class="d-flex" >
-                                            <input id="price-max" class="form-control pe-0 w-75" type="number" name="price-max" value="{{ app.request.get('price-max') }}">
-                                            <span class = "fs-3">€</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul> <!-- /.submenu -->
-                    </li> <!-- /.list-group-Price -->
+                <li class="list-group-item pl-3 py-2">
+                    <a><i class="fas fa-sort-amount-down" aria-hidden="true"><span class="ml-2 align-middle"> Categories</span></i></a>
+                    <ul class="list-group flex-column d-inline-block submenu" style="overflow: auto; width:calc(100vw - 160px)">
+                        {% from 'macros/categoriesClient.html.twig' import make_categories %}
+                        {{ make_categories(categories) }}
+                    </ul> <!-- /.submenu -->
+                </li> <!-- /.list-group-category -->
 
-                    <li class="list-group-item pl-3 py-2">
-                        <a><i class="fas fa-language" aria-hidden="true"><span class="ml-2 align-middle"> Langues</span></i></a>
-                        <ul class="list-group flex-column d-inline-block submenu">
-                            <li class="list-group-item pl-4 m-0">
-                                <input type="checkbox" name="language[]" id="francais" value="francais"
-                                        {% if 'francais' in app.request.get('language') %} checked {% endif %}>
-                                <label for="francais">Francais</label>
-                            </li>
-                            <li class="list-group-item pl-4 m-0">
-                                <input type="checkbox" name = "language[]" id="anglais" value="anglais"
-                                        {% if 'anglais' in app.request.get('language') %} checked {% endif %}>
-                                <label for="anglais">Anglais</label>
-                            </li>
-                            <li class="list-group-item pl-4 m-0">
-                                <input type="checkbox" name = "language_3" id="espagnol" value="espagnol"
-                                        {% if 'espagnol' in app.request.get('language') %} checked {% endif %}>
-                                <label for=espagnol">Espagnol</label>
-                            </li>
-                            <li class="list-group-item pl-4 m-0">
-                                <input type="checkbox" name = "language[]" id="chinois" value="chinois"
-                                        {% if 'chinois' in app.request.get('language') %} checked {% endif %}>
-                                <label for="chinois">Chinois</label>
-                            </li>
-                            <li class="list-group-item pl-4 m-0">
-                                <input type="checkbox" name = "language[]" id="japonais" value="japonais"
-                                        {% if 'japonais' in app.request.get('language') %} checked {% endif %}>
-                                <label for="japonais">Japonais</label>
-                            </li>
-                            <li class="list-group-item pl-4 m-0">
-                                <input type="checkbox" name = "language[]" id="russe" value="russe"
-                                        {% if 'russe' in app.request.get('language') %} checked {% endif %}>
-                                <label for="russe">Russe</label>
-                            </li>
-                            <li class="list-group-item pl-4 m-0">
-                                <input type="checkbox" name = "language[]" id="portugais" value="portugais"
-                                        {% if 'portugais' in app.request.get('language') %} checked {% endif %}>
-                                <label for=portugais">Portugais</label>
-                            </li>
-                        </ul>
-                    </li> <!-- /.list-group-language -->
+                <li class="list-group-item pl-3 py-2">
+                    <a><i class="fas fa-money-bill-wave" aria-hidden="true"><span class="ml-2 align-middle"> Prix</span></i></a>
+                    <ul class="list-group flex-column d-inline-block submenu">
+                        <li class="list-group-item pl-4">
+                            <div class="container">
+                                <p class="labelForm">Tarif</p>
+                                <a><label class="labelForm" for="price-min">De :</label>
+                                    <div class="d-flex" >
+                                        <input id="price-min" class="form-control pe-0 w-75" type="number" name="price-min" value="{{ app.request.get('price-min') }}" min="0">
+                                        <span class = "fs-3 labelForm">€</span>
+                                    </div>
+                                    <label class="labelForm" for="price-max"> à :</label>
+                                    <div class="d-flex" >
+                                        <input id="price-max" class="form-control pe-0 w-75" type="number" name="price-max" value="{{ app.request.get('price-max') }}">
+                                        <span class = "fs-3 labelForm">€</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul> <!-- /.submenu -->
+                </li> <!-- /.list-group-Price -->
 
-                    <li class="list-group-item pl-3 py-2">
-                        <span><button type="submit" class="btn btn-success"> Filtrer</button><span>
-                    </li> <!-- /.list-apply-choice -->
+                <li class="list-group-item pl-3 py-2">
+                    <a><i class="fas fa-language" aria-hidden="true"><span class="ml-2 align-middle"> Langues</span></i></a>
+                    <ul class="list-group flex-column d-inline-block submenu">
+                        <li class="list-group-item pl-4 m-0">
+                            <p class="labelForm">Language souhaité:</p>
+                            <input type="checkbox" name="language[]" id="francais" value="francais"
+                                    {% if 'francais' in app.request.get('language') %} checked {% endif %}>
+                            <label for="francais">Francais</label>
+                        </li>
+                        <li class="list-group-item pl-4 m-0">
+                            <input type="checkbox" name = "language[]" id="anglais" value="anglais"
+                                    {% if 'anglais' in app.request.get('language') %} checked {% endif %}>
+                            <label for="anglais">Anglais</label>
+                        </li>
+                        <li class="list-group-item pl-4 m-0">
+                            <input type="checkbox" name = "language_3" id="espagnol" value="espagnol"
+                                    {% if 'espagnol' in app.request.get('language') %} checked {% endif %}>
+                            <label for=espagnol">Espagnol</label>
+                        </li>
+                        <li class="list-group-item pl-4 m-0">
+                            <input type="checkbox" name = "language[]" id="chinois" value="chinois"
+                                    {% if 'chinois' in app.request.get('language') %} checked {% endif %}>
+                            <label for="chinois">Chinois</label>
+                        </li>
+                        <li class="list-group-item pl-4 m-0">
+                            <input type="checkbox" name = "language[]" id="japonais" value="japonais"
+                                    {% if 'japonais' in app.request.get('language') %} checked {% endif %}>
+                            <label for="japonais">Japonais</label>
+                        </li>
+                        <li class="list-group-item pl-4 m-0">
+                            <input type="checkbox" name = "language[]" id="russe" value="russe"
+                                    {% if 'russe' in app.request.get('language') %} checked {% endif %}>
+                            <label for="russe">Russe</label>
+                        </li>
+                        <li class="list-group-item pl-4 m-0">
+                            <input type="checkbox" name = "language[]" id="portugais" value="portugais"
+                                    {% if 'portugais' in app.request.get('language') %} checked {% endif %}>
+                            <label for=portugais">Portugais</label>
+                        </li>
+                    </ul>
+                </li> <!-- /.list-group-language -->
 
-                </ul> <!-- /.first-menu -->
-            </div> <!-- /.sidebar -->
-        </form>
+                <li class="list-group-item pl-3 py-2">
+                    <span><button type="submit" class="btn btn-success"> Filtrer</button><span>
+                </li> <!-- /.list-apply-choice -->
 
+            </ul> <!-- /.first-menu -->
+        </div> <!-- /.sidebar -->
+    </form>
+    <div class="d-flex align-items-center justify-content-center" style="background-color:grey; opacity: 0.8; height:4vh">
+        <i class="fas fa-angle-down" style="font-size: 2rem"></i>
     </div>
 </div>
 
@@ -108,15 +109,30 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const sidebar = document.getElementById('sidebarWrapper');
-        window.addEventListener('scroll', () => {
-            sidebar.className = "sidebar-wrapper-hidden";
-        })
+        const card = document.getElementById('cardMap');
+        const scrollableElement = document.body;
+        scrollableElement.addEventListener('wheel', checkScrollDirection);
+
+        function checkScrollDirection(event) {
+            if (checkScrollDirectionIsUp(event)) {
+                sidebar.className = "sidebar-wrapper";
+                card.className = "card-map";
+            } else {
+                sidebar.className = "sidebar-wrapper-hidden";
+                card.className = "card-map2";
+            }
+        }
+
+        function checkScrollDirectionIsUp(event) {
+            if (event.wheelDelta) {
+                return event.wheelDelta > 0;
+            }
+            return event.deltaY < 0;
+        }
 
         sidebar.addEventListener('click', () => {
             sidebar.className = "sidebar-wrapper";
+            card.className = "card-map";
         })
     })
-
 </script>
-
-
