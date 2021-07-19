@@ -4,6 +4,11 @@
     <div class="overflow-auto">
         <div class="container" data-loclat="{{ localization.0.lat|default("46.16") }}" data-loclon="{{ localization.0.lon|default("3.19619") }}" data-zoom="{{ localization.0.lat|default("5") }}" data-text="">
             <div class="row">
+                {% if customer.favory is empty %}
+                    <h1 class="text-center p-5">{{ customer.firstname }}, vous n'avez pas encore de favoris.</h1>
+                    <p> Découvrez vite toutes les offres de nos producteurs les plus proches de chez vous grace a notre outil de recherche ci-dessus <i class="fas fa-arrow-up"></i></p>
+                    <img style="width:100vw; padding:5%; border-radius: 5rem;" src="https://cdn.pixabay.com/photo/2016/06/30/08/37/suitcase-1488516_960_720.jpg">
+                {% endif %}
                 {% for offer in customer.favory %}
                     <div class="col-sm-4 p-2">
                         <div class="card cardHover h-100">
