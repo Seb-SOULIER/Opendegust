@@ -20,9 +20,9 @@ class OfferRepository extends ServiceEntityRepository
         parent::__construct($registry, Offer::class);
     }
 
-     /**
-      * @return Offer[] Returns an array of Offer objects
-      */
+    /**
+     * @return Offer[] Returns an array of Offer objects
+     */
     public function findFilter(Request $request, array $localization): array
     {
         $lat = $localization[0]['lat'];
@@ -30,12 +30,11 @@ class OfferRepository extends ServiceEntityRepository
 
         $query = $this->createQueryBuilder('o')
             ->select('o')
-            ->addSelect( '(6371 * acos(cos(radians(' . $lat . ')) * cos(radians(lo.latitude)) * cos(radians(lo.longitude) - radians(' . $lon . ')) + sin(radians(' . $lat . ')) * sin(radians(lo.latitude)))) AS HIDDEN distance')
-////            ->select('o')
-            ->join('o.offerVariations','ov')
-            ->join('ov.calendars','c')
-            ->join('o.categories','ca')
-            ->join('o.contact','lo');
+            ->addSelect('(6371 * acos(cos(radians(' . $lat . ')) * cos(radians(lo.latitude)) * cos(radians(lo.longitude) - radians(' . $lon . ')) + sin(radians(' . $lat . ')) * sin(radians(lo.latitude)))) AS HIDDEN distance')
+            ->join('o.offerVariations', 'ov')
+            ->join('ov.calendars', 'c')
+            ->join('o.categories', 'ca')
+            ->join('o.contact', 'lo');
 
         if (!empty($request->query->get('price-min'))) {
             $query = $query
@@ -58,9 +57,9 @@ class OfferRepository extends ServiceEntityRepository
         }
 
         if (!empty($request->query->get('dateStart'))) {
-                $query = $query
-                    ->andWhere('c.startAt >= :dateStart')
-                    ->setParameter('dateStart', $request->query->get('dateStart'));
+            $query = $query
+                ->andWhere('c.startAt >= :dateStart')
+                ->setParameter('dateStart', $request->query->get('dateStart'));
         }
 
         if (!empty($request->query->get('dateStop'))) {
@@ -77,20 +76,8 @@ class OfferRepository extends ServiceEntityRepository
             }
         }
 
-        $query->orderBy('distance','ASC');
+        $query->orderBy('distance', 'ASC');
 
         return $query->getQuery()->getResult();
     }
-
-/*
-    public function findOneBySomeField($value): ?Offer
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-*/
 }
