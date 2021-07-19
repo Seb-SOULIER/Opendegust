@@ -57,7 +57,6 @@ class SearchController extends AbstractController
 
         $offers = $offerRepository->findFilter($request, $localization);
         return $this->render('search/index.html.twig', [
-            'query'=>$query,
             'localization' => $localization ?? [],
             'offers' => $offers,
             'categories' => $categoryRepository->findBy(['category' => null])
