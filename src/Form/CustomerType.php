@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Customer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -27,9 +28,6 @@ class CustomerType extends AbstractType
                 'first_options'  => ['label' => 'Email'],
                 'second_options' => ['label' => "Confirmation de l'email"],
             ])
-//            ->add('roles')
-//            ->add('password')
-//            ->add('registrationAt')
             ->add('lastname', TextType::class)
             ->add('firstname', TextType::class)
             ->add('civility', ChoiceType::class, [
@@ -39,9 +37,9 @@ class CustomerType extends AbstractType
                 ],
             ])
 //            ->add('isVerified')
-            ->add('birthdate', DateType::class, [
+            ->add('birthdate', BirthdayType::class, [
                 'html5'  => false,
-                'format' => 'dd-MM-yyyy',
+                'format' => 'ddMMyyyy',
                 'placeholder' => [
                     'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'
                 ]

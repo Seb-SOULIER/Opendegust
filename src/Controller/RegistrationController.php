@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Entity\Customer;
+use App\Entity\Description;
 use App\Entity\Provider;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
@@ -91,7 +92,9 @@ class RegistrationController extends AbstractController
         $user = new Provider();
         $user->setRoles(['ROLE_PROVIDER']);
         $contact = new Contact();
+        $description = new Description();
         $user->setContact($contact);
+        $user->setDescription($description);
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
