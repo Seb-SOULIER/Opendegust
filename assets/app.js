@@ -10,6 +10,8 @@ import './styles/app.scss';
 import './js/search';
 import './js/map';
 import './js/concat-form';
+import './js/register-provider';
+import './js/register-customer';
 
 import './js/offer-variation-info';
 
