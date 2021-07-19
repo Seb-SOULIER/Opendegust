@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Customer;
+use App\Entity\Offer;
 use App\Form\CustomerPwType;
 use App\Form\CustomerType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -81,5 +82,19 @@ class CustomerController extends AbstractController
         }
 
         return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @Route("/{id}/favorite", name="customer_favorite")
+     */
+    public function displayFavoriteIndex(Offer $offer, Customer $customer): Response
+    {
+         return $this->render(
+             'customer/favindex.html.twig',
+             [
+                 'offer' => $offer,
+                 'customer' => $customer
+             ]
+         );
     }
 }

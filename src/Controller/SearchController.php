@@ -22,7 +22,7 @@ class SearchController extends AbstractController
      * @Route("/{id}/favory", name="favory", methods={"GET"})
      */
 
-    public function addToFavorite(Request $request, Offer $offer, EntityManagerInterface $manager): Response
+    public function addToFavorite(Offer $offer, EntityManagerInterface $manager): Response
     {
         if ($this->getUser()->isInFavory($offer)) {
             $this->getUser()->removeFavory($offer);
@@ -54,9 +54,6 @@ class SearchController extends AbstractController
             $localization = $api->getResponse($url);
         }
 
-        $lang = $request->query->get('language');
-//        $offers = $this->getDoctrine()
-//            ->getRepository(Offer::class)
         $offers = $offerRepository->findFilter($request, $localization ?? []);
 
         return $this->render('search/index.html.twig', [
