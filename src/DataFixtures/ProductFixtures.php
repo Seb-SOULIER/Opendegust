@@ -15,7 +15,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
     public const PRODUCT_NUMBER = 4;
 
     private const PICTURE = [
-        '0' => 'http://4.bp.blogspot.com/-sOxM1VOF3aw/UFurFiwGKTI/AAAAAAAAD5s/wFABJmlvBHQ/s1600/IMG_4751.JPG',
+        
         '1' => 'https://cache.cosmopolitan.fr/data/photo/w1000_ci/54/amis-restaurant.webp',
         '2' => 'https://via.placeholder.com/640x480.png/00ff22?text=food+quasi',
         '3' => 'https://www.nordundsud.at/wp-content/uploads/2020/10/Coffrets-degustation-458x458.jpg',
@@ -55,9 +55,10 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         '37' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
         '38' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
         '39' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
+        '40' => 'http://4.bp.blogspot.com/-sOxM1VOF3aw/UFurFiwGKTI/AAAAAAAAD5s/wFABJmlvBHQ/s1600/IMG_4751.JPG',
     ];
     private const NAME = [
-        '0' => '1',
+        
         '1' => '2',
         '2' => '3',
         '3' => '4',
@@ -97,6 +98,50 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         '37' => '38',
         '38' => '39',
         '39' => '40',
+        '40' => '41',
+    ];
+    private const DESCRIPTION = [
+        
+        '1' => '2',
+        '2' => '3',
+        '3' => '4',
+        '4' => '5',
+        '5' => '6',
+        '6' => '7',
+        '7' => '8',
+        '8' => '9',
+        '9' => '10',
+        '10' => '11',
+        '11' => '12',
+        '12' => '13',
+        '13' => '14',
+        '14' => '15',
+        '15' => '16',
+        '16' => '17',
+        '17' => '18',
+        '18' => '19',
+        '19' => '20',
+        '20' => '21',
+        '21' => '22',
+        '22' => '23',
+        '23' => '24',
+        '24' => '25',
+        '25' => '26',
+        '26' => '27',
+        '27' => '28',
+        '28' => '29',
+        '29' => '30',
+        '30' => '31',
+        '31' => '32',
+        '32' => '33',
+        '33' => '34',
+        '34' => '35',
+        '35' => '36',
+        '36' => '37',
+        '37' => '38',
+        '38' => '39',
+        '39' => '40',
+        '40' => '41',
     ];
 
     public function load(ObjectManager $manager)
@@ -108,9 +153,9 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
                 $product = new Product();
                 $product->setProvider($this->getReference('provider_' . $a));
                 $product->setCategory($this->getReference('category_' . rand(7, 20)));
-                $product->setName(self::NAME[rand(0, 39)]);
-                $product->setDescription($this->faker->sentence(15));
-                $product->setPicture(self::PICTURE[rand(0, 39)]);
+                $product->setName(self::NAME[$i]);
+                $product->setDescription(self::DESCRIPTION[$i]);
+                $product->setPicture(self::PICTURE[$i]);
                 $product->setPrice($this->faker->randomFloat(2, 10, 25));
                 $manager->persist($product);
             }

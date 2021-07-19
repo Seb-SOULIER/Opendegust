@@ -17,7 +17,7 @@ use DateTime;
 class OfferFixtures extends Fixture implements DependentFixtureInterface
 {
     private const OFFER_NUMBER = 4;
-    private const NBR_PROVIDER = 20;
+    private const NBR_PROVIDER = 1;
     private const LANGUAGE = [
         ['francais','anglais','espagnol','chinois','japonais','russe','portugais'],
         ['francais','anglais'],

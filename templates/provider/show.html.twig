@@ -131,12 +131,10 @@
 		</div>
 		{% endif %}
 
-		<div class="container">
-			<a href="{{ path('provider_index') }}">
-				back to list</a>
-
-			<a href="{{ path('provider_edit', {'id': provider.id}) }}">edit</a>
-
-			{{ include('provider/_delete_form.html.twig') }}
+		<div class="container pt-3 pb-3 d-flex">
+			<div class="w-50">
+			<a class="btn btn-primary" href="{{ path('provider_index') }}">
+				Liste des Producteurs</a>
+			</div>
 		</div>
 	{% endblock %}
