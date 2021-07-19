@@ -10,10 +10,13 @@
           crossorigin=""/>
 {% endblock %}
 
-{% block body %}
-    {% include 'sidebar/sidebar.html.twig' %}
-    {% include '/search/card_offer.html.twig' %}
-
+{% block navbar %}
+    <div class="fixed-top"> {% include "_navbar.html.twig" %} </div>
 {% endblock %}
 
-
+{% block body %}
+    {% include 'sidebar/sidebar.html.twig' %}
+    <div id= "cardMap" class = "card-map">
+        {% include '/search/card_offer.html.twig' %}
+    </div>
+    {% endblock %}

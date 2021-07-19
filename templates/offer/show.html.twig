@@ -4,7 +4,7 @@
 {% endblock %}
 {% block body %}
 	<div class="title-offer-domain">
-		<h1 style="text-align:center">{{ offer.domainName }}</h1>
+		<h1>{{ offer.domainName }}</h1>
 	</div>
 	<div class="container-fluid">
 		<div class="row offer-domaine">
@@ -117,6 +117,7 @@
 			<h1 class="my-3 text-center">Nos Produits</h1>
 			<div class="row row-cols-1 row-cols-md-5 g-5" id="provider-offer-card">
 				{% for product in products %}
+					<div style="visibility: collapse;">{{ product.name }}</div>
 					{% include "product/products.html.twig" %}
 				{% endfor %}
 			</div>

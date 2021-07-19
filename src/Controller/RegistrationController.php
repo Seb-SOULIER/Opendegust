@@ -32,32 +32,24 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/register-customer", name="app_register_customer")
+     * @Route("/register", name="register")
+     */
+    public function index(): Response
+    {
+        return $this->render('registration/register.html.twig');
+    }
+
+    /**
+     * @Route("/register-customer", name="app_register_customer", methods={"POST", "GET"})
      */
     public function registerCustomer(Request $request): Response
     {
         $user = new Customer();
         $user->setRoles(['ROLE_CUSTOMER']);
-        return $this->register($request, $user);
-    }
-
-    /**
-     * @Route("/register-provider", name="app_register_provider")
-     */
-    public function registerProvider(Request $request): Response
-    {
-        $user = new Provider();
-        $user->setRoles(['ROLE_PROVIDER']);
-        return $this->register($request, $user);
-    }
-
-    public function register(Request $request, User $user): Response
-    {
         $contact = new Contact();
         $user->setContact($contact);
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
@@ -85,9 +77,53 @@ class RegistrationController extends AbstractController
 
             return $this->redirectToRoute('home');
         }
-
-        return $this->render('registration/register.html.twig', [
+        return $this->render('registration/_register_customer.html.twig', [
             'registrationForm' => $form->createView(),
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/register-provider", name="app_register_provider", methods={"POST", "GET"})
+     */
+    public function registerProvider(Request $request): Response
+    {
+        $user = new Provider();
+        $user->setRoles(['ROLE_PROVIDER']);
+        $contact = new Contact();
+        $user->setContact($contact);
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+                $this->passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
+            $user->setRegistrationAt(new Datetime());
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            // generate a signed url and email it to the user
+            $this->emailVerifier->sendEmailConfirmation(
+                'app_verify_email',
+                $user,
+                (new TemplatedEmail())
+                    ->from(new Address('mailer@your-domain.com', 'Mailer'))
+                    ->to($user->getEmail())
+                    ->subject('Please Confirm your Email')
+                    ->htmlTemplate('registration/confirmation_email.html.twig')
+            );
+            // do anything else you need here, like send an email
+
+            return $this->redirectToRoute('home');
+        }
+        return $this->render('registration/_register_provider.html.twig', [
+            'registrationForm' => $form->createView(),
+            'user' => $user,
         ]);
     }
 
