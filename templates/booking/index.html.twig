@@ -3,17 +3,19 @@
 {% block body %}
 <div class="container">
     <h1 class="text-primary my-3 text-center">Mes réservations</h1>
-    <div class="row g-5">
+    <div class="row g-5 my-3">
     {% for book in books %}
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6">
             <div class="card shadow">
-                <img src="{{ book.offerVariation.offer.picture }}" class="card-img-top mt-2 px-2" alt="offer picture">
                 <div class="card-body">
+                    <p class="align-self-end"><strong>Le {{ book.createdAt|date('d/m/Y \\à H\\hi') }}</strong></p>
                     <h2 class="text-primary mb-3">{{ book.offerVariation.offer.name }}</h2>
-                    <p>{{ book.places.adultes }} adulte{% if book.places.adultes > 1 %}s{% endif %}</p>
-                    <p>{{ book.places.enfants }} enfant{% if book.places.enfants > 1 %}s{% endif %}</p>
-                    <p>Prix total: {{ book.totalPrice }} €</p>
-                    <p>Le {{ book.createdAt|date('d/m/Y \\à H\\hi') }}</p>
+                    <p>
+                        {{ book.places.adultes }} adulte{% if book.places.adultes > 1 %}s{% endif %} -
+                        {{ book.places.enfants }} enfant{% if book.places.enfants > 1 %}s{% endif %}
+                    </p>
+                    <p>{{ app.user.lastname }} {{ app.user.firstname }}</p>
+                    <p class="align-self-end">Prix total: {{ book.totalPrice }} €</p>
                 </div>
             </div>
         </div>

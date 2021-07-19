@@ -20,25 +20,25 @@ class Provider extends User
      *     max="45",
      *     maxMessage="Le nom est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
-    private string $company;
+    private ?string $company;
 
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
      */
-    private string $socialReason;
+    private ?string $socialReason;
 
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private int $siret;
+    private ?int $siret;
 
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private int $vatNumber;
+    private ?int $vatNumber;
 
     /**
      * @ORM\Column(type="json", nullable=true)
@@ -104,7 +104,7 @@ class Provider extends User
         return $this->company;
     }
 
-    public function setCompany(string $company): self
+    public function setCompany(?string $company): self
     {
         $this->company = $company;
 
@@ -116,7 +116,7 @@ class Provider extends User
         return $this->socialReason;
     }
 
-    public function setSocialReason(string $socialReason): self
+    public function setSocialReason(?string $socialReason): self
     {
         $this->socialReason = $socialReason;
 
@@ -128,7 +128,7 @@ class Provider extends User
         return $this->siret;
     }
 
-    public function setSiret(int $siret): self
+    public function setSiret(?int $siret): self
     {
         $this->siret = $siret;
 
@@ -140,7 +140,7 @@ class Provider extends User
         return $this->vatNumber;
     }
 
-    public function setVatNumber(int $vatNumber): self
+    public function setVatNumber(?int $vatNumber): self
     {
         $this->vatNumber = $vatNumber;
 
