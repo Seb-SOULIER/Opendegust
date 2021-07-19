@@ -1,0 +1,100 @@
+<div class="d-flex align-items-center flex-column">
+    <div class="col-11 col-sm-9 col-xl-8 my-3">
+        {{ form_start(form, {'attr': {'class': 'd-flex align-items-center flex-column'}}) }}
+        <div class="provider__form w-100">
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="account form-control my-3 py-3 accordion-item">
+                    <h1 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button text-center" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapseOne">
+                            <h2 class="my-3 text-primary">Offre</h2>
+                        </button>
+                    </h1>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                         aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="account__content accordion-body">
+                            <div>
+                                {{ form_errors(form.name) }}
+                                {{ form_label(form.name, "Nom :") }}
+                                {{ form_widget(form.name) }}
+                            </div>
+                            <div class="row g-3 d-md-flex justify-content-between">
+                                <div>
+                                    {{ form_label(form.description.shortDescription, "Description courte :") }}
+                                    {{ form_widget(form.description.shortDescription) }}
+                                </div>
+                            </div>
+                            <div class="row g-3 d-md-flex justify-content-between">
+                                <div>
+                                    {{ form_label(form.description.longDescription, "Description longue :") }}
+                                    {{ form_widget(form.description.longDescription) }}
+                                </div>
+                            </div>
+                            @todo Seb -> mettre en image a charger
+                            <div class="row g-3 d-md-flex justify-content-between">
+                                <div>
+                                    {{ form_label(form.picture, "Image :") }}
+                                    {{ form_widget(form.picture) }}
+                                </div>
+                            </div>
+                            @todo Seb -> alignement des checkbox
+                            <div class="row g-3 d-md-flex justify-content-between">
+                                <div>
+                                    {{ form_label(form.language, "Langues :") }}
+                                    {{ form_widget(form.language) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- /.Offre -->
+                <div class="favourites form-control py-3 my-3 accordion-item">
+                    <h1 class="accordion-header" id="panelsStayOpen-headingTwo">
+                        <button class="accordion-button collapsed text-center" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo"
+                                aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                            <h2 class="my-3 text-primary">Domaine</h2>
+                        </button>
+                    </h1>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                         aria-labelledby="panelsStayOpen-headingTwo">
+                        <div class="favourites__content accordion-body">
+                            <div>
+                                {{ form_errors(form.domainName) }}
+                                {{ form_label(form.domainName, "Nom du Domaine :") }}
+                                {{ form_widget(form.domainName) }}
+                            </div>
+                            <div>
+                                {{ form_errors(form.contact.zipCode) }}
+                                {{ form_label(form.contact.zipCode, "Code Postal :") }}
+                                {{ form_widget(form.contact.zipCode) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.contact.city, "Ville :") }}
+                                {{ form_widget(form.contact.city) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.contact.address, "Adresse :") }}
+                                {{ form_widget(form.contact.address) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.contact.phone, "Numéro de téléphone :") }}
+                                {{ form_widget(form.contact.phone) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.contact.phone2, "Autre numéro :") }}
+                                {{ form_widget(form.contact.phone2) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.contact.website, "Site Web :") }}
+                                {{ form_widget(form.contact.website) }}
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- /.Domaine -->
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary mt-3 col-12 col-md-6 text-light">{{ button_label|default('Enregistrer et configurer les variations') }}</button>
+    {{ form_end(form) }}
+</div>
