@@ -40,12 +40,15 @@ class ProviderController extends AbstractController
     /**
      * @Route("/{id}", name="provider_show", methods={"GET"})
      */
-    public function show(Provider $provider, ProductRepository $productRepository): Response
-    {
-
+    public function show(
+        Provider $provider,
+        ProductRepository $productRepository,
+        OfferRepository $offerRepository
+    ): Response {
         return $this->render('provider/show.html.twig', [
             'provider' => $provider,
-            'products' => $productRepository->findBy(['provider' => $provider->getId()])
+            'products' => $productRepository->findBy(['provider' => $provider->getId()]),
+            'offers' => $offerRepository->findBy(['provider' => $provider->getId()])
         ]);
     }
 

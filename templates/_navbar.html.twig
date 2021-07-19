@@ -34,7 +34,7 @@
 							<a href="{{ path("provider_edit", {id: app.user.id}) }}" class="dropdown-item">Mes réservations</a>
 						</li>
 						<li>
-							<a href="{{ path("provider_edit", {id: app.user.id}) }}" class="dropdown-item">Mes Favoris</a>
+							<a href="{{ path("customer_favorite", {id: app.user.id}) }}" class="dropdown-item">Mes Favoris</a>
 						</li>
 					{% endif %}
 					{% if is_granted('ROLE_ADMIN') %}
@@ -59,7 +59,7 @@
 
 
 		{% else %}
-			<a href="{{ path("app_register_customer") }}" class="btn btn-outline-primary me-3">S'inscrire</a>
+			<a href="{{ path("register") }}" class="btn btn-outline-primary me-3">S'inscrire</a>
 			<a href="{{ path("app_login") }}" class="btn btn-outline-primary me-3">Se Connecter</a>
 		{% endif %}
 	</div>

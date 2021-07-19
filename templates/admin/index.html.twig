@@ -4,41 +4,41 @@
 {% endblock %}
 
 {% block body %}
-	<div id="liste-des-prod">
-		<h2>Liste des Producteurs</h2>
-	</div>
-	<div class="responsive-table-list">
-		<table class="table table-bordered table-condensed table-body-center">
-			<thead>
-				<tr>
-					<th>Nom/Prénom</th>
-					<th>Nom du Domaine</th>
-					<th>Nom de l'Offre</th>
-					<th>Email</th>
-					<th style="text-align:center">Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for offer in offers %}
-					<tr>
-						<td data-title="Nom/Prénom"> {{ offer.provider.lastname }}
-							{{ offer.provider.firstname }} </td>
-						<td data-title="Nom du Domaine" style="font-size: 14px"> {{ offer.domainName }} </td>
-						<td data-title="Nom de l'Offre" style="font-size: 14px">{{ offer.name }}</td>
-						<td data-title="Email">
-							<a href="mailto:{{ offer.provider.email }}" style="font-size: 12px">{{ offer.provider.email }}</a>
-						</td>
-						<td data-title="Action" style="font-size: 14px; text-align:center">
-							<a href="{{ path('offer_show', {'id': offer.id}) }}">Voir</a>
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="6">no records found</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		<a style="float:right" href="{{ path('offer_new') }}">Create new</a>
-	</div>
+{#	<div id="liste-des-prod">#}
+{#		<h2>Liste des Producteurs</h2>#}
+{#	</div>#}
+{#	<div class="responsive-table-list">#}
+{#		<table class="table table-bordered table-condensed table-body-center">#}
+{#			<thead>#}
+{#				<tr>#}
+{#					<th>Nom/Prénom</th>#}
+{#					<th>Nom du Domaine</th>#}
+{#					<th>Nom de l'Offre</th>#}
+{#					<th>Email</th>#}
+{#					<th style="text-align:center">Action</th>#}
+{#				</tr>#}
+{#			</thead>#}
+{#			<tbody>#}
+{#				{% for offer in offers %}#}
+{#					<tr>#}
+{#						<td data-title="Nom/Prénom"> {{ offer.provider.lastname }}#}
+{#							{{ offer.provider.firstname }} </td>#}
+{#						<td data-title="Nom du Domaine" style="font-size: 14px"> {{ offer.domainName }} </td>#}
+{#						<td data-title="Nom de l'Offre" style="font-size: 14px">{{ offer.name }}</td>#}
+{#						<td data-title="Email">#}
+{#							<a href="mailto:{{ offer.provider.email }}" style="font-size: 12px">{{ offer.provider.email }}</a>#}
+{#						</td>#}
+{#						<td data-title="Action" style="font-size: 14px; text-align:center">#}
+{#							<a href="{{ path('offer_show', {'id': offer.id}) }}">Voir</a>#}
+{#						</td>#}
+{#					</tr>#}
+{#				{% else %}#}
+{#					<tr>#}
+{#						<td colspan="6">no records found</td>#}
+{#					</tr>#}
+{#				{% endfor %}#}
+{#			</tbody>#}
+{#		</table>#}
+{#		<a style="float:right" href="{{ path('offer_new') }}">Create new</a>#}
+{#	</div>#}
 {% endblock %}

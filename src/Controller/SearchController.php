@@ -21,7 +21,7 @@ class SearchController extends AbstractController
      * @Route("/{id}/favory", name="favory", methods={"GET"})
      */
 
-    public function addToFavorite(Request $request, Offer $offer, EntityManagerInterface $manager): Response
+    public function addToFavorite(Offer $offer, EntityManagerInterface $manager): Response
     {
         if ($this->getUser()->isInFavory($offer)) {
             $this->getUser()->removeFavory($offer);
