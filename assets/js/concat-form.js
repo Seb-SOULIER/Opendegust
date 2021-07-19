@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const $buttons = document.querySelectorAll('.add_item_link');
     $buttons.forEach(($button) => {
         $button.addEventListener('click', (e) => {
-            const $collectionHolderClass = e.target.getAttribute('data-collection-holder-class');
-            addFormToCollection($collectionHolderClass);
+            const collectionHolderClass = e.target.getAttribute('data-collection-holder-class');
+            addFormToCollection(collectionHolderClass);
         });
     });
     initCollection('ul.calendars');
