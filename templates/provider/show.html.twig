@@ -130,7 +130,18 @@
 			</div>
 		</div>
 		{% endif %}
-
+		{% if offers %}
+		<div class="container-fluid">
+			<div class="list-offer-by-provider">
+				<h1 class="my-3 text-center">Nos Offres</h1>
+				<div class="row row-cols-1 row-cols-md-5 g-5" id="provider-offer-card">
+					{% for offer in offers %}
+						<a style="text-decoration:none" href="{{ path('offer_edit', {'id': offer.id}) }}">{% include "offer/offers.html.twig" %}</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		{% endif %}
 		<div class="container pt-3 pb-3 d-flex">
 			<div class="w-50">
 			<a class="btn btn-primary" href="{{ path('provider_index') }}">

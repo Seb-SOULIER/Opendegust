@@ -48,7 +48,6 @@ class ProviderFixtures extends Fixture
         '20' => 'https://media.gettyimages.com/photos/real-caucasian-man-with-blank-expression-picture-id1081389160?s=2048x2048'
     ];
     private const FIRSTNAME = [
-        
         '1' => 'Abigaïl',
         '2' => 'Lucas',
         '3' => 'Ariel',
@@ -72,7 +71,6 @@ class ProviderFixtures extends Fixture
     ];
 
     private const LASTNAME = [
-        
         '1' => 'Dragaud',
         '2' => 'Morisseau',
         '3' => 'Barraud',

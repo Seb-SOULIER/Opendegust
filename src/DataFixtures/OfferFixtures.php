@@ -17,7 +17,7 @@ use DateTime;
 class OfferFixtures extends Fixture implements DependentFixtureInterface
 {
     private const OFFER_NUMBER = 4;
-    private const NBR_PROVIDER = 1;
+    private const NBR_PROVIDER = 20;
     private const LANGUAGE = [
         ['francais','anglais','espagnol','chinois','japonais','russe','portugais'],
         ['francais','anglais'],
@@ -30,7 +30,6 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
         ['francais','anglais','espagnol','chinois','japonais','russe','portugais']
     ];
     private const PICTURE = [
-        '0' => 'http://4.bp.blogspot.com/-sOxM1VOF3aw/UFurFiwGKTI/AAAAAAAAD5s/wFABJmlvBHQ/s1600/IMG_4751.JPG',
         '1' => 'https://cache.cosmopolitan.fr/data/photo/w1000_ci/54/amis-restaurant.webp',
         '2' => 'https://via.placeholder.com/640x480.png/00ff22?text=food+quasi',
         '3' => 'https://www.nordundsud.at/wp-content/uploads/2020/10/Coffrets-degustation-458x458.jpg',
@@ -56,7 +55,6 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
     ];
 
     private const NAME = [
-        '0' => 'Dégustation en plein air',
         '1' => 'Dégustation couverte',
         '2' => 'Visite au château Aguilard',
         '3' => 'Dégustation de Vin blanc',
@@ -80,6 +78,30 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
         '21' => 'Dégustation couverte',
         '22' => 'Dégustation couverte',
     ];
+    private const DOMAINNAME = [
+        '1' => 'Domaine 2',
+        '2' => 'Domaine 3',
+        '3' => 'Domaine 4',
+        '4' => 'Domaine 5',
+        '5' => 'Domaine 6',
+        '6' => 'Domaine 7',
+        '7' => 'Domaine 8',
+        '8' => 'Domaine 9',
+        '9' => 'Domaine 10',
+        '10' => 'Domaine 11',
+        '11' => 'Domaine 12',
+        '12' => 'Domaine 13',
+        '13' => 'Domaine 14',
+        '14' => 'Domaine 15',
+        '15' => 'Domaine 16',
+        '16' => 'Domaine 17',
+        '17' => 'Domaine 18',
+        '18' => 'Domaine 19',
+        '19' => 'Domaine 20',
+        '20' => 'Domaine 21',
+        '21' => 'Domaine 22',
+        '22' => 'Domaine 23',
+    ];
 
     protected $faker;
 
@@ -90,9 +112,9 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
         for ($a = 1; $a <= self::NBR_PROVIDER; $a++) {
             for ($i = 1; $i <= self::OFFER_NUMBER; $i++) {
                 $offer = new Offer();
-                $offer->setName(self::NAME[rand(0, 22)]);
-                $offer->setPicture(self::PICTURE[rand(0, 22)]);
-                $offer->setDomainName($this->faker->sentence(3));
+                $offer->setName(self::NAME[rand(1,22)]);
+                $offer->setPicture(self::PICTURE[rand(1,22)]);
+                $offer->setDomainName(self::DOMAINNAME[rand(1,22)]);
 
                 $language = self::LANGUAGE[rand(0, 8)];
 
