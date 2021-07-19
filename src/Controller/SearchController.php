@@ -46,20 +46,24 @@ class SearchController extends AbstractController
         ): Response {
 
         $query = $request->query->get('q');
+        $zoom = 11;
 
-        if ($query ==="") {
+        if (!$query) {
             $localization = [0 => ['lat' => 46.16, 'lon' => 3.19619]];
+            $zoom = 5;
         } else {
             $url = "https://nominatim.openstreetmap.org/search?q="
                 . $query . "&format=json&addressdetails=1&limit=1";
             $localization = $api->getResponse($url);
         }
 
-        $offers = $offerRepository->findFilter($request, $localization);
+        $offers = $offerRepository->findFilter($request, $localization ?? [0 => ['lat' => 46.16, 'lon' => 3.19619]]);
+
         return $this->render('search/index.html.twig', [
             'localization' => $localization ?? [],
             'offers' => $offers,
-            'categories' => $categoryRepository->findBy(['category' => null])
+            'categories' => $categoryRepository->findBy(['category' => null]),
+            'zoom' => $zoom
         ]);
     }
 
