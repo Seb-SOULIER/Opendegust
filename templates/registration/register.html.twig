@@ -3,8 +3,15 @@
 {% block body %}
     <div class="d-flex align-items-center flex-column">
         <h1 class="text-primary my-3">Inscription</h1>
-        {% for flash_error in app.flashes('verify_email_error') %}
-            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+{#        {% for flash_error in app.flashes('verify_email_error') %}#}
+{#            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>#}
+{#        {% endfor %}#}
+        {% for category, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
         {% endfor %}
         <div class="card text-center shadow">
             <div class="card-header">
