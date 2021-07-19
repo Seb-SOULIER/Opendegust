@@ -38,7 +38,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
         '6' => 'https://www.laroutedesgourmets.fr/831-thickbox_default/degustation-de-fromages-a-paris.jpg',
         '7' => 'https://beecity.fr/app/uploads/2019/10/Ateliers-r%C3%A9colte-du-miel-Photo-Clara-720x790-c-default.jpg',
         '8' => 'https://www.enil.fr/images/illustrations/enil/ateliers/yaourt/ENSEMENCEMENT.JPG',
-        '9' => 'https://scontent-cdt1-1.xx.fbcdn.net/v/t1.6435-9/86871778_2471299583121891_2194054236088565760_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=973b4a&_nc_ohc=0kH0jCJH0H0AX_0h7MJ&_nc_ht=scontent-cdt1-1.xx&oh=fb4b0996681a180498dd1b65702775ab&oe=60F556A3',
+        '9' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz815SFgVmz0F1SD685KEczMhF2WLo-tKH8A&usqp=CAU',
         '10' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Curitiba_Botanic_Garden.jpg/330px-Curitiba_Botanic_Garden.jpg',
         '11' => 'https://webservices-storage.lmsoft.com/3248/photogallery/images/pictures/089f8ced6e3c5f88da7a5081c7452b8f.jpg',
         '12' => 'https://biscuitsetcompagnie.com/journal/wp-content/uploads/2017/01/255001000_betises_de_cambrai_a_la_menthe_120g_02.jpg',
@@ -112,9 +112,9 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
         for ($a = 1; $a <= self::NBR_PROVIDER; $a++) {
             for ($i = 1; $i <= self::OFFER_NUMBER; $i++) {
                 $offer = new Offer();
-                $offer->setName(self::NAME[rand(1,22)]);
-                $offer->setPicture(self::PICTURE[rand(1,22)]);
-                $offer->setDomainName(self::DOMAINNAME[rand(1,22)]);
+                $offer->setName(self::NAME[rand(1, 22)]);
+                $offer->setPicture(self::PICTURE[rand(1, 22)]);
+                $offer->setDomainName(self::DOMAINNAME[rand(1, 22)]);
 
                 $language = self::LANGUAGE[rand(0, 8)];
 
