@@ -115,8 +115,10 @@
 
         function checkScrollDirection(event) {
             if (checkScrollDirectionIsUp(event)) {
-                sidebar.className = "sidebar-wrapper";
-                card.className = "card-map";
+                if( window.scrollY === 0 ){
+                    sidebar.className = "sidebar-wrapper";
+                    card.className = "card-map";
+                }
             } else {
                 sidebar.className = "sidebar-wrapper-hidden";
                 card.className = "card-map2";
