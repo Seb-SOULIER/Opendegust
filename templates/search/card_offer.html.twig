@@ -2,11 +2,11 @@
 	<div class="container" data-loclat="{{ localization.0.lat|default("46.16") }}" data-loclon="{{ localization.0.lon|default("3.19619") }}" data-zoom="{{ localization.0.lat|default("5") }}" data-text="">
 		<div class="row">
 			{% for offer in offers %}
-				<div class="mb-3 col-sm-6">
+				<div class="col-sm-4 p-2">
 					<div class="card cardHover h-100">
 						<div class=" h-100 row g-0">
 							<div
-								class=" col-lg-5">
+								class="">
 								{# <picture>
 								                                    <source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_sm") }}"
 								                                            media="(max-width: 576px)">
@@ -24,18 +24,16 @@
 								                                </picture> #}
 								<img class="img-fluid offers-image" src="{{ offer.picture }}" alt="offer image">
 							</div>
-							<div class="col-md-12 col-lg-7">
-								<div class="h-100 card-body">
+							<div class="col-md-12">
+								<div class="h-100 card-body card-body-offer">
 									<div class="d-flex">
 										{% for category in offer.categories %}
 											<p class="d-flex justify-content-around align-items-center rounded p-1 bg-secondary categoryOffer text-center" style="font-size:0.7rem">{{ category.name }}</p>
 										{% endfor %}
 									</div>
 									<h5 class="card-title text-center">{{ offer.name }}</h5>
-									<p class="card-text card-text-color">{{ offer.description.shortDescription }}
-									</p>
-									<a data-lat="{{ offer.contact.latitude }}" data-long="{{ offer.contact.longitude }}" data-name="{{ offer.domainName }}" data-id="{{ offer.id }}" href="#">
-										localiser sur la carte</a>
+{#									<p class="card-text card-text-color">{{ offer.description.shortDescription }}#}
+{#									</p>#}
 									<!-- Button trigger modal -->
 									{% set lowest_price = 10000 %}
 									{% for offer_variation in offer.offerVariations %}
@@ -45,14 +43,18 @@
 									{% endfor %}
 									<p class="mt-auto">
 										A partir de
-										<b>{{ lowest_price }}€.
+										<b>{{ lowest_price }}€
 										</b>
 										<a type="button" class="borderHover" data-bs-toggle="modal" data-bs-target="#modalDetail_{{ offer.id }}">
-											(Détail)</a>
+											<i class="fas fa-plus-circle"></i> Info</a>
 									</p>
-									<a href="{{ path('offer_show', {'id': offer.id}) }}" class="btnOffer btn btn-primary">réserver
+									<a data-lat="{{ offer.contact.latitude }}" data-long="{{ offer.contact.longitude }}" data-name="{{ offer.domainName }}" data-id="{{ offer.id }}" href="#">
+										<i class="fas fa-map-marked-alt"></i> Localiser sur la carte</a>
+									<div class="d-flex justify-content-center">
+									<a href="{{ path('offer_show', {'id': offer.id}) }}" class="btnOfferOnCard btnOffer btn btn-primary">réserver
 										<i class="fas fa-shopping-cart"></i>
 									</a>
+									</div>
 									<p class="card-text">
 										<small class="text-muted"></small>
 									</p>
@@ -61,7 +63,7 @@
 
 									{% if app.user and is_granted('ROLE_CUSTOMER') %}
 										<a data-favorite="" href="{{ path('search_favory', {id: offer.id}) }}">
-											<i class="starfav {{ app.user.isInFavory(offer) ? 'fas' : 'far' }} fa-star"></i>
+											<i class="starfav {{ app.user.isInFavory(offer) ? 'fas' : 'far' }} fa-star fa-2x"></i>
 										</a>
 										{% else %}
 											<a href="{{ path('app_register_customer') }}">
@@ -77,9 +79,12 @@
 								<div class="modal-content">
 									<div class="modal-header">
 										<h5 class="modal-title" id="ModalLabel_{{ offer.id }}">{{ offer.name }}</h5>
+										<br>
 										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
 									</div>
 									<div class="modal-body">
+										<p class="card-text card-text-color">{{ offer.description.shortDescription }}</p>
+										<hr>
 										<h6>Grille des tarifs</h6>
 										<ul>
 											{% for offer_variation in offer.offerVariations %}

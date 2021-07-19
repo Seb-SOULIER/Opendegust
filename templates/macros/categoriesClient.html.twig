@@ -4,9 +4,9 @@
             {% for category in categories %}
                 <div class="d-flex flex-column">
                     <div>
-                        <input type="checkbox" name="category[]" id="category_{{ category.id }}" value="{{ category.id }}"
+                        <input class="form-check-input" type="checkbox" name="category[]" id="category_{{ category.id }}" value="{{ category.id }}"
                                 {% if category.id in app.request.get('category') %} checked {% endif %}>
-                        <label for="category_{{ category.id }}">{{ category.name }}</label>
+                        <label class="form-check-label" for="category_{{ category.id }}">{{ category.name }}</label>
                         {% if (category.categories|length) %}
                         {{ _self.make_categories(category.categories) }}
                     </div>

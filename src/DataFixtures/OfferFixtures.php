@@ -19,15 +19,15 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
     private const OFFER_NUMBER = 4;
     private const NBR_PROVIDER = 20;
     private const LANGUAGE = [
-        ['Francais', 'Anglais', 'Espagnol', 'Chinois', 'Japonais', 'Russe', 'Portugais'],
-        ['Francais', 'Anglais'],
-        ['Francais', 'Anglais', 'Chinois', 'Japonais'],
-        ['Francais', 'Russe', 'Portugais'],
-        ['Espagnol', 'Chinois', 'Japonais', 'Russe', 'Portugais'],
-        ['Francais', 'Anglais', 'Russe', 'Portugais'],
-        ['Francais', 'Anglais', 'Espagnol', 'Chinois', 'Japonais', 'Russe'],
-        ['Francais', 'Anglais', 'Espagnol', 'Russe', 'Portugais'],
-        ['Francais', 'Anglais', 'Espagnol', 'Chinois', 'Japonais', 'Russe', 'Portugais']
+        ['francais','anglais','espagnol','chinois','japonais','russe','portugais'],
+        ['francais','anglais'],
+        ['francais','anglais','chinois','japonais'],
+        ['francais','russe','portugais'],
+        ['espagnol','chinois','japonais','russe','portugais'],
+        ['francais','anglais','russe','portugais'],
+        ['francais','anglais','espagnol','chinois','japonais','russe'],
+        ['francais','anglais','espagnol','russe','portugais'],
+        ['francais','anglais','espagnol','chinois','japonais','russe','portugais']
     ];
     private const PICTURE = [
         '0' => 'http://4.bp.blogspot.com/-sOxM1VOF3aw/UFurFiwGKTI/AAAAAAAAD5s/wFABJmlvBHQ/s1600/IMG_4751.JPG',
@@ -136,7 +136,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                     for ($i = 1; $i <= rand(1, 5); $i++) {
                         $calendar = new Calendar();
                         $calendar->setOfferVariation($offerVariation);
-                        $calendar->setStartAt($this->faker->dateTime);
+                        $calendar->setStartAt($this->faker->dateTimeBetween('now', '+ 10 week'));
                         $manager->persist($calendar);
                     }
                     $manager->persist($offerVariation);
