@@ -77,6 +77,9 @@ class RegistrationController extends AbstractController
             // do anything else you need here, like send an email
 
             return $this->redirectToRoute('home');
+        } elseif ($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash('danger', 'Identifiants invalides');
+            return $this->redirectToRoute('register');
         }
         return $this->render('registration/_register_customer.html.twig', [
             'registrationForm' => $form->createView(),
@@ -123,6 +126,9 @@ class RegistrationController extends AbstractController
             // do anything else you need here, like send an email
 
             return $this->redirectToRoute('home');
+        } elseif ($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash('danger', 'Identifiants invalides');
+            return $this->redirectToRoute('register');
         }
         return $this->render('registration/_register_provider.html.twig', [
             'registrationForm' => $form->createView(),

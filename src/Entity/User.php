@@ -49,13 +49,13 @@ abstract class User implements UserInterface
     /**
      * @ORM\Column(type="datetime")
      */
-    private ?DateTime $registrationAt;
+    private DateTime $registrationAt;
 
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private int $civility;
+    private ?int $civility;
 
 
     /**
@@ -64,7 +64,7 @@ abstract class User implements UserInterface
      *     max="45",
      *     maxMessage="Le nom est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
-    private string $lastname;
+    private ?string $lastname;
 
 
     /**
@@ -83,12 +83,12 @@ abstract class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $facebookId;
+    private ?string $facebookId;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $googleId;
+    private ?string $googleId;
 
     /**
      * @return int
@@ -175,7 +175,7 @@ abstract class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getRegistrationAt(): ?DateTime
+    public function getRegistrationAt(): DateTime
     {
         return $this->registrationAt;
     }
@@ -192,7 +192,7 @@ abstract class User implements UserInterface
         return $this->civility;
     }
 
-    public function setCivility(int $civility): self
+    public function setCivility(?int $civility): self
     {
         $this->civility = $civility;
 
@@ -204,7 +204,7 @@ abstract class User implements UserInterface
         return $this->lastname;
     }
 
-    public function setLastname(string $lastname): self
+    public function setLastname(?string $lastname): self
     {
         $this->lastname = $lastname;
 
@@ -240,7 +240,7 @@ abstract class User implements UserInterface
         return $this->facebookId;
     }
 
-    public function setFacebookId(string $facebookId): self
+    public function setFacebookId(?string $facebookId): self
     {
         $this->facebookId = $facebookId;
         return $this;
@@ -251,7 +251,7 @@ abstract class User implements UserInterface
         return $this->googleId;
     }
 
-    public function setGoogleId(string $googleId): self
+    public function setGoogleId(?string $googleId): self
     {
         $this->googleId = $googleId;
 

@@ -65,16 +65,6 @@ class ProviderType extends AbstractType
             ->add(
                 $builder
                     ->create('otherSite', TextType::class)
-                    ->addModelTransformer(new CallbackTransformer(
-                        function ($otherSiteAsArray) {
-                            // transform the array to a string
-                            return implode(', ', $otherSiteAsArray);
-                        },
-                        function ($otherSiteAsString) {
-                            // transform the string back to an array
-                            return explode(', ', $otherSiteAsString);
-                        }
-                    ))
             )
             ->add('files', CollectionType::class, [
                 'entry_type' => FileType::class,
