@@ -4,7 +4,9 @@
     }
 }
 
-
+.navbar.navbar-expand-lg.navbar-light.bg-light.justify-content-between {
+    z-index: 900;
+}
 
 .img-navbrand {
     width: 17rem;
@@ -15,7 +17,7 @@
 }
 
 .fa-user:before {
-    position:relative; 
+    position:relative;
     top: 31%;
     font-size: 2.3rem;
 }
@@ -50,7 +52,7 @@ form.search-home {
         margin-right: auto;
         margin-left: auto;
     }
-} 
+}
 @media screen and(max-width: 215px) {
     form.search-home {
         justify-content: center;
@@ -60,7 +62,7 @@ form.search-home {
         margin-right: auto;
         margin-left: auto;
     }
-} 
+}
 
 input.write {
     border-radius: 50px;
@@ -156,7 +158,7 @@ ul.autocomplete {
     padding-left: 5px;
     left: 2rem;
     }
-} 
+}
 @media screen and(max-width: 215px) {
     ul.autocomplete {
     z-index: 100;
@@ -171,4 +173,4 @@ ul.autocomplete {
     padding-left: 5px;
     left: 1rem;
     }
-} 
+}

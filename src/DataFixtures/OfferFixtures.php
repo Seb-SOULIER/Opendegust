@@ -19,15 +19,15 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
     private const OFFER_NUMBER = 4;
     private const NBR_PROVIDER = 20;
     private const LANGUAGE = [
-        ['Francais','Anglais','Espagnol','Chinois','Japonais','Russe','Portugais'],
-        ['Francais','Anglais'],
-        ['Francais','Anglais','Chinois','Japonais'],
-        ['Francais','Russe','Portugais'],
-        ['Espagnol','Chinois','Japonais','Russe','Portugais'],
-        ['Francais','Anglais','Russe','Portugais'],
-        ['Francais','Anglais','Espagnol','Chinois','Japonais','Russe'],
-        ['Francais','Anglais','Espagnol','Russe','Portugais'],
-        ['Francais','Anglais','Espagnol','Chinois','Japonais','Russe','Portugais']
+        ['francais','anglais','espagnol','chinois','japonais','russe','portugais'],
+        ['francais','anglais'],
+        ['francais','anglais','chinois','japonais'],
+        ['francais','russe','portugais'],
+        ['espagnol','chinois','japonais','russe','portugais'],
+        ['francais','anglais','russe','portugais'],
+        ['francais','anglais','espagnol','chinois','japonais','russe'],
+        ['francais','anglais','espagnol','russe','portugais'],
+        ['francais','anglais','espagnol','chinois','japonais','russe','portugais']
     ];
     private const PICTURE = [
         '0' => 'http://4.bp.blogspot.com/-sOxM1VOF3aw/UFurFiwGKTI/AAAAAAAAD5s/wFABJmlvBHQ/s1600/IMG_4751.JPG',
@@ -53,9 +53,6 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
         '20' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
         '21' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
         '22' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
-        '23' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
-        '24' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
-        '25' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
     ];
 
     private const NAME = [
@@ -82,9 +79,6 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
         '20' => 'Dégustation couverte',
         '21' => 'Dégustation couverte',
         '22' => 'Dégustation couverte',
-        '23' => 'Dégustation couverte',
-        '24' => 'Dégustation couverte',
-        '25' => 'Dégustation couverte'
     ];
 
     protected $faker;
@@ -96,8 +90,8 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
         for ($a = 1; $a <= self::NBR_PROVIDER; $a++) {
             for ($i = 1; $i <= self::OFFER_NUMBER; $i++) {
                 $offer = new Offer();
-                $offer->setName(self::NAME[rand(0,25)]);
-                $offer->setPicture(self::PICTURE[rand(0, 25)]);
+                $offer->setName(self::NAME[rand(0, 22)]);
+                $offer->setPicture(self::PICTURE[rand(0, 22)]);
                 $offer->setDomainName($this->faker->sentence(3));
 
                 $language = self::LANGUAGE[rand(0, 8)];
@@ -117,8 +111,8 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 $contact->setZipcode($this->faker->postcode);
                 $contact->setAddress($this->faker->sentence(3));
                 $contact->setCity($this->faker->city);
-                $contact->setLongitude($this->faker->longitude);
-                $contact->setLatitude($this->faker->latitude);
+                $contact->setLongitude($this->faker->randomFloat(4, 1, 5));
+                $contact->setLatitude($this->faker->randomFloat(4, 43, 50));
                 $contact->setPhone($this->faker->phoneNumber);
                 $contact->setPhone2($this->faker->phoneNumber);
                 $contact->setWebsite($this->faker->domainName);
@@ -129,7 +123,8 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                     $offerVariation = new OfferVariation();
                     $offerVariation->setPriceVariation([
                         'adultes' => rand(1, 50),
-                        'enfants' => rand(1, 30)]);
+                        'enfants' => rand(1, 30)
+                    ]);
                     $capacity = rand(1, 50);
                     $offerVariation->setCapacity($capacity);
                     $offerVariation->setDuration((new DateTime())->setTime(rand(0, 10), rand(0, 59)));
@@ -141,7 +136,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                     for ($i = 1; $i <= rand(1, 5); $i++) {
                         $calendar = new Calendar();
                         $calendar->setOfferVariation($offerVariation);
-                        $calendar->setStartAt($this->faker->dateTime);
+                        $calendar->setStartAt($this->faker->dateTimeBetween('now', '+ 10 week'));
                         $manager->persist($calendar);
                     }
                     $manager->persist($offerVariation);

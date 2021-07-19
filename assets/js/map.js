@@ -49,9 +49,15 @@ export default class Map {
                 const poslat = event.target.getAttribute('data-lat');
                 const poslon = event.target.getAttribute('data-long');
                 console.log(poslon, poslat);
+
                 // if (poslat && poslon) {
                 //     let locat = pos.split(',');
                 carte.setView([poslat, poslon], 11, { animate: true, duration: 1.5 });
+
+                const sidebar = document.getElementById('sidebarWrapper');
+                const card = document.getElementById('cardMap');
+                card.className = "card-map";
+                sidebar.className = "sidebar-wrapper";
                 return false;
             });
         });
