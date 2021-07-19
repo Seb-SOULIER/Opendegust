@@ -15,6 +15,7 @@
 {% endblock %}
 
 {% block body %}
+    {{ dump(query) }}
     {% include 'sidebar/sidebar.html.twig' %}
     <div id= "cardMap" class = "card-map">
         {% include '/search/card_offer.html.twig' %}

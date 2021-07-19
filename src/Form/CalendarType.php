@@ -14,13 +14,12 @@ class CalendarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('startAt');
-//        , DatetimeType::class, [
-//                'choice_translation_domain' => true,
-//                'date_format' => 'ddMMMyyyy',
-//            ])
-//            ->add('delete', ButtonType::class)
-//        ;
+            ->add('startAt', DatetimeType::class, [
+                'choice_translation_domain' => true,
+                'date_format' => 'ddMMMyyyy',
+            ])
+            ->add('delete', ButtonType::class)
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
