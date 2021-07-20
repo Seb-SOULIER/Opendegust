@@ -114,14 +114,17 @@
         scrollableElement.addEventListener('wheel', checkScrollDirection);
 
         function checkScrollDirection(event) {
+            console.log(window.scrollY)
             if (checkScrollDirectionIsUp(event)) {
-                if( window.scrollY === 0 ){
+                if( window.scrollY < 100){
                     sidebar.className = "sidebar-wrapper";
-                    card.className = "card-map";
+                    // card.className = "card-map";
+                    card.classList.remove('card-map--scrolled');
                 }
-            } else {
+            } else if( window.scrollY > 30 ) {
                 sidebar.className = "sidebar-wrapper-hidden";
-                card.className = "card-map2";
+                // card.className = "card-map2";
+                card.classList.add('card-map--scrolled');
             }
         }
 
@@ -134,7 +137,8 @@
 
         sidebar.addEventListener('click', () => {
             sidebar.className = "sidebar-wrapper";
-            card.className = "card-map";
+            // card.className = "card-map";
+            card.classList.remove('card-map--scrolled');
         })
     })
 </script>

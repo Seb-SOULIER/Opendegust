@@ -49,6 +49,7 @@ class OfferController extends AbstractController
                 }
             }
         }
+
         return $this->render('offer/index.html.twig', [
             'offers' => $offers,
             'allOffers' => $allOffers,
