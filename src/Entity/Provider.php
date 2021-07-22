@@ -82,7 +82,7 @@ class Provider extends User
     private Collection $products;
 
     /**
-     * @ORM\OneToMany(targetEntity=File::class, mappedBy="provider", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=File::class, mappedBy="provider", orphanRemoval=true, cascade={"persist", "remove"})
      */
     private Collection $files;
 

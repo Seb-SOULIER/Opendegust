@@ -16,6 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\CallbackTransformer;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class ProviderType extends AbstractType
 {
@@ -68,9 +69,12 @@ class ProviderType extends AbstractType
             )
             ->add('files', CollectionType::class, [
                 'entry_type' => FileType::class,
-                'required' => false
-            ])
-        ;
+                'required' => false,
+                'allow_add' => true,
+                'by_reference' => false,
+                'allow_delete' => true,
+//                'mapped' => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

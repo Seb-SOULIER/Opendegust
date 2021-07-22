@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\File;
 use App\Entity\Product;
 use App\Entity\Provider;
 use App\Form\ProviderPwType;
