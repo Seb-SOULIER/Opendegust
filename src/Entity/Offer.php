@@ -63,7 +63,8 @@ class Offer
 
 
     /**
-     * @ORM\OneToMany(targetEntity=OfferVariation::class, mappedBy="offer", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=OfferVariation::class, mappedBy="offer",
+     *     orphanRemoval=true, cascade={"persist", "remove"})
      */
     private Collection $offerVariations;
 
