@@ -12,11 +12,11 @@ security:
 #                property: email
         customers:
             entity: { class: App\Entity\Customer, property: email }
-        providers:
+        producers:
             entity: { class: App\Entity\Provider, property: email }
         all_users:
             chain:
-                providers: [ 'customers', 'providers' ]
+                providers: [ 'customers', 'producers' ]
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

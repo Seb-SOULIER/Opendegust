@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Provider extends User
 {
-
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
      * @Assert\Length(
@@ -43,7 +42,7 @@ class Provider extends User
     /**
      * @ORM\Column(type="json", nullable=true)
      */
-    private ?string $opening;
+    private ?array $opening;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -53,7 +52,7 @@ class Provider extends User
     /**
      * @ORM\Column(type="json", nullable=true)
      */
-    private ?string $otherSite;
+    private ?array $otherSite;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -72,7 +71,7 @@ class Provider extends User
     private ?Description $description;
 
     /**
-     * @ORM\OneToOne(targetEntity=Contact::class, inversedBy="provider", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Contact::class, cascade={"persist", "remove"})
      */
     private ?Contact $contact;
 
@@ -149,10 +148,10 @@ class Provider extends User
 
     public function getOpening(): ?array
     {
-        return $this->opening ? json_decode($this->opening, true) : null;
+        return $this->opening;
     }
 
-    public function setOpening(?string $opening): self
+    public function setOpening(?array $opening): self
     {
         $this->opening = $opening;
 
@@ -174,10 +173,10 @@ class Provider extends User
 
     public function getOtherSite(): ?array
     {
-        return $this->otherSite ? json_decode($this->otherSite) : null;
+        return $this->otherSite;
     }
 
-    public function setOtherSite(?string $otherSite): self
+    public function setOtherSite(?array $otherSite): self
     {
         $this->otherSite = $otherSite;
 
@@ -320,5 +319,14 @@ class Provider extends User
         $this->picture = $picture;
 
         return $this;
+    }
+    public function serialize()
+    {
+        return serialize($this->id);
+    }
+
+    public function unserialize($data)
+    {
+        $this->id = unserialize($data);
     }
 }

@@ -42,7 +42,7 @@ class Offer
     /**
      * @ORM\Column(type="json", nullable=true)
      */
-    private ?string $language;
+    private ?array $language;
 
     /**
      * @ORM\ManyToOne(targetEntity=Provider::class, inversedBy="offers")
@@ -128,13 +128,13 @@ class Offer
 
     public function getLanguage(): ?array
     {
-        return $this->language ? json_decode($this->language, true) : null;
+        return $this->language;
     }
 
     public function setLanguage(?array $language): self
     {
 
-        $this->language = json_encode($language) === false ? null : json_encode($language);
+        $this->language = $language;
 
         return $this;
     }

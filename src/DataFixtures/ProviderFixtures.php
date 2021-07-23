@@ -19,7 +19,7 @@ class ProviderFixtures extends Fixture
     private const KNOW_US = ['Publicité', 'Internet', 'Bouche à oreille', 'Autre'];
 
     private const PICTURE = [
-        
+
         '1' => 'https://thumbs.dreamstime.com/b/personne-intelligente-en-lunettes-
         un-homme-tenue-officielle-est-debout-sur-fond-blanc-dans-le-studio-165962936.jpg',
         '2' => 'https://media.istockphoto.com/photos/happy-man-winking-and-pointing-
@@ -140,9 +140,9 @@ class ProviderFixtures extends Fixture
             $provider->setSocialReason(array_rand(array_flip(self::SOCIAL_REASONS)));
             $provider->setSiret($this->faker->numberBetween(11111, 64000));
             $provider->setVatNumber($this->faker->randomFloat(2, 10, 25));
-            $provider->setOpening(json_encode($this->opening));
+            $provider->setOpening($this->opening);
             $provider->setMonthlyFrequentation($this->faker->randomDigit());
-            $provider->setOtherSite(json_encode($this->otherSite));
+            $provider->setOtherSite($this->otherSite);
             $provider->setKnowUs(array_rand(array_flip(self::KNOW_US)));
             $provider->setContact($contact);
             $provider->setDescription($description);

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Datetime;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -12,14 +13,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\MappedSuperclass()
  * @UniqueEntity(fields={"email"}, message="Cette adresse email existe déjà")
  */
-abstract class User implements UserInterface
+abstract class User implements UserInterface, EquatableInterface
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private int $id;
+    protected int $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -35,14 +36,14 @@ abstract class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private array $roles;
+    private array $roles = [];
 
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string", nullable=true)
      */
-    private ?string $password;
+    private ?string $password = null;
 
 //    private string $plainPassword;
 
@@ -256,5 +257,19 @@ abstract class User implements UserInterface
         $this->googleId = $googleId;
 
         return $this;
+    }
+    public function serialize()
+    {
+        return serialize($this->id);
+    }
+
+    public function unserialize($data)
+    {
+        $this->id = unserialize($data);
+    }
+
+    public function isEqualTo(UserInterface $user)
+    {
+        return $user->getId() === $this->id;
     }
 }
