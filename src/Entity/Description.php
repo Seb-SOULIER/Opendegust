@@ -20,7 +20,7 @@ class Description
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $shortDescription;
+    private string $shortDescription;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -32,12 +32,12 @@ class Description
         return $this->id;
     }
 
-    public function getShortDescription(): ?string
+    public function getShortDescription(): string
     {
         return $this->shortDescription;
     }
 
-    public function setShortDescription(?string $shortDescription): self
+    public function setShortDescription(string $shortDescription): self
     {
         $this->shortDescription = $shortDescription;
 
@@ -54,5 +54,15 @@ class Description
         $this->longDescription = $longDescription;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getShortDescription();
+    }
+
+    public function __sleep()
+    {
+        return [];
     }
 }

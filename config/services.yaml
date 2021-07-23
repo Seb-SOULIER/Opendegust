@@ -1,11 +1,19 @@
 # This file is the entry point to configure your own services.
-# Files in the packages/ subdirectory configure your dependencies.
+# File in the packages/ subdirectory configure your dependencies.
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    upload_directory: '%kernel.project_dir%/public/uploads/'
 
 services:
+    auth.login_form_authenticator:
+        class: App\Security\LoginFormAuthenticator
+        public: true
+        arguments:
+            $userClasses:
+                - \App\Entity\Provider
+                - \App\Entity\Customer
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

@@ -1,0 +1,136 @@
+.card-map{
+  //transform: translateY(80px);
+  //transition:transform 0.6s 0s;
+  margin-top: 80px;
+  transition:margin-top 0.6s 0s;
+  &.card-map--scrolled{
+    margin-top: 0;
+  }
+}
+
+.card-map2{
+  margin-top: 0px;
+  transition:margin-top 0.6s 0s
+  //transform: translateY(-220px);
+  //transition:transform 0.6s 0s;
+}
+
+$transition-duration: 600ms;
+$transition-delay: $transition-duration;
+$sidebar-transition: $transition-duration opacity $transition-delay, $transition-duration visibility $transition-delay;
+
+.sidebar-wrapper {
+  position:sticky;
+  top:8.5vh;
+  transform: translateY(0);
+  transition:transform 0.6s 0s;
+  z-index: 999;
+}
+
+.sidebar-wrapper-hidden {
+  position:sticky;
+  top:8.5vh;
+  z-index: 999;
+  transform: translateY(-90%);
+  transition:transform 1s 0s;
+}
+
+[data-component='sidebar'] {
+  .sidebar {
+    bottom: 300px;
+  }
+
+  //black menu
+  .first-menu {
+    position: absolute;
+    z-index: 1;
+    background-color: $black;
+    width: 60px;
+    transition: width .5s;
+    top: 0;
+    bottom: 4vh;
+
+    a {
+      color: #fff;
+    }
+
+    i {
+      font-size: 24px;
+    }
+
+    span {
+      font-size: 14px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    &:hover span {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .list-group-item {
+      border-radius: 0;
+      position: initial;
+
+      &:hover {
+        background-color: $primary;
+      }
+    }
+  }
+
+  .first-menu:hover {
+    width: 160px;
+    transition: width 0.5s;
+  }
+
+  .list-group-item {
+    font-size: 14px;
+  }
+
+
+  //green menu
+  .submenu {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 160px;
+    width: 195px;
+    background-color: $primary;
+    overflow: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: $sidebar-transition;
+
+    .list-group-item {
+      margin-top: 8px;
+    }
+  }
+
+  .labelForm{
+    color: $white;
+    font-weight: bold;
+  }
+
+  .labelForm:hover{
+    color: $black;
+    font-weight: bold;
+  }
+
+  .first-menu li:hover .submenu {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .submenu li:hover .sub-submenu {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .list-group-item {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+  }
+}

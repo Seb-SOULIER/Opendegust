@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offer
+{% endblock %}
+{% block body %}
+	<div class="title-offer-domain">
+		<h1>{{ offer.domainName }}</h1>
+	</div>
+	<div class="container-fluid">
+		<div class="row offer-domaine">
+			<div class="col-12 col-sm-6 offer-picture">
+				<img src="{{ offer.picture }}" class="img-fluid" alt="{{ offer.name }}">
+			</div>
+		</div>
+	</div>
+
+	<br>
+	<div class="container">
+		<div class="redirection-categ-lang d-flex">
+			<div class="categories-affichage d-flex">
+				{% for value in offer.categories %}
+					<p class="rounded p-2 bg-secondary text-center" style="width: 100%; color:white">{{ value.name }}</p>
+					{% if not loop.last %}{% endif %}
+				{% endfor %}
+			</div>
+
+			<div class="lang-affichage d-flex">
+				{% for value in offer.language %}
+					<p style="border-radius:10%; margin-left: 15px;">
+						{{ value }}
+					</p>
+					{% if not loop.last %}{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container">
+		<div class="row informations-supp">
+			<div class="col-12 col-lg-8" id="description-offer">
+				<h2>{{ offer.name }}</h2>
+				<p class="longue-description">{{ offer.description.longDescription }}</p>
+
+				<div>
+					<div class="offer-contact-info">
+						<h3>Informations Supplémentaires</h3>
+					</div>
+
+					<div class="responsive-table-line">
+						<table class="table table-bordered table-condensed table-body-center">
+							<thead>
+								<tr>
+									<th>Adresse</th>
+									<th>Code Postal</th>
+									<th>Ville</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td data-title="Adresse">{{ offer.contact.address }}</td>
+									<td data-title="Code Postal">{{ offer.contact.zipCode }}</td>
+									<td data-title="Ville">{{ offer.contact.city }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="responsive-table-line">
+						<table class="table table-bordered table-condensed table-body-center">
+							<thead>
+								<tr>
+									<th>Téléphone</th>
+									<th>Portable</th>
+									<th>Site Internet</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td data-title="Téléphone">{{ offer.contact.phone }}</td>
+									<td data-title="Portable">{{ offer.contact.phone }}</td>
+									<td data-title="Site Internet">{{ offer.contact.website }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div>
+					<label for="calendar">
+						{% if calendarsCount <= 1 %}
+							<h5>Date disponible pour cette activité :</h5>
+						{% else %}
+							<h5>Dates disponibles pour cette activité :</h5>
+						{% endif %}
+					</label>
+					<select id="calendar" class="form-select shadow" name="q" style="height: 50px;">
+						{% for offer_variation in offerVariations %}
+							{% for calendar in offer_variation.calendars %}
+								<option value="{{ calendar.id }}">{{ calendar.startAt|date("\\L\\e\\ d m Y à H\\hm") }}</option>
+							{% endfor %}
+						{% endfor %}
+					</select>
+				</div>
+
+				<div id="formBooking" class="d-flex row justify-content-center">
+					{{ render(controller('App\\Controller\\OfferController::offerVariationInfo', {'id': offerVariations[0].calendars[0].id})) }}
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="list-offer-by-provider">
+			<h1 class="my-3 text-center">Nos Produits</h1>
+			<div class="row row-cols-1 row-cols-md-5 g-5" id="provider-offer-card">
+				{% for product in products %}
+					<div style="visibility: collapse;">{{ product.name }}</div>
+					{% include "product/products.html.twig" %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	<a href="{{ path('offer_index') }}">back to list</a>
+	<a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>
+
+{% endblock %}

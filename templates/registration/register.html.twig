@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block title %}Register{% endblock %}
+{% block body %}
+    <div class="d-flex align-items-center flex-column">
+        <h1 class="text-primary my-3">Inscription</h1>
+{#        {% for flash_error in app.flashes('verify_email_error') %}#}
+{#            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>#}
+{#        {% endfor %}#}
+        {% for category, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <div class="card text-center shadow">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item" style="width:50%">
+                        <a id="registerClient" class="nav-link nav1 active" aria-current="true" href="#">Inscription client</a>
+                    </li>
+                    <li class="nav-item" style="width:50%">
+                        <a id="registerProvider" class="nav-link nav2" href="#">Inscription fournisseur</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div id="formRegister" class="d-flex row justify-content-center">
+                    {{ render(controller('App\\Controller\\RegistrationController::registerCustomer')) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+{% endblock %}

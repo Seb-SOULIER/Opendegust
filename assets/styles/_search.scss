@@ -1,0 +1,104 @@
+//.offerImage{
+//  object-fit: cover;
+//  width:100%;
+//  height:100%;
+//}
+
+.positionBotright{
+  position:absolute;
+  bottom:0;
+  right:0;
+  padding: 3%;
+  color: $tag-premium-color ;
+}
+
+.cardHover
+{
+border: solid 1px #adadad;
+  transition: transform 1s;
+}
+
+.cardHover:hover{
+  border: solid 1px black;
+}
+
+.card-body-offer{
+  padding: 0 1rem 0 1rem;
+}
+
+.categoryOffer{
+  color:white;
+  width:50%;
+  max-width:50%;
+  min-width:25%;
+  margin:0.5rem;
+}
+
+.btnOffer{
+  width:50%;
+}
+
+.btnOfferOnCard{
+  margin-top:5px
+}
+
+.btn-primary{
+  color: $light;
+}
+
+.btn-primary:hover {
+  color: $light;
+  background-color: #72ba6c;
+  border-color: #6ab663;
+}
+
+.card-text-color{
+  color: $gray;
+}
+
+@media (max-width: 480px){
+  .btnOffer{
+    width:50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .categoryOffer {
+    width: 50%;
+  }
+}
+@media (min-width: 1250px) {
+  .categoryOffer {
+    width: 50%;
+  }
+}
+@include media-breakpoint-between(sm, lg) {
+  .btnOffer {
+    width: 75%;
+  }
+}
+  //@media (max-width: 480px){
+  //  .btnOffer{
+  //    width:75%;
+  //    max-width:75%;
+  //    min-width:25%;
+  //  }
+  //}
+
+  //@media (max-width: 740px){
+  //  .btnOffer{
+  //    width:75%;
+  //  }
+
+.img-fluid.offers-image {
+  object-fit: cover;
+    height: 294px;
+}
+
+.starfav{
+  color:$tag-premium-color;
+  position: absolute;
+  top: 5px;
+  left:5px;
+  text-shadow: -1px -1px 0 $black, 1px -1px 0 $black, -1px 1px 0 $black, 1px 1px 0 $black;
+}

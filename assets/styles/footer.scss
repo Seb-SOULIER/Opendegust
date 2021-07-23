@@ -3,7 +3,7 @@ footer.page-footer.font-small.blue-grey.lighten-5 {
     padding: 4%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
     footer.page-footer.font-small.blue-grey.lighten-5{
         text-align: center;
     }
@@ -21,7 +21,7 @@ footer.page-footer.font-small.blue-grey.lighten-5 {
     margin-inline-start: auto;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
     .informations-end{
         display: block;
     }
@@ -29,10 +29,10 @@ footer.page-footer.font-small.blue-grey.lighten-5 {
 
 .end-footer {
     display: flex;
-    margin-top: 52px;
+    margin-top: 20px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
     .end-footer{
         display: block;
     }
@@ -41,6 +41,13 @@ footer.page-footer.font-small.blue-grey.lighten-5 {
 .copyright {
     margin-left: 24px;
 }
+@media screen and (max-width: 768px) {
+    .copyright {
+        margin-left: 0;
+    }
+}
+
+
 
 .list-unstyled.list-inline.text-left {
     font-size: x-large;
@@ -50,12 +57,57 @@ img.open-degust-footer {
     width: 100%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
     img.open-degust-footer{
         width: 70%;
     }
 }
+.list-inline-item {
+    width: 10%;
+    text-align: center;
+    background-color: black;
+    clip-path: ellipse(46% 46%);
+    transition: transform 0.5s;
+}
+@media screen and (max-width: 1200px) {
+    .list-inline-item{
+        min-width: 13%;
+    }
+}
 
+@media screen and (max-width: 992px) {
+    .list-inline-item{
+        min-width: 18%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .list-inline-item{
+        min-width: 7%;
+    }
+}
+@media screen and (max-width: 576px) {
+    .list-inline-item{
+        width: 12%;
+        max-width: 16%;
+    }
+}
+@media screen and (max-width: 297px) {
+    .list-inline-item{
+        min-width: 12%;
+        width: 15%;
+    }
+}
+
+
+
+.fab.fa-pinterest-p, .fab.fa-linkedin-in, .fab.fa-twitter, .fab.fa-instagram, .fab.fa-facebook-f {
+    color: white;
+}
 .confidentiality.text-right {
     margin-right: 33px;
+}
+@media screen and (max-width: 768px) {
+    .confidentiality.text-right {
+        margin-right: 0;
+    }
 }

@@ -1,0 +1,195 @@
+    {% extends 'base.html.twig' %}
+
+{% block title %}Edit Provider{% endblock %}
+
+{% block body %}
+<div class="d-flex align-items-center flex-column">
+    <div class="col-11 col-sm-9 col-xl-8 my-3">
+        {{ form_start(formPw) }}
+        <div class="text-danger">
+            {{ form_errors(formPw.password.first) }}
+        </div>
+        <div class="row d-flex">
+            <div class="col-md-4">
+                {{ form_label(formPw.password.first) }}
+                {{ form_widget(formPw.password.first) }}
+            </div>
+            <div class="col-md-4">
+                <div class="text-danger">
+                    {{ form_errors(formPw.password.second) }}
+                </div>
+                {{ form_label(formPw.password.second) }}
+                {{ form_widget(formPw.password.second) }}
+            </div>
+            <div class="col-md-4 align-self-end">
+                <button class="btn btn-primary col-12 text-light">{{ button_label|default('Valider') }}</button>
+            </div>
+        </div>
+        {{ form_end(formPw) }}
+        {{ form_start(form, {'attr': {'class': 'd-flex align-items-center flex-column'}}) }}
+            <div class="provider__form w-100">
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    <div class="account form-control my-3 py-3 accordion-item">
+                        <h1 class="accordion-header" id="panelsStayOpen-headingOne">
+                            <button class="accordion-button text-center" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
+                                    aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                <h2 class="my-3 text-primary">Information du compte</h2>
+                            </button>
+                        </h1>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                            <div class="account__content accordion-body">
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div class="col-md-6">
+                                        <div class="text-danger">
+                                            {{ form_errors(form.email.first) }}
+                                        </div>
+                                        {{ form_label(form.email.first) }}
+                                        {{ form_widget(form.email.first) }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="text-danger">
+                                            {{ form_errors(form.email.second) }}
+                                        </div>
+                                        {{ form_label(form.email.second) }}
+                                        {{ form_widget(form.email.second) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_label(form.civility, 'Sexe') }}
+                                    {{ form_widget(form.civility) }}
+                                </div>
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div class="col-md-6">
+                                        {{ form_label(form.lastname, 'Nom de famille') }}
+                                        <div class="text-danger">
+                                            {{ form_errors(form.lastname) }}
+                                        </div>
+                                        {{ form_widget(form.lastname) }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ form_label(form.lastname, 'Prénom') }}
+                                        <div class="text-danger">
+                                            {{ form_errors(form.firstname) }}
+                                        </div>
+                                        {{ form_widget(form.firstname) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_label(form.contact.website, 'Site internet') }}
+                                    <div class="text-danger">
+                                        {{ form_errors(form.contact.website) }}
+                                    </div>
+                                    {{ form_widget(form.contact.website) }}
+                                </div>
+                                {{ form_label(form.knowUs, 'Comment nous avez-vous connu?') }}
+                                {{ form_errors(form.knowUs) }}
+                                {{ form_widget(form.knowUs) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="company form-control py-3 my-3 accordion-item">
+                        <h1 class="accordion-header" id="panelsStayOpen-headingTwo">
+                            <button class="accordion-button collapsed text-center" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                <h2 class="my-3 text-primary">Information sur l'entreprise</h2>
+                            </button>
+                        </h1>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                            <div class="company__content accordion-body">
+                                {{ form_label(form.company, "Nom de l'entreprise") }}
+                                <div class="text-danger">
+                                    {{ form_errors(form.company) }}
+                                </div>
+                                {{ form_widget(form.company) }}
+                                {#                {{ form_label(form.files, 'Ajouter une image') }}#}
+                                {#                {{ form_widget(form.files, {'attr': {'class': 'form-control'}}) }}#}
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div class="col-md-6">
+                                        {{ form_label(form.socialReason, 'Raison sociale') }}
+                                        {{ form_widget(form.socialReason) }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ form_label(form.siret, 'Numéro SIRET') }}
+                                        <div class="text-danger">
+                                            {{ form_errors(form.siret) }}
+                                        </div>
+                                        {{ form_widget(form.siret) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_label(form.vatNumber, 'Numéro de TVA') }}
+                                    {{ form_widget(form.vatNumber) }}
+                                </div>
+{#                                {{ form_label(form.files, 'Fichier') }}#}
+{#                                {{ form_widget(form.files) }}#}
+                                <div class="d-md-flex justify-content-center">
+                                    <div class="col-md-8">
+{#                                        {{ form_label(form.otherSite, "Déjà inscrit sur d'autres sites?") }}#}
+{#                                        {{ form_errors(form.otherSite) }}#}
+{#                                        {{ form_widget(form.otherSite, {'attr': {'placeholder': 'abc.com, chouette.fr ...'}}) }}#}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact form-control py-3 my-3 accordion-item">
+                        <h1 class="accordion-header" id="panelsStayOpen-headingThree">
+                            <button class="accordion-button collapsed text-center" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                <h2 class="my-3 text-primary">Contact</h2>
+                            </button>
+                        </h1>
+                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                            <div class="contact__content accordion-body">
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div class="col-md-4">
+                                        {{ form_label(form.contact.zipCode, 'Code postal') }}
+                                        <div class="text-danger">
+                                            {{ form_errors(form.contact.zipCode) }}
+                                        </div>
+                                        {{ form_widget(form.contact.zipCode, {'attr': {'id': 'formZipCode'}}) }}
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{ form_label(form.contact.city, 'Ville') }}
+                                        <div class="text-danger">
+                                            {{ form_errors(form.contact.city) }}
+                                        </div>
+                                        {{ form_widget(form.contact.city, {'attr': {'id': 'formCity'}}) }}
+                                    </div>
+                                </div>
+                                {{ form_label(form.contact.address, 'Adresse') }}
+                                <div class="text-danger">
+                                    {{ form_errors(form.contact.address) }}
+                                </div>
+                                {{ form_widget(form.contact.address, {'attr': {'id': 'formAddress'}}) }}
+                                <div class="row g-3 d-md-flex justify-content-between">
+                                    <div class="col-md-6">
+                                        {{ form_label(form.contact.phone, 'Téléphone 1') }}
+                                        <div class="text-danger">
+                                            {{ form_errors(form.contact.phone) }}
+                                        </div>
+                                        {{ form_widget(form.contact.phone) }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ form_label(form.contact.phone2, 'Téléphone 2') }}
+                                        <div class="text-danger">
+                                            {{ form_errors(form.contact.phone2) }}
+                                        </div>
+                                        {{ form_widget(form.contact.phone2) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-3 col-12 col-md-6 text-light">{{ button_label|default('Valider') }}</button>
+        {{ form_end(form) }}
+        <div class="d-flex justify-content-between my-3">
+            <a href="{{ path('home') }}">Retour à l'accueil</a>
+            {{ include('provider/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+{% block footer %}
+{% endblock %}
+{% endblock %}

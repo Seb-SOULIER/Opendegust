@@ -1,58 +1,410 @@
 {% extends 'base.html.twig' %}
+{# {{ asset('build/images/vinvigne.jpg') }} #}
+{% block title %}Home
+{% endblock %}
 
-{% block title %}Home{% endblock %}
 
 {% block body %}
-    <h1>Welcome on your project 3</h1>
-    <p class ="homeTitle">
-        Almost before we knew it, we had left the ground.
-    </p>
-    <i class="fas fa-address-book"></i>
-    <p class="homeText">Almost before we knew it, we had left the ground.</p>
-    <div class="last_div_what_new">
-       <div class="container">
-            <h2 class="title_what_new text-center  "><strong>Quoi de neuf </strong>chez opendegust?</h2>
-            <div class=" d-flex justify-content-around row">
+	<div class="container-fluid">
+		<div class="part-one-home">
+			<img class="home-picture-research" src="{{ asset('build/images/Le-lac-de-Montriond.jpg') }}">
+				<div class="text">
+				<h1 class="degust-near-you">
+					<span style="font-weight:300">Dégustations</span>
+					<span style="font-weight:700">
+						près de chez vous</span>
+				</h1>
+			</div>
 
-                <div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
-                    <img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
-                    <div class="card-body">
-                        <h5 class="card-title">degustion de vin</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="card-body d-flex justify-content-around">
-                        <p  class="text-color-card card-link">03 juin 2022</p>
-                        <a href="#" class="text-color-card card-link">Découverte</a>
-                    </div>
-                </div>
+		{% for category, messages in app.flashes %}
+			{% for message in messages %}
+				<div class="alert alert-{{ category }}">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endfor %}
 
-                <div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
-                    <img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
-                    <div class="card-body">
-                        <h5 class="card-title">degustion de vin</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="card-body d-flex justify-content-around">
-                        <p  class="text-color-card card-link">03 juin 2022</p>
-                        <a href="#" class="text-color-card card-link">Découverte</a>
-                    </div>
-                </div>
+	</div>
+	<div class="intro-home-info">
+		<div class="premier-logo-note col-md-2 col-lg-2">
+			<div class="logo-star">
+				<i class="fas fa-star logo"></i>
+			</div>
+			<div class="note-star">
+				<p>
+					4.8 de note moyenne
+				</p>
+			</div>
+		</div>
+		<div class="deuxieme-logo-frais col-md-2 col-lg-2">
+			<div class="logo-validation">
+				<i class="fas fa-check-circle"></i>
+			</div>
+			<div>
+				<p>
+					pas de frais de réservation
+				</p>
+			</div>
+		</div>
 
-                <div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
-                    <img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
-                    <div class="card-body">
-                        <h5 class="card-title">degustion de vin</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="card-body d-flex justify-content-around">
-                        <p  class="text-color-card card-link">03 juin 2022</p>
-                        <a href="#" class="text-color-card card-link">Découverte</a>
-                    </div>
-                </div>
-            </div>
-           <div class="d-flex justify-content-around" >
-                <button type="submit" class="button-card btn">Voir tout les articles</button>
-           </div>
-       </div>
-    </div>
+		<div class="troisieme-logo-experiences col-md-2 col-lg-2">
+			<div class="logo-experiences">
+				<i class="fas fa-bolt"></i>
+			</div>
+			<div>
+				<p>
+					plus de 100 expériences enregistrées
+				</p>
+			</div>
+		</div>
+
+		<div class="quatrieme-logo-partenaire col-md-2 col-lg-2">
+			<div class="logo-partenaires">
+				<i class="fas fa-wine-glass-alt"></i>
+			</div>
+			<div>
+				<p>
+					partenaires officiel
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="trait-home-one"></div>
+	<div class="container">
+		<div class="visit-and-degust">
+			<h2>
+				<span style="font-weight:300">Visitez</span>
+				<span>et Dégustez</span>
+			</h2>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="six-link-degust">
+			<div class="first-lign-degustation">
+
+				<div class="card bg-dark text-white">
+					<a href="/search?category[]={{ gastronomy[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/Gastronomie.png') }}" alt="Gastronomie"/></a>
+					<div class="card-img-title">
+						<a class="text-light" href="/search?category[]={{ gastronomy[0].id }}">
+						{# <pre>
+							{{ dump(gastronomy[0].id) }}
+						</pre> #}
+							<h4 class="card-title">Gastronomie</h4>
+						</a>
+					</div>
+				</div>
+				<div class="card bg-dark text-white">
+					<a href="/search?category[]={{ brassery[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/Brasserie.jpg') }}" class="card-img" alt="Brasserie"/></a>
+					<div class="card-img-title">
+						<a class="text-light" href="/search?category[]={{ brassery[0].id }}">
+							<h4 class="card-title">Brasserie</h4>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="second-lign-degustation">
+				<div class="card bg-dark text-white">
+					<a href="/search?category[]={{ champagne[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/vin-et-champagne.jpg') }}" class="card-img" alt="vin"/></a>
+					<div class="card-img-title">
+						<a class="text-light" href="/search?category[]={{ champagne[0].id }}">
+							<h4 class="card-title">vin et champagne</h4>
+						</a>
+					</div>
+				</div>
+				<div class="card bg-dark text-white">
+					<a href="/search?category[]={{ brassery[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/Cidrerie.webp') }}" class="card-img" alt="Cidrerie"/></a>
+					<div class="card-img-title">
+						<a class="text-light" href="/search?category[]={{ cidrery[0].id }}">
+							<h4 class="card-title">Cidrerie</h4>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="third-lign-degustation">
+				<div class="card bg-dark text-white">
+					<a href="/search?category[]={{ cognac[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/Cognac-et-Pineaux.jpg') }}" class="card-img" alt="Cognac et pineaux"/></a>
+					<div class="card-img-title">
+						<a class="text-light" href="/search?category[]={{ cognac[0].id }}">
+							<h4 class="card-title">Cognac et pineaux</h4>
+						</a>
+					</div>
+				</div>
+				<div class="card bg-dark text-white">
+					<a href="/search?category[]={{ spirituous[0].id }}"><img class="card-title-opacity" src="{{ asset('build/images/spiritueux.jpg') }}" class="card-img" alt="Spiritueux"/></a>
+					<div class="card-img-title">
+						<a class="text-light" href="/search?category[]={{ spirituous[0].id }}">
+							<h4 class="card-title">Spiritueux</h4>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row row-cols-auto">
+			{% for logo in imgLogoPartenaire %}
+				<div class="col col-lg-2" style="max-width:150px">
+					<img class="logo-partenaires" style="width:100%" src="{{ logo }}" alt="" width="170px" height="120px">
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<div class="block-for-infos">
+		<div class="container">
+			<div class="row informations-home">
+				<div class="col-sm-5">
+					<div class="card for-the-informations">
+						<div class="card-body picture-back-green">
+							<img class="picture-of-grappes" src="{{ asset('build/images/producteur-local.jpg') }}" alt="pepiniere">
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-7">
+					<div class="card for-the-informations">
+						<div class="card-body picture-back-green">
+							<div class="you-see-enjoy">
+								<p>Vous voir heureux nous rend heureux</p>
+							</div>
+							<div class="text-enjoy">
+								<p>Depuis l’arrivée du COVID-19 et suite aux restrictions sanitaires imposées par le gouvernement limitant les canaux de distribution pour la production agricole Française (marchés, cantine, restaurants) de nombreuses filières se retrouvent en difficulté.</p>
+									<p>Face à cette crise, la réaction du monde agricole, de la production et la distribution, a été exemplaire en proposant instantanément des solutions agiles pour créer des débouchés en urgence.</p>
+									<p>Les producteurs pourront ainsi trouver des nouveaux partenaires solidaires pour écouler leurs stocks et ainsi limiter l’impact de la crise.</p>
+							</div>
+							<div class="button-enjoy">
+								<a href="provider"><button class="say-more" type="submit">Voir nos producteurs</button></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="actuality">
+			<h2>
+				A la une</h2>
+		</div>
+	</div>
+	<div class="container">
+		<div class="six-link-degust">
+
+			<div class="first-lign-news-today">
+
+				<div class="card number" style="border:none">
+					<a href="#"><img class="card-title-opacity" src="{{ asset('build/images/atelier-doenologie.jpg') }}" alt="Gastronomie"/></a>
+					<div class="for-card-infos">
+						<div class="type-of-presta">
+							<p class="rounded bg-secondary p-2 w-50 h-25 text-center" style="color:white">atelier d'oenologie</p>
+						</div>
+						<div class="presta-title">
+							<h5>Ouverture des sens avec cet atelier oenologique</h5>
+						</div>
+						<div class="presta-price">
+							<p>99 € -
+							</p>
+							<p>
+								1h30</p>
+						</div>
+					</div>
+				</div>
+				<div class="card number" style="border:none">
+					<a href="#"><img class="card-title-opacity" src="{{ asset('build/images/visite-chateau.jpg') }}" class="card-img" alt="..."/></a>
+					<div class="for-card-infos">
+						<div class="two-type-of-presta">
+							<div class="first-case-presta">
+								<p class="rounded p-2 bg-secondary text-center" style="color:white">Découverte</p>
+							</div>
+							<div class="second-case-presta">
+								<p class="rounded p-2  text-center" style="color:white">Prestige</p>
+							</div>
+						</div>
+						<div class="presta-title">
+							<h5>Visite à la découverte du château Pape Clément</h5>
+						</div>
+						<div class="presta-price">
+							<p>209 € -
+							</p>
+							<p>
+								2h</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="second-lign-news-today">
+				<div class="card number" style="border:none">
+					<a href="#"><img class="card-title-opacity" src="{{ asset('build/images/degust-poire.jpg') }}" class="card-img" alt="..."/></a>
+
+					<div class="for-card-infos">
+						<div class="type-of-presta">
+							<p class="rounded p-2 bg-secondary w-50 h-25 text-center" style="color:white">Dégustation</p>
+						</div>
+						<div class="presta-title">
+							<h5>Dégustation de cognac avec Hennessy</h5>
+						</div>
+						<div class="presta-price">
+							<p>99 € -
+							</p>
+							<p>
+								1h30
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="card number" style="border:none">
+					<a href="#"><img class="card-title-opacity" src="{{ asset('build/images/foie-gras.jpg') }}" class="card-img" alt="..."/></a>
+					<div class="for-card-infos">
+						<div class="type-of-presta">
+							<p class="rounded p-2 bg-secondary w-50 h-25 text-center" style="color:white">Découverte</p>
+						</div>
+						<div class="presta-title">
+							<h5>Découverte et dégustation de foie gras</h5>
+						</div>
+						<div class="presta-price">
+							<p>99 € -
+							</p>
+							<p>
+								1h30</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="next-experience">
+			<h2>
+				<span style="font-weight:300">
+					Quelle sera</span>
+				<span>votre prochaine expérience ?</span>
+			</h2>
+		</div>
+		<div class="card-group">
+			<div class="card column-left">
+				<div class="card first-picture-left">
+					<img class="activities-exper" src="{{ asset('build/images/activites.jpeg') }}"  alt="Card image cap">
+					<div class="title-experience-first">
+					<a href="/search?category[]={{ activities[0].id }}">
+						<p>
+							Les activités
+						</p>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="card column-right">
+				<div class="card first-right-picture">
+					<img class="evasion-exper" src="{{ asset('build/images/evasion.jpeg') }}" alt="Card image cap">
+					<div class="title-experience-second">
+					<a href="/search?category[]={{ evasion[0].id }}">
+						<p>
+							évasion
+						</p>
+						</a>
+					</div>
+				</div>
+				<div class="card second-right-picture">
+					<img class="evenements-locaux-exper" src="{{ asset('build/images/evenements-locaux.jpg') }}" alt="Card image cap">
+					<div class="title-experience-third">
+					<a href="/search?category[]={{ evenements[0].id }}">
+						<p>
+							évènements locaux
+						</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="live-experience">
+			<h2>
+				vivez toutes ces expériences
+			</h2>
+		</div>
+		<div class="card-group">
+			<div class="card image-et-titre">
+				<img src="{{ asset('build/images/en-famille.jpg') }}" class="photo-famille" alt="photo-famille">
+				<div class="card-body-loisirs">
+					<h5 class="card-title-loisirs">En famille</h5>
+				</div>
+			</div>
+			<div class="card image-et-titre">
+				<img src="{{ asset('build/images/entre-amis.jpg') }}" class="photo-amis" alt="photo-amis">
+				<div class="card-body-loisirs">
+					<h5 class="card-title-loisirs">Entre amis</h5>
+				</div>
+			</div>
+			<div class="card image-et-titre">
+				<img src="{{ asset('build/images/en-amoureux.jpg') }}" class="photo-amoureux" alt="photo-amoureux">
+				<div class="card-body-loisirs">
+					<h5 class="card-title-loisirs">En amoureux</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="info-decouverte">
+			<h2>
+				<span style="font-weight:300">
+					Des découvertes</span>
+				<span>
+					au services de nos sens</span>
+			</h2>
+		</div>
+		<div class="text-decouverte">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem ullam, obcaecati optio reiciendis, hic blanditiis vel, qui porro harum tenetur autem repellat nesciunt nemo error dolore non iure! Quasi, amet?</p>
+		</div>
+	</div>
+
+
+	{# ceci est le travail à GG #}
+	<div class="last_div_what_new">
+		<div class="container">
+			<h2 class="title_what_new text-center  " style="text-transform: uppercase">
+				<strong>Quoi de neuf
+				</strong>chez opendegust?</h2>
+			<div class=" d-flex justify-content-around row">
+
+				<div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
+					<img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
+					<div class="card-body">
+						<h5 class="card-title">degustion de vin</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+					<div class="card-body d-flex justify-content-around">
+						<p class="text-color-card card-link">03 juin 2022</p>
+						<a href="#" class="text-color-card card-link">Découverte</a>
+					</div>
+				</div>
+
+				<div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
+					<img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
+					<div class="card-body">
+						<h5 class="card-title">degustion de vin</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+					<div class="card-body d-flex justify-content-around">
+						<p class="text-color-card card-link">03 juin 2022</p>
+						<a href="#" class="text-color-card card-link">Découverte</a>
+					</div>
+				</div>
+
+				<div class="my-5 card col-sm-4 card-shadow" style="width: 18rem;">
+					<img src="{{ asset('build/images/vinvigne.jpg') }}" class="card_img card-img-top" alt="image de vin">
+					<div class="card-body">
+						<h5 class="card-title">degustion de vin</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+					<div class="card-body d-flex justify-content-around">
+						<p class="text-color-card card-link">03 juin 2022</p>
+						<a href="#" class="text-color-card card-link">Découverte</a>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex justify-content-around">
+				<button type="submit" class="button-card btn">Voir tout les articles</button>
+			</div>
+		</div>
+	</div>
 {% endblock %}

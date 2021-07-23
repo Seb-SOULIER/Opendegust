@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category index{% endblock %}
+
+{% block body %}
+<div class="d-flex flex-column align-items-center">
+    <h1>Catégories</h1>
+    {% from 'macros/categoriesAdmin.html.twig' import make_categories %}
+    {{ make_categories(categories) }}
+    <a class="btn btn-success text-center" href="{{ path('category_indexFirst') }}">Modifier</a>
+</div>
+
+{% endblock %}

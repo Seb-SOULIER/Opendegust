@@ -1,0 +1,26 @@
+
+#maCarte{
+  height:300px;
+  position: -webkit-sticky;
+  position: sticky !important;
+  top: 0;
+  z-index: 1;
+}
+
+.linkpopup{
+  color:#59ae52 !important;
+}
+
+.imgpopup{
+  height: 175px !important;
+}
+
+.popup-card{
+  height:180px !important;
+  width:250px !important;
+}
+
+.leaflet-popup-content-wrapper {
+  padding:0;
+  margin:0;
+}

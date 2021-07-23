@@ -6,6 +6,7 @@ use App\Repository\ProviderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProviderRepository::class)
@@ -13,45 +14,35 @@ use Doctrine\ORM\Mapping as ORM;
 class Provider extends User
 {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=45, nullable=true)
+     * @Assert\Length(
+     *     max="45",
+     *     maxMessage="Le nom est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
-    private int $id;
+    private ?string $company;
 
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=45, nullable=true)
      */
-    private string $company;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $picture;
+    private ?string $socialReason;
 
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private string $socialReason;
+    private ?int $siret;
 
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private int $siret;
-
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private int $vatNumber;
+    private ?int $vatNumber;
 
     /**
      * @ORM\Column(type="json", nullable=true)
      */
-    private ?string $opening;
+    private ?array $opening;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -61,10 +52,10 @@ class Provider extends User
     /**
      * @ORM\Column(type="json", nullable=true)
      */
-    private ?string $otherSite;
+    private ?array $otherSite;
 
     /**
-     * @ORM\Column(type="json", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private ?string $knowUs;
 
@@ -80,7 +71,7 @@ class Provider extends User
     private ?Description $description;
 
     /**
-     * @ORM\OneToOne(targetEntity=Contact::class, inversedBy="provider", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Contact::class, cascade={"persist", "remove"})
      */
     private ?Contact $contact;
 
@@ -90,9 +81,14 @@ class Provider extends User
     private Collection $products;
 
     /**
-     * @ORM\OneToMany(targetEntity=Files::class, mappedBy="provider", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=File::class, mappedBy="provider", orphanRemoval=true)
      */
     private Collection $files;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $picture;
 
 
     public function __construct()
@@ -102,31 +98,14 @@ class Provider extends User
         $this->files = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     public function getCompany(): ?string
     {
         return $this->company;
     }
 
-    public function setCompany(string $company): self
+    public function setCompany(?string $company): self
     {
         $this->company = $company;
-
-        return $this;
-    }
-
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(?string $picture): self
-    {
-        $this->picture = $picture;
 
         return $this;
     }
@@ -136,7 +115,7 @@ class Provider extends User
         return $this->socialReason;
     }
 
-    public function setSocialReason(string $socialReason): self
+    public function setSocialReason(?string $socialReason): self
     {
         $this->socialReason = $socialReason;
 
@@ -148,7 +127,7 @@ class Provider extends User
         return $this->siret;
     }
 
-    public function setSiret(int $siret): self
+    public function setSiret(?int $siret): self
     {
         $this->siret = $siret;
 
@@ -160,7 +139,7 @@ class Provider extends User
         return $this->vatNumber;
     }
 
-    public function setVatNumber(int $vatNumber): self
+    public function setVatNumber(?int $vatNumber): self
     {
         $this->vatNumber = $vatNumber;
 
@@ -169,10 +148,10 @@ class Provider extends User
 
     public function getOpening(): ?array
     {
-        return $this->opening ? json_decode($this->opening) : null;
+        return $this->opening;
     }
 
-    public function setOpening(?string $opening): self
+    public function setOpening(?array $opening): self
     {
         $this->opening = $opening;
 
@@ -194,19 +173,19 @@ class Provider extends User
 
     public function getOtherSite(): ?array
     {
-        return $this->otherSite ? json_decode($this->otherSite) : null;
+        return $this->otherSite;
     }
 
-    public function setOtherSite(?string $otherSite): self
+    public function setOtherSite(?array $otherSite): self
     {
         $this->otherSite = $otherSite;
 
         return $this;
     }
 
-    public function getKnowUs(): ?array
+    public function getKnowUs(): ?string
     {
-        return $this->knowUs ? json_decode($this->knowUs) : null;
+        return $this->knowUs;
     }
 
     public function setKnowUs(?string $knowUs): self
@@ -301,14 +280,14 @@ class Provider extends User
     }
 
     /**
-     * @return Collection|Files[]
+     * @return Collection|File[]
      */
     public function getFiles(): Collection
     {
         return $this->files;
     }
 
-    public function addFile(Files $file): self
+    public function addFile(File $file): self
     {
         if (!$this->files->contains($file)) {
             $this->files[] = $file;
@@ -318,7 +297,7 @@ class Provider extends User
         return $this;
     }
 
-    public function removeFile(Files $file): self
+    public function removeFile(File $file): self
     {
         if ($this->files->removeElement($file)) {
             // set the owning side to null (unless already changed)
@@ -328,5 +307,26 @@ class Provider extends User
         }
 
         return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+    public function serialize()
+    {
+        return serialize($this->id);
+    }
+
+    public function unserialize($data)
+    {
+        $this->id = unserialize($data);
     }
 }

@@ -1,0 +1,14 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        provider_files:
+    #        uri_prefix: /images/products
+            upload_destination: '%upload_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        img_product:
+            uri_prefix: /product
+            upload_destination: '%upload_directory%'
+            namer:
+                service: Vich\UploaderBundle\Naming\OrignameNamer
+

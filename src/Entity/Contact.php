@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ContactRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ContactRepository::class)
@@ -19,18 +20,26 @@ class Contact
 
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max="255",
+     *     maxMessage="L'adresse est trop longue, elle ne devrait pas dépasser {{ limit }} caractères")
      */
     private string $address;
 
-
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
+     * @Assert\Length(
+     *     max="50",
+     *     maxMessage="Le code postal est trop long")
      */
     private string $zipCode;
 
     /**
-     * @ORM\Column(type="string", length=90)
+     * @ORM\Column(type="string", length=90, nullable=true)
+     * @Assert\Length(
+     *     max="90",
+     *     maxMessage="Le nom de la ville est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
     private string $city;
 
@@ -46,16 +55,25 @@ class Contact
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
+     * @Assert\Length(
+     *     max="45",
+     *     maxMessage="Le numéro de téléphone est trop long")
      */
     private ?string $phone;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
+     * @Assert\Length(
+     *     max="45",
+     *     maxMessage="Le numéro de téléphone est trop long")
      */
     private ?string $phone2;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\Length(
+     *     max="100",
+     *     maxMessage="L'URL du site est trop longue")
      */
     private ?string $website;
 
@@ -234,5 +252,10 @@ class Contact
         $this->customer = $customer;
 
         return $this;
+    }
+
+    public function __sleep()
+    {
+        return [];
     }
 }

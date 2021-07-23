@@ -8,5 +8,16 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 
+import './js/search';
+import './js/map';
+import './js/concat-form';
+import './js/register-provider';
+import './js/register-customer';
+import './js/offer-variation-info';
+
 // start the Stimulus application
 import './bootstrap';
+
+const $ = require('jquery');
+
+window.bootstrap = require('bootstrap');

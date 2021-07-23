@@ -6,7 +6,8 @@ use App\Repository\OfferRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\Array_;
+use phpDocumentor\Reflection\Types\Null_;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=OfferRepository::class)
@@ -14,6 +15,7 @@ use phpDocumentor\Reflection\Types\Array_;
 class Offer
 {
     /**
+     * @Groups({"offer"})
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -40,7 +42,7 @@ class Offer
     /**
      * @ORM\Column(type="json", nullable=true)
      */
-    private ?string $language;
+    private ?array $language;
 
     /**
      * @ORM\ManyToOne(targetEntity=Provider::class, inversedBy="offers")
@@ -61,13 +63,26 @@ class Offer
 
 
     /**
-     * @ORM\OneToMany(targetEntity=OfferVariation::class, mappedBy="offer", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=OfferVariation::class, mappedBy="offer",
+     *     orphanRemoval=true, cascade={"persist", "remove"})
      */
     private Collection $offerVariations;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="offerId")
+     */
+    private Collection $categories;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Customer::class, mappedBy="favory")
+     */
+    private Collection $customers;
 
     public function __construct()
     {
         $this->offerVariations = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+        $this->customers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -114,11 +129,12 @@ class Offer
 
     public function getLanguage(): ?array
     {
-        return $this->language ? json_decode($this->language) : null;
+        return $this->language;
     }
 
-    public function setLanguage(?string $language): self
+    public function setLanguage(?array $language): self
     {
+
         $this->language = $language;
 
         return $this;
@@ -163,7 +179,7 @@ class Offer
     /**
      * @return Collection|OfferVariation[]
      */
-    public function getOfferVariations(): ?Collection
+    public function getOfferVariations(): Collection
     {
         return $this->offerVariations;
     }
@@ -185,6 +201,60 @@ class Offer
             if ($offerVariation->getOffer() === $this) {
                 $offerVariation->setOffer(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addOfferId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            $category->removeOfferId($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Customer[]
+     */
+    public function getCustomers(): Collection
+    {
+        return $this->customers;
+    }
+
+    public function addCustomer(Customer $customer): self
+    {
+        if (!$this->customers->contains($customer)) {
+            $this->customers[] = $customer;
+            $customer->addFavory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCustomer(Customer $customer): self
+    {
+        if ($this->customers->removeElement($customer)) {
+            $customer->removeFavory($this);
         }
 
         return $this;

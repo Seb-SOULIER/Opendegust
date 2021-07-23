@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\OfferVariationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=OfferVariationRepository::class)
@@ -11,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class OfferVariation
 {
     /**
+     * @Groups({"offerVariation"})
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -18,26 +22,31 @@ class OfferVariation
     private int $id;
 
     /**
+     * @Groups({"offerVariation"})
      * @ORM\Column(type="json")
      */
-    private ?string $priceVariation;
+    private array $priceVariation = [];
 
     /**
+     * @Groups({"offerVariation"})
      * @ORM\Column(type="integer")
      */
     private int $capacity;
 
     /**
+     * @Groups({"offerVariation"})
      * @ORM\Column(type="time")
      */
     private ?\DateTimeInterface $duration;
 
     /**
+     * @Groups({"offerVariation"})
      * @ORM\Column(type="integer")
      */
     private int $price;
 
     /**
+     * @Groups({"offerVariation"})
      * @ORM\Column(type="float")
      */
     private float $currentVat;
@@ -49,29 +58,42 @@ class OfferVariation
     private ?Offer $offer;
 
     /**
+     * @Groups({"offerVariation"})
      * @ORM\OneToOne(targetEntity=Booking::class, mappedBy="offerVariation", cascade={"persist", "remove"})
      */
     private ?Booking $booking;
 
     /**
-     * @ORM\OneToOne(targetEntity=Calendar::class, mappedBy="offerVariation", cascade={"persist", "remove"})
+     * @Groups({"offerVariation"})
+     * @ORM\OneToMany(targetEntity=Calendar::class, mappedBy="offerVariation", orphanRemoval=true,
+     *     cascade={"persist", "remove"})
      */
-    private ?Calendar $calendar;
+    private Collection $calendars;
 
+    /**
+     * @Groups({"offerVariation"})
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private ?int $availablePlaces;
+
+    public function __construct()
+    {
+        $this->calendars = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getPriceVariation(): ?string
+    public function getPriceVariation(): array
     {
-        return $this->priceVariation ? json_decode($this->priceVariation) : null;
+        return $this->priceVariation;
     }
 
-    public function setPriceVariation(?string $priceVariation): self
+    public function setPriceVariation(array $priceVariation): self
     {
-        $this->priceVariation = $priceVariation ;
+        $this->priceVariation = $priceVariation;
 
         return $this;
     }
@@ -158,19 +180,44 @@ class OfferVariation
         return $this;
     }
 
-    public function getCalendar(): ?Calendar
+    /**
+     * @return Collection|Calendar[]
+     */
+    public function getCalendars(): Collection
     {
-        return $this->calendar;
+        return $this->calendars;
     }
 
-    public function setCalendar(Calendar $calendar): self
+    public function addCalendar(Calendar $calendar): self
     {
-        // set the owning side of the relation if necessary
-        if ($calendar->getOfferVariation() !== $this) {
+        if (!$this->calendars->contains($calendar)) {
+            $this->calendars[] = $calendar;
             $calendar->setOfferVariation($this);
         }
 
-        $this->calendar = $calendar;
+        return $this;
+    }
+
+    public function removeCalendar(Calendar $calendar): self
+    {
+        if ($this->calendars->removeElement($calendar)) {
+            // set the owning side to null (unless already changed)
+            if ($calendar->getOfferVariation() === $this) {
+                $calendar->setOfferVariation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAvailablePlaces(): ?int
+    {
+        return $this->availablePlaces;
+    }
+
+    public function setAvailablePlaces(?int $availablePlaces): self
+    {
+        $this->availablePlaces = $availablePlaces;
 
         return $this;
     }

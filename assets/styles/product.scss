@@ -1,0 +1,27 @@
+.card-label-price{
+  overflow:hidden;
+  width:100%;
+}
+
+.label-price {
+  font-size: 1em;
+  width: 12rem;
+  background: $tag-premium-color;
+  position: absolute;
+  text-align: center;
+  line-height: 2;
+  letter-spacing: 1px;
+  color: #f0f0f0;
+  box-shadow: 0 0 .5rem rgba(0, 0, 0, .5);
+  top: 0.6rem;
+  right: -4.8rem;
+  left: auto;
+  transform: rotate(45deg);
+}
+
+@media screen and(max-width: 768px) {
+  .col.d-flex.mb-4.offer {
+    justify-content: center;
+    width: 70%;
+  }
+}
