@@ -12,4 +12,9 @@ vich_uploader:
             upload_destination: '%upload_directory%'
             namer:
                 service: Vich\UploaderBundle\Naming\OrignameNamer
+        img_offer:
+            uri_prefix: /offer
+            upload_destination: '%upload_directory%'
+            namer:
+                service: Vich\UploaderBundle\Naming\OrignameNamer
 

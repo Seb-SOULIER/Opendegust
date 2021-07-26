@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class OfferType extends AbstractType
 {
@@ -16,7 +17,13 @@ class OfferType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('picture')
+            ->add('imgOffer', VichFileType::class, [
+                'required' => false,
+//                'download_label' => new PropertyPath('picture'),
+                'allow_delete' => false,
+//                'delete_label' => 'Supprimer',
+                'download_uri' => false,
+            ])
             ->add('domainName')
             ->add('description', DescriptionType::class)
             ->add('contact', ContactProviderType::class)
@@ -43,7 +50,7 @@ class OfferType extends AbstractType
                 'allow_delete' => true,
             ])
             ->add('variation', ButtonType::class, [
-                'attr' => ['class' => 'btn btn-success', 'data-collection-holder-class' => 'variations'],
+                'attr' => ['class' => 'btn btn-success btn-pos', 'data-collection-holder-class' => 'variations'],
                 'label' => 'Ajouter une variation'
             ]);
     }
