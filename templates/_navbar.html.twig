@@ -16,7 +16,7 @@
 				<ul class="dropdown-menu dropdown-menu-end">
 					<li>
 						{% if is_granted('ROLE_PROVIDER') %}
-							<a href="{{ path("provider_edit", {id: app.user.id}) }}" class="dropdown-item">Mon compte</a>
+							<a href="{{ path("provider_edit") }}" class="dropdown-item">Mon compte</a>
 						{% elseif is_granted('ROLE_CUSTOMER') %}
 							<a href="{{ path("customer_edit", {id: app.user.id}) }}" class="dropdown-item">Mon Compte</a>
 						{% endif %}

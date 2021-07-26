@@ -15,10 +15,14 @@ class CalendarType extends AbstractType
     {
         $builder
             ->add('startAt', DatetimeType::class, [
+                'attr' => ['data-item-start-at' => ""],
                 'choice_translation_domain' => true,
                 'date_format' => 'ddMMMyyyy',
             ])
-            ->add('delete', ButtonType::class)
+            ->add('delete', ButtonType::class, [
+                'label' => 'Supprimer cette période',
+                'attr' => ['data-remove-item' => '.calendar'],
+            ])
         ;
     }
 

@@ -65,7 +65,8 @@ class OfferVariation
 
     /**
      * @Groups({"offerVariation"})
-     * @ORM\OneToMany(targetEntity=Calendar::class, mappedBy="offerVariation", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Calendar::class, mappedBy="offerVariation", orphanRemoval=true,
+     *     cascade={"persist", "remove"})
      */
     private Collection $calendars;
 
