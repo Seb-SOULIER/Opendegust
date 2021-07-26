@@ -108,6 +108,7 @@ class ProviderController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $provider->setEmail(null);
             $provider->setIsVerified(self::STATUS['DELETED']);
+
             $entityManager->flush();
         }
 

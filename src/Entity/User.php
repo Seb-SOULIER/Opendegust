@@ -92,6 +92,7 @@ abstract class User implements UserInterface, EquatableInterface
     private ?string $googleId;
 
     /**
+
      * @return int
      */
     public function getId(): int
@@ -224,10 +225,12 @@ abstract class User implements UserInterface, EquatableInterface
         return $this;
     }
 
+
     public function isVerified(): int
     {
         return $this->isVerified;
     }
+
 
     public function setIsVerified(int $isVerified): self
     {
