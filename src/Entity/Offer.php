@@ -86,11 +86,11 @@ class Offer
      */
     private Collection $customers;
 
-//    /**
-//     * @ORM\Column(type="datetime", nullable=true)
-//     */
-//    private ?\DateTimeInterface $updateAt;
-//
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?\DateTimeInterface $updateAt;
+
 
     public function __construct()
     {
@@ -286,25 +286,25 @@ class Offer
     {
         $this->imgOffer = $image;
         if ($image) {
-//            $this->updateAt = new DateTime('now');
+            $this->updateAt = new DateTime('now');
         }
         return $this;
     }
 
-//    /**
-//     * @return \DateTimeInterface|null
-//     */
-//    public function getUpdateAt(): ?\DateTimeInterface
-//    {
-//        return $this->updateAt;
-//    }
-//
-//    /**
-//     * @param \DateTimeInterface|null $updateAt
-//     */
-//    public function setUpdateAt(?\DateTimeInterface $updateAt): self
-//    {
-//        $this->updateAt = $updateAt;
-//        return $this;
-//    }
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function getUpdateAt(): ?\DateTimeInterface
+    {
+        return $this->updateAt;
+    }
+
+    /**
+     * @param \DateTimeInterface|null $updateAt
+     */
+    public function setUpdateAt(?\DateTimeInterface $updateAt): self
+    {
+        $this->updateAt = $updateAt;
+        return $this;
+    }
 }
