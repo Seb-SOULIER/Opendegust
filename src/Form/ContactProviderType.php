@@ -19,8 +19,12 @@ class ContactProviderType extends AbstractType
 //            ->add('longitude')
 //            ->add('latitude')
             ->add('phone', TextType::class)
-            ->add('phone2', TextType::class)
-            ->add('website', TextType::class)
+            ->add('phone2', TextType::class, [
+                'required' => false
+            ])
+            ->add('website', TextType::class, [
+                'required' => false
+            ])
 //            ->add('provider')
 //            ->add('offer')
 //            ->add('customer')

@@ -28,8 +28,12 @@ class CustomerType extends AbstractType
                 'first_options'  => ['label' => 'Email'],
                 'second_options' => ['label' => "Confirmation de l'email"],
             ])
-            ->add('lastname', TextType::class)
-            ->add('firstname', TextType::class)
+            ->add('lastname', TextType::class, [
+                'required' => false
+            ])
+            ->add('firstname', TextType::class, [
+                'required' => false
+            ])
             ->add('civility', ChoiceType::class, [
                 'choices'  => [
                     'Homme' => true,
@@ -40,6 +44,7 @@ class CustomerType extends AbstractType
             ->add('birthdate', BirthdayType::class, [
                 'html5'  => false,
                 'format' => 'ddMMyyyy',
+                'required' => false,
                 'placeholder' => [
                     'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'
                 ]
@@ -55,6 +60,7 @@ class CustomerType extends AbstractType
             ->add('gtc18', CheckboxType::class, [
                 'mapped' => false,
                 'label' => 'Je confirme avoir 18 ans ou plus',
+                'required' => false,
                 'constraints' => [
                     new IsTrue([
                         'message' => "Vous devez confirmer votre âge",

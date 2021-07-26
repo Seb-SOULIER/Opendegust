@@ -13,17 +13,23 @@ class ContactCustomerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('address', TextType::class)
-            ->add('zipCode', TextType::class)
-            ->add('city', TextType::class)
+            ->add('address', TextType::class, [
+                'required' => false
+            ])
+            ->add('zipCode', TextType::class, [
+                'required' => false
+            ])
+            ->add('city', TextType::class, [
+                'required' => false
+            ])
 //            ->add('longitude')
 //            ->add('latitude')
-            ->add('phone', TextType::class)
-            ->add('phone2', TextType::class)
-//            ->add('website', TextType::class)
-//            ->add('provider')
-//            ->add('offer')
-//            ->add('customer')
+            ->add('phone', TextType::class, [
+                'required' => false
+            ])
+            ->add('phone2', TextType::class, [
+                'required' => false
+            ])
         ;
     }
 
