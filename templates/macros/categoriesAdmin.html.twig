@@ -9,8 +9,8 @@
                     </li>
                     {% if (category.categories|length) %}
                         {{ _self.make_categories(category.categories) }}
+                    {% endif %}
                 </div>
-            {% endif %}
             </div>
         {% endfor %}
     </ul>

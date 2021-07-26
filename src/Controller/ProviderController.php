@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\File;
 use App\Entity\Product;
 use App\Entity\Provider;
 use App\Form\ProviderPwType;
@@ -20,6 +21,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class ProviderController extends AbstractController
 {
+    public const STATUS = [
+        'UNVERIFIED' => 0,
+        'VERIFIED' => 1,
+        'DELETED' => 2
+    ];
+
     private UserPasswordEncoderInterface $passwordEncoder;
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
@@ -100,7 +107,9 @@ class ProviderController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $provider->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($provider);
+            $provider->setEmail(null);
+            $provider->setIsVerified(self::STATUS['DELETED']);
+
             $entityManager->flush();
         }
 

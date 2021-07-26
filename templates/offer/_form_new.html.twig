@@ -34,8 +34,8 @@
                                 @todo Seb -> mettre en image a charger
                                 <div class="row g-3 d-md-flex justify-content-between">
                                     <div>
-                                        {{ form_label(form.picture, "Image :") }}
-                                        {{ form_widget(form.picture) }}
+                                        {{ form_label(form.imgOffer, "Image :") }}
+                                        {{ form_widget(form.imgOffer) }}
                                     </div>
                                 </div>
                                 @todo Seb -> alignement des checkbox
@@ -103,19 +103,11 @@
                         <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
                              aria-labelledby="panelsStayOpen-headingThree">
                             <div class="contact__content accordion-body">
-                                <button type="button" class="btn btn-primary btn-new" data-collection="#bars">New Bar</button>
-                                <div
-                                        id="bars"
-                                        class="row"
-                                        data-prototype="{{ include("offer/_baz.html.twig", {form: form.offerVariations.vars.prototype})|e("html_attr") }}"
-                                        data-index="{{ form.offerVariations|length > 0 ? form.offerVariations|last.vars.name + 1 : 0 }}">
-                                    <div id="conteneur">
-                                        <div class="fils"> {{ render((controller('App\\Controller\\OfferController::addcalendar'))) }} </div>
-                                    </div>
-                                </div>
+                                {{ form_widget(form.variation) }}
+                                {{ form_widget(form.offerVariations) }}
                             </div>
                         </div>
-                    </div>
+                    </div> <!-- /.variation -->
                 </div>
             </div>
         </div>
@@ -123,35 +115,75 @@
         {{ form_end(form) }}
     </div>
 
-    <script>
-        const newItem = (e) => {
-            const collectionHolder = document.querySelector(e.currentTarget.dataset.collection);
+<script>
+    const addFormToCollection = (target, collectionHolderClass) => {
+        // Get the ul that holds the collection of tags
 
-            const item = document.createElement("div");
-            item.classList.add("col-6");
-            item.innerHTML = collectionHolder
-                .dataset
-                .prototype
-                .replace(
-                    /__name__/g,
-                    collectionHolder.dataset.index
-                );
+        const collectionHolder = target.querySelector('.' + collectionHolderClass);
 
-            item.querySelector(".btn-remove").addEventListener("click", () => item.remove());
+        // Get the data-prototype explained earlier
+        const prototype = collectionHolder.getAttribute('data-prototype');
 
-            collectionHolder.appendChild(item);
+        // get the new index
+        const index = parseInt(collectionHolder.getAttribute('index'));
+        let newForm = prototype;
+        // You need this only if you didn't set 'label' => false in your tags field in TaskType
+        // Replace '__name__label__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        // newForm = newForm.replace(/__name__label__/g, index);
 
-            collectionHolder.dataset.index++;
-        };
+        // Replace '__name__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        newForm = newForm.replace(/__name__/g, index);
 
-        document
-            .querySelectorAll('.btn-remove')
-            .forEach(btn => btn.addEventListener("click", (e) => e.currentTarget.closest(".col-6").remove()));
+        // increase the index with one for the next item
+        collectionHolder.setAttribute('index', index + 1);
 
-        document
-            .querySelectorAll('.btn-new')
-            .forEach(btn => btn.addEventListener("click", newItem));
-    </script>
+        // Display the form in the page in an li, before the "Add a tag" link li
+        const fieldset = document.createElement('fieldset');
+        fieldset.innerHTML = newForm;
+        // Add the new form at the end of the list
+        collectionHolder.appendChild(fieldset);
+        initListenerAddItem(fieldset);
+        initListenerRemoveItem(fieldset);
+    }
 
+    const initCollection = (target, selector) => {
+        const dataItems = target.getAttribute('data-items');
+        const collection = target.querySelectorAll(selector);
+        collection.forEach((collectionHolder) => {
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            const index = collectionHolder.querySelectorAll(dataItems).length
+            collectionHolder.setAttribute('index', index);
+        });
+    }
 
+    const initListenerAddItem = (target) => {
+        const buttons = target.querySelectorAll('[data-collection-holder-class]');
+        buttons.forEach(function(button){
+            button.addEventListener('click', function(e) {
+                const collectionHolderClass = e.target.getAttribute('data-collection-holder-class');
+                // add a new tag form (see next code block)
+                addFormToCollection(target, collectionHolderClass);
+            })
+        });
+    }
 
+    const initListenerRemoveItem = (target) => {
+        const buttonsRemove = target.querySelectorAll('[data-remove-item]');
+        buttonsRemove.forEach(function(button){
+            button.addEventListener('click', (event) => {
+                const closestSelector = event.target.getAttribute('data-remove-item');
+                event.target.closest(closestSelector).remove();
+            })
+        })
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the ul that holds the collection of tags
+        initListenerAddItem(document);
+        initListenerRemoveItem(document);
+        initCollection(document, '[data-prototype]');
+    });
+</script>
