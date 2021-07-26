@@ -63,10 +63,11 @@ class ProviderType extends AbstractType
             ->add('contact', ContactProviderType::class, [
                 'by_reference' => false
             ])
-            ->add(
-                $builder
-                    ->create('otherSite', TextType::class)
-            )
+
+//            ->add(
+//                $builder
+//                    ->create('otherSite', TextType::class)
+//            )
             ->add('files', CollectionType::class, [
                 'entry_type' => FileType::class,
                 'required' => false,

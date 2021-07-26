@@ -39,13 +39,13 @@ class ProviderController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="provider_show", methods={"GET"})
+     * @Route("/show", name="provider_show", methods={"GET"})
      */
     public function show(
-        Provider $provider,
         ProductRepository $productRepository,
         OfferRepository $offerRepository
     ): Response {
+        $provider = $this->getUser();
         return $this->render('provider/show.html.twig', [
             'provider' => $provider,
             'products' => $productRepository->findBy(['provider' => $provider->getId()]),
@@ -54,10 +54,11 @@ class ProviderController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="provider_edit", methods={"GET","POST"})
+     * @Route("/edit", name="provider_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Provider $provider): Response
+    public function edit(Request $request): Response
     {
+        $provider = $this->getUser();
         $formPw = $this->createForm(ProviderPwType::class, $provider);
         $form = $this->createForm(ProviderType::class, $provider);
         $formPw->handleRequest($request);

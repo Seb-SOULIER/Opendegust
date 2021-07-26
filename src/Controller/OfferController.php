@@ -73,8 +73,8 @@ class OfferController extends AbstractController
             $entityManager->persist($offer);
             $entityManager->flush();
 
-            return $this->redirectToRoute('offer_edit',[
-                'id'=>$offer->getId(),
+            return $this->redirectToRoute('offer_edit', [
+                'id' => $offer->getId(),
             ]);
         }
 
@@ -118,20 +118,8 @@ class OfferController extends AbstractController
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
 
-        $offerVariation = new OfferVariation();
-        $offerVariation->setOffer($offer);
-        $formVariation = $this->createForm(OfferVariationType::class, $offerVariation);
-        $formVariation->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            $form->handleRequest($request);
-            return $this->redirectToRoute('offer_index');
-        }
-
-        if ($formVariation->isSubmitted() && $formVariation->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-            $formVariation->handleRequest($request);
             return $this->redirectToRoute('offer_index');
         }
 
@@ -139,7 +127,6 @@ class OfferController extends AbstractController
             'offer' => $offer,
             'form' => $form->createView(),
             'categories' => $categoryRepository->findByCategory(null),
-            'formVariation' => $formVariation->createView()
         ]);
     }
 

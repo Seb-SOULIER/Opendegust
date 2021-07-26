@@ -33,17 +33,19 @@ class OfferType extends AbstractType
                     'Espagnol' => 'Espagnol',
                     'Russe' => 'Russe',
                 ],
+            ])
+            ->add('offerVariations', CollectionType::class, [
+                'attr' => ['class' => 'variations', 'data-items' => '.calendars'],
+                'entry_type' => OfferVariationType::class,
+                'entry_options' => ['label' => false, 'attr' => ['class' => 'variation']],
+                'allow_add' => true,
+                'by_reference' => false,
+                'allow_delete' => true,
+            ])
+            ->add('variation', ButtonType::class, [
+                'attr' => ['class' => 'btn btn-success', 'data-collection-holder-class' => 'variations'],
+                'label' => 'Ajouter une variation'
             ]);
-//            ->add('offerVariations', CollectionType::class, [
-//                'entry_type' => OfferVariationType::class,
-//                'entry_options' => ['label' => false],
-//                'allow_add' => true,
-//                'by_reference' => false,
-//                'allow_delete' => true,
-//            ])
-//            ->add('Variation', ButtonType::class, [
-//            'attr' => ['class' => 'btn btn-success', 'data-collection-holder-class' => 'variations']
-//            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
