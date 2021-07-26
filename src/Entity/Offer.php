@@ -2,15 +2,18 @@
 
 namespace App\Entity;
 
+use DateTime;
 use App\Repository\OfferRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\Null_;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=OfferRepository::class)
+ * @Vich\Uploadable()
  */
 class Offer
 {
@@ -34,6 +37,11 @@ class Offer
      */
     private ?string $picture;
 
+    /**
+     * @Vich\UploadableField(mapping="img_product", fileNameProperty="picture")
+     * @var ?File
+     */
+    private ?File $imgOffer = null;
     /**
      * @ORM\Column(type="string", length=100)
      */
@@ -77,6 +85,12 @@ class Offer
      * @ORM\ManyToMany(targetEntity=Customer::class, mappedBy="favory")
      */
     private Collection $customers;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?\DateTimeInterface $updateAt;
+
 
     public function __construct()
     {
@@ -257,6 +271,40 @@ class Offer
             $customer->removeFavory($this);
         }
 
+        return $this;
+    }
+
+    /**
+     * @return ?File
+     */
+    public function getImgOffer(): ?File
+    {
+        return $this->imgOffer;
+    }
+
+    public function setImgOffer(?File $image = null): self
+    {
+        $this->imgOffer = $image;
+        if ($image) {
+            $this->updateAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function getUpdateAt(): ?\DateTimeInterface
+    {
+        return $this->updateAt;
+    }
+
+    /**
+     * @param \DateTimeInterface|null $updateAt
+     */
+    public function setUpdateAt(?\DateTimeInterface $updateAt): self
+    {
+        $this->updateAt = $updateAt;
         return $this;
     }
 }

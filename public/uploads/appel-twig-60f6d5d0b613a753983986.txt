@@ -1,0 +1,57 @@
+post controller
+
+<?php
+
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class PostController extends AbstractController
+{
+    /**
+     * @Route("/post", name="post")
+     */
+    public function index(): Response
+    {
+        return $this->render('post/index.html.twig', [
+            'controller_name' => 'PostController',
+        ]);
+    }
+
+    /**
+     *
+     */
+    public function lastPost($param): Response
+    {
+        return $this->render('post/last-post.html.twig', [
+            'param' => $param
+        ]);
+    }
+}
+
+
+templates
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <main>
+                    {% block main %}{% endblock %}
+                </main>
+            </div>
+            <div class="col-md-4">
+                <aside>{{ render(controller('App\\Controller\\PostController::lastPost', {param: 'text'})) }}</aside>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+<div class="example-wrapper">
+   <h2> Mes derniers posts</h2>
+   {{ param }}
+</div>
