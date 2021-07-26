@@ -46,7 +46,7 @@ class RegistrationController extends AbstractController
         Request $request,
         GuardAuthenticatorHandler $guardHandler,
         AppUserAuthenticator $authenticator
-    ): Response {
+    ): ?Response {
         $user = new Customer();
         $user->setRoles(['ROLE_CUSTOMER']);
         $contact = new Contact();
@@ -71,7 +71,7 @@ class RegistrationController extends AbstractController
                 'app_verify_email',
                 $user,
                 (new TemplatedEmail())
-                    ->from(new Address('mailer@your-domain.com', 'Mailer'))
+                    ->from($this->getParameter('mailer_from'))
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
@@ -101,7 +101,7 @@ class RegistrationController extends AbstractController
         Request $request,
         GuardAuthenticatorHandler $guardHandler,
         AppUserAuthenticator $authenticator
-    ): Response {
+    ): ?Response {
         $user = new Provider();
         $user->setRoles(['ROLE_PROVIDER']);
         $contact = new Contact();
@@ -128,7 +128,7 @@ class RegistrationController extends AbstractController
                 'app_verify_email',
                 $user,
                 (new TemplatedEmail())
-                    ->from(new Address('mailer@your-domain.com', 'Mailer'))
+                    ->from($this->getParameter('mailer_from'))
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
