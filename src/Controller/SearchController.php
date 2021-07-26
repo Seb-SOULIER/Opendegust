@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Offer;
 use App\Repository\CategoryRepository;
-use App\Repository\ContactRepository;
 use App\Repository\OfferRepository;
 use App\Service\Api;
 use Doctrine\ORM\EntityManagerInterface;
@@ -44,22 +43,27 @@ class SearchController extends AbstractController
         Api $api,
         CategoryRepository $categoryRepository,
         OfferRepository $offerRepository
-    ): Response {
+        ): Response {
 
         $query = $request->query->get('q');
+        $zoom = 11;
 
-        if (null !== $query) {
+        if (!$query) {
+            $localization = [0 => ['lat' => 46.16, 'lon' => 3.19619]];
+            $zoom = 5;
+        } else {
             $url = "https://nominatim.openstreetmap.org/search?q="
-            . $query . "&format=json&addressdetails=1&limit=1";
+                . $query . "&format=json&addressdetails=1&limit=1";
             $localization = $api->getResponse($url);
         }
 
-        $offers = $offerRepository->findFilter($request, $localization ?? []);
+        $offers = $offerRepository->findFilter($request, $localization ?? [0 => ['lat' => 46.16, 'lon' => 3.19619]]);
 
         return $this->render('search/index.html.twig', [
             'localization' => $localization ?? [],
             'offers' => $offers,
-            'categories' => $categoryRepository->findBy(['category' => null])
+            'categories' => $categoryRepository->findBy(['category' => null]),
+            'zoom' => $zoom
         ]);
     }
 
@@ -75,7 +79,6 @@ class SearchController extends AbstractController
             $url = "https://api-adresse.data.gouv.fr/search/?q=" . $query . "&limit=5&type=municipality";
             $localization = $api->getResponse($url);
         }
-
         return $this->json($localization ?? []);
     }
 }

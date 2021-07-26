@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Offer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -34,11 +35,16 @@ class OfferType extends AbstractType
                 ],
             ])
             ->add('offerVariations', CollectionType::class, [
+                'attr' => ['class' => 'variations', 'data-items' => '.calendars'],
                 'entry_type' => OfferVariationType::class,
-                'entry_options' => ['label' => false],
+                'entry_options' => ['label' => false, 'attr' => ['class' => 'variation']],
                 'allow_add' => true,
                 'by_reference' => false,
                 'allow_delete' => true,
+            ])
+            ->add('variation', ButtonType::class, [
+                'attr' => ['class' => 'btn btn-success', 'data-collection-holder-class' => 'variations'],
+                'label' => 'Ajouter une variation'
             ]);
     }
 

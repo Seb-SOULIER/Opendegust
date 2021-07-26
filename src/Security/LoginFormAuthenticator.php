@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Entity\Customer;
 use App\Entity\Provider;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -74,8 +75,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();
         }
-
-//        $user = $this->entityManager->getRepository(Provider::class)->findOneBy(['email' => $credentials['email']]);
+        $user = null;
         foreach ($this->userClasses as $userClass) {
             $repository = $this->entityManager->getRepository($userClass);
             $user = $repository->findOneByEmail($credentials['email']);

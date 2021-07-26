@@ -13,37 +13,36 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Provider extends User
 {
-
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
      * @Assert\Length(
      *     max="45",
      *     maxMessage="Le nom est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
-    private string $company;
+    private ?string $company;
 
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
      */
-    private string $socialReason;
+    private ?string $socialReason;
 
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private int $siret;
+    private ?int $siret;
 
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private int $vatNumber;
+    private ?int $vatNumber;
 
     /**
      * @ORM\Column(type="json", nullable=true)
      */
-    private ?string $opening;
+    private ?array $opening;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -53,7 +52,7 @@ class Provider extends User
     /**
      * @ORM\Column(type="json", nullable=true)
      */
-    private ?string $otherSite;
+    private ?array $otherSite;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -72,7 +71,7 @@ class Provider extends User
     private ?Description $description;
 
     /**
-     * @ORM\OneToOne(targetEntity=Contact::class, inversedBy="provider", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Contact::class, cascade={"persist", "remove"})
      */
     private ?Contact $contact;
 
@@ -104,7 +103,7 @@ class Provider extends User
         return $this->company;
     }
 
-    public function setCompany(string $company): self
+    public function setCompany(?string $company): self
     {
         $this->company = $company;
 
@@ -116,7 +115,7 @@ class Provider extends User
         return $this->socialReason;
     }
 
-    public function setSocialReason(string $socialReason): self
+    public function setSocialReason(?string $socialReason): self
     {
         $this->socialReason = $socialReason;
 
@@ -128,7 +127,7 @@ class Provider extends User
         return $this->siret;
     }
 
-    public function setSiret(int $siret): self
+    public function setSiret(?int $siret): self
     {
         $this->siret = $siret;
 
@@ -140,7 +139,7 @@ class Provider extends User
         return $this->vatNumber;
     }
 
-    public function setVatNumber(int $vatNumber): self
+    public function setVatNumber(?int $vatNumber): self
     {
         $this->vatNumber = $vatNumber;
 
@@ -149,10 +148,10 @@ class Provider extends User
 
     public function getOpening(): ?array
     {
-        return $this->opening ? json_decode($this->opening, true) : null;
+        return $this->opening;
     }
 
-    public function setOpening(?string $opening): self
+    public function setOpening(?array $opening): self
     {
         $this->opening = $opening;
 
@@ -174,10 +173,10 @@ class Provider extends User
 
     public function getOtherSite(): ?array
     {
-        return $this->otherSite ? json_decode($this->otherSite) : null;
+        return $this->otherSite;
     }
 
-    public function setOtherSite(?string $otherSite): self
+    public function setOtherSite(?array $otherSite): self
     {
         $this->otherSite = $otherSite;
 
@@ -320,5 +319,14 @@ class Provider extends User
         $this->picture = $picture;
 
         return $this;
+    }
+    public function serialize()
+    {
+        return serialize($this->id);
+    }
+
+    public function unserialize($data)
+    {
+        $this->id = unserialize($data);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Datetime;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -12,14 +13,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\MappedSuperclass()
  * @UniqueEntity(fields={"email"}, message="Cette adresse email existe déjà")
  */
-abstract class User implements UserInterface
+abstract class User implements UserInterface, EquatableInterface
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private int $id;
+    protected int $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -35,27 +36,27 @@ abstract class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private array $roles;
+    private array $roles = [];
 
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string", nullable=true)
      */
-    private ?string $password;
+    private ?string $password = null;
 
 //    private string $plainPassword;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private ?DateTime $registrationAt;
+    private DateTime $registrationAt;
 
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private int $civility;
+    private ?int $civility;
 
 
     /**
@@ -64,7 +65,7 @@ abstract class User implements UserInterface
      *     max="45",
      *     maxMessage="Le nom est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
-    private string $lastname;
+    private ?string $lastname;
 
 
     /**
@@ -83,12 +84,12 @@ abstract class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $facebookId;
+    private ?string $facebookId;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $googleId;
+    private ?string $googleId;
 
     /**
      * @return int
@@ -175,7 +176,7 @@ abstract class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getRegistrationAt(): ?DateTime
+    public function getRegistrationAt(): DateTime
     {
         return $this->registrationAt;
     }
@@ -192,7 +193,7 @@ abstract class User implements UserInterface
         return $this->civility;
     }
 
-    public function setCivility(int $civility): self
+    public function setCivility(?int $civility): self
     {
         $this->civility = $civility;
 
@@ -204,7 +205,7 @@ abstract class User implements UserInterface
         return $this->lastname;
     }
 
-    public function setLastname(string $lastname): self
+    public function setLastname(?string $lastname): self
     {
         $this->lastname = $lastname;
 
@@ -240,7 +241,7 @@ abstract class User implements UserInterface
         return $this->facebookId;
     }
 
-    public function setFacebookId(string $facebookId): self
+    public function setFacebookId(?string $facebookId): self
     {
         $this->facebookId = $facebookId;
         return $this;
@@ -251,10 +252,24 @@ abstract class User implements UserInterface
         return $this->googleId;
     }
 
-    public function setGoogleId(string $googleId): self
+    public function setGoogleId(?string $googleId): self
     {
         $this->googleId = $googleId;
 
         return $this;
+    }
+    public function serialize()
+    {
+        return serialize($this->id);
+    }
+
+    public function unserialize($data)
+    {
+        $this->id = unserialize($data);
+    }
+
+    public function isEqualTo(UserInterface $user)
+    {
+        return $user->getId() === $this->id;
     }
 }

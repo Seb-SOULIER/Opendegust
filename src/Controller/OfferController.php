@@ -49,6 +49,7 @@ class OfferController extends AbstractController
                 }
             }
         }
+
         return $this->render('offer/index.html.twig', [
             'offers' => $offers,
             'allOffers' => $allOffers,
@@ -67,16 +68,14 @@ class OfferController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $offer->setProvider($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($offer);
-            $offerVariations = $offer->getOfferVariations();
-            foreach ($offerVariations as $offerVariation) {
-                $offerVariation->setAvailablePlaces($offerVariation->getCapacity());
-            }
             $entityManager->persist($offer);
             $entityManager->flush();
 
-            return $this->redirectToRoute('offer_index');
+            return $this->redirectToRoute('offer_edit', [
+                'id' => $offer->getId(),
+            ]);
         }
 
         return $this->render('offer/new.html.twig', [
@@ -113,20 +112,14 @@ class OfferController extends AbstractController
     public function edit(
         Request $request,
         Offer $offer,
-        OfferVariation $offerVariation,
         CategoryRepository $categoryRepository
     ): Response {
+
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
 
-
-        $formVariation = $this->createForm(OfferVariationType::class, $offerVariation);
-        $formVariation->handleRequest($request);
-
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('offer_index');
         }
 
@@ -134,7 +127,6 @@ class OfferController extends AbstractController
             'offer' => $offer,
             'form' => $form->createView(),
             'categories' => $categoryRepository->findByCategory(null),
-            'formVariation' => $formVariation->createView()
         ]);
     }
 
@@ -210,10 +202,6 @@ class OfferController extends AbstractController
         $form = $this->createForm(OfferVariationType::class, $offerVariation);
         $form->handleRequest($request);
 
-        $calendar = new Calendar();
-        $formCalendar = $this->createForm(CalendarType::class, $calendar);
-        $formCalendar->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($offerVariation);
@@ -222,9 +210,32 @@ class OfferController extends AbstractController
             return $this->redirectToRoute('');
         }
 
-        return $this->render('offer/_form_date.html.twig', [
+        return $this->render('offer/_bar.html.twig', [
             'form' => $form->createView(),
-            'formCalendar' => $formCalendar->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/addcalendar", name="_addcalendar")
+     */
+    public function addcalendar(Request $request): Response
+    {
+        $calendar = new Calendar();
+
+        $form2 = $this->createForm(CalendarType::class, $calendar);
+        $form2->handleRequest($request);
+
+        if ($form2->isSubmitted() && $form2->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($calendar);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('');
+        }
+
+        return $this->render('offer/_baz.html.twig', [
+            'form2' => $form2->createView(),
+
         ]);
     }
 }

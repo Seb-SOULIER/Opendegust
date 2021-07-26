@@ -14,13 +14,16 @@ class CalendarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('startAt');
-//        , DatetimeType::class, [
-//                'choice_translation_domain' => true,
-//                'date_format' => 'ddMMMyyyy',
-//            ])
-//            ->add('delete', ButtonType::class)
-//        ;
+            ->add('startAt', DatetimeType::class, [
+                'attr' => ['data-item-start-at' => ""],
+                'choice_translation_domain' => true,
+                'date_format' => 'ddMMMyyyy',
+            ])
+            ->add('delete', ButtonType::class, [
+                'label' => 'Supprimer cette période',
+                'attr' => ['data-remove-item' => '.calendar'],
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

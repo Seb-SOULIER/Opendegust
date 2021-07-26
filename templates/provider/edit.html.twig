@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+    {% extends 'base.html.twig' %}
 
 {% block title %}Edit Provider{% endblock %}
 
@@ -31,7 +31,9 @@
                 <div class="accordion" id="accordionPanelsStayOpenExample">
                     <div class="account form-control my-3 py-3 accordion-item">
                         <h1 class="accordion-header" id="panelsStayOpen-headingOne">
-                            <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                            <button class="accordion-button text-center" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
+                                    aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                                 <h2 class="my-3 text-primary">Information du compte</h2>
                             </button>
                         </h1>
@@ -118,13 +120,13 @@
                                     {{ form_label(form.vatNumber, 'Numéro de TVA') }}
                                     {{ form_widget(form.vatNumber) }}
                                 </div>
-                                {{ form_label(form.files, 'Fichier') }}
+{#                                {{ form_label(form.files, 'Fichier') }}#}
 {#                                {{ form_widget(form.files) }}#}
                                 <div class="d-md-flex justify-content-center">
                                     <div class="col-md-8">
-                                        {{ form_label(form.otherSite, "Déjà inscrit sur d'autres sites?") }}
-                                        {{ form_errors(form.otherSite) }}
-                                        {{ form_widget(form.otherSite, {'attr': {'placeholder': 'abc.com, chouette.fr ...'}}) }}
+{#                                        {{ form_label(form.otherSite, "Déjà inscrit sur d'autres sites?") }}#}
+{#                                        {{ form_errors(form.otherSite) }}#}
+{#                                        {{ form_widget(form.otherSite, {'attr': {'placeholder': 'abc.com, chouette.fr ...'}}) }}#}
                                     </div>
                                 </div>
                             </div>

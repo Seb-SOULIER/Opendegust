@@ -153,4 +153,13 @@ class Customer extends User
     {
         return $this->favory->contains($offer);
     }
+    public function serialize()
+    {
+        return serialize($this->id);
+    }
+
+    public function unserialize($data)
+    {
+        $this->id = unserialize($data);
+    }
 }

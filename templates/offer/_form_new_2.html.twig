@@ -1,0 +1,173 @@
+<div class="row">
+{{ form_start(form, {'attr': {'class': 'd-flex align-items-center flex-column'}}) }}
+    <div class="col-11 col-sm-9 col-xl-8 my-3">
+        <div class="provider__form w-100">
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="account form-control my-3 py-3 accordion-item">
+                    <h1 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button text-center" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapseOne">
+                            <h2 class="my-3 text-primary">Offre</h2>
+                        </button>
+                    </h1>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                         aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="account__content accordion-body">
+                            <div>
+                                {{ form_errors(form.name) }}
+                                {{ form_label(form.name, "Nom :") }}
+                                {{ form_widget(form.name) }}
+                            </div>
+                            <div class="row g-3 d-md-flex justify-content-between">
+                                <div>
+                                    {{ form_label(form.description.shortDescription, "Description courte :") }}
+                                    {{ form_widget(form.description.shortDescription) }}
+                                </div>
+                            </div>
+                            <div class="row g-3 d-md-flex justify-content-between">
+                                <div>
+                                    {{ form_label(form.description.longDescription, "Description longue :") }}
+                                    {{ form_widget(form.description.longDescription) }}
+                                </div>
+                            </div>
+{#                            @todo Seb -> mettre en image a charger#}
+                            <div class="row g-3 d-md-flex justify-content-between">
+                                <div>
+                                    {{ form_label(form.picture, "Image :") }}
+                                    {{ form_widget(form.picture) }}
+                                </div>
+                            </div>
+{#                            @todo Seb -> alignement des checkbox#}
+                            <div class="row g-3 d-md-flex justify-content-between">
+                                <div>
+                                    {{ form_label(form.language, "Langues :") }}
+                                    {{ form_widget(form.language) }}
+                                </div>
+                            </div>
+{#                            @todo Seb -> category checkbox#}
+                        </div>
+                    </div>
+                </div> <!-- /.Offre -->
+                <div class="favourites form-control py-3 my-3 accordion-item">
+                    <span class="h1 accordion-header" id="panelsStayOpen-headingTwo">
+                        <button class="accordion-button collapsed text-center" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo"
+                                aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                            <span class="h2 my-3 text-primary">Domaine</span>
+                        </button>
+                    </span>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                         aria-labelledby="panelsStayOpen-headingTwo">
+                        <div class="favourites__content accordion-body">
+                            <div>
+                                {{ form_errors(form.domainName) }}
+                                {{ form_label(form.domainName, "Nom du Domaine :") }}
+                                {{ form_widget(form.domainName) }}
+                            </div>
+                            <div>
+                                {{ form_errors(form.contact.zipCode) }}
+                                {{ form_label(form.contact.zipCode, "Code Postal :") }}
+                                {{ form_widget(form.contact.zipCode) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.contact.city, "Ville :") }}
+                                {{ form_widget(form.contact.city) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.contact.address, "Adresse :") }}
+                                {{ form_widget(form.contact.address) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.contact.phone, "Numéro de téléphone :") }}
+                                {{ form_widget(form.contact.phone) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.contact.phone2, "Autre numéro :") }}
+                                {{ form_widget(form.contact.phone2) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.contact.website, "Site Web :") }}
+                                {{ form_widget(form.contact.website) }}
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- /.Domaine -->
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary mt-3 col-12 col-md-6 text-light">{{ button_label|default('Enregistrer et configurer les variations') }}</button>
+    {{ form_end(form) }}
+</div>
+<script>
+    const addFormToCollection = (target, collectionHolderClass) => {
+        // Get the ul that holds the collection of tags
+
+        const collectionHolder = target.querySelector('.' + collectionHolderClass);
+
+        // Get the data-prototype explained earlier
+        const prototype = collectionHolder.getAttribute('data-prototype');
+
+        // get the new index
+        const index = parseInt(collectionHolder.getAttribute('index'));
+        let newForm = prototype;
+        // You need this only if you didn't set 'label' => false in your tags field in TaskType
+        // Replace '__name__label__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        // newForm = newForm.replace(/__name__label__/g, index);
+
+        // Replace '__name__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        newForm = newForm.replace(/__name__/g, index);
+
+        // increase the index with one for the next item
+        collectionHolder.setAttribute('index', index + 1);
+
+        // Display the form in the page in an li, before the "Add a tag" link li
+        const fieldset = document.createElement('fieldset');
+        fieldset.innerHTML = newForm;
+        // Add the new form at the end of the list
+        collectionHolder.appendChild(fieldset);
+        initListenerAddItem(fieldset);
+        initListenerRemoveItem(fieldset);
+    }
+
+    const initCollection = (target, selector) => {
+        const dataItems = target.getAttribute('data-items');
+        const collection = target.querySelectorAll(selector);
+        collection.forEach((collectionHolder) => {
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            const index = collectionHolder.querySelectorAll(dataItems).length
+            collectionHolder.setAttribute('index', index);
+        });
+    }
+
+    const initListenerAddItem = (target) => {
+        const buttons = target.querySelectorAll('[data-collection-holder-class]');
+        buttons.forEach(function(button){
+            button.addEventListener('click', function(e) {
+                const collectionHolderClass = e.target.getAttribute('data-collection-holder-class');
+                // add a new tag form (see next code block)
+                addFormToCollection(target, collectionHolderClass);
+            })
+        });
+    }
+
+    const initListenerRemoveItem = (target) => {
+        const buttonsRemove = target.querySelectorAll('[data-remove-item]');
+        buttonsRemove.forEach(function(button){
+            button.addEventListener('click', (event) => {
+                const closestSelector = event.target.getAttribute('data-remove-item');
+                event.target.closest(closestSelector).remove();
+            })
+        })
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the ul that holds the collection of tags
+        initListenerAddItem(document);
+        initListenerRemoveItem(document);
+        initCollection(document, '[data-prototype]');
+    });
+</script>
