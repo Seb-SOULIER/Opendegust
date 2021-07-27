@@ -6,18 +6,17 @@ use App\Entity\Contact;
 use App\Entity\Customer;
 use App\Entity\Description;
 use App\Entity\Provider;
-use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Security\AppUserAuthenticator;
 use App\Security\EmailVerifier;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
-use Symfony\Component\Mime\Message;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use DateTime;
 
@@ -43,8 +42,11 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register-customer", name="app_register_customer", methods={"POST", "GET"})
      */
-    public function registerCustomer(Request $request): Response
-    {
+    public function registerCustomer(
+        Request $request,
+        GuardAuthenticatorHandler $guardHandler,
+        AppUserAuthenticator $authenticator
+    ): ?Response {
         $user = new Customer();
         $user->setRoles(['ROLE_CUSTOMER']);
         $contact = new Contact();
@@ -69,14 +71,19 @@ class RegistrationController extends AbstractController
                 'app_verify_email',
                 $user,
                 (new TemplatedEmail())
-                    ->from(new Address('mailer@your-domain.com', 'Mailer'))
+                    ->from($this->getParameter('mailer_from'))
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('home');
+            return $guardHandler->authenticateUserAndHandleSuccess(
+                $user,
+                $request,
+                $authenticator,
+                'main' // firewall name in security.yaml
+            );
         } elseif ($form->isSubmitted() && !$form->isValid()) {
             $this->addFlash('danger', 'Identifiants invalides');
             return $this->redirectToRoute('register');
@@ -90,8 +97,11 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register-provider", name="app_register_provider", methods={"POST", "GET"})
      */
-    public function registerProvider(Request $request): Response
-    {
+    public function registerProvider(
+        Request $request,
+        GuardAuthenticatorHandler $guardHandler,
+        AppUserAuthenticator $authenticator
+    ): ?Response {
         $user = new Provider();
         $user->setRoles(['ROLE_PROVIDER']);
         $contact = new Contact();
@@ -118,14 +128,19 @@ class RegistrationController extends AbstractController
                 'app_verify_email',
                 $user,
                 (new TemplatedEmail())
-                    ->from(new Address('mailer@your-domain.com', 'Mailer'))
+                    ->from($this->getParameter('mailer_from'))
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('home');
+            return $guardHandler->authenticateUserAndHandleSuccess(
+                $user,
+                $request,
+                $authenticator,
+                'main' // firewall name in security.yaml
+            );
         } elseif ($form->isSubmitted() && !$form->isValid()) {
             $this->addFlash('danger', 'Identifiants invalides');
             return $this->redirectToRoute('register');

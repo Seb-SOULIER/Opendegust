@@ -77,7 +77,7 @@ class CustomerController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $customer->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($customer);
+            $customer->setEmail("");
             $entityManager->flush();
         }
 

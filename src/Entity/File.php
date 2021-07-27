@@ -22,14 +22,9 @@ class File
     private int $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private string $fileName;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $filePath;
+    private ?string $fileName;
 
     /**
      * @ORM\ManyToOne(targetEntity=Provider::class, inversedBy="files")
@@ -46,7 +41,7 @@ class File
     /**
      * @Vich\UploadableField(mapping="provider_files", fileNameProperty="fileName")
      */
-    private ?CoreFile $providerFile;
+    private ?CoreFile $providerFile = null;
 
     public function getId(): ?int
     {
@@ -65,18 +60,6 @@ class File
         return $this;
     }
 
-    public function getFilePath(): ?string
-    {
-        return $this->filePath;
-    }
-
-    public function setFilePath(string $filePath): self
-    {
-        $this->filePath = $filePath;
-
-        return $this;
-    }
-
     public function getProvider(): ?Provider
     {
         return $this->provider;
@@ -85,7 +68,6 @@ class File
     public function setProvider(?Provider $provider): self
     {
         $this->provider = $provider;
-
         return $this;
     }
 
