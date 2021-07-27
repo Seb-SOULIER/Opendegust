@@ -8,13 +8,17 @@
 		class="color-body-for-provider">
 		<h2 class="text-center">{{ provider.firstname }}
 			{{ provider.lastname }}</h2>
+		{% if provider.picture %}
 		<div class="container text-center">
 				<img class="profil-picture w-50" src="{{ provider.picture }}" alt="">
 		</div>
+		{% endif %}
+		{% if provider.description.longDescription %}
 			<div class="bio-provider">
 				<h3>Biographie</h3>
 				<p>{{ provider.description.longDescription }}</p>
 			</div>
+		{% endif %}
 
 
 		<div class="accordion accordion-flush-contact" id="accordionFlushExample">
@@ -28,33 +32,44 @@
 					<div class="accordion-body">
 						<div class="row">
 							<div class="col-12 col-sm-6">
+								{% if provider.company %}
 								<div>
 									<h5>Nom de l'entreprise</h5>
 									<p>{{ provider.company }}</p>
 								</div>
+								{% endif %}
+								{% if provider.socialReason %}
 								<div>
 									<h5>Type</h5>
 									<p>{{ provider.socialReason }}</p>
 								</div>
+								{% endif %}
 								<div>
 									<h5>Vérifiée ?</h5>
 									<p>{{ provider.isVerified }}</p>
 								</div>
+								{% if provider.monthlyFrequentation %}
 								<div>
 									<h5>Fréquentation</h5>
 									<p>{{ provider.monthlyFrequentation }}</p>
 								</div>
+								{% endif %}
 							</div>
 
 							<div class="col-12 col-sm-6">
+								{% if provider.siret %}
 								<div>
 									<h5>N° SIRET</h5>
 									<p>{{ provider.siret }}</p>
 								</div>
+								{% endif %}
+								{% if provider.vatNumber %}
 								<div>
 									<h5>N° TVA</h5>
 									<p>{{ provider.vatNumber }}</p>
 								</div>
+								{% endif %}
+								{% if provider.otherSite %}
 								<div>
 									<h5>Autres Sites</h5>
 									{% for provider_site in provider.otherSite %}
@@ -63,10 +78,13 @@
 										</p>
 									{% endfor %}
 								</div>
+								{% endif %}
+								{% if provider.knowUs %}
 								<div>
 									<h5>Comment avez-vous connu ce site ?</h5>
 									<p>{{ provider.knowUs ? provider.knowUs|json_encode : '' }}</p>
 								</div>
+								{% endif %}
 							</div>
 						</div>
 					</div>
@@ -89,28 +107,38 @@
 											<p>{{ provider.email }}</p>
 										</a>
 									</div>
+									{% if provider.contact.phone %}
 									<div>
 										<h5>Numéro de Téléphone</h5>
 										<p>{{ provider.contact.phone }}</p>
 									</div>
+									{% endif %}
+									{% if provider.contact.phone2 %}
 									<div>
 										<h5>Numéro Portable</h5>
 										<p>{{ provider.contact.phone2 }}</p>
 									</div>
+									{% endif %}
 								</div>
 								<div class="col-12 col-sm-6">
+									{% if provider.contact.city %}
 									<div>
 										<h5>Ville</h5>
 										<p>{{ provider.contact.city }}</p>
 									</div>
+									{% endif %}
+									{% if provider.contact.zipCode %}
 									<div>
 										<h5>Code Postal</h5>
 										<p>{{ provider.contact.zipCode }}</p>
 									</div>
+									{% endif %}
+									{% if provider.contact.website %}
 									<div>
 										<h5>Site web</h5>
 										<p>{{ provider.contact.website }}</p>
 									</div>
+									{% endif %}
 								</div>
 							</div>
 						</div>
