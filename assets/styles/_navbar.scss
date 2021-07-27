@@ -1,66 +1,66 @@
-@media screen and(max-width: 576px) {
-    .navbar.navbar-expand-lg.navbar-light.bg-light.justify-content-between {
-        display: block;
+.search-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-b {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-brand {
+    height: 9vh;
+    width: 50%;
+    .img-navbrand {
+        height: 9vh;
+        width: 17rem;
     }
 }
 
-.navbar.navbar-expand-lg.navbar-light.bg-light.justify-content-between {
-    z-index: 900;
+@media only screen and(min-width: 992px){
+    .navbar-brand {
+        height: 9vh;
+        width: 30%;
+        .img-navbrand {
+            width: 17rem;
+        }
+    }
+    .search-b {
+        width: 60%;
+    }
 }
 
-.img-navbrand {
-    width: 17rem;
-}
-
-.icon-user {
-    height: 10vh;
-}
-
-.fa-user:before {
-    position:relative;
-    top: 31%;
-    font-size: 2.3rem;
-}
-@media screen and(max-width:576px) {
-    .connexion-nav-reponsive {
-        width: 100%;
-        text-align: center;
-        padding-top: 10px;
+@media only screen and(max-width: 992px){
+    .connect {
+        align-items: center;
+        flex-direction: column;
+    }
+    .search {
+        font-size: 15px;
     }
 }
 
 .search-barre {
-    min-width: 35%;
-}
-@media screen and(max-width: 576px) {
-    .search-barre {
-        width: 100%;
-    }
+    width: 100%;
 }
 
 form.search-home {
-    font-family: Georgia;
+    font-family: Georgia, sans-serif;
     text-shadow: black 0.1rem 0.1rem;
     width: 100%;
 }
 @media screen and(max-width: 576px) {
     form.search-home {
         justify-content: center;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        width: 80%;
-        margin-right: auto;
-        margin-left: auto;
+        margin: 20px auto 10px auto;
     }
 }
 @media screen and(max-width: 215px) {
     form.search-home {
         justify-content: center;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        width: 95%;
-        margin-right: auto;
-        margin-left: auto;
+        margin: 20px auto 10px auto;
     }
 }
 
@@ -74,18 +74,16 @@ input.write {
 @media screen and(max-width: 576px) {
     .input.write {
         border-radius: 50px;
-    border: 1px solid #59ae52;
-    text-align: center;
-    width: 80%;
-    font-size: 0.9rem;
+        border: 1px solid #59ae52;
+        text-align: center;
+        width: 80%;
+        font-size: 0.9rem;
     }
 }
 
 button.research {
     border-radius: 50px;
-    background: linear-gradient(
-90deg
-, #91de8a 4%, #63de59 46%, #8caf89 89%);
+    background: linear-gradient(90deg, #91de8a 4%, #63de59 46%, #8caf89 89%);
     color: white;
     min-width: 8%;
     border: none
@@ -126,7 +124,6 @@ ul.autocomplete {
     background-color: rgba(255, 255, 255, 0.7);
     font-size: 1.25rem;
     border-radius: 6px 6px 30px 30px;
-    width: 28%;
     }
 }
 @media screen and(max-width: 576px) {
@@ -138,7 +135,6 @@ ul.autocomplete {
     text-align: left;
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 6px 6px 30px 30px;
-    width: 61%;
     font-size: 1rem;
     padding-left: 5px;
     left: 3rem;
@@ -153,7 +149,6 @@ ul.autocomplete {
     text-align: left;
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 6px 6px 30px 30px;
-    width: 57%;
     font-size: 1rem;
     padding-left: 5px;
     left: 2rem;
@@ -168,7 +163,6 @@ ul.autocomplete {
     text-align: left;
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 6px 6px 30px 30px;
-    width: 65%;
     font-size: 1rem;
     padding-left: 5px;
     left: 1rem;
