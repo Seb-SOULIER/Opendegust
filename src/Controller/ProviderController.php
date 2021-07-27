@@ -108,7 +108,7 @@ class ProviderController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $provider->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $provider->setEmail("");
-            $provider->setIsVerified(self::STATUS['DELETED']);
+            $provider->setStatus(self::STATUS['DELETED']);
 
             $entityManager->flush();
         }
