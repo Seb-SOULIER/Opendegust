@@ -77,9 +77,9 @@ abstract class User implements UserInterface, EquatableInterface
     private ?string $firstname;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
-    private int $isVerified = 0;
+    private bool $isVerified = false;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -226,13 +226,13 @@ abstract class User implements UserInterface, EquatableInterface
     }
 
 
-    public function isVerified(): int
+    public function isVerified(): bool
     {
         return $this->isVerified;
     }
 
 
-    public function setIsVerified(int $isVerified): self
+    public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
 
