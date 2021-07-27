@@ -24,7 +24,7 @@ class File
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $fileName;
+    private ?string $fileName = null;
 
     /**
      * @ORM\ManyToOne(targetEntity=Provider::class, inversedBy="files")

@@ -16,11 +16,11 @@ class OfferVariationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-//            ->add('priceVariation')
             ->add('duration')
             ->add('price', MoneyType::class)
             ->add('currentVat', PercentType::class)
             ->add('capacity')
+
             ->add('calendars', CollectionType::class, [
                 'attr' => ['class' => 'calendars', 'data-items' => "[data-item-start-at]"],
                 'entry_type' => CalendarType::class,

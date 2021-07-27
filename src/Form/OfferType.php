@@ -41,6 +41,11 @@ class OfferType extends AbstractType
                     'Russe' => 'Russe',
                 ],
             ])
+            ->add('variation', ButtonType::class, [
+                'attr' => ['class' => 'btn btn-success btn-pos', 'data-collection-holder-class' => 'variations'],
+                'label' => 'Ajouter une variation'
+            ])
+
             ->add('offerVariations', CollectionType::class, [
                 'attr' => ['class' => 'variations', 'data-items' => '.calendars'],
                 'entry_type' => OfferVariationType::class,
@@ -48,11 +53,10 @@ class OfferType extends AbstractType
                 'allow_add' => true,
                 'by_reference' => false,
                 'allow_delete' => true,
-            ])
-            ->add('variation', ButtonType::class, [
-                'attr' => ['class' => 'btn btn-success btn-pos', 'data-collection-holder-class' => 'variations'],
-                'label' => 'Ajouter une variation'
             ]);
+
+
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
