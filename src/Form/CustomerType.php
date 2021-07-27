@@ -60,7 +60,7 @@ class CustomerType extends AbstractType
             ->add('gtc18', CheckboxType::class, [
                 'mapped' => false,
                 'label' => 'Je confirme avoir 18 ans ou plus',
-                'required' => false,
+                'required' => true,
                 'constraints' => [
                     new IsTrue([
                         'message' => "Vous devez confirmer votre âge",

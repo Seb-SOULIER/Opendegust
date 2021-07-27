@@ -1,43 +1,50 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
-	<a href="{{ path("home") }}">
-		<img src="{{ asset('build/images/logo.png') }}" class="px-2 img-navbrand img-fluid min-vh-75" alt="logo open degust"></a>
-{% include "search-barre/search.html.twig" %}
-
-	<div class="connexion-nav-reponsive">
-		{% if is_granted('ROLE_USER') %}
-			<div class="btn-group">
-				<button type="button" class="btn btn-outline-primary me-3" data-bs-toggle="dropdown" aria-expanded="false">
-					{% if app.user.firstname %}
-						{{ app.user.firstname }}
-					{% else %}
-						Complete ton profil
-					{% endif %}
-				</button>
-				<ul class="dropdown-menu dropdown-menu-end">
-					<li>
-						{% if is_granted('ROLE_PROVIDER') %}
-							<a href="{{ path("provider_edit") }}" class="dropdown-item">Mon compte</a>
-						{% elseif is_granted('ROLE_CUSTOMER') %}
-							<a href="{{ path("customer_edit", {id: app.user.id}) }}" class="dropdown-item">Mon Compte</a>
+	<div class="container-fluid">
+		<a class="navbar-brand" href="{{ path("home") }}">
+			<img src="{{ asset('build/images/logo.png') }}" class="px-2 img-navbrand" alt="logo open degust">
+		</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav w-100 mb-2 mb-lg-0">
+				<li class="nav-item search-b">
+					{% include "search-barre/search.html.twig" %}
+				</li>
+				{% if is_granted('ROLE_USER') %}
+				<li class="nav-item dropdown d-flex ms-auto me-3">
+					<a class="nav-link dropdown-toggle mt-2 mt-lg-0" href="#"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						{% if app.user.firstname %}
+							<span class="me-0 me-lg-5">{{ app.user.firstname }}</span>
+						{% else %}
+							Complète ton profil
 						{% endif %}
-					</li>
-					{% if is_granted('ROLE_PROVIDER') %}
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<li>
+							{% if is_granted('ROLE_PROVIDER') %}
+								<a href="{{ path("provider_edit") }}" class="dropdown-item">Mon compte</a>
+							{% elseif is_granted('ROLE_CUSTOMER') %}
+								<a href="{{ path("customer_edit", {id: app.user.id}) }}" class="dropdown-item">Mon Compte</a>
+							{% endif %}
+						</li>
+						{% if is_granted('ROLE_PROVIDER') %}
 						<li>
 							<a href="{{ path("offer_index") }}" class="dropdown-item">Mes Offres</a>
 						</li>
 						<li>
 							<a href="{{ path("product_index") }}" class="dropdown-item">Mes Produits</a>
 						</li>
-					{% endif %}
-					{% if is_granted('ROLE_CUSTOMER') %}
+						{% endif %}
+						{% if is_granted('ROLE_CUSTOMER') %}
 						<li>
 							<a href="{{ path("booking") }}" class="dropdown-item">Mes réservations</a>
 						</li>
 						<li>
 							<a href="{{ path("customer_favorite", {id: app.user.id}) }}" class="dropdown-item">Mes Favoris</a>
 						</li>
-					{% endif %}
-					{% if is_granted('ROLE_ADMIN') %}
+						{% endif %}
+						{% if is_granted('ROLE_ADMIN') %}
 						<li>
 							<a href="{{ path("admin_index") }}" class="dropdown-item">Producteurs</a>
 						</li>
@@ -50,17 +57,19 @@
 						<li>
 							<a href="{{ path("category_index") }}" class="dropdown-item">Categories</a>
 						</li>
-					{% endif %}
-					<li>
-						<a href="{{ path("app_logout") }}" class="dropdown-item" style="border-top: 2px solid">Se Déconnecter</a>
-					</li>
-				</ul>
-			</div>
-
-
-		{% else %}
-			<a href="{{ path("register") }}" class="btn btn-outline-primary me-3">S'inscrire</a>
-			<a href="{{ path("app_login") }}" class="btn btn-outline-primary me-3">Se Connecter</a>
-		{% endif %}
+						{% endif %}
+						<li>
+							<a href="{{ path("app_logout") }}" class="dropdown-item" style="border-top: 2px solid">Se Déconnecter</a>
+						</li>
+					</ul>
+				</li>
+				{% else %}
+				<div class="d-flex ms-lg-auto connect">
+					<a href="{{ path("register") }}" class="btn btn-outline-primary px-lg-3 me-3 mt-3 mt-lg-0">S'inscrire</a>
+					<a href="{{ path("app_login") }}" class="btn btn-outline-primary px-lg-3 me-3 mt-3 mt-lg-0">Se Connecter</a>
+				</div>
+				{% endif %}
+			</ul>
+		</div>
 	</div>
 </nav>

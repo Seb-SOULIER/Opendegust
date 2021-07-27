@@ -44,13 +44,13 @@ class ProviderController extends AbstractController
     }
 
     /**
-     * @Route("/show", name="provider_show", methods={"GET"})
+     * @Route("/show/{id}", name="provider_show")
      */
     public function show(
         ProductRepository $productRepository,
-        OfferRepository $offerRepository
+        OfferRepository $offerRepository,
+        Provider $provider
     ): Response {
-        $provider = $this->getUser();
         return $this->render('provider/show.html.twig', [
             'provider' => $provider,
             'products' => $productRepository->findBy(['provider' => $provider->getId()]),
@@ -106,7 +106,7 @@ class ProviderController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $provider->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $provider->setEmail(null);
+            $provider->setEmail("");
             $provider->setIsVerified(self::STATUS['DELETED']);
             $entityManager->flush();
         }

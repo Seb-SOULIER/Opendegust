@@ -9,9 +9,12 @@
         <div class="text-danger">
             {{ form_errors(formPw.password.first) }}
         </div>
-        <div class="row d-flex">
+        <div class="row d-flex align-items-end">
             <div class="col-md-4">
-                {{ form_label(formPw.password.first) }}
+                {{ form_label(formPw.password.first, 'Mot de passe', {
+                    'label_attr': {'class': 'mb-0'}
+                }) }}
+                <br><small class="text-muted">Au moins 6 caractères</small>
                 {{ form_widget(formPw.password.first) }}
             </div>
             <div class="col-md-4">
