@@ -54,9 +54,7 @@
 			const selector = document.querySelectorAll('.check');
 			selector.forEach((element) => {
 					element.addEventListener('click', (event) => {
-
 						const providerId = event.target.getAttribute('id');
-						console.log(providerId)
 						fetch(`/admin/validate/${providerId}`)
 							.then()
 					})
