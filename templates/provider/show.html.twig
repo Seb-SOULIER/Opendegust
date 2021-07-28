@@ -4,14 +4,13 @@
 {% endblock %}
 
 {% block body %}
-	<div
-		class="color-body-for-provider">
+	<div class="color-body-for-provider">
 		<h2 class="text-center">{{ provider.firstname }}
 			{{ provider.lastname }}</h2>
 		{% if provider.picture %}
-		<div class="container text-center">
+			<div class="container text-center">
 				<img class="profil-picture w-50" src="{{ provider.picture }}" alt="">
-		</div>
+			</div>
 		{% endif %}
 		{% if provider.description.longDescription %}
 			<div class="bio-provider">
@@ -33,63 +32,71 @@
 						<div class="row">
 							<div class="col-12 col-sm-6">
 								{% if provider.company %}
-								<div>
-									<h5>Nom de l'entreprise</h5>
-									<p>{{ provider.company }}</p>
-								</div>
+									<div>
+										<h5>Nom de l'entreprise</h5>
+										<p>{{ provider.company }}</p>
+									</div>
 								{% endif %}
 								{% if provider.socialReason %}
-								<div>
-									<h5>Type</h5>
-									<p>{{ provider.socialReason }}</p>
-								</div>
+									<div>
+										<h5>Type</h5>
+										<p>{{ provider.socialReason }}</p>
+									</div>
 								{% endif %}
 								<div>
 									<h5>Vérifiée ?</h5>
-									{% if provider.isVerified == 0 %}
-									Non
+									{% if provider.status == 0 %}
+										Non
 									{% else %}
 										Oui
 									{% endif %}
 									{# <p>{{ provider.isVerified }}</p> #}
 								</div>
 								{% if provider.monthlyFrequentation %}
-								<div>
-									<h5>Fréquentation</h5>
-									<p>{{ provider.monthlyFrequentation }}</p>
-								</div>
+									<div>
+										<h5>Fréquentation</h5>
+										<p>{{ provider.monthlyFrequentation }}</p>
+									</div>
 								{% endif %}
 							</div>
 
 							<div class="col-12 col-sm-6">
 								{% if provider.siret %}
-								<div>
-									<h5>N° SIRET</h5>
-									<p>{{ provider.siret }}</p>
-								</div>
+									<div>
+										<h5>N° SIRET</h5>
+										<p>{{ provider.siret }}</p>
+									</div>
 								{% endif %}
 								{% if provider.vatNumber %}
-								<div>
-									<h5>N° TVA</h5>
-									<p>{{ provider.vatNumber }}</p>
-								</div>
+									<div>
+										<h5>N° TVA</h5>
+										<p>{{ provider.vatNumber }}</p>
+									</div>
 								{% endif %}
 								{% if provider.otherSite %}
-								<div>
-									<h5>Autres Sites</h5>
-									{% for provider_site in provider.otherSite %}
-										<p>
-											<a href="{{ provider_site }}">{{ provider_site }}</a>
-										</p>
-									{% endfor %}
-								</div>
+									<div>
+										<h5>Autres Sites</h5>
+										{% for provider_site in provider.otherSite %}
+											<p>
+												<a href="{{ provider_site }}">{{ provider_site }}</a>
+											</p>
+										{% endfor %}
+									</div>
 								{% endif %}
-								{% if provider.knowUs %}
+
 								<div>
 									<h5>Comment avez-vous connu ce site ?</h5>
-									<p>{{ provider.knowUs ? provider.knowUs|json_encode : '' }}</p>
+									{% if provider.knowUs == 'Publicité' %}
+										Publicité
+									{% elseif provider.knowUs == 'Autre' %}
+										Autre
+									{% elseif provider.knowUs == 'Bouche à oreille' %}
+										Bouche à oreille
+									{% elseif provider.knowUs == 'Internet' %}
+										Internet
+										{# <p>{{ provider.knowUs ? provider.knowUs|json_encode : '' }}</p> #}
+									{% endif %}
 								</div>
-								{% endif %}
 							</div>
 						</div>
 					</div>
@@ -113,36 +120,36 @@
 										</a>
 									</div>
 									{% if provider.contact.phone %}
-									<div>
-										<h5>Numéro de Téléphone</h5>
-										<p>{{ provider.contact.phone }}</p>
-									</div>
+										<div>
+											<h5>Numéro de Téléphone</h5>
+											<p>{{ provider.contact.phone }}</p>
+										</div>
 									{% endif %}
 									{% if provider.contact.phone2 %}
-									<div>
-										<h5>Numéro Portable</h5>
-										<p>{{ provider.contact.phone2 }}</p>
-									</div>
+										<div>
+											<h5>Numéro Portable</h5>
+											<p>{{ provider.contact.phone2 }}</p>
+										</div>
 									{% endif %}
 								</div>
 								<div class="col-12 col-sm-6">
 									{% if provider.contact.city %}
-									<div>
-										<h5>Ville</h5>
-										<p>{{ provider.contact.city }}</p>
-									</div>
+										<div>
+											<h5>Ville</h5>
+											<p>{{ provider.contact.city }}</p>
+										</div>
 									{% endif %}
 									{% if provider.contact.zipCode %}
-									<div>
-										<h5>Code Postal</h5>
-										<p>{{ provider.contact.zipCode }}</p>
-									</div>
+										<div>
+											<h5>Code Postal</h5>
+											<p>{{ provider.contact.zipCode }}</p>
+										</div>
 									{% endif %}
 									{% if provider.contact.website %}
-									<div>
-										<h5>Site web</h5>
-										<p>{{ provider.contact.website }}</p>
-									</div>
+										<div>
+											<h5>Site web</h5>
+											<p>{{ provider.contact.website }}</p>
+										</div>
 									{% endif %}
 								</div>
 							</div>
@@ -152,19 +159,19 @@
 			</div>
 		</div>
 		{% if products %}
-		<div class="container-fluid">
-			<div class="list-offer-by-provider">
-				<h1 class="my-3 text-center">Nos Produits</h1>
-				<div class="row row-cols-1 row-cols-md-5 g-5" style="justify-content:center">
-					{% for product in products %}
-						{% include "product/products.html.twig" %}
+			<div class="container-fluid">
+				<div class="list-offer-by-provider">
+					<h1 class="my-3 text-center">Nos Produits</h1>
+					<div class="row row-cols-1 row-cols-md-5 g-5" style="justify-content:center">
+						{% for product in products %}
+							{% include "product/products.html.twig" %}
 						</div>
 					{% endfor %}
 				</div>
 			</div>
 		</div>
-		{% endif %}
-		{% if offers %}
+	{% endif %}
+	{% if offers %}
 		<div class="container-fluid">
 			<div class="list-offer-by-provider">
 				<h1 class="my-3 text-center">Nos Offres</h1>
@@ -175,11 +182,11 @@
 				</div>
 			</div>
 		</div>
-		{% endif %}
-		<div class="container-fluid pt-3 pb-3 d-flex">
-			<div class="w-50 p-2">
+	{% endif %}
+	<div class="container-fluid pt-3 pb-3 d-flex">
+		<div class="w-50 p-2">
 			<a class="btn btn-primary" href="{{ path('provider_index') }}">
 				Retournez à la liste des Producteurs</a>
-			</div>
 		</div>
-	{% endblock %}
+	</div>
+{% endblock %}
