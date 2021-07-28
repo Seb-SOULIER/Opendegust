@@ -124,7 +124,13 @@
                                     {{ form_widget(form.vatNumber) }}
                                 </div>
                                 {% if app.request.attributes.get('_route') == 'provider_edit' %}
-                                    <p class="mb-1">Fichiers:</p>
+                                    <p class="mb-1">Fichiers :</p>
+                                    <small class="text-muted">
+                                        <ul>
+                                            <li>Justificatif légal ou KBIS</li>
+                                            <li>Justificatif d'identité du responsable</li>
+                                        </ul>
+                                    </small>
                                     {{ form_row(form.files) }}
                                     <div class="d-flex flex-wrap">
                                         {% for file in provider.files %}
