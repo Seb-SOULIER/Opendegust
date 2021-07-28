@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Offer;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -41,6 +43,11 @@ class OfferType extends AbstractType
                     'Russe' => 'Russe',
                 ],
             ])
+            ->add('variation', ButtonType::class, [
+                'attr' => ['class' => 'btn btn-success btn-pos', 'data-collection-holder-class' => 'variations'],
+                'label' => 'Ajouter une variation'
+            ])
+
             ->add('offerVariations', CollectionType::class, [
                 'attr' => ['class' => 'variations', 'data-items' => '.calendars'],
                 'entry_type' => OfferVariationType::class,
@@ -49,10 +56,8 @@ class OfferType extends AbstractType
                 'by_reference' => false,
                 'allow_delete' => true,
             ])
-            ->add('variation', ButtonType::class, [
-                'attr' => ['class' => 'btn btn-success btn-pos', 'data-collection-holder-class' => 'variations'],
-                'label' => 'Ajouter une variation'
-            ]);
+
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

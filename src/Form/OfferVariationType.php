@@ -6,6 +6,7 @@ use App\Entity\OfferVariation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\PercentType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,11 +17,17 @@ class OfferVariationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-//            ->add('priceVariation')
             ->add('duration')
             ->add('price', MoneyType::class)
+            ->add('priceChildren', MoneyType::class,[
+                'mapped' => false
+            ])
+            ->add('priceGroupe',MoneyType::class, [
+                'mapped' => false
+            ])
             ->add('currentVat', PercentType::class)
             ->add('capacity')
+            ->add('available_places', HiddenType::class)
             ->add('calendars', CollectionType::class, [
                 'attr' => ['class' => 'calendars', 'data-items' => "[data-item-start-at]"],
                 'entry_type' => CalendarType::class,

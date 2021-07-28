@@ -1,4 +1,3 @@
-
 <div id="sidebarWrapper" class="sidebar-wrapper" data-component="sidebar">
     <div id="maCarte"></div>
     <form action="" method="GET">
@@ -136,9 +135,10 @@
         }
 
         sidebar.addEventListener('click', () => {
-            sidebar.className = "sidebar-wrapper";
+            sidebar.classList.toggle('sidebar-wrapper');
             // card.className = "card-map";
-            card.classList.remove('card-map--scrolled');
+            card.classList.toggle('card-map--scrolled');
+
         })
     })
 </script>

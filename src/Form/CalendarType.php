@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use DateTime;
 use App\Entity\Calendar;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
@@ -13,11 +14,16 @@ class CalendarType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $theDate    = new DateTime('now');
+        $stringDate = $theDate->format('Y-m-d\TH:i');
+
         $builder
-            ->add('startAt', DatetimeType::class, [
-                'attr' => ['data-item-start-at' => ""],
+            ->add('startAt', DateTimeType::class, [
                 'choice_translation_domain' => true,
-                'date_format' => 'ddMMMyyyy',
+                'widget' => 'single_text',
+                'input'  => 'datetime_immutable',
+                'html5' => true,
+                'attr' => ['class' => 'form-control js-datepicker', 'min' => $stringDate],
             ])
             ->add('delete', ButtonType::class, [
                 'label' => 'Supprimer cette période',
