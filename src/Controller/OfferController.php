@@ -70,6 +70,11 @@ class OfferController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $offer->setProvider($this->getUser());
+
+            $offerCategories = $request->request->get('categories');
+            foreach ($offerCategories as $offerCategory) {
+                $offer->addCategory($categoryRepository->findOneBy(['id' => $offerCategory]));
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($offer);
             $entityManager->flush();
@@ -92,7 +97,7 @@ class OfferController extends AbstractController
         return $this->render('offer/new.html.twig', [
             'offer' => $offer,
             'form' => $form->createView(),
-            'categories' => $categoryRepository->findByCategory(null)
+            'categories' => $categoryRepository->findByCategory(null),
         ]);
     }
 
