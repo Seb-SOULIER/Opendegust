@@ -46,7 +46,12 @@
 								{% endif %}
 								<div>
 									<h5>Vérifiée ?</h5>
-									<p>{{ provider.isVerified }}</p>
+									{% if provider.isVerified == 0 %}
+									Non
+									{% else %}
+										Oui
+									{% endif %}
+									{# <p>{{ provider.isVerified }}</p> #}
 								</div>
 								{% if provider.monthlyFrequentation %}
 								<div>
@@ -150,9 +155,8 @@
 		<div class="container-fluid">
 			<div class="list-offer-by-provider">
 				<h1 class="my-3 text-center">Nos Produits</h1>
-				<div id="productCarousel">
+				<div class="row row-cols-1 row-cols-md-5 g-5" style="justify-content:center">
 					{% for product in products %}
-						<div>
 						{% include "product/products.html.twig" %}
 						</div>
 					{% endfor %}
@@ -172,10 +176,10 @@
 			</div>
 		</div>
 		{% endif %}
-		<div class="container pt-3 pb-3 d-flex">
-			<div class="w-50">
+		<div class="container-fluid pt-3 pb-3 d-flex">
+			<div class="w-50 p-2">
 			<a class="btn btn-primary" href="{{ path('provider_index') }}">
-				Liste des Producteurs</a>
+				Retournez à la liste des Producteurs</a>
 			</div>
 		</div>
 	{% endblock %}
