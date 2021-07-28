@@ -90,6 +90,11 @@ class Provider extends User
      */
     private ?string $picture;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $status;
+
 
     public function __construct()
     {
@@ -328,5 +333,17 @@ class Provider extends User
     public function unserialize($data)
     {
         $this->id = unserialize($data);
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?int $status): self
+    {
+        $this->status = $status;
+
+        return $this;
     }
 }

@@ -65,7 +65,7 @@ class ProviderFixtures extends Fixture
         '15' => 'Sébastien',
         '16' => 'Adrien',
         '17' => 'Glawdys',
-        '18' => 'Alphonse',
+        '18' => 'Roberta',
         '19' => 'Anne',
         '20' => 'Norbert',
     ];
@@ -146,6 +146,7 @@ class ProviderFixtures extends Fixture
             $provider->setKnowUs(array_rand(array_flip(self::KNOW_US)));
             $provider->setContact($contact);
             $provider->setDescription($description);
+            $provider->setStatus(0);
 
             $contact->setAddress($this->faker->address);
             $contact->setZipcode($this->faker->postcode);
