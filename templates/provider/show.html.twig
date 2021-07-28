@@ -150,12 +150,10 @@
 		<div class="container-fluid">
 			<div class="list-offer-by-provider">
 				<h1 class="my-3 text-center">Nos Produits</h1>
-				<div id="productCarousel">
-					{% for product in products %}
-						<div>
-						{% include "product/products.html.twig" %}
-						</div>
-					{% endfor %}
+				<div class="row row-cols-1 row-cols-md-5 g-5" id="provider-offer-card">
+				{% for product in products %}
+					{% include "product/products.html.twig" %}
+				{% endfor %}
 				</div>
 			</div>
 		</div>
