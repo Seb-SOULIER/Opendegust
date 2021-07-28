@@ -111,6 +111,10 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm">
+            {% from 'macros/categories.html.twig' import make_categories %}
+            {{ make_categories(categories) }}
+        </div>
         <button class="btn btn-primary mt-3 col-12 col-md-6 text-light">{{ button_label|default('Valider') }}</button>
         {{ form_end(form) }}
     </div>
