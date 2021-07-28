@@ -18,7 +18,7 @@ class AdminController extends AbstractController
      */
     public function index(ProviderRepository $providerRepository): Response
     {
-       $provider = $providerRepository->findAll();
+        $provider = $providerRepository->findAll();
         return $this->render('admin/index.html.twig', ['provider' => $provider]);
     }
 }
