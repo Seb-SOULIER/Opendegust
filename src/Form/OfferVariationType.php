@@ -6,6 +6,7 @@ use App\Entity\OfferVariation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\PercentType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,7 +27,7 @@ class OfferVariationType extends AbstractType
             ])
             ->add('currentVat', PercentType::class)
             ->add('capacity')
-
+            ->add('available_places', HiddenType::class)
             ->add('calendars', CollectionType::class, [
                 'attr' => ['class' => 'calendars', 'data-items' => "[data-item-start-at]"],
                 'entry_type' => CalendarType::class,
