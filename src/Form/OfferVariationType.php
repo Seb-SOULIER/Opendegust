@@ -18,6 +18,12 @@ class OfferVariationType extends AbstractType
         $builder
             ->add('duration')
             ->add('price', MoneyType::class)
+            ->add('priceChildren', MoneyType::class,[
+                'mapped' => false
+            ])
+            ->add('priceGroupe',MoneyType::class, [
+                'mapped' => false
+            ])
             ->add('currentVat', PercentType::class)
             ->add('capacity')
 
