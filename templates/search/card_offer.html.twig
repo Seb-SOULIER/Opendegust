@@ -7,21 +7,21 @@
 						<div class=" h-100 row g-0">
 							<div
 								class="">
-{#								 <picture>#}
-{#								                                    <source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_sm") }}"#}
-{#								                                            media="(max-width: 576px)">#}
-{#								                                    <source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_lg") }}"#}
-{#								                                            media="(max-width: 992px)">#}
-{#								                                    <source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_xl") }}"#}
-{#								                                            media="(max-width: 1200px)">#}
-{#								                                    <source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_xml") }}"#}
-{#								                                            media="(max-width: 1400px)">#}
-{#								                                    <source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_xxl") }}"#}
-{#								                                            media="(min-width: 1400px)">#}
-{#								                                    <img class="img-fluid"#}
-{#								                                         src="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_default") }}"#}
-{#								                                         alt="offer image">#}
-{#								                                </picture>#}
+								 <picture>
+								                                    <source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_sm") }}"
+								                                            media="(max-width: 576px)">
+								                                    <source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_lg") }}"
+								                                            media="(max-width: 992px)">
+								                                    <source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_xl") }}"
+								                                            media="(max-width: 1200px)">
+								                                    <source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_xml") }}"
+								                                            media="(max-width: 1400px)">
+								                                    <source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_xxl") }}"
+								                                            media="(min-width: 1400px)">
+								                                    <img class="img-fluid"
+								                                         src="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_default") }}"
+								                                         alt="offer image">
+								                                </picture>
 								<img class="img-fluid offers-image" src="{{ offer.picture }}" alt="offer image">
 							</div>
 							<div class="col-md-12">
