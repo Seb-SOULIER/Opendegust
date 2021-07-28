@@ -38,11 +38,6 @@ class File
      */
     private ?DateTime $updatedAt;
 
-    /**
-     * @Vich\UploadableField(mapping="provider_files", fileNameProperty="fileName")
-     */
-    private ?CoreFile $providerFile = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -56,6 +51,9 @@ class File
     public function setFileName(string $fileName): self
     {
         $this->fileName = $fileName;
+        if ($fileName) {
+            $this->setUpdatedAt(new DateTime('now', new \DateTimeZone('Europe/Paris')));
+        }
 
         return $this;
     }
@@ -79,19 +77,5 @@ class File
     public function setUpdatedAt(?DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
-    }
-
-    public function getProviderFile(): ?CoreFile
-    {
-        return $this->providerFile;
-    }
-
-    public function setProviderFile(CoreFile $image = null): self
-    {
-        $this->providerFile = $image;
-        if ($image) {
-            $this->setUpdatedAt(new DateTime('now'));
-        }
-        return $this;
     }
 }

@@ -11,6 +11,7 @@ use App\Repository\OfferRepository;
 use App\Repository\ProductRepository;
 use App\Repository\ProviderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -86,11 +87,24 @@ class ProviderController extends AbstractController
         }
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            $images = $form->get('files')->getData();
+            foreach ($images as $image) {
+                $file = md5(uniqid()) . '.' . $image->guessExtension();
+                $image->move(
+                    $this->getParameter('upload_directory'),
+                    $file
+                );
+                $img = new File();
+                $img->setFileName($file);
+                $provider->addFile($img);
+            }
+
             $entityManager->persist($provider);
             $entityManager->flush();
             $this->addFlash('success', 'Les informations de votre compte ont été modifiés avec succès !');
 
-            return $this->redirect('/provider/' . $provider->getId() . '/edit');
+            return $this->redirect('/provider/edit');
         }
 
         return $this->render('provider/edit.html.twig', [
@@ -107,12 +121,31 @@ class ProviderController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $provider->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $provider->setEmail("");
+            $provider->setEmail($provider->getPassword());
             $provider->setStatus(self::STATUS['DELETED']);
 
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('app_logout');
+    }
+
+    /**
+     * @Route("/delete/file/{id}", name="provider_delete_file", methods={"GET"})
+     */
+    public function deleteFile(File $file, Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
+        if ($this->isCsrfTokenValid('delete'.$file->getId(), $data['_token'])) {
+            $name = $file->getFileName();
+            unlink($this->getParameter('upload_directory').'/'.$name);
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($file);
+            $em->flush();
+
+            return new JsonResponse(['success' => 1]);
+        } else {
+            return new JsonResponse(['error' => 'Invalid Token'], 400);
+        }
     }
 }
