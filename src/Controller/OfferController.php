@@ -13,6 +13,7 @@ use App\Form\OfferVariationType;
 use App\Repository\CategoryRepository;
 use App\Repository\OfferRepository;
 use App\Repository\ProductRepository;
+use App\Service\Api;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,7 +61,7 @@ class OfferController extends AbstractController
     /**
      * @Route("/new", name="_new", methods={"GET","POST"})
      */
-    public function new(Request $request, CategoryRepository $categoryRepository): Response
+    public function new(Request $request, CategoryRepository $categoryRepository, Api $api): Response
     {
         $offer = new Offer();
         $form = $this->createForm(OfferType::class, $offer);
@@ -73,9 +74,21 @@ class OfferController extends AbstractController
             $entityManager->persist($offer);
             $entityManager->flush();
 
-            return $this->redirectToRoute('offer_edit', [
-                'id' => $offer->getId(),
-            ]);
+            $localisation = $offer->getContact()->getAddress()
+                . " " .$offer->getContact()->getZipCode()
+                . " " .$offer->getContact()->getCity();
+            $url = "https://nominatim.openstreetmap.org/search?q="
+                . $localisation . "&format=json&addressdetails=1&limit=1";
+            $local = $api->getResponse($url);
+            $lat = $local[0]['lat'];
+            $lon = $local[0]['lon'];
+            $offer->getContact()->setLongitude($lon);
+            $offer->getContact()->setLatitude($lat);
+
+//            $offer->getOfferVariation()
+//            $entityManager->flush();
+
+            return $this->redirectToRoute('offer_index');
         }
 
         return $this->render('offer/new.html.twig', [
@@ -112,7 +125,8 @@ class OfferController extends AbstractController
     public function edit(
         Request $request,
         Offer $offer,
-        CategoryRepository $categoryRepository
+        CategoryRepository $categoryRepository,
+        Api $api
     ): Response {
 
         $form = $this->createForm(OfferType::class, $offer);
@@ -120,6 +134,19 @@ class OfferController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $localisation = $offer->getContact()->getAddress()
+                . " " .$offer->getContact()->getZipCode()
+                . " " .$offer->getContact()->getCity();
+            $url = "https://nominatim.openstreetmap.org/search?q="
+                . $localisation . "&format=json&addressdetails=1&limit=1";
+            $local = $api->getResponse($url);
+            $lat = $local[0]['lat'];
+            $lon = $local[0]['lon'];
+            $offer->getContact()->setLongitude($lon);
+            $offer->getContact()->setLatitude($lat);
+            $this->getDoctrine()->getManager()->flush();
+
             return $this->redirectToRoute('offer_index');
         }
 
