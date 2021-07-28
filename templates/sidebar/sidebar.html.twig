@@ -135,10 +135,9 @@
         }
 
         sidebar.addEventListener('click', () => {
-            sidebar.classList.toggle('sidebar-wrapper');
+            sidebar.className = "sidebar-wrapper";
             // card.className = "card-map";
-            card.classList.toggle('card-map--scrolled');
-
+            card.classList.remove('card-map--scrolled');
         })
     })
 </script>

@@ -5,18 +5,14 @@ namespace App\Form;
 use App\Entity\Provider;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Form\CallbackTransformer;
-use Vich\UploaderBundle\Form\Type\VichFileType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 
 class ProviderType extends AbstractType
 {
@@ -68,13 +64,15 @@ class ProviderType extends AbstractType
 //                $builder
 //                    ->create('otherSite', TextType::class)
 //            )
-            ->add('files', CollectionType::class, [
-                'entry_type' => FileType::class,
+            ->add('files', FileType::class, [
+                'label' => false,
+                'multiple' => true,
+                'mapped' => false,
                 'required' => false,
-                'allow_add' => true,
-                'by_reference' => false,
-                'allow_delete' => true,
-//                'mapped' => false
+//                'attr'     => [
+//                    'accept' => 'image/*',
+//                    'multiple' => 'multiple'
+//                ]
             ]);
     }
 
