@@ -84,9 +84,7 @@ class OfferController extends AbstractController
             $lon = $local[0]['lon'];
             $offer->getContact()->setLongitude($lon);
             $offer->getContact()->setLatitude($lat);
-
-//            $offer->getOfferVariation()
-//            $entityManager->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('offer_index');
         }
