@@ -2,6 +2,11 @@ vich_uploader:
     db_driver: orm
 
     mappings:
+        provider_picture:
+            uri_prefix: /provider
+            upload_destination: '%upload_directory%'
+            namer:
+                service: Vich\UploaderBundle\Naming\OrignameNamer
         provider_files:
     #        uri_prefix: /images/products
             upload_destination: '%upload_directory%'
