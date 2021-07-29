@@ -42,9 +42,11 @@ class ProductController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $product->setProvider($this->getUser());
             $categories = $request->get('categories');
-            foreach ($categories as $categoryId) {
-                $category = $categoryRepository->find($categoryId);
-                $product->setCategory($category);
+            if (!empty($categories)) {
+                foreach ($categories as $categoryId) {
+                    $category = $categoryRepository->find($categoryId);
+                    $product->setCategory($category);
+                }
             }
             $entityManager->persist($product);
             $entityManager->flush();

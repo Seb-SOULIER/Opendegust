@@ -21,12 +21,13 @@ class CalendarType extends AbstractType
             ->add('startAt', DateTimeType::class, [
                 'choice_translation_domain' => true,
                 'widget' => 'single_text',
-                'input'  => 'datetime_immutable',
+                'input'  => 'datetime',
                 'html5' => true,
                 'attr' => ['class' => 'form-control js-datepicker', 'min' => $stringDate],
+                'label' => 'Date et heure :'
             ])
             ->add('delete', ButtonType::class, [
-                'label' => 'Supprimer cette période',
+                'label' => 'Supprimer cette date',
                 'attr' => ['data-remove-item' => '.calendar'],
             ])
         ;

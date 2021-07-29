@@ -77,9 +77,13 @@
           <h6 class="text-uppercase font-weight-bold">inscrivez-vous à notre Newsletter</h6>
           <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <br>
-           <input type="email" id="email"
-       pattern=".+@gmail.com" size="15" placeholder="email" required>
-       <button id="13" class="news" type="submit">Envoyer</button>
+            <form action="">
+          <input type="email" id="email"
+                 pattern=".+@gmail.com" size="15" placeholder="email"
+                 {% if app.user.email is defined %} value="{{ app.user.email }}" {% endif %}
+                 required>
+       <button id="news" type="submit" >Envoyer</button>
+            </form>
         </div>
       </div>
     </div>
@@ -99,5 +103,23 @@
         <a style="text-decoration:none" href="https://www.opendegust.com/terms-privacy/"><span class="text-dark"> Termes & Conditions</span></a>
       </div>
     </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const button = document.getElementById('news');
+                button.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    const email = document.getElementById('email');
+                    const emailClient = email.value;
+                    if (emailClient) {
+                        console.log(emailClient);
+                        fetch(`/admin/newsletter/${emailClient}`)
+                            .then(
+                                alert('Vous êtes désormais inscrit à la Newsletter')
+                            )
+                    }
+                });
+            })
+        </script>
 
   </footer>

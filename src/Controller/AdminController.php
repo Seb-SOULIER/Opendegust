@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Newsletter;
 use App\Entity\Offer;
 use App\Entity\Provider;
+use App\Repository\NewsletterRepository;
 use App\Repository\ProviderRepository;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,6 +39,28 @@ class AdminController extends AbstractController
             $provider->setStatus(1);
         }
         $this->getDoctrine()->getManager()->flush();
+        return $this->json([]);
+    }
+
+    /**
+     * @Route("/newsletter/{email}", name="_newsletter", methods={"GET"})
+     *
+     */
+    public function validateNewsletter(string $email, NewsletterRepository $newsletterRepository): response
+    {
+        $allemails = $newsletterRepository->findAll();
+        foreach ($allemails as $oneEmail) {
+            if ($oneEmail->getEmail() === $email) {
+                return $this->json([]);
+            }
+        }
+
+        $newsletter = new Newsletter();
+        $entityManager = $this->getDoctrine()->getManager();
+        $newsletter->setEmail($email);
+        $entityManager->persist($newsletter);
+        $entityManager->flush();
+
         return $this->json([]);
     }
 }

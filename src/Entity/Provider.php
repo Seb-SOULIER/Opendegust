@@ -93,7 +93,7 @@ class Provider extends User
     /**
      * @ORM\Column(type="integer")
      */
-    private int $status;
+    private int $status = 0;
 
 
     public function __construct()
