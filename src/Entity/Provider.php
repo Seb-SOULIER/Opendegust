@@ -7,9 +7,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File as CoreFile;
+use DateTime;
 
 /**
  * @ORM\Entity(repositoryClass=ProviderRepository::class)
+ * @Vich\Uploadable()
  */
 class Provider extends User
 {
@@ -89,6 +93,37 @@ class Provider extends User
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $picture;
+
+    /**
+     * @Vich\UploadableField(mapping="provider_picture", fileNameProperty="picture")
+     * @Assert\File(
+     *     maxSize = "1M",
+     *     mimeTypes = {"image/jpeg", "image/png", "image/webp"},
+     * )
+     */
+    private ?CoreFile $pictureFile = null;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?\DateTimeInterface $updatedAt;
+
+    /**
+     * @return \DateTimeInterface
+     */
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTimeInterface $updatedAt
+     */
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
 
     /**
      * @ORM\Column(type="integer")
@@ -325,6 +360,7 @@ class Provider extends User
 
         return $this;
     }
+
     public function serialize()
     {
         return serialize($this->id);
@@ -333,6 +369,20 @@ class Provider extends User
     public function unserialize($data)
     {
         $this->id = unserialize($data);
+    }
+
+    public function setPictureFile(?CoreFile $image = null): self
+    {
+        $this->pictureFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getPictureFile(): ?CoreFile
+    {
+        return $this->pictureFile;
     }
 
     public function getStatus(): ?int

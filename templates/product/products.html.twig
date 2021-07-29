@@ -1,14 +1,16 @@
-<div class="col d-flex mb-4 offer" >
+<div class="col-mb-6 col-lg-3 offer d-flex m-2" >
     <div class="card card-label-price">
+        <div class="">
         {% if product.picture starts with 'http' %}
-            <img class="card-img-top" src="{{ product.picture }}" alt="{{ product.name }}">
+            <img class="card-img-top products-image img-fluid" src="{{ product.picture }}" alt="{{ product.name }}">
         {% else %}
-{#                   @TODO a revoir image product#}
-        <picture class="d-flex justify-content-center">
-            <source srcset="{{ asset('uploads/' ~ product.picture)|imagine_filter('product_thumb_default') }}">
-            <img class="w-auto card-img-top" src="{{ asset('uploads/' ~ product.picture) }}" alt="{{ product.name }} poster">
-        </picture>
+            <picture class="">
+                <source srcset="{{ asset('uploads/' ~ product.picture)|imagine_filter('product_thumb_product_sm') }}" media="(max-width: 992px)">
+                <source srcset="{{ asset('uploads/' ~ product.picture)|imagine_filter('product_thumb_product_lg') }}" media="(min-width: 992px)">
+                <img class="card-img-top img-fluid products-image" src="{{ asset('uploads/' ~ product.picture) }}" alt="{{ product.name }} poster">
+            </picture>
         {% endif %}
+        </div>
         <div class="card-body d-flex flex-column">
             <h5 class="card-title text-center">{{ product.name }}</h5>
             <p class="card-text fs-6 fw-light lh-1">{{ product.description }}</p>
