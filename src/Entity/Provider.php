@@ -92,7 +92,7 @@ class Provider extends User
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $picture;
+    private ?string $picture = null;
 
     /**
      * @Vich\UploadableField(mapping="provider_picture", fileNameProperty="picture")
@@ -104,7 +104,7 @@ class Provider extends User
     private ?CoreFile $pictureFile = null;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt;
 
