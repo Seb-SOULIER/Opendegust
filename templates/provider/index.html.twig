@@ -13,12 +13,16 @@
 					<div class="card h-100 shadow p-3">
 						<div class="row g-0 providers">
 							<div class="col-md-5">
+							<div class="modif-size-img">
 								{% if provider.picture %}
 								<img class="picture-of-provider img-fluid rounded-start" src="{{ provider.picture }}"
 									 alt="" style="max-height: 150px">
 								{% endif %}
+								</div>
+								<div>
 								<h5 class="card-title text-center">{{ provider.lastname }}
 									{{ provider.firstname }}</h5>
+									</div>
 
 							</div>
 							<div class="col-md-7">
