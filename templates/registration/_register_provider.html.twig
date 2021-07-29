@@ -17,6 +17,7 @@
     </div>
     {{ form_label(registrationForm.password.first) }}
     {{ form_widget(registrationForm.password.first) }}
+    <small class="text-muted">Au moins 6 caractères</small>
     <div class="text-danger">
         {{ form_errors(registrationForm.password.second) }}
     </div>

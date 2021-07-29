@@ -25,7 +25,7 @@ class Contact
      *     max="255",
      *     maxMessage="L'adresse est trop longue, elle ne devrait pas dépasser {{ limit }} caractères")
      */
-    private string $address;
+    private ?string $address;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
@@ -33,7 +33,7 @@ class Contact
      *     max="50",
      *     maxMessage="Le code postal est trop long")
      */
-    private string $zipCode;
+    private ?string $zipCode;
 
     /**
      * @ORM\Column(type="string", length=90, nullable=true)
@@ -41,7 +41,7 @@ class Contact
      *     max="90",
      *     maxMessage="Le nom de la ville est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
-    private string $city;
+    private ?string $city;
 
     /**
      * @ORM\Column(type="float", nullable=true)

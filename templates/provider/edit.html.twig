@@ -9,9 +9,12 @@
         <div class="text-danger">
             {{ form_errors(formPw.password.first) }}
         </div>
-        <div class="row d-flex">
+        <div class="row d-flex align-items-end">
             <div class="col-md-4">
-                {{ form_label(formPw.password.first) }}
+                {{ form_label(formPw.password.first, 'Mot de passe', {
+                    'label_attr': {'class': 'mb-0'}
+                }) }}
+                <br><small class="text-muted">Au moins 6 caractères</small>
                 {{ form_widget(formPw.password.first) }}
             </div>
             <div class="col-md-4">
@@ -120,8 +123,37 @@
                                     {{ form_label(form.vatNumber, 'Numéro de TVA') }}
                                     {{ form_widget(form.vatNumber) }}
                                 </div>
+                                {% if app.request.attributes.get('_route') == 'provider_edit' %}
+                                    <p class="mb-1">Fichiers :</p>
+                                    <small class="text-muted">
+                                        <ul>
+                                            <li>Justificatif légal ou KBIS</li>
+                                            <li>Justificatif d'identité du responsable</li>
+                                        </ul>
+                                    </small>
+                                    {{ form_row(form.files) }}
+                                    <div class="d-flex flex-wrap">
+                                        {% for file in provider.files %}
+                                            <div class="m-3 file-container">
+                                                <img src="{{ asset('/uploads/' ~ file.fileName) }}" alt="fichiers" width="100px" height="60px">
+                                                <a class="delete-button" href="{{ path('provider_delete_file', {'id': file.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ file.id) }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle mb-2" viewBox="0 0 16 16">
+                                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
 {#                                {{ form_label(form.files, 'Fichier') }}#}
-{#                                {{ form_widget(form.files) }}#}
+{#                                <ul class="doc" data-prototype="{{ form_widget(form.files.vars.prototype)|e('html_attr') }}">#}
+{#                                {% for file in form.files %}#}
+{#                                    {{ form_widget(file.providerFile) }}#}
+{#                                {% endfor %}#}
+{#                                </ul>#}
+{#                                <button type="button" class="add_item_link" data-collection-holder-class="doc">Add a doc</button>#}
+
                                 <div class="d-md-flex justify-content-center">
                                     <div class="col-md-8">
 {#                                        {{ form_label(form.otherSite, "Déjà inscrit sur d'autres sites?") }}#}
@@ -192,4 +224,8 @@
 </div>
 {% block footer %}
 {% endblock %}
+{% endblock %}
+
+{% block javacripts %}
+    <script src="{{ asset('js/files.js') }}"></script>
 {% endblock %}

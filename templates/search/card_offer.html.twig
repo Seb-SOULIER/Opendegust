@@ -1,27 +1,27 @@
 <div class="overflow-auto">
 	<div class="container" data-loclat="{{ localization.0.lat|default("46.16") }}" data-loclon="{{ localization.0.lon|default("3.19619") }}" data-zoom="{{ zoom|default("5") }}" data-text="">
 		<div class="row">
+		{% if offers|length >= 1 %}
 			{% for offer in offers %}
 				<div class="col-sm-4 p-2">
 					<div class="card cardHover h-100">
 						<div class=" h-100 row g-0">
-							<div
-								class="">
+							<div class="">
 								{# <picture>
-								                                    <source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_sm") }}"
-								                                            media="(max-width: 576px)">
-								                                    <source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_lg") }}"
-								                                            media="(max-width: 992px)">
-								                                    <source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_xl") }}"
-								                                            media="(max-width: 1200px)">
-								                                    <source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_xml") }}"
-								                                            media="(max-width: 1400px)">
-								                                    <source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_xxl") }}"
-								                                            media="(min-width: 1400px)">
-								                                    <img class="img-fluid"
-								                                         src="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_default") }}"
-								                                         alt="offer image">
-								                                </picture> #}
+								<source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_sm") }}"
+										media="(max-width: 576px)">
+								<source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_lg") }}"
+										media="(max-width: 992px)">
+								<source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_xl") }}"
+										media="(max-width: 1200px)">
+								<source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_xml") }}"
+										media="(max-width: 1400px)">
+								<source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_xxl") }}"
+										media="(min-width: 1400px)">
+								<img class="img-fluid"
+									src="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_default") }}"
+									alt="offer image">
+							</picture> #}
 								<img class="img-fluid offers-image" src="{{ offer.picture }}" alt="offer image">
 							</div>
 							<div class="col-md-12">
@@ -146,6 +146,11 @@
 					</div>
 				</div>
 			{% endfor %}
+							{% else %}
+							<div class="no-results-offer">
+					<p>Il n'y a pas de résultats pour les catégories recherchées!</p>
+					</div>
+					{% endif %}
 		</div>
 	</div>
 </div>

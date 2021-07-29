@@ -48,6 +48,7 @@ class AdminFixtures extends Fixture
         $provider->setKnowUs(null);
         $provider->setContact($contact);
         $provider->setDescription($description);
+        $provider->setStatus(1);
 
 //        $contact->setAddress(null);
 //        $contact->setZipcode(null);
@@ -60,8 +61,8 @@ class AdminFixtures extends Fixture
         $manager->persist($contact);
         $provider->setContact($contact);
 
-//        $description->setShortDescription(null);
-//        $description->setLongDescription(null);
+        $description->setShortDescription(null);
+        $description->setLongDescription(null);
         $manager->persist($description);
         $provider->setDescription($description);
 
@@ -96,6 +97,7 @@ class AdminFixtures extends Fixture
         $provider->setKnowUs(null);
         $provider->setContact($contact);
         $provider->setDescription($description);
+        $provider->setStatus(0);
 
 //        $contact->setAddress(null);
 //        $contact->setZipcode(null);
@@ -108,8 +110,8 @@ class AdminFixtures extends Fixture
         $manager->persist($contact);
         $provider->setContact($contact);
 
-//        $description->setShortDescription(null);
-//        $description->setLongDescription(null);
+        $description->setShortDescription(null);
+        $description->setLongDescription(null);
         $manager->persist($description);
         $provider->setDescription($description);
 

@@ -204,7 +204,7 @@
 }
 
 .list-offer-by-provider {
-    background-color: #947e7c;
+    background-color: #c7c3c2b7;
 }
 
 .card.card-label-price {
@@ -228,4 +228,16 @@ h2.my-3.text-center {
         border-radius:10%;
         margin-left: 15px;
     }
+}
+
+
+.no-results-offer {
+    border: 1px solid red;
+    padding: 0.4rem;
+    width: 34%;
+    border-radius: 5px;
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

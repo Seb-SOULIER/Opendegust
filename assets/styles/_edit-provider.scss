@@ -1,0 +1,12 @@
+.file-container {
+  position: relative;
+  .delete-button {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    .bi-x-circle {
+      border-radius: 50px;
+      background: $white;
+    }
+  }
+}

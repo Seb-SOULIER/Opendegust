@@ -22,14 +22,9 @@ class File
     private int $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private string $fileName;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $filePath;
+    private ?string $fileName = null;
 
     /**
      * @ORM\ManyToOne(targetEntity=Provider::class, inversedBy="files")
@@ -42,11 +37,6 @@ class File
      * @var ?DateTime
      */
     private ?DateTime $updatedAt;
-
-    /**
-     * @Vich\UploadableField(mapping="provider_files", fileNameProperty="fileName")
-     */
-    private ?CoreFile $providerFile;
 
     public function getId(): ?int
     {
@@ -61,18 +51,9 @@ class File
     public function setFileName(string $fileName): self
     {
         $this->fileName = $fileName;
-
-        return $this;
-    }
-
-    public function getFilePath(): ?string
-    {
-        return $this->filePath;
-    }
-
-    public function setFilePath(string $filePath): self
-    {
-        $this->filePath = $filePath;
+        if ($fileName) {
+            $this->setUpdatedAt(new DateTime('now', new \DateTimeZone('Europe/Paris')));
+        }
 
         return $this;
     }
@@ -85,7 +66,6 @@ class File
     public function setProvider(?Provider $provider): self
     {
         $this->provider = $provider;
-
         return $this;
     }
 
@@ -97,19 +77,5 @@ class File
     public function setUpdatedAt(?DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
-    }
-
-    public function getProviderFile(): ?CoreFile
-    {
-        return $this->providerFile;
-    }
-
-    public function setProviderFile(CoreFile $image = null): self
-    {
-        $this->providerFile = $image;
-        if ($image) {
-            $this->setUpdatedAt(new DateTime('now'));
-        }
-        return $this;
     }
 }

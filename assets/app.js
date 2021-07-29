@@ -14,6 +14,7 @@ import './js/concat-form';
 import './js/register-provider';
 import './js/register-customer';
 import './js/offer-variation-info';
+import './js/files';
 
 // start the Stimulus application
 import './bootstrap';

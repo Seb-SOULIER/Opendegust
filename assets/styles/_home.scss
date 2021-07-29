@@ -1,5 +1,4 @@
 
-
 // vincenthome
 .home-picture-research {
     width: 100%;
@@ -658,8 +657,13 @@ img.evenements-locaux-exper {
 
 img.photo-amoureux , img.photo-famille , img.photo-amis{
     clip-path: ellipse(35% 50%);
-}
 
+}
+@media screen and (max-width: 768px) {
+    img.photo-amoureux , img.photo-famille , img.photo-amis {
+        width: 80%;
+    }
+}
 @media screen and (max-width: 576px) {
 img.photo-amoureux , img.photo-famille , img.photo-amis {
     width: 70%;
@@ -667,11 +671,27 @@ img.photo-amoureux , img.photo-famille , img.photo-amis {
 }
 .card.image-et-titre {
     border: none;
+    transition: transform 1.5s;
+    opacity: 0.8;
+}
+.card.image-et-titre:hover {
+    transform: scale(1.2);
+    opacity: 1;
+
+}
+@media screen and (max-width: 768px) {
+    .card.image-et-titre {
+        align-items: center;
+        margin-bottom: 40px;
+
+    }
 }
 
 @media screen and (max-width: 576px) {
     .card.image-et-titre {
         align-items: center;
+        margin-bottom: 40px;
+
     }
 }
 
@@ -780,4 +800,16 @@ img.circle {
 
 .card-shadow {
     box-shadow: 5px 5px 5px black;
+}
+.flex-new-card {
+    display: flex;
+}
+
+
+@media screen and(max-width:576px) {
+    .flex-new-card {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0.8rem;
+    }
 }

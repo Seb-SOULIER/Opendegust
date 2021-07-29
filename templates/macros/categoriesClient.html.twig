@@ -1,12 +1,12 @@
 {% macro make_categories(categories) %}
     <div class="container">
-        <ul class="d-flex col pt-2">
+        <ul class="d-flex col pt-3">
             {% for category in categories %}
                 <div class="d-flex flex-column">
                     <div>
-                        <input class="form-check-input" type="checkbox" name="category[]" id="category_{{ category.id }}" value="{{ category.id }}"
+                        <input type="checkbox" name="category[]" id="category_{{ category.id }}" value="{{ category.id }}"
                                 {% if category.id in app.request.get('category') %} checked {% endif %}>
-                        <label class="form-check-label" for="category_{{ category.id }}">{{ category.name }}</label>
+                        <label  for="category_{{ category.id }}">{{ category.name }}</label>
                         {% if (category.categories|length) %}
                         {{ _self.make_categories(category.categories) }}
                     </div>
