@@ -21,24 +21,15 @@
 			<tbody>
 			{% for key, offer in offers %}
 				<tr>
-					<td class="text-center"
-						rowspan="
-							{% if allOffers[key] is defined %}
-								{{ (allOffers[key])|length }}
-							{% else %}
-								1
-							{% endif %}
-							">
+					<td class="text-center" rowspan="
+							{{ (allOffers[key])|length }}
+						">
 						{{ offer.name }}
 					</td>
 					{% for key2, variation in offer.offerVariations %}
 						<td class="text-center" rowspan="
-							{% if allDuree[key][key2] is defined %}
-								{{ (allDuree[key][key2])|length }}
-							{% else %}
-								1
-							{% endif %}
-							">
+							{{ (allDuree[key][key2])|length }}
+						">
 							{{ variation.duration|date('h:m') }}
 						</td>
 						{% for date in variation.calendars %}
@@ -49,7 +40,7 @@
 								{{ variation.capacity }} places
 							</td>
 							<td class="text-center">
-								{{ variation.availablePlaces|default('0') }} places
+								{{ (variation.capacity - variation.availablePlaces)|default('0') }} places
 							</td>
 							<td class="text-center">
 								<a href="{{ path('offer_edit', {'id': offer.id}) }}">Détail</a>

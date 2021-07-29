@@ -6,7 +6,7 @@
                     <h4> {{ category.name }} </h4>
                     {{ _self.make_categories(category.categories, categoryProduct) }}
                 {% else %}
-                    <input type="radio" name="categories[]" id="category_{{ category.id }}" value="{{ category.id }}"
+                    <input type="radio" name="categories[]" id="category_{{ category.id }}" value="{{ category.id }}" required
                         {% if (categoryProduct is not null) %}
                             {% if category.id == categoryProduct.id %} checked {% endif %}>
                         {% endif %}
