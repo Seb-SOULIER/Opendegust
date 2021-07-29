@@ -44,12 +44,13 @@
 									</div>
 								{% endif %}
 								<div>
-									<h5>Vérifiée ?</h5>
-									{% if provider.status == 0 %}
-										Non
-									{% else %}
-										Oui
-									{% endif %}
+									<h5>
+										{% if provider.status == 0 %}
+											Compte en attente de vérification
+										{% else %}
+											Compte vérifié
+										{% endif %}
+									</h5>
 									{# <p>{{ provider.isVerified }}</p> #}
 								</div>
 								{% if provider.monthlyFrequentation %}
@@ -83,20 +84,21 @@
 										{% endfor %}
 									</div>
 								{% endif %}
-
-								<div>
-									<h5>Comment avez-vous connu ce site ?</h5>
-									{% if provider.knowUs == 'Publicité' %}
-										Publicité
-									{% elseif provider.knowUs == 'Autre' %}
-										Autre
-									{% elseif provider.knowUs == 'Bouche à oreille' %}
-										Bouche à oreille
-									{% elseif provider.knowUs == 'Internet' %}
-										Internet
-										{# <p>{{ provider.knowUs ? provider.knowUs|json_encode : '' }}</p> #}
-									{% endif %}
-								</div>
+								{% if is_granted("ROLE_ADMIN") %}
+									<div>
+										<h5>Comment avez-vous connu ce site ?</h5>
+										{% if provider.knowUs == 'Publicité' %}
+											Publicité
+										{% elseif provider.knowUs == 'Autre' %}
+											Autre
+										{% elseif provider.knowUs == 'Bouche à oreille' %}
+											Bouche à oreille
+										{% elseif provider.knowUs == 'Internet' %}
+											Internet
+											{# <p>{{ provider.knowUs ? provider.knowUs|json_encode : '' }}</p> #}
+										{% endif %}
+									</div>
+								{% endif %}
 							</div>
 						</div>
 					</div>
@@ -165,8 +167,8 @@
 					<div class="row row-cols-1 row-cols-md-5 g-5" style="justify-content:center">
 						{% for product in products %}
 							{% include "product/products.html.twig" %}
-						</div>
-					{% endfor %}
+						{% endfor %}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -177,7 +179,7 @@
 				<h1 class="my-3 text-center">Nos Offres</h1>
 				<div class="row row-cols-1 row-cols-md-5 g-5" id="provider-offer-card">
 					{% for offer in offers %}
-						<a style="text-decoration:none" href="{{ path('offer_edit', {'id': offer.id}) }}">{% include "offer/offers.html.twig" %}</a>
+						<a style="text-decoration:none" href="{{ path('offer_show', {'id': offer.id}) }}">{% include "offer/offers.html.twig" %}</a>
 					{% endfor %}
 				</div>
 			</div>

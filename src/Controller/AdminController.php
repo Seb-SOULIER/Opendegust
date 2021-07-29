@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Newsletter;
 use App\Entity\Offer;
 use App\Entity\Provider;
 use App\Repository\ProviderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
