@@ -179,7 +179,9 @@
 				<h1 class="my-3 text-center">Nos Offres</h1>
 				<div class="row row-cols-1 row-cols-md-5 g-5" id="provider-offer-card">
 					{% for offer in offers %}
-						<a href="{{ path('offer_show', {'id': offer.id}) }}">{% include "offer/offers.html.twig" %}</a>
+{#						<a href="{{ path('offer_show', {'id': offer.id}) }}">#}
+							{% include "offer/offers.html.twig" %}
+{#						</a>#}
 					{% endfor %}
 				</div>
 			</div>
