@@ -299,13 +299,13 @@ h2.my-3.text-center {
 
 .img-fluid.products-image {
     object-fit: cover;
-    height: 150px;
+    height: 294px;
 }
 
-@media screen and (max-width: 940px) {
+@media screen and (min-width: 940px) {
     .img-fluid.products-image {
         object-fit: cover;
-        height: 294px;
+        height: 200px;
     }
 }
 .indexbtn {

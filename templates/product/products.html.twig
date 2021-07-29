@@ -5,8 +5,8 @@
             <img class="card-img-top products-image img-fluid" src="{{ product.picture }}" alt="{{ product.name }}">
         {% else %}
             <picture class="">
-                <source srcset="{{ asset('uploads/' ~ product.picture)|imagine_filter('product_thumb_product_sm')  }}" media="(max-width: 992px)">
-                <source srcset="{{ asset('uploads/' ~ product.picture)|imagine_filter('product_thumb_product_lg')  }}" media="(min-width: 992px)">
+                <source srcset="{{ asset('uploads/' ~ product.picture)|imagine_filter('product_thumb_product_sm') }}" media="(max-width: 992px)">
+                <source srcset="{{ asset('uploads/' ~ product.picture)|imagine_filter('product_thumb_product_lg') }}" media="(min-width: 992px)">
                 <img class="card-img-top img-fluid products-image" src="{{ asset('uploads/' ~ product.picture) }}" alt="{{ product.name }} poster">
             </picture>
         {% endif %}
