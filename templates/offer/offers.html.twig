@@ -3,7 +3,6 @@
         {% if offer.picture starts with 'http' %}
             <img class="card-img-top" src="{{ offer.picture }}" alt="{{ offer.name }}">
         {% else %}
-            {#                   @TODO a revoir image product#}
             <picture class="d-flex justify-content-center">
                 <source srcset="{{ asset('uploads/' ~ offer.picture)|imagine_filter('product_thumb_default') }}">
                 <img class="w-auto card-img-top" src="{{ asset('uploads/' ~ offer.picture) }}" alt="{{ offer.name }} poster">

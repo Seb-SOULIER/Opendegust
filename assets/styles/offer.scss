@@ -1,3 +1,59 @@
+.colanguage{
+    column-count: 4;
+}
+
+.variation{
+    border: $primary solid 2px;
+    padding: 1rem;
+    column-count: 3;
+    column-fill: auto;
+    padding-bottom: 10px;
+    height:550px;
+}
+.colcategory{
+    column-count: 2;
+    height: 440px;
+}
+
+@media screen and(max-width: 1400px) {
+    .variation{
+        border: $primary solid 2px;
+        padding: 1rem;
+        column-count: 2;
+        column-fill: auto;
+        padding-bottom: 10px;
+        height : auto;
+    }
+}
+
+@media screen and(max-width: 1200px) {
+    .colcategory{
+        column-count: 1;
+        height: auto;
+    }
+}
+
+@media screen and(max-width: 992px) {
+
+}
+
+@media screen and(max-width: 768px) {
+    .variation{
+        border: $primary solid 2px;
+        padding: 1rem;
+        column-count: 1;
+        column-fill: auto;
+        padding-bottom: 10px;
+        height : auto;
+    }
+    .colanguage{
+        column-count: 2;
+    }
+}
+
+.btn-pos{
+    width:100%;
+}
 
 #liste-des-prod h2 {
     color: #59ae52;
@@ -239,4 +295,16 @@ h2.my-3.text-center {
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.img-fluid.products-image {
+    object-fit: cover;
+    height: 150px;
+}
+
+@media screen and (max-width: 940px) {
+    .img-fluid.products-image {
+        object-fit: cover;
+        height: 294px;
+    }
 }

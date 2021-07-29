@@ -41,8 +41,8 @@ class ProviderController extends AbstractController
     public function index(ProviderRepository $providerRepository): Response
     {
         return $this->render('provider/index.html.twig', [
-            'providers' => $providerRepository->findAll()
-        ]);
+            'providers' => $providerRepository->findByStatus()
+            ]);
     }
 
     /**
@@ -133,12 +133,12 @@ class ProviderController extends AbstractController
     /**
      * @Route("/delete/file/{id}", name="provider_delete_file", methods={"GET"})
      */
-    public function deleteFile(File $file, Request $request)
+    public function deleteFile(File $file, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
         if ($this->isCsrfTokenValid('delete'.$file->getId(), $data['_token'])) {
             $name = $file->getFileName();
-            unlink($this->getParameter('upload_directory').'/'.$name);
+            unlink($this->getParameter('upload_directory') . '/' . $name);
             $em = $this->getDoctrine()->getManager();
             $em->remove($file);
             $em->flush();

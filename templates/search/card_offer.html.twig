@@ -10,18 +10,18 @@
 								<img class="img-fluid offers-image" src="{{ offer.picture }}" alt="offer image">
 							{% else %}
 								<picture>
-									<source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_sm") }}"
+									<source srcset="{{ asset("uploads/" ~ offer.picture)|imagine_filter("offer_thumb_sm") }}"
 											media="(max-width: 576px)">
-									<source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_lg") }}"
+									<source srcset="{{ asset("uploads/" ~ offer.picture)|imagine_filter("offer_thumb_lg") }}"
 											media="(max-width: 992px)">
-									<source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_xl") }}"
+									<source srcset="{{ asset("uploads/" ~ offer.picture)|imagine_filter("offer_thumb_xl") }}"
 											media="(max-width: 1200px)">
-									<source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_xml") }}"
+									<source srcset="{{ asset("uploads/" ~ offer.picture)|imagine_filter("offer_thumb_xml") }}"
 											media="(max-width: 1400px)">
-									<source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_xxl") }}"
+									<source srcset="{{ asset("uploads/" ~ offer.picture)|imagine_filter("offer_thumb_xxl") }}"
 											media="(min-width: 1400px)">
 									<img class="img-fluid offers-image"
-										 src="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_default") }}"
+										 src="{{ asset("uploads/" ~ offer.picture)|imagine_filter("offer_thumb_default") }}"
 										 alt="offer image">
 								</picture>
 							{% endif %}

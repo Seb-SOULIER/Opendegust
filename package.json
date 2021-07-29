@@ -33,7 +33,6 @@
         "@popperjs/core": "^2.9.2",
         "devbridge-autocomplete": "^1.4.11",
         "leaflet": "^1.7.1",
-        "leaflet-easybutton": "^2.4.0",
-        "slick-carousel": "^1.8.1"
+        "leaflet-easybutton": "^2.4.0"
     }
 }
