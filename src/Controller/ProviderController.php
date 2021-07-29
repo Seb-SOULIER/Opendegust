@@ -104,7 +104,7 @@ class ProviderController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success', 'Les informations de votre compte ont été modifiés avec succès !');
 
-            return $this->redirect('/provider/edit');
+            return $this->redirect('/');
         }
 
         return $this->render('provider/edit.html.twig', [
