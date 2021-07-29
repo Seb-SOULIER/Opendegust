@@ -79,6 +79,16 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
+                                    {{ form_label(form.pictureFile, 'Photo de profil') }}
+                                    <div class="text-danger">
+                                        {{ form_errors(form.pictureFile) }}
+                                    </div>
+                                    {{ form_widget(form.pictureFile) }}
+                                    {% if provider.picture %}
+                                        <img src="{{ vich_uploader_asset(provider) }}" alt="{{ provider.picture }}">
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
                                     {{ form_label(form.contact.website, 'Site internet') }}
                                     <div class="text-danger">
                                         {{ form_errors(form.contact.website) }}

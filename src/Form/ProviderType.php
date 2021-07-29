@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 
 class ProviderType extends AbstractType
@@ -35,6 +36,11 @@ class ProviderType extends AbstractType
             ])
             ->add('lastname', TextType::class)
             ->add('firstname', TextType::class)
+            ->add('pictureFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => false, // not mandatory, default is true
+            ])
             ->add('company', TextType::class)
             ->add('socialReason', ChoiceType::class, [
                 'choices' => [
@@ -60,10 +66,6 @@ class ProviderType extends AbstractType
                 'by_reference' => false
             ])
 
-//            ->add(
-//                $builder
-//                    ->create('otherSite', TextType::class)
-//            )
             ->add('files', FileType::class, [
                 'label' => false,
                 'multiple' => true,
