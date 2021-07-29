@@ -42,6 +42,7 @@ class OfferType extends AbstractType
                     'Espagnol' => 'Espagnol',
                     'Russe' => 'Russe',
                 ],
+                'attr' => ['class' => 'colanguage']
             ])
             ->add('variation', ButtonType::class, [
                 'attr' => ['class' => 'btn btn-success btn-pos', 'data-collection-holder-class' => 'variations'],

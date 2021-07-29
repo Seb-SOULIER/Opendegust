@@ -20,6 +20,7 @@ import './js/files';
 import './bootstrap';
 
 const $ = require('jquery');
+
 require('slick-carousel');
 
 window.bootstrap = require('bootstrap');

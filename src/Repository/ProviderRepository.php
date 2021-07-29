@@ -19,6 +19,21 @@ class ProviderRepository extends ServiceEntityRepository
         parent::__construct($registry, Provider::class);
     }
 
+//    // /**
+//    //  * @return Provider[] Returns an array of Provider objects
+//    //  */
+//    /*
+    public function findByStatus()
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.roles LIKE :roles')
+            ->andWhere('p.status = 1')
+            ->setParameter('roles', '%"ROLE_PROVIDER"%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Provider[] Returns an array of Provider objects
     //  */
