@@ -161,3 +161,10 @@ p.informations-perso {
     height: 40%;
     object-fit: cover;
 }
+
+.row2 {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -18,7 +18,7 @@ export default class Map {
         // On charge les "tuiles"
         L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
             minZoom: 2,
-            maxZoom: 15,
+            maxZoom: 20,
             attribution: '&copy; OpenStreetMap France | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(carte);
 
