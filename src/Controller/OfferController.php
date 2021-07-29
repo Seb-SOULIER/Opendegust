@@ -85,11 +85,13 @@ class OfferController extends AbstractController
             $url = "https://nominatim.openstreetmap.org/search?q="
                 . $localisation . "&format=json&addressdetails=1&limit=1";
             $local = $api->getResponse($url);
-            $lat = $local[0]['lat'];
-            $lon = $local[0]['lon'];
-            $offer->getContact()->setLongitude($lon);
-            $offer->getContact()->setLatitude($lat);
-            $entityManager->flush();
+            if($local) {
+                $lat = $local[0]['lat'];
+                $lon = $local[0]['lon'];
+                $offer->getContact()->setLongitude($lon);
+                $offer->getContact()->setLatitude($lat);
+                $entityManager->flush();
+            }
 
             return $this->redirectToRoute('offer_index');
         }
@@ -129,6 +131,7 @@ class OfferController extends AbstractController
         Request $request,
         Offer $offer,
         CategoryRepository $categoryRepository,
+        OfferRepository $offerRepository,
         Api $api
     ): Response {
 
@@ -138,18 +141,24 @@ class OfferController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $offerCategories = $request->request->get('categories');
+            foreach ($offerCategories as $offerCategory) {
+                $offer->addCategory($categoryRepository->findOneBy(['id' => $offerCategory]));
+            }
+
             $localisation = $offer->getContact()->getAddress()
                 . " " .$offer->getContact()->getZipCode()
                 . " " .$offer->getContact()->getCity();
             $url = "https://nominatim.openstreetmap.org/search?q="
                 . $localisation . "&format=json&addressdetails=1&limit=1";
             $local = $api->getResponse($url);
-            $lat = $local[0]['lat'];
-            $lon = $local[0]['lon'];
-            $offer->getContact()->setLongitude($lon);
-            $offer->getContact()->setLatitude($lat);
-            $this->getDoctrine()->getManager()->flush();
-
+            if($local) {
+                $lat = $local[0]['lat'];
+                $lon = $local[0]['lon'];
+                $offer->getContact()->setLongitude($lon);
+                $offer->getContact()->setLatitude($lat);
+                $this->getDoctrine()->getManager()->flush();
+            }
             return $this->redirectToRoute('offer_index');
         }
 
@@ -157,6 +166,7 @@ class OfferController extends AbstractController
             'offer' => $offer,
             'form' => $form->createView(),
             'categories' => $categoryRepository->findByCategory(null),
+            'categoryOffer' => $offer->getCategories()
         ]);
     }
 

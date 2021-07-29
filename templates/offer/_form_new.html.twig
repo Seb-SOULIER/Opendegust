@@ -31,18 +31,23 @@
                                         {{ form_widget(form.description.longDescription) }}
                                     </div>
                                 </div>
-                                @todo Seb -> mettre en image a charger
                                 <div class="row g-3 d-md-flex justify-content-between">
                                     <div>
                                         {{ form_label(form.imgOffer, "Image :") }}
                                         {{ form_widget(form.imgOffer) }}
                                     </div>
                                 </div>
-                                @todo Seb -> alignement des checkbox
-                                <div class="row g-3 d-md-flex justify-content-between">
-                                    <div>
+                                <div class="row g-3 d-md-flex justify-content-between mt-1">
+                                    <div class="pb-1" style="border: black solid 1px">
                                         {{ form_label(form.language, "Langues :") }}
                                         {{ form_widget(form.language) }}
+                                    </div>
+                                </div>
+                                <div class="row g-3 d-md-flex justify-content-between mt-1">
+                                    <div class="colcategory" style="border: black solid 1px">
+                                        <label>Categories:</label>
+                                        {% from 'macros/categoriesOffer.html.twig' import make_categories %}
+                                        {{ make_categories(categories, categoryOffer|default([])) }}
                                     </div>
                                 </div>
                             </div>
@@ -110,10 +115,6 @@
                     </div> <!-- /.variation -->
                 </div>
             </div>
-        </div>
-        <div class="col-sm">
-            {% from 'macros/categories.html.twig' import make_categories %}
-            {{ make_categories(categories) }}
         </div>
         <button class="btn btn-primary mt-3 col-12 col-md-6 text-light">{{ button_label|default('Valider') }}</button>
         {{ form_end(form) }}

@@ -1,0 +1,12 @@
+{{ form_start(formVariation, {'attr': {'class': 'd-flex align-items-center flex-column'}}) }}
+    {% for calendar in formVariation.calendars %}
+        <ul class="calendars" data-prototype="{{ form_widget(formVariation.calendars.vars.prototype)|e('html_attr') }}">
+        {{ form_label(calendar.startAt, "Date :") }}
+        {{ form_widget(calendar.startAt) }}
+        </ul>
+    {% endfor %}
+<button type="button" class="add_item_link" data-collection-holder-class="calendars">Add a tag</button>
+<button type="button" class="add_item_link" data-collection-holder-class="variations">Add</button>
+
+{{ form_end(formVariation) }}
+

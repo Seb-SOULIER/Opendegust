@@ -4,10 +4,10 @@
             <img class="card-img-top" src="{{ product.picture }}" alt="{{ product.name }}">
         {% else %}
 {#                   @TODO a revoir image product#}
-            <picture class="d-flex justify-content-center">
-                <source srcset="{{ asset('uploads/' ~ product.picture)|imagine_filter('product_thumb_default') }}">
-                <img class="w-auto card-img-top" src="{{ asset('uploads/' ~ product.picture) }}" alt="{{ product.name }} poster">
-            </picture>
+        <picture class="d-flex justify-content-center">
+            <source srcset="{{ asset('uploads/' ~ product.picture)|imagine_filter('product_thumb_default') }}">
+            <img class="w-auto card-img-top" src="{{ asset('uploads/' ~ product.picture) }}" alt="{{ product.name }} poster">
+        </picture>
         {% endif %}
         <div class="card-body d-flex flex-column">
             <h5 class="card-title text-center">{{ product.name }}</h5>

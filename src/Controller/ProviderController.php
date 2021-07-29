@@ -41,8 +41,8 @@ class ProviderController extends AbstractController
     public function index(ProviderRepository $providerRepository): Response
     {
         return $this->render('provider/index.html.twig', [
-            'providers' => $providerRepository->findAll()
-        ]);
+            'providers' => $providerRepository->findByStatus()
+            ]);
     }
 
     /**

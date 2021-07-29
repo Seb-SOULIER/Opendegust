@@ -34,7 +34,8 @@ class OfferRepository extends ServiceEntityRepository
             ->join('o.offerVariations', 'ov')
             ->join('ov.calendars', 'c')
             ->join('o.categories', 'ca')
-            ->join('o.contact', 'lo');
+            ->join('o.contact', 'lo')
+            ->join('o.provider','pro');
 
         if (!empty($request->query->get('price-min'))) {
             $query = $query
@@ -75,6 +76,8 @@ class OfferRepository extends ServiceEntityRepository
                     ->setParameter('category', $category);
             }
         }
+
+        $query = $query->andWhere('pro.status = 1');
 
         $query->orderBy('distance', 'ASC');
 

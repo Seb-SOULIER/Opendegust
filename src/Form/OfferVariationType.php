@@ -17,16 +17,26 @@ class OfferVariationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('duration')
-            ->add('price', MoneyType::class)
+            ->add('duration', null,[
+                'label' => "Durée de l'offre:",
+            ])
+            ->add('price', MoneyType::class, [
+                'label' => "Tarif :"
+            ])
             ->add('priceChildren', MoneyType::class,[
-                'mapped' => false
+                'mapped' => false,
+                'label' => 'Tarif enfant :'
             ])
             ->add('priceGroupe',MoneyType::class, [
-                'mapped' => false
+                'mapped' => false,
+                'label' => 'Tarif groupe'
             ])
-            ->add('currentVat', PercentType::class)
-            ->add('capacity')
+            ->add('currentVat', PercentType::class, [
+                'label' => 'TVA :'
+            ])
+            ->add('capacity', null,[
+                'label' => "Total capacité de l'offre :"
+            ])
             ->add('available_places', HiddenType::class)
             ->add('calendars', CollectionType::class, [
                 'attr' => ['class' => 'calendars', 'data-items' => "[data-item-start-at]"],
@@ -36,15 +46,16 @@ class OfferVariationType extends AbstractType
                 'by_reference' => false,
                 'allow_delete' => true,
                 'prototype' => true,
-                'prototype_name' => '__name__'
+                'prototype_name' => '__name__',
+                'label' => "Dates de l'offre"
             ])
             ->add('calendar', ButtonType::class, [
                 'attr' => ['class' => 'btn btn-success', 'data-collection-holder-class' => 'calendars'],
-                'label' => 'ajouter une période'
+                'label' => 'Ajouter une date'
             ])
             ->add('delete', ButtonType::class, [
                 'label' => 'Supprimer cette variation',
-                'attr' => ['data-remove-item' => '.variation'],
+                'attr' => ['class' => 'btn btn-danger btn-pos', 'data-remove-item' => '.variation'],
             ]);
         ;
     }
