@@ -153,12 +153,13 @@
         initListenerRemoveItem(fieldset);
     }
 
-    const initCollection = (target, selector) => {
-        const dataItems = target.getAttribute('data-items');
-        const collection = target.querySelectorAll(selector);
+    const initCollection = (selector) => {
+
+        const collection = document.querySelectorAll(selector);
         collection.forEach((collectionHolder) => {
             // count the current form inputs we have (e.g. 2), use that as the new
             // index when inserting a new item (e.g. 2)
+            const dataItems = collectionHolder.getAttribute('data-items');
             const index = collectionHolder.querySelectorAll(dataItems).length
             collectionHolder.setAttribute('index', index);
         });
@@ -189,6 +190,6 @@
         // Get the ul that holds the collection of tags
         initListenerAddItem(document);
         initListenerRemoveItem(document);
-        initCollection(document, '[data-prototype]');
+        initCollection('[data-prototype]');
     });
 </script>
