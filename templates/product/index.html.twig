@@ -4,9 +4,9 @@
 
 {% block body %}
     <div class="container">
-        <h1 class="my-3 text-center">Mes Produits</h1>
+    <h1 class="my-3 text-center">Mes Produits</h1>
+    {% if app.user.status == 1 %}
         <div class="row justify-content-around d-flex g-5 mt-3">
-{#            <div class="row row-cols-1 row-cols-md-5 g-5">#}
             {% for product in products %}
                 {% if is_granted("ROLE_ADMIN") or product.provider == app.user %}
                     {% include "product/products.html.twig" %}
@@ -25,5 +25,10 @@
             </div>
             {% endif %}
         </div>
+    {% else %}
+        <div class="no-results-offer">
+            <p>Votre compte est en attente de vérification!</p>
+        </div>
+    {% endif %}
     </div>
 {% endblock %}
