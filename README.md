@@ -56,3 +56,20 @@ Caprover configuration files are :
 * [ESLint](https://eslint.org/)
 * [Sass-Lint](https://github.com/sasstools/sass-lint)
 
+## Schema de la base de donnée
+
+![bdd](resources/open-degust-database.jpg)
+
+## Connexion Facebook
+
+Créer une application sur https://developers.facebook.com/  
+Ajouter les identifiants dans .env  
+FACEBOOK_ID=    
+FACEBOOK_SECRET=
+
+## Connexion Google
+
+Créer une application sur https://console.developers.google.com/    
+Ajouter les identifiants dans .env  
+GOOGLE_ID=  
+GOOGLE_SECRET=  
