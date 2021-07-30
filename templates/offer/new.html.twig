@@ -3,14 +3,9 @@
 {% block title %}Nouvelle offre{% endblock %}
 
 {% block body %}
+        <a class="btn btn-primary m-3" href="{{ path('offer_index') }}">Retour a mes offres</a>
     <div class="d-flex justify-content-center">
         <h1>Créer une nouvelle offre</h1>
     </div>
-
         {{ include('offer/_form_new.html.twig') }}
-
-    <div class="d-flex justify-content-center">
-        <a href="{{ path('offer_index') }}">Retour a mes offres</a>
-    </div>
-
 {% endblock %}

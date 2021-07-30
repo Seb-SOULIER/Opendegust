@@ -60,7 +60,7 @@ class CustomerController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'Les informations de votre compte ont été modifiés avec succès !');
-            return $this->redirect('/customer/' . $customer->getId() . '/edit');
+            return $this->redirect('/');
         }
 
         return $this->render('customer/edit.html.twig', [

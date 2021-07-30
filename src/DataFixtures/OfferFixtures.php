@@ -31,7 +31,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
     ];
     private const PICTURE = [
         '1' => 'https://cache.cosmopolitan.fr/data/photo/w1000_ci/54/amis-restaurant.webp',
-        '2' => 'https://via.placeholder.com/640x480.png/00ff22?text=food+quasi',
+        '2' => 'https://cdn.pixabay.com/photo/2015/01/05/22/29/wellness-589773_960_720.jpg',
         '3' => 'https://www.nordundsud.at/wp-content/uploads/2020/10/Coffrets-degustation-458x458.jpg',
         '4' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
         '5' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz815SFgVmz0F1SD685KEczMhF2WLo-tKH8A&usqp=CAU',
@@ -44,14 +44,14 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
         '12' => 'https://biscuitsetcompagnie.com/journal/wp-content/uploads/2017/01/255001000_betises_de_cambrai_a_la_menthe_120g_02.jpg',
         '13' => 'https://www.lafermedesaintbonnet.fr/wp-content/uploads/2016/11/viande-bio-14.jpg',
         '14' => 'https://le-cdn.website-editor.net/c181047c4b0c4afeb69d195e5bd540e1/dms3rep/multi/opt/degustation+de+spiritueux-602w.jpg',
-        '15' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
-        '16' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
-        '17' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
-        '18' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
-        '19' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
-        '20' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
-        '21' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
-        '22' => 'https://uploads.lebonbon.fr/source/2019/january/a930ptnfne_2_675.jpg',
+        '15' => 'https://cdn.pixabay.com/photo/2018/03/13/20/08/pistachios-3223610_960_720.jpg',
+        '16' => 'https://cdn.pixabay.com/photo/2015/09/21/14/24/supermarket-949913_960_720.jpg',
+        '17' => 'https://cdn.pixabay.com/photo/2016/06/19/00/17/raspberries-1465988_960_720.jpg',
+        '18' => 'https://cdn.pixabay.com/photo/2017/09/25/20/44/peppers-2786684_960_720.jpg',
+        '19' => 'https://cdn.pixabay.com/photo/2018/06/10/20/30/bread-3467243_960_720.jpg',
+        '20' => 'https://cdn.pixabay.com/photo/2016/03/05/20/07/salmon-1238662_960_720.jpg',
+        '21' => 'https://cdn.pixabay.com/photo/2016/05/13/16/37/muffin-1390368_960_720.jpg',
+        '22' => 'https://cdn.pixabay.com/photo/2018/10/16/23/24/mushrooms-3752807_960_720.jpg',
     ];
 
     private const NAME = [
@@ -133,8 +133,8 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 $contact->setZipcode($this->faker->postcode);
                 $contact->setAddress($this->faker->sentence(3));
                 $contact->setCity($this->faker->city);
-                $contact->setLongitude($this->faker->randomFloat(4, 1, 5));
-                $contact->setLatitude($this->faker->randomFloat(4, 43, 50));
+                $contact->setLongitude($this->faker->randomFloat(4, -0.96, 1.26));
+                $contact->setLatitude($this->faker->randomFloat(4, 45.47, 46.32));
                 $contact->setPhone($this->faker->phoneNumber);
                 $contact->setPhone2($this->faker->phoneNumber);
                 $contact->setWebsite($this->faker->domainName);
