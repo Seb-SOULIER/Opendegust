@@ -76,6 +76,16 @@ class OfferVariation
      */
     private ?int $availablePlaces;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $priceChildren;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $priceGroup;
+
     public function __construct()
     {
         $this->calendars = new ArrayCollection();
@@ -218,6 +228,30 @@ class OfferVariation
     public function setAvailablePlaces(?int $availablePlaces): self
     {
         $this->availablePlaces = $availablePlaces;
+
+        return $this;
+    }
+
+    public function getPriceChildren(): ?float
+    {
+        return $this->priceChildren;
+    }
+
+    public function setPriceChildren(?float $priceChildren): self
+    {
+        $this->priceChildren = $priceChildren;
+
+        return $this;
+    }
+
+    public function getPriceGroup(): ?float
+    {
+        return $this->priceGroup;
+    }
+
+    public function setPriceGroup(?float $priceGroup): self
+    {
+        $this->priceGroup = $priceGroup;
 
         return $this;
     }

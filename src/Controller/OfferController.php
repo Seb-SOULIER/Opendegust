@@ -12,6 +12,7 @@ use App\Form\OfferType;
 use App\Form\OfferVariationType;
 use App\Repository\CategoryRepository;
 use App\Repository\OfferRepository;
+use App\Repository\OfferVariationRepository;
 use App\Repository\ProductRepository;
 use App\Service\Api;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -61,7 +62,12 @@ class OfferController extends AbstractController
     /**
      * @Route("/new", name="_new", methods={"GET","POST"})
      */
-    public function new(Request $request, CategoryRepository $categoryRepository, Api $api): Response
+    public function new(
+        Request $request,
+        CategoryRepository $categoryRepository,
+        Api $api,
+        OfferVariationRepository $offerVariationRepository
+    ): Response
     {
         $offer = new Offer();
         $form = $this->createForm(OfferType::class, $offer);
@@ -90,6 +96,13 @@ class OfferController extends AbstractController
                 $lon = $local[0]['lon'];
                 $offer->getContact()->setLongitude($lon);
                 $offer->getContact()->setLatitude($lat);
+                $entityManager->flush();
+            }
+            $variations = $offerVariationRepository->findBy(['offer'=>$offer]);
+            foreach ($variations as $variation) {
+                $variation->setPriceVariation(
+                    ['adultes'=>$variation->getPrice(),'enfants'=>$variation->getPriceChildren()]
+                );
                 $entityManager->flush();
             }
 
@@ -132,6 +145,8 @@ class OfferController extends AbstractController
         Offer $offer,
         CategoryRepository $categoryRepository,
         OfferRepository $offerRepository,
+        OfferVariationRepository $offerVariationRepository,
+
         Api $api
     ): Response {
 
@@ -159,6 +174,17 @@ class OfferController extends AbstractController
                 $offer->getContact()->setLatitude($lat);
                 $this->getDoctrine()->getManager()->flush();
             }
+            $variations = $offerVariationRepository->findBy(['offer'=>$offer]);
+            foreach ($variations as $variation) {
+                $variation->setPriceVariation(
+                    ['adultes'=>$variation->getPrice(),'enfants'=>$variation->getPriceChildren()]
+                );
+                if ($variation->getAvailablePlaces() === null) {
+                    $variation->setAvailablePlaces($variation->getCapacity());
+                }
+                $this->getDoctrine()->getManager()->flush();
+            }
+
             return $this->redirectToRoute('offer_index');
         }
 

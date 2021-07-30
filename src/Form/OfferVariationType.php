@@ -24,11 +24,9 @@ class OfferVariationType extends AbstractType
                 'label' => "Tarif :"
             ])
             ->add('priceChildren', MoneyType::class,[
-                'mapped' => false,
                 'label' => 'Tarif enfant :'
             ])
-            ->add('priceGroupe',MoneyType::class, [
-                'mapped' => false,
+            ->add('priceGroup',MoneyType::class, [
                 'label' => 'Tarif groupe'
             ])
             ->add('currentVat', PercentType::class, [

@@ -31,11 +31,11 @@
 						<td class="text-center" rowspan="
 							{{ (allDuree[key][key2])|length }}
 						">
-							{{ variation.duration|date('h:m') }}
+							{{ variation.duration|date("H:i") }}
 						</td>
 						{% for date in variation.calendars %}
 							<td class="text-center">
-								{{ date.startAt|date('d M Y - h:m') }}
+								{{ date.startAt|date('d M Y - h:m:s') }}
 							</td>
 							<td class="text-center">
 								{{ variation.capacity }} places

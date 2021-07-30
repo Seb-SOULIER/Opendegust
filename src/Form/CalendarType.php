@@ -23,7 +23,7 @@ class CalendarType extends AbstractType
                 'widget' => 'single_text',
                 'input'  => 'datetime',
                 'html5' => true,
-                'attr' => ['class' => 'form-control js-datepicker', 'min' => $stringDate],
+                'attr' => ['class' => 'form-control js-datepicker', 'min' => $stringDate, 'data-item-start-at' => ''],
                 'label' => 'Date et heure :'
             ])
             ->add('delete', ButtonType::class, [
