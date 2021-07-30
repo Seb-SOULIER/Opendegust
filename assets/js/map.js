@@ -6,7 +6,7 @@ export default class Map {
         // On initialise la carte
         const locSearch = document.querySelector('[data-loclat]');
         //  locSearch.getAttribute('data-loc-lat'),locSearch.getAttribute('data-loc-lon')
-        let zoom = 11;
+        let zoom = 9;
         if (parseInt(locSearch.getAttribute('data-zoom'), 10) === 5) {
             zoom = 5;
         }
@@ -31,7 +31,7 @@ export default class Map {
             marqueur.bindPopup(`
   <div class="row g-0 popup-card">
     <div class="col-5">
-      <img class="imgpopup" src="https://cdn.pixabay.com/photo/2017/06/23/17/38/beer-2435382_960_720.jpg" class="img-fluid rounded-start" alt="image correspondant a la degustation">
+      <img src="https://cdn.pixabay.com/photo/2017/06/23/17/38/beer-2435382_960_720.jpg" class="img-fluid rounded-start imgpopup" alt="image correspondant a la degustation">
     </div>
     <div class="col-7">
     

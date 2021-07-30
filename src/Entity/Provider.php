@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ProviderRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -92,7 +93,7 @@ class Provider extends User
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $picture;
+    private ?string $picture = null;
 
     /**
      * @Vich\UploadableField(mapping="provider_picture", fileNameProperty="picture")
@@ -106,20 +107,14 @@ class Provider extends User
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTimeInterface $updatedAt;
+    private ?DateTimeInterface $updatedAt;
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param \DateTimeInterface $updatedAt
-     */
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(?DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
         return $this;

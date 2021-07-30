@@ -70,9 +70,15 @@
 									<a data-lat="{{ offer.contact.latitude }}" data-long="{{ offer.contact.longitude }}" data-name="{{ offer.domainName }}" data-id="{{ offer.id }}" href="#">
 										<i class="fas fa-map-marked-alt"></i> Localiser sur la carte</a>
 									<div class="d-flex justify-content-center">
-									<a href="{{ path('offer_show', {'id': offer.id}) }}" class="btnOfferOnCard btnOffer btn btn-primary">réserver
-										<i class="fas fa-shopping-cart"></i>
-									</a>
+										{% if app.user %}
+											<a href="{{ path('offer_show', {'id': offer.id}) }}" class="btnOfferOnCard btnOffer btn btn-primary">réserver
+												<i class="fas fa-shopping-cart"></i>
+											</a>
+										{% else %}
+											<a href="{{ path('register') }}" class="btnOfferOnCard btnOffer btn btn-primary">réserver
+												<i class="fas fa-shopping-cart"></i>
+											</a>
+										{% endif %}
 									</div>
 									<p class="card-text">
 										<small class="text-muted"></small>
@@ -152,9 +158,15 @@
 										</ul>
 									</div>
 									<div class="modal-footer">
-										<a href="{{ path('offer_show', {'id': offer.id}) }}" class="btnOffer btn btn-primary">réserver
-											<i class="fas fa-shopping-cart"></i>
-										</a>
+										{% if app.user %}
+											<a href="{{ path('offer_show', {'id': offer.id}) }}" class="btnOffer btn btn-primary">réserver
+												<i class="fas fa-shopping-cart"></i>
+											</a>
+										{% else %}
+											<a href="{{ path('register') }}" class="btnOffer btn btn-primary">réserver
+												<i class="fas fa-shopping-cart"></i>
+											</a>
+										{% endif %}
 										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
 											Close
 										</button>

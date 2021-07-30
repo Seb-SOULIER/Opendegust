@@ -92,9 +92,15 @@
 							</a>
 						{% endif %}
 					</div>
-					<div class="p-3">
-						<a class="btn btn-primary" href="{{ path('offer_index') }}">Retournez à la liste des Offres</a>
-					</div>
+					{% if is_granted("ROLE_PROVIDER") %}
+						<div class="p-3">
+							<a class="btn btn-primary" href="{{ path('offer_index') }}">Retournez à la liste des Offres</a>
+						</div>
+					{% else %}
+						<div class="p-3">
+							<a class="btn btn-primary" href="{{ path('search_localization') }}">Retournez à la liste des Offres</a>
+						</div>
+					{% endif %}
 				</div>
 			</div>
 
