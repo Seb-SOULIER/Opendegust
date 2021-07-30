@@ -129,7 +129,7 @@ class ProviderFixtures extends Fixture
             $provider->setRoles(['ROLE_PROVIDER']);
             $provider->setPassword($this->passwordEncoder->encodePassword(
                 $provider,
-                'toto'
+                'azerty'
             ));
             $provider->setRegistrationAt($this->faker->dateTime);
             $provider->setCivility($this->faker->numberBetween(1, 3));

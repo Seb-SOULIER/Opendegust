@@ -148,7 +148,7 @@
 @media screen and(max-width: 576px) {
     .col-12.col-sm-6.domaine-picture {
         padding-top: 15px;
-        width: 80%;
+        //width: 80%;
         margin-right: auto;
         margin-left: auto;
         float: none;
@@ -286,7 +286,6 @@ h2.my-3.text-center {
     }
 }
 
-
 .no-results-offer {
     border: 1px solid red;
     padding: 0.4rem;
@@ -296,4 +295,23 @@ h2.my-3.text-center {
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.img-fluid.products-image {
+    object-fit: cover;
+    height: 294px;
+}
+
+@media screen and (min-width: 940px) {
+    .img-fluid.products-image {
+        object-fit: cover;
+        height: 200px;
+    }
+}
+.indexbtn {
+    z-index: 1000;
+}
+
+.indexbtn2 {
+    z-index: 2;
 }

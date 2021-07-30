@@ -6,24 +6,43 @@
 				<div class="col-sm-4 p-2">
 					<div class="card cardHover h-100">
 						<div class=" h-100 row g-0">
-							<div class="">
-								{# <picture>
-								<source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_sm") }}"
-										media="(max-width: 576px)">
-								<source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_lg") }}"
-										media="(max-width: 992px)">
-								<source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_xl") }}"
-										media="(max-width: 1200px)">
-								<source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_xml") }}"
-										media="(max-width: 1400px)">
-								<source srcset="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_xxl") }}"
-										media="(min-width: 1400px)">
-								<img class="img-fluid"
-									src="{{ asset("uploads/" ~ "testsearch.jpg")|imagine_filter("offer_thumb_default") }}"
-									alt="offer image">
-							</picture> #}
+							{% if offer.picture starts with 'http' %}
 								<img class="img-fluid offers-image" src="{{ offer.picture }}" alt="offer image">
-							</div>
+							{% else %}
+								<picture>
+									<source srcset="{{ asset("uploads/" ~ offer.picture)|imagine_filter("offer_thumb_sm") }}"
+											media="(max-width: 576px)">
+									<source srcset="{{ asset("uploads/" ~ offer.picture)|imagine_filter("offer_thumb_lg") }}"
+											media="(max-width: 992px)">
+									<source srcset="{{ asset("uploads/" ~ offer.picture)|imagine_filter("offer_thumb_xl") }}"
+											media="(max-width: 1200px)">
+									<source srcset="{{ asset("uploads/" ~ offer.picture)|imagine_filter("offer_thumb_xml") }}"
+											media="(max-width: 1400px)">
+									<source srcset="{{ asset("uploads/" ~ offer.picture)|imagine_filter("offer_thumb_xxl") }}"
+											media="(min-width: 1400px)">
+									<img class="img-fluid offers-image"
+										 src="{{ asset("uploads/" ~ offer.picture)|imagine_filter("offer_thumb_default") }}"
+										 alt="offer image">
+								</picture>
+							{% endif %}
+{#							<div class="">#}
+{#								 <picture>#}
+{#								                                    <source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_sm") }}"#}
+{#								                                            media="(max-width: 576px)">#}
+{#								                                    <source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_lg") }}"#}
+{#								                                            media="(max-width: 992px)">#}
+{#								                                    <source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_xl") }}"#}
+{#								                                            media="(max-width: 1200px)">#}
+{#								                                    <source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_xml") }}"#}
+{#								                                            media="(max-width: 1400px)">#}
+{#								                                    <source srcset="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_xxl") }}"#}
+{#								                                            media="(min-width: 1400px)">#}
+{#								                                    <img class="img-fluid"#}
+{#								                                         src="{{ asset("uploads/" ~ offer.picture )|imagine_filter("offer_thumb_default") }}"#}
+{#								                                         alt="offer image">#}
+{#								                                </picture>#}
+{#								<img class="img-fluid offers-image" src="{{ offer.picture }}" alt="offer image">#}
+{#							</div>#}
 							<div class="col-md-12">
 								<div class="h-100 card-body card-body-offer">
 									<div class="d-flex">
@@ -51,9 +70,15 @@
 									<a data-lat="{{ offer.contact.latitude }}" data-long="{{ offer.contact.longitude }}" data-name="{{ offer.domainName }}" data-id="{{ offer.id }}" href="#">
 										<i class="fas fa-map-marked-alt"></i> Localiser sur la carte</a>
 									<div class="d-flex justify-content-center">
-									<a href="{{ path('offer_show', {'id': offer.id}) }}" class="btnOfferOnCard btnOffer btn btn-primary">réserver
-										<i class="fas fa-shopping-cart"></i>
-									</a>
+										{% if app.user %}
+											<a href="{{ path('offer_show', {'id': offer.id}) }}" class="btnOfferOnCard btnOffer btn btn-primary">réserver
+												<i class="fas fa-shopping-cart"></i>
+											</a>
+										{% else %}
+											<a href="{{ path('register') }}" class="btnOfferOnCard btnOffer btn btn-primary">réserver
+												<i class="fas fa-shopping-cart"></i>
+											</a>
+										{% endif %}
 									</div>
 									<p class="card-text">
 										<small class="text-muted"></small>
@@ -61,12 +86,12 @@
 
 
 
-									{% if app.user and is_granted('ROLE_CUSTOMER') %}
+									{% if app.user and is_granted('ROLE_CUSTOMER')%}
 										<a data-favorite="" href="{{ path('search_favory', {id: offer.id}) }}">
 											<i class="starfav {{ app.user.isInFavory(offer) ? 'fas' : 'far' }} fa-star fa-2x"></i>
 										</a>
 										{% else %}
-											<a href="{{ path('app_register_customer') }}">
+											<a href="{{ path('register') }}">
 												<i class="starfav far fa-star"></i>
 											</a>
 									{% endif %}
@@ -133,9 +158,15 @@
 										</ul>
 									</div>
 									<div class="modal-footer">
-										<a href="{{ path('offer_show', {'id': offer.id}) }}" class="btnOffer btn btn-primary">réserver
-											<i class="fas fa-shopping-cart"></i>
-										</a>
+										{% if app.user %}
+											<a href="{{ path('offer_show', {'id': offer.id}) }}" class="btnOffer btn btn-primary">réserver
+												<i class="fas fa-shopping-cart"></i>
+											</a>
+										{% else %}
+											<a href="{{ path('register') }}" class="btnOffer btn btn-primary">réserver
+												<i class="fas fa-shopping-cart"></i>
+											</a>
+										{% endif %}
 										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
 											Close
 										</button>

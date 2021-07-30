@@ -3,19 +3,20 @@
         {% if offer.picture starts with 'http' %}
             <img class="card-img-top" src="{{ offer.picture }}" alt="{{ offer.name }}">
         {% else %}
-            {#                   @TODO a revoir image product#}
             <picture class="d-flex justify-content-center">
                 <source srcset="{{ asset('uploads/' ~ offer.picture)|imagine_filter('product_thumb_default') }}">
                 <img class="w-auto card-img-top" src="{{ asset('uploads/' ~ offer.picture) }}" alt="{{ offer.name }} poster">
             </picture>
         {% endif %}
+        <a class="stretched-link indexbtn2" href="{{ path('offer_show', {'id': offer.id}) }}"></a>
         <div class="card-body d-flex flex-column">
             <h5 class="card-title text-center">{{ offer.name }}</h5>
             <p class="card-text fs-6 fw-light lh-1">{{ offer.description }}</p>
             {% if is_granted("ROLE_ADMIN") or offer.provider == app.user %}
-                <a class="button-card mt-auto text-center" href="{{ path('offer_edit', {'id': offer.id}) }}">Modifier</a>
+                <a class="position-relative button-card mt-auto text-center indexbtn" href="{{ path('offer_edit', {'id': offer.id}) }}">Modifier</a>
             {% endif %}
         </div>
+
 {#        <div class="label-price">#}
 {#            <span>{{ offer.price }}€</span>#}
 {#        </div>#}

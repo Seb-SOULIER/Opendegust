@@ -3,9 +3,10 @@
 {% block title %}Edit Customer{% endblock %}
 
 {% block body %}
-<div class="d-flex align-items-center flex-column">
-    <div class="col-11 col-sm-9 col-xl-8 my-3">
-        <div class="provider__form w-100">
+    <a class="btn btn-primary m-3" href="{{ path('home') }}">Retour à l'accueil</a>
+    <div class="d-flex align-items-center flex-column">
+        <div class="col-11 col-sm-9 col-xl-8 my-3">
+            <div class="provider__form w-100">
             <div class="d-flex align-items-center flex-column">
                 <div class="accordion w-100" id="accordionPanelsStayOpenExample">
                     {{ form_start(formPw) }}
@@ -155,7 +156,6 @@
         </div>
         {{ form_end(form) }}
         <div class="d-flex justify-content-between my-3">
-            <a href="{{ path('home') }}">Retour à l'accueil</a>
             {{ include('customer/_delete_form.html.twig') }}
         </div>
     </div>

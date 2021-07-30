@@ -162,9 +162,9 @@
 		</div>
 		{% if products %}
 			<div class="container-fluid">
-				<div class="list-offer-by-provider">
+				<div class="list-offer-by-provider mb-3 ">
 					<h1 class="my-3 text-center">Nos Produits</h1>
-					<div class="row row-cols-1 row-cols-md-5 g-5" style="justify-content:center">
+					<div class="justify-content-around row2 g-5 pb-5 d-flex container">
 						{% for product in products %}
 							{% include "product/products.html.twig" %}
 						{% endfor %}
@@ -179,16 +179,37 @@
 				<h1 class="my-3 text-center">Nos Offres</h1>
 				<div class="row row-cols-1 row-cols-md-5 g-5" id="provider-offer-card">
 					{% for offer in offers %}
-						<a style="text-decoration:none" href="{{ path('offer_show', {'id': offer.id}) }}">{% include "offer/offers.html.twig" %}</a>
+{#						<a href="{{ path('offer_show', {'id': offer.id}) }}">#}
+							{% include "offer/offers.html.twig" %}
+{#						</a>#}
 					{% endfor %}
 				</div>
 			</div>
 		</div>
 	{% endif %}
-	<div class="container-fluid pt-3 pb-3 d-flex">
+	<div class="d-flex">
+	{% if is_granted("ROLE_ADMIN") %}
+	<div class=" pt-3 pb-3 d-flex">
+		<div class=" p-2">
+			<a class="btn btn-primary" href="{{ path('provider_index') }}">
+				Carte des producteurs</a>
+		</div>
+	</div>
+	{% else %}
+		<div class="container-fluid pt-3 pb-3 d-flex">
 		<div class="w-50 p-2">
 			<a class="btn btn-primary" href="{{ path('provider_index') }}">
-				Retournez à la liste des Producteurs</a>
+				Retour à la liste des producteurs</a>
 		</div>
+	</div>
+	{% endif %}
+{% if is_granted("ROLE_ADMIN") %}
+	<div class=" pt-3 pb-3 d-flex">
+		<div class="p-2">
+			<a class="btn btn-secondary" href="{{ path('admin_index') }}">
+				Tableau des producteurs</a>
+		</div>
+	</div>
+	{% endif %}
 	</div>
 {% endblock %}

@@ -7,6 +7,7 @@
 	<div id="liste-des-prod">
 		<h2>Liste de mes offres</h2>
 	</div>
+	{% if app.user.status == 1 %}
 	<div class="responsive-table-list">
 		<table class="table table-bordered table-condensed table-body-center">
 			<thead>
@@ -59,4 +60,9 @@
 		<a class="btn btn-success m-3" href="{{ path('offer_new') }}">Créer une nouvelle Offre</a>
 		</div>
 	</div>
+	{% else %}
+	<div class="no-results-offer">
+		<p>Votre compte est en attente de vérification!</p>
+	</div>
+	{% endif %}
 {% endblock %}

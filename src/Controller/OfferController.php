@@ -249,7 +249,7 @@ class OfferController extends AbstractController
             $entityManager->persist($booking);
             $entityManager->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('booking');
         }
         return $this->render('offer/_offer-variation-info.html.twig', [
             'calendar' => $calendar,
