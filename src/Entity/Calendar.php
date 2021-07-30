@@ -28,6 +28,11 @@ class Calendar
      */
     private ?OfferVariation $offerVariation;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $availablePlaces;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +58,18 @@ class Calendar
     public function setOfferVariation(?OfferVariation $offerVariation): self
     {
         $this->offerVariation = $offerVariation;
+
+        return $this;
+    }
+
+    public function getAvailablePlaces(): ?int
+    {
+        return $this->availablePlaces;
+    }
+
+    public function setAvailablePlaces(?int $availablePlaces): self
+    {
+        $this->availablePlaces = $availablePlaces;
 
         return $this;
     }
