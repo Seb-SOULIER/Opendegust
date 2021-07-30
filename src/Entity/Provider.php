@@ -391,6 +391,4 @@ class Provider extends User
 
         return $this;
     }
-
-
 }
