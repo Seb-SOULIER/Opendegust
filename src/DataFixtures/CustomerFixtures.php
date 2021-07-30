@@ -36,7 +36,7 @@ class CustomerFixtures extends Fixture
             $customer->setRoles(['ROLE_CUSTOMER']);
             $customer->setPassword($this->passwordEncoder->encodePassword(
                 $customer,
-                'tata'
+                'azerty'
             ));
             $customer->setRegistrationAt($this->faker->dateTime);
             $customer->setCivility($this->faker->numberBetween(1, 3));
